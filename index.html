@@ -357,37 +357,19 @@
       
         
           
-            <ol>
-<li><p>/dev/null  位桶（bit bucket）传送到此文件的数据会被丢掉,可以用来测试一个文件是否包含某个pattern。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if grep pattern myfile &gt;  /dev/null</span><br><span class="line">then ... 找到模式</span><br><span class="line">else ...没找到模式</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Shell脚本的命令行参数超多9时，用数字框起来${10}</p>
-</li>
-<li>^$ 用来匹配空字符串或行列，<br><code>cc -E foo.c | grep -v &#39;^$&#39;&gt; foo.out</code>  用来排除空行</li>
-<li>实时查看当前进程中使用的shell种类<br><code>ps | grep $$ | awk &#39;{print $4}&#39;</code></li>
-<li>正则表达式对于程序执行时的locale环境相当敏感；方括号表达式里的范围应避免使用，该用字符集，例如[[:alnum:]]比较好。</li>
-<li><p>-k选项指定排序字段，-t选择字段界定符</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sort -t_ -k1,1 -k2,2 &lt;&lt; EOF</span><br><span class="line">&gt; one_two</span><br><span class="line">&gt; one_two_three</span><br><span class="line">&gt; ont_two_four</span><br><span class="line">&gt; ont_two_five</span><br><span class="line">&gt; EOF</span><br><span class="line">one_two</span><br><span class="line">one_two_three</span><br><span class="line">ont_two_five</span><br><span class="line">ont_two_four</span><br></pre></td></tr></table></figure>
-<p>   可以看出sort并不稳定，因为输入与输出不一致，但我们可以通过–stable选项补救该问题。</p>
-</li>
-<li>为什么看不到/etc/passwd,因为默认是隐藏的。</li>
-<li><p>awk与cut是提取字段的好工具。</p>
-<pre><code>awk -F: &apos;{print $5}&apos; or cut -d: -f5
-</code></pre></li>
-<li><code>2&gt; /dev/null</code> 是丢弃标准错误信息的输出</li>
-<li>myvar=赋值并不会将myvar删除，只不过是将其设为null字符串，unset myvar则会完全删除它。</li>
-<li><code>rm -fr /$MYPROGRAM</code> 若MYPROGRAM未定义，就会有灾难发生！！！</li>
-<li><p>POSIX标准化字符串长度运算符：返回字符长度。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x=supercalifraglistcexpialidoucius  著名的特殊单词</span><br><span class="line">echo There are $&#123;#x&#125; characters in $x</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>set命令 如果未給任何选项，会设置位置参数的值，并将之前存在的任何值丢弃。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# set -- hello &quot;hi there&quot; greetings</span><br><span class="line">[root@localhost ~]# echo there are $# total arguments 计数</span><br><span class="line">there are 3 total arguments</span><br><span class="line">[root@localhost ~]# for i in $*</span><br><span class="line">&gt; do echo i is $i</span><br><span class="line">&gt; done</span><br><span class="line">i is hello  注意内嵌的空白已经消失</span><br><span class="line">i is hi</span><br><span class="line">i is there</span><br><span class="line">i is greetings</span><br><span class="line">[root@localhost ~]# for i in $@  没有双引号 $*和$@一样</span><br><span class="line">&gt; do echo i is $i</span><br><span class="line">&gt; done</span><br><span class="line">i is hello</span><br><span class="line">i is hi</span><br><span class="line">i is there</span><br><span class="line">i is greetings</span><br><span class="line">[root@localhost ~]# for i in &quot;$*&quot;</span><br><span class="line">&gt; do echo i is $i</span><br><span class="line">&gt; done</span><br><span class="line">i is hello hi there greetings</span><br><span class="line">[root@localhost ~]# for i in &quot;$@&quot;; do echo i is $i; done</span><br><span class="line">i is hello</span><br><span class="line">i is hi there</span><br><span class="line">i is greetings</span><br><span class="line">[root@localhost ~]# shift  截去第一个参数</span><br><span class="line">[root@localhost ~]# echo there are now $# total arguments</span><br><span class="line">there are now 2 total arguments  证明消失</span><br><span class="line">[root@localhost ~]# for i in &quot;$@&quot;; do echo i is $i; done</span><br><span class="line">i is hi there</span><br><span class="line">i is greetings</span><br><span class="line">[root@localhost ~]# shift</span><br><span class="line">[root@localhost ~]# echo there are now $# total arguments</span><br><span class="line">there are now 1 total arguments</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>特殊变量$$ 可在编写脚本时用来建立具有唯一性的文件名，多半是临时的，根据Shell的进程编号建立文件名，不过，mktemp也能做。</p>
-</li>
-</ol>
-
           
+/dev/null  位桶（bit bucket）传送到此文件的数据会被丢掉,可以用来测试一个文件是否包含某个pattern。
+1234if grep pattern myfile &gt;  /dev/nullthen ... 找到模式else ...没找到模式fi
+
+Shell脚本的命令行参数
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/11/Shell知识点/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -542,21 +524,17 @@
       
         
           
-            <p>qemu-kvm一般会有4个线程，主线程是io thread，还有一个vcpu thread，一个signal thread。<br>对于io thread，可以从kvm_main_loop(qemu-kvm.c)开始看：<br>两个pipe是比较重要的一点：</p>
-<ol>
-<li>它调用qemu_eventfd创建一个event pipe，pipe read fd用qemu_set_fd _hadnler2注册一个read fd handler，也就是说如果fd read ready，io thread将通过某种机制调用这个handler，即io_thread_wakeup。换句话说，这个event pipe读的操作应该是在io_thread_wakeup()函数中，那么是由谁执行写操作的呢？这个还不是很清楚，只知道write fd记录到了全局变量io_thread_fd中，也就是说在qemu-kvm任何地方都可以引用io_thread_fd向pipe写东西。</li>
-<li><p>它还调用qemu_signalfd创建一个signal thread，不过现在还不清楚为什么要单独创建一个这样的线程。qemu_signalfd中还会创建一个signal pipe，read fd同样用qemu_set_fd _hadnler2注册一个read fd handler——sigfd_handler，而write fd作为参数传递给signal thread执行函数，也就是说写操作应该是由signal thread负责的。<br>为什么要创建一个signal thread和signal pipe呢？</p>
-<pre><code>上面提到用qemu_set_fd_handler2注册的handler在fd ready时，io thread会通过某种机制调用相应地handler。这个机制是main_loop_wait函数实现的。main_loop_wait函数中将所有注册的r/w fd都加入到对应地r/w fd_set中，然后调用select系统调用，这个系统调用将检查相应fd_set中的fd是否有已ready的，如果没有一个ready，将使得调用线程阻塞直到超时，否则将返回，并将原来fd_set修改，将没有ready的fd从原fd_set中删除。返回后，通过遍历handler队列，检测其fd是否在fd_set中，并调用相应的handler。
+          qemu-kvm一般会有4个线程，主线程是io thread，还有一个vcpu thread，一个signal thread。对于io thread，可以从kvm_main_loop(qemu-kvm.c)开始看：两个pipe是比较重要的一点：
 
- 我记得中说过，发送给这个qemu process的信号可以由process内任意的thread来处理， 但是每个线程都可以设置mask来选择是否处理某信号。那么为什么要单独设置一个signal thread来接受信号呢？实际上，用signal thread这种机制是将原本对指定信号的处理由异步方式改成同步方式。
-  默认异步方式时，信号发送给本qemu process后，内核将检测是否有pending signal，如果有内核将调用相应的handler，而这个执行实体可以是process中任意的thread。这样，thread有可能因为信号的到来，而被临时打断，去执行handler。
-  同步方式是这样的，首先sigprocmask系统调用屏蔽掉指定的signal，这样process将不再接受这个signal(当然，每个thread都有屏蔽码的，但是应该是调用pthread_sigmask，调用sigprocmask将使整个process不接受)。然后，创建一个signal thread，其执行代码调用sigwaitinfo函数，等待指定的信号，如果无信号则signal thread阻塞在这个系统调用中，否则返回，将siginfo_t写入signal pipe中。最后，io thread通过select系统调用检测到signal pipe read_fd  ready，然后调用相应的read_fd handler，fd handler再调用相应的signal handler。
- 可以看到，同步方式虽然代价比异步方式大得多，需要多创建一个signal pipe和signal thread，但是它不会突然打断thread执行，对于程序响应性有利。这个跟interrupt和polling之间的比较类似，当外部事情来时，执行内核的中断服务例程，interrupt handler有可能发送一个信号给要处理事件的process。
-</code></pre></li>
-</ol>
-<p>之前发现一个很奇怪的现象：在我的电脑上跑的qemu-kvm有4个线程，而其他同学电脑上跑只有2个线程。我原本觉得奇怪，按照前面的论述，qemu-kvm至少得有3个线程才是，只有2个线程的话，那么signal thread去哪里了呢？带着这个问题，对两种情况的代码做了一下trace，结果发现是在qemu_signalfd (compatfd.c)函数中出现了差异—如果系统有定义CONFIG_SIGNALFD宏，那么就不会创建signal thread，否则就创建。不太理解的是，我的装的是32位CentOS，结果没有SIGNALFD，而其他装的是64位CentOS，是有SIGNALFD的。<br>那么signalfd是什么呢？简单的说，就是一个线程可以创建一个signalfd，指定哪些signal可以由它来接受，当信号来时，就不是像原来那样去调用signal handler，而是将siginfo_t写入signalfd，线程通过read或select或poll就可以知道signalfd是否接受到了新的signal。<br>这样，在由signalfd情况下，就没有必要创建signal thread了。这样，就减少了一点开销。原来是signal thread通过sigwaitinfo检测到signal，然后将siginfo_t写入signal pipe，io thread通过select检测到signal pipe read fd ready，然后读出siginfo_t，再调用handler；现在是，内核直接将siginfo_t写入signalfd，io thread通过select检测到signalfd ready，然后读出读出siginfo_t，再调用handler。很显然，省去了额外signal thread的开销。<br>总之，只要先用sigprocmask将可能接受的signal block掉，再用select+signalfd或者是sigwaitinfo都可以讲异步signal转变为同步signal。</p>
-
-          
+它调用qemu_eventfd创建一个event p
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/11/qemu-kvm-io线程/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -711,8 +689,15 @@
       
         
           
-            <h1 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h1>
+          HelloWorld
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/09/helloworld/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
