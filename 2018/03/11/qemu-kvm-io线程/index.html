@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="KVM," />
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="生活不应当只有眼前的苟且，还有诗和远方，与其用泪水忏悔昨天，不如用汗水拼搏明天．">
-<meta property="og:type" content="website">
-<meta property="og:title" content="诗与远方">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="qemu-kvm一般会有4个线程，主线程是io thread，还有一个vcpu thread，一个signal thread。对于io thread，可以从kvm_main_loop(qemu-kvm.c)开始看：两个pipe是比较重要的一点：  它调用qemu_eventfd创建一个event pipe，pipe read fd用qemu_set_fd _hadnler2注册一个read fd">
+<meta name="keywords" content="KVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="qemu-kvm-io线程">
+<meta property="og:url" content="http://yoursite.com/2018/03/11/qemu-kvm-io线程/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="生活不应当只有眼前的苟且，还有诗和远方，与其用泪水忏悔昨天，不如用汗水拼搏明天．">
+<meta property="og:description" content="qemu-kvm一般会有4个线程，主线程是io thread，还有一个vcpu thread，一个signal thread。对于io thread，可以从kvm_main_loop(qemu-kvm.c)开始看：两个pipe是比较重要的一点：  它调用qemu_eventfd创建一个event pipe，pipe read fd用qemu_set_fd _hadnler2注册一个read fd">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-11T06:09:11.332Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="诗与远方">
-<meta name="twitter:description" content="生活不应当只有眼前的苟且，还有诗和远方，与其用泪水忏悔昨天，不如用汗水拼搏明天．">
+<meta name="twitter:title" content="qemu-kvm-io线程">
+<meta name="twitter:description" content="qemu-kvm一般会有4个线程，主线程是io thread，还有一个vcpu thread，一个signal thread。对于io thread，可以从kvm_main_loop(qemu-kvm.c)开始看：两个pipe是比较重要的一点：  它调用qemu_eventfd创建一个event pipe，pipe read fd用qemu_set_fd _hadnler2注册一个read fd">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/11/qemu-kvm-io线程/"/>
 
 
 
 
 
-  <title>诗与远方 - 一个走在前端的后端人</title>
+  <title>qemu-kvm-io线程 | 诗与远方</title>
   
 
 
@@ -143,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-right 
-  page-home">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -237,191 +238,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/11/Shell知识点/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songjiantao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/15856742?s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗与远方">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/11/Shell知识点/" itemprop="url">Shell知识点</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-11T17:32:26+08:00">
-                2018-03-11
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-11T18:17:09+08:00">
-                2018-03-11
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Shell/" itemprop="url" rel="index">
-                    <span itemprop="name">Shell</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>/dev/null  位桶（bit bucket）传送到此文件的数据会被丢掉,可以用来测试一个文件是否包含某个pattern。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if grep pattern myfile &gt;  /dev/null</span><br><span class="line">then ... 找到模式</span><br><span class="line">else ...没找到模式</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Shell脚本的命令行参数超多9时，用数字框起来${10}</p>
-</li>
-<li>^$ 用来匹配空字符串或行列，<br><code>cc -E foo.c | grep -v &#39;^$&#39;&gt; foo.out</code>  用来排除空行</li>
-<li>实时查看当前进程中使用的shell种类<br><code>ps | grep $$ | awk &#39;{print $4}&#39;</code></li>
-<li>正则表达式对于程序执行时的locale环境相当敏感；方括号表达式里的范围应避免使用，该用字符集，例如[[:alnum:]]比较好。</li>
-<li><p>-k选项指定排序字段，-t选择字段界定符</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sort -t_ -k1,1 -k2,2 &lt;&lt; EOF</span><br><span class="line">&gt; one_two</span><br><span class="line">&gt; one_two_three</span><br><span class="line">&gt; ont_two_four</span><br><span class="line">&gt; ont_two_five</span><br><span class="line">&gt; EOF</span><br><span class="line">one_two</span><br><span class="line">one_two_three</span><br><span class="line">ont_two_five</span><br><span class="line">ont_two_four</span><br></pre></td></tr></table></figure>
-<p>   可以看出sort并不稳定，因为输入与输出不一致，但我们可以通过–stable选项补救该问题。</p>
-</li>
-<li>为什么看不到/etc/passwd,因为默认是隐藏的。</li>
-<li><p>awk与cut是提取字段的好工具。</p>
-<pre><code>awk -F: &apos;{print $5}&apos; or cut -d: -f5
-</code></pre></li>
-<li><code>2&gt; /dev/null</code> 是丢弃标准错误信息的输出</li>
-<li>myvar=赋值并不会将myvar删除，只不过是将其设为null字符串，unset myvar则会完全删除它。</li>
-<li><code>rm -fr /$MYPROGRAM</code> 若MYPROGRAM未定义，就会有灾难发生！！！</li>
-<li><p>POSIX标准化字符串长度运算符：返回字符长度。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x=supercalifraglistcexpialidoucius  著名的特殊单词</span><br><span class="line">echo There are $&#123;#x&#125; characters in $x</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>set命令 如果未給任何选项，会设置位置参数的值，并将之前存在的任何值丢弃。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# set -- hello &quot;hi there&quot; greetings</span><br><span class="line">[root@localhost ~]# echo there are $# total arguments 计数</span><br><span class="line">there are 3 total arguments</span><br><span class="line">[root@localhost ~]# for i in $*</span><br><span class="line">&gt; do echo i is $i</span><br><span class="line">&gt; done</span><br><span class="line">i is hello  注意内嵌的空白已经消失</span><br><span class="line">i is hi</span><br><span class="line">i is there</span><br><span class="line">i is greetings</span><br><span class="line">[root@localhost ~]# for i in $@  没有双引号 $*和$@一样</span><br><span class="line">&gt; do echo i is $i</span><br><span class="line">&gt; done</span><br><span class="line">i is hello</span><br><span class="line">i is hi</span><br><span class="line">i is there</span><br><span class="line">i is greetings</span><br><span class="line">[root@localhost ~]# for i in &quot;$*&quot;</span><br><span class="line">&gt; do echo i is $i</span><br><span class="line">&gt; done</span><br><span class="line">i is hello hi there greetings</span><br><span class="line">[root@localhost ~]# for i in &quot;$@&quot;; do echo i is $i; done</span><br><span class="line">i is hello</span><br><span class="line">i is hi there</span><br><span class="line">i is greetings</span><br><span class="line">[root@localhost ~]# shift  截去第一个参数</span><br><span class="line">[root@localhost ~]# echo there are now $# total arguments</span><br><span class="line">there are now 2 total arguments  证明消失</span><br><span class="line">[root@localhost ~]# for i in &quot;$@&quot;; do echo i is $i; done</span><br><span class="line">i is hi there</span><br><span class="line">i is greetings</span><br><span class="line">[root@localhost ~]# shift</span><br><span class="line">[root@localhost ~]# echo there are now $# total arguments</span><br><span class="line">there are now 1 total arguments</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>特殊变量$$ 可在编写脚本时用来建立具有唯一性的文件名，多半是临时的，根据Shell的进程编号建立文件名，不过，mktemp也能做。</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -451,9 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/11/qemu-kvm-io线程/" itemprop="url">qemu-kvm-io线程</a></h1>
+          <h1 class="post-title" itemprop="name headline">qemu-kvm-io线程</h1>
         
 
         <div class="post-meta">
@@ -537,9 +354,7 @@
       
 
       
-        
-          
-            <p>qemu-kvm一般会有4个线程，主线程是io thread，还有一个vcpu thread，一个signal thread。<br>对于io thread，可以从kvm_main_loop(qemu-kvm.c)开始看：<br>两个pipe是比较重要的一点：</p>
+        <p>qemu-kvm一般会有4个线程，主线程是io thread，还有一个vcpu thread，一个signal thread。<br>对于io thread，可以从kvm_main_loop(qemu-kvm.c)开始看：<br>两个pipe是比较重要的一点：</p>
 <ol>
 <li>它调用qemu_eventfd创建一个event pipe，pipe read fd用qemu_set_fd _hadnler2注册一个read fd handler，也就是说如果fd read ready，io thread将通过某种机制调用这个handler，即io_thread_wakeup。换句话说，这个event pipe读的操作应该是在io_thread_wakeup()函数中，那么是由谁执行写操作的呢？这个还不是很清楚，只知道write fd记录到了全局变量io_thread_fd中，也就是说在qemu-kvm任何地方都可以引用io_thread_fd向pipe写东西。</li>
 <li><p>它还调用qemu_signalfd创建一个signal thread，不过现在还不清楚为什么要单独创建一个这样的线程。qemu_signalfd中还会创建一个signal pipe，read fd同样用qemu_set_fd _hadnler2注册一个read fd handler——sigfd_handler，而write fd作为参数传递给signal thread执行函数，也就是说写操作应该是由signal thread负责的。<br>为什么要创建一个signal thread和signal pipe呢？</p>
@@ -553,8 +368,6 @@
 </ol>
 <p>之前发现一个很奇怪的现象：在我的电脑上跑的qemu-kvm有4个线程，而其他同学电脑上跑只有2个线程。我原本觉得奇怪，按照前面的论述，qemu-kvm至少得有3个线程才是，只有2个线程的话，那么signal thread去哪里了呢？带着这个问题，对两种情况的代码做了一下trace，结果发现是在qemu_signalfd (compatfd.c)函数中出现了差异—如果系统有定义CONFIG_SIGNALFD宏，那么就不会创建signal thread，否则就创建。不太理解的是，我的装的是32位CentOS，结果没有SIGNALFD，而其他装的是64位CentOS，是有SIGNALFD的。<br>那么signalfd是什么呢？简单的说，就是一个线程可以创建一个signalfd，指定哪些signal可以由它来接受，当信号来时，就不是像原来那样去调用signal handler，而是将siginfo_t写入signalfd，线程通过read或select或poll就可以知道signalfd是否接受到了新的signal。<br>这样，在由signalfd情况下，就没有必要创建signal thread了。这样，就减少了一点开销。原来是signal thread通过sigwaitinfo检测到signal，然后将siginfo_t写入signal pipe，io thread通过select检测到signal pipe read fd ready，然后读出siginfo_t，再调用handler；现在是，内核直接将siginfo_t写入signalfd，io thread通过select检测到signalfd ready，然后读出读出siginfo_t，再调用handler。很显然，省去了额外signal thread的开销。<br>总之，只要先用sigprocmask将可能接受的signal block掉，再用select+signalfd或者是sigwaitinfo都可以讲异步signal转变为同步signal。</p>
 
-          
-        
       
     </div>
     
@@ -564,172 +377,99 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
 
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="songjiantao 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    songjiantao
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2018/03/11/qemu-kvm-io线程/" title="qemu-kvm-io线程">http://yoursite.com/2018/03/11/qemu-kvm-io线程/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
     
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/09/helloworld/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songjiantao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/15856742?s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诗与远方">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/09/helloworld/" itemprop="url">helloworld</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-09T11:20:57+08:00">
-                2018-03-09
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-11T14:15:23+08:00">
-                2018-03-11
-              </time>
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/helloworld/" itemprop="url" rel="index">
-                    <span itemprop="name">helloworld</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/KVM/" rel="tag"># KVM</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
+      
+        <div class="post-widgets">
         
-          
-            <h1 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h1>
-          
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
         
+
+        
+
+        
+        </div>
       
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/09/helloworld/" rel="next" title="helloworld">
+                <i class="fa fa-chevron-left"></i> helloworld
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/11/Shell知识点/" rel="prev" title="Shell知识点">
+                Shell知识点 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -739,10 +479,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -750,6 +491,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -1006,6 +751,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1086,6 +835,23 @@
   </script>
 
   
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 10113,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
 
   
   
