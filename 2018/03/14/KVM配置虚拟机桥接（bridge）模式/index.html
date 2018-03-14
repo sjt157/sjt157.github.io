@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/3.png">
 <meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/4.png">
 <meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/5.png">
-<meta property="og:updated_time" content="2018-03-14T13:33:05.124Z">
+<meta property="og:updated_time" content="2018-03-14T13:37:50.163Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KVM配置虚拟机桥接（bridge）模式">
 <meta name="twitter:description" content="主机：Ubuntu14.04 64bit虚拟机：Ubuntu14.04 64bitVMM:KVM 基础知识：默认创建的网桥virbr0用于NAT模式，如果想用brigde模式，需要自己创建一个br0。Bridge方式即虚拟网桥的网络连接方式，是客户机和子网里面的机器能够互相通信。可以使虚拟机成为网络中具有独立IP的主机。 桥接网络（也叫物理设备共享）被用作把一个物理设备复制到一台虚拟机。网桥多用作">
@@ -304,7 +304,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-14T21:33:05+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-14T21:37:50+08:00">
                 2018-03-14
               </time>
             
@@ -371,10 +371,9 @@
 </li>
 </ol>
 <ol>
-<li>创建虚拟机时，指定—bridge=br0。（–bridge与—network只能二选一，不能同时指定）<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/4.png" alt="image">  </li>
-</ol>
+<li><p>创建虚拟机时，指定—bridge=br0。（–bridge与—network只能二选一，不能同时指定）<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/4.png" alt="image">  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virt-install --virt-type kvm --name test2 --ram 1024 --vcpus 1 --bridge=br0 \ --cdrom=/home/lib206/vmimage/ubuntu-16.04.1-server-amd64.iso \--disk path=/home/lib206/vmimage/Test.img,size=20,format=raw --graphics vnc,port=5901  --os-type=linux  --boot cdrom</span><br></pre></td></tr></table></figure>
-<ol>
+</li>
 <li><p>创建成功后，如果启动虚拟机时出现不能引导Booting from No bootable device，按下图所示设置，可能是引导顺序的原因。<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/5.png" alt="image">  </p>
 </li>
 <li><p>此时虚拟机即处于桥接模式，ip由路由器DHCP随即分配。通过以上步骤的设置KVM的桥接问题解决了，此时可以查看一下虚拟机网络IP地址，应该跟主机的IP地址处于同一个网段；但是还是有问题的， 无线网卡桥接是不成功的，默认的是有线网卡！</p>
