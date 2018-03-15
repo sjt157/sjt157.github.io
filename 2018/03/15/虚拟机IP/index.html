@@ -79,22 +79,22 @@
 
 
 
-<meta name="description" content="###如何不进去虚拟机看到其IP  在linux上玩过kvm的朋友基本都晓得，在宿主机上运行了虚拟主机以后，我们无法直接看到某一个虚拟主机IP地址。比如  如果我们想知道test这个虚拟机的IP地址，那么是无法直接看到的。但是我们可以通过一个小技巧间接得到其IP，也就是利用ARP。  编辑虚拟主机配置文件。查看虚拟机的配置文件test.xml，（或者通过virsh dumpxml test）找到M">
+<meta name="description" content="如何不进去虚拟机看到其IP 在linux上玩过kvm的朋友基本都晓得，在宿主机上运行了虚拟主机以后，我们无法直接看到某一个虚拟主机IP地址。比如  如果我们想知道test这个虚拟机的IP地址，那么是无法直接看到的。但是我们可以通过一个小技巧间接得到其IP，也就是利用ARP。  编辑虚拟主机配置文件。查看虚拟机的配置文件test.xml，（或者通过virsh dumpxml test）找到MAC标签">
 <meta name="keywords" content="KVM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="虚拟机IP">
 <meta property="og:url" content="http://yoursite.com/2018/03/15/虚拟机IP/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="###如何不进去虚拟机看到其IP  在linux上玩过kvm的朋友基本都晓得，在宿主机上运行了虚拟主机以后，我们无法直接看到某一个虚拟主机IP地址。比如  如果我们想知道test这个虚拟机的IP地址，那么是无法直接看到的。但是我们可以通过一个小技巧间接得到其IP，也就是利用ARP。  编辑虚拟主机配置文件。查看虚拟机的配置文件test.xml，（或者通过virsh dumpxml test）找到M">
+<meta property="og:description" content="如何不进去虚拟机看到其IP 在linux上玩过kvm的朋友基本都晓得，在宿主机上运行了虚拟主机以后，我们无法直接看到某一个虚拟主机IP地址。比如  如果我们想知道test这个虚拟机的IP地址，那么是无法直接看到的。但是我们可以通过一个小技巧间接得到其IP，也就是利用ARP。  编辑虚拟主机配置文件。查看虚拟机的配置文件test.xml，（或者通过virsh dumpxml test）找到MAC标签">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-IP/1.png">
 <meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-IP/2.png">
 <meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-IP/3.png">
 <meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-IP/4.png">
-<meta property="og:updated_time" content="2018-03-15T02:55:35.357Z">
+<meta property="og:updated_time" content="2018-03-15T03:01:22.606Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="虚拟机IP">
-<meta name="twitter:description" content="###如何不进去虚拟机看到其IP  在linux上玩过kvm的朋友基本都晓得，在宿主机上运行了虚拟主机以后，我们无法直接看到某一个虚拟主机IP地址。比如  如果我们想知道test这个虚拟机的IP地址，那么是无法直接看到的。但是我们可以通过一个小技巧间接得到其IP，也就是利用ARP。  编辑虚拟主机配置文件。查看虚拟机的配置文件test.xml，（或者通过virsh dumpxml test）找到M">
+<meta name="twitter:description" content="如何不进去虚拟机看到其IP 在linux上玩过kvm的朋友基本都晓得，在宿主机上运行了虚拟主机以后，我们无法直接看到某一个虚拟主机IP地址。比如  如果我们想知道test这个虚拟机的IP地址，那么是无法直接看到的。但是我们可以通过一个小技巧间接得到其IP，也就是利用ARP。  编辑虚拟主机配置文件。查看虚拟机的配置文件test.xml，（或者通过virsh dumpxml test）找到MAC标签">
 <meta name="twitter:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-IP/1.png">
 
 
@@ -303,7 +303,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-15T10:55:35+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-15T11:01:22+08:00">
                 2018-03-15
               </time>
             
@@ -359,8 +359,7 @@
       
 
       
-        <p>###如何不进去虚拟机看到其IP</p>
-<ol>
+        <h3 id="如何不进去虚拟机看到其IP"><a href="#如何不进去虚拟机看到其IP" class="headerlink" title="如何不进去虚拟机看到其IP"></a>如何不进去虚拟机看到其IP</h3><ol>
 <li>在linux上玩过kvm的朋友基本都晓得，在宿主机上运行了虚拟主机以后，我们无法直接看到某一个虚拟主机IP地址。比如<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-IP/1.png" alt="image"></li>
 </ol>
 <p>如果我们想知道test这个虚拟机的IP地址，那么是无法直接看到的。但是我们可以通过一个小技巧间接得到其IP，也就是利用ARP。</p>
@@ -368,8 +367,7 @@
 <li>编辑虚拟主机配置文件。<br>查看虚拟机的配置文件test.xml，（或者通过<code>virsh dumpxml test</code>）找到MAC标签，可以得到该虚拟机的MAC地址，记录下mac后退出，然后通过arp -a判定虚拟机IP地址，由此可以发现此虚拟机IP为192.168.122.118，由此实现了不登陆虚拟机即可得到其IP。<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-IP/2.png" alt="image"></li>
 </ol>
 <p>(注意这里一定要加上-i 忽略大小写。不然因为大小写问题有可能查不到)<br>说明：这里只根据通信缓存记录的mac 、IP地址手段做排查。也有可能找不到。最好的办法是自己写一个脚本跟网段内的所有服务器都ping一次，记录下mac、ip地址以后再查找就没问题,因为这个方法就根据ARP缓存得到的。</p>
-<p>###虚拟机指定固定IP</p>
-<ol>
+<h3 id="虚拟机指定固定IP"><a href="#虚拟机指定固定IP" class="headerlink" title="虚拟机指定固定IP"></a>虚拟机指定固定IP</h3><ol>
 <li>由于bridge模式默认创建虚拟机的时候用的DHCP方式，分配给虚拟机的IP可能会发生改变，有时候很麻烦。那么如何指定其IP呢？<br>进去虚拟机，编辑/etc/network/interface文件，由<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-IP/3.png" alt="image"><br>变成<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-IP/4.png" alt="image"><br>然后输入 systemctl restart networking或者实在不行重启，即可更改为192.168.1.111的地址。</li>
 </ol>
 
