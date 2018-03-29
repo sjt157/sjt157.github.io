@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Linux," />
+  <meta name="keywords" content="Python," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="僵尸进程 怎样产生僵尸进程的： 一个进程在调用exit命令结束自己的生命的时候，其实它并没有真正的被销毁，而是留下一个称为僵尸进程（Zombie）的数据结构（系统调用exit，它的作用是使进程退出，但也仅仅限于将一个正常的进程变成一个僵尸进程，并不能将其完全销毁）。在Linux进程的状态中，僵尸进程是非常特殊的一种，它已经放弃了几乎所有内存空间，没有任何可执行代码，也不能被调度，仅仅在进程列表中保">
-<meta name="keywords" content="Linux">
+<meta name="description" content="python中的eval() 这个函数意义在哪？在编译语言里要动态地产生代码，基本上是不可能的，但动态语言是可以，意味着软件已经部署到服务器上了，但只要作很少的更改，只好直接修改这部分的代码，就可立即实现变化，不用整个软件重新加载。  先举个栗子：123a = 1g = &amp;#123;&amp;apos;a&amp;apos;: 20&amp;#125;print(eval(&amp;quot;a+1&amp;quot;, g))  #返">
+<meta name="keywords" content="Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="僵尸进程">
-<meta property="og:url" content="http://yoursite.com/2018/03/28/僵尸进程/index.html">
+<meta property="og:title" content="python中的eval函数">
+<meta property="og:url" content="http://yoursite.com/2018/03/29/python中的eval函数/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="僵尸进程 怎样产生僵尸进程的： 一个进程在调用exit命令结束自己的生命的时候，其实它并没有真正的被销毁，而是留下一个称为僵尸进程（Zombie）的数据结构（系统调用exit，它的作用是使进程退出，但也仅仅限于将一个正常的进程变成一个僵尸进程，并不能将其完全销毁）。在Linux进程的状态中，僵尸进程是非常特殊的一种，它已经放弃了几乎所有内存空间，没有任何可执行代码，也不能被调度，仅仅在进程列表中保">
+<meta property="og:description" content="python中的eval() 这个函数意义在哪？在编译语言里要动态地产生代码，基本上是不可能的，但动态语言是可以，意味着软件已经部署到服务器上了，但只要作很少的更改，只好直接修改这部分的代码，就可立即实现变化，不用整个软件重新加载。  先举个栗子：123a = 1g = &amp;#123;&amp;apos;a&amp;apos;: 20&amp;#125;print(eval(&amp;quot;a+1&amp;quot;, g))  #返">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-28T13:49:40.660Z">
+<meta property="og:updated_time" content="2018-03-29T13:59:09.641Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="僵尸进程">
-<meta name="twitter:description" content="僵尸进程 怎样产生僵尸进程的： 一个进程在调用exit命令结束自己的生命的时候，其实它并没有真正的被销毁，而是留下一个称为僵尸进程（Zombie）的数据结构（系统调用exit，它的作用是使进程退出，但也仅仅限于将一个正常的进程变成一个僵尸进程，并不能将其完全销毁）。在Linux进程的状态中，僵尸进程是非常特殊的一种，它已经放弃了几乎所有内存空间，没有任何可执行代码，也不能被调度，仅仅在进程列表中保">
+<meta name="twitter:title" content="python中的eval函数">
+<meta name="twitter:description" content="python中的eval() 这个函数意义在哪？在编译语言里要动态地产生代码，基本上是不可能的，但动态语言是可以，意味着软件已经部署到服务器上了，但只要作很少的更改，只好直接修改这部分的代码，就可立即实现变化，不用整个软件重新加载。  先举个栗子：123a = 1g = &amp;#123;&amp;apos;a&amp;apos;: 20&amp;#125;print(eval(&amp;quot;a+1&amp;quot;, g))  #返">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/28/僵尸进程/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/29/python中的eval函数/"/>
 
 
 
 
 
-  <title>僵尸进程 | 诗与远方</title>
+  <title>python中的eval函数 | 诗与远方</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/28/僵尸进程/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/29/python中的eval函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songjiantao">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">僵尸进程</h1>
+          <h1 class="post-title" itemprop="name headline">python中的eval函数</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T21:42:39+08:00">
-                2018-03-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-29T21:57:32+08:00">
+                2018-03-29
               </time>
             
 
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-28T21:49:40+08:00">
-                2018-03-28
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-29T21:59:09+08:00">
+                2018-03-29
               </time>
             
           </span>
@@ -317,8 +317,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
                   </a>
                 </span>
 
@@ -354,68 +354,30 @@
       
 
       
-        <h3 id="僵尸进程"><a href="#僵尸进程" class="headerlink" title="僵尸进程"></a>僵尸进程</h3><ol>
-<li><strong>怎样产生僵尸进程的：</strong> 一个进程在调用exit命令结束自己的生命的时候，其实它并没有真正的被销毁，而是留下一个称为僵尸进程（Zombie）的数据结构（系统调用exit，它的作用是使进程退出，但也仅仅限于将一个正常的进程变成一个僵尸进程，并不能将其完全销毁）。在Linux进程的状态中，僵尸进程是非常特殊的一种，它已经放弃了几乎所有内存空间，没有任何可执行代码，也不能被调度，仅仅在进程列表中保留一个位置，记载该进程的退出状态等信息供其他进程收集，除此之外，僵尸进程不再占有任何内存空间。它需要它的父进程来为它收尸，如果他的父进程没安装SIGCHLD信号处理函数调用wait或waitpid()等待子进程结束，又没有显式忽略该信号，那么它就一直保持僵尸状态，如果这时父进程结束了，那么init进程自动会接手这个子进程，为它收尸，它还是能被清除的。但是如果如果父进程是一个循环，不会结束，那么子进程就会一直保持僵尸状态，这就是为什么系统中有时会有很多的僵尸进程。  <em>网络原因有时也会引起僵尸进程</em>，</li>
-<li><strong>僵尸进程有害吗？</strong>  不会。由于僵尸进程并不做任何事情， 不会使用任何资源也不会影响其它进程， 因此存在僵尸进程也没什么坏处。 不过由于进程表中的退出状态以及其它一些进程信息也是存储在内存中的，因此存在太多僵尸进程有时也会是一些问题，比如会影响服务器的性能。<code>signal(SIGCHLD, SIG_IGN);</code> 忽略SIGCHLD信号，这是一个常用于提升并发服务器性能的技巧,因为并发服务器常常fork很多子进程，子进程终结之后需要服务器进程去wait清理资源。如果将此信号的处理方式设置为忽略，可让内核把僵尸进程转交给init进程去处理，省去了大量僵尸进程占用系统资源。</li>
-<li><p><strong>如何防止僵尸进程？</strong>  </p>
+        <h2 id="python中的eval"><a href="#python中的eval" class="headerlink" title="python中的eval()"></a>python中的eval()</h2><ul>
+<li><strong>这个函数意义在哪？</strong><br>在编译语言里要动态地产生代码，基本上是不可能的，但动态语言是可以，意味着软件已经部署到服务器上了，但只要作很少的更改，只好直接修改这部分的代码，就可立即实现变化，不用整个软件重新加载。</li>
+</ul>
+<p>先举个栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = 1</span><br><span class="line">g = &#123;&apos;a&apos;: 20&#125;</span><br><span class="line">print(eval(&quot;a+1&quot;, g))  #返回21</span><br></pre></td></tr></table></figure></p>
+<p>再举个栗子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># test eval() and locals()</span><br><span class="line">x = 1</span><br><span class="line">y = 1</span><br><span class="line">num1 = eval(&quot;x+y&quot;)</span><br><span class="line">print(num1)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def g():</span><br><span class="line">x = 2</span><br><span class="line">y = 2</span><br><span class="line">num3 = eval(&quot;x+y&quot;)</span><br><span class="line">print(num3)</span><br><span class="line">num2 = eval(&quot;x+y&quot;, globals())  # 搜全局</span><br><span class="line">num4 = eval(&quot;x+y&quot;,globals(),locals())  # 先搜索局部，搜索到停止</span><br><span class="line">print(num2)</span><br><span class="line">print(num4)</span><br><span class="line">g()   # 值依次为2 4 2 4</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li>让僵尸进程成为孤儿进程，由init进程回收；(手动杀死父进程)</li>
-<li>调用fork()两次；</li>
-<li><p>捕捉SIGCHLD信号，并在信号处理函数中调用wait函数；<br>代码实例：<br><code>`</code></p>
-<p>#include &lt;signal.h&gt;<br>#include &lt;stdlib.h&gt;<br>#include &lt;stdio.h&gt;<br>#include &lt;sys/types.h&gt;<br>#include &lt;sys/wait.h&gt;<br>#include &lt;unistd.h&gt;  </p>
-<p>void sig_handler(int signo)<br>{  </p>
-<pre><code>printf(&quot;child process deaded, signo: %d\n&quot;, signo);  
-wait(0);// 当捕获到SIGCHLD信号，父进程调用wait回收，避免子进程成为僵尸进程  
-</code></pre><p>}  </p>
-<p>void out(int n)<br>{  </p>
-<pre><code>int i;  
-for(i = 0; i &lt; n; ++i)  
-{  
-        printf(&quot;%d out %d\n&quot;, getpid(), i);  
-        sleep(2);  
-    }  
-</code></pre><p>}  </p>
-<p>int main(void)<br>{  </p>
-<pre><code>// 登记一下SIGCHLD信号  
-if(signal(SIGCHLD, sig_handler) == SIG_ERR)  
-{  
-        perror(&quot;signal sigchld error&quot;);  
-}  
-pid_t pid = fork();  
-if(pid &lt; 0)  
-{  
-        perror(&quot;fork error&quot;);  
-    exit(1);  
-    }  
-else if(pid &gt; 0)  
-{  
-        // parent process  
-        out(100);  
-}  
-    else  
-{  
-    // child process  
-    out(10);  
-}  
-
-    return 0;  
-</code></pre><p>}</p>
+<li><strong>eval在字符串对象和list、dictinoary、tuple对象之间互相转换</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def evala():</span><br><span class="line">    l = &apos;[1,2,3,4,[5,6,7,8,9]]&apos;</span><br><span class="line">    d = &quot;&#123;&apos;a&apos;:123,&apos;b&apos;:456,&apos;c&apos;:789&#125;&quot;</span><br><span class="line">    t = &apos;([1,3,5],[5,6,7,8,9],[123,456,789])&apos;</span><br><span class="line"></span><br><span class="line">    print(type(l), type(eval(l)))</span><br><span class="line">    print(type(d), type(eval(d)))</span><br><span class="line">    print(type(t), type(eval(t)))</span><br><span class="line">evala()</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<p>结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;class &apos;str&apos;&gt; &lt;class &apos;list&apos;&gt;</span><br><span class="line">   &lt;class &apos;str&apos;&gt; &lt;class &apos;dict&apos;&gt;</span><br><span class="line">   &lt;class &apos;str&apos;&gt; &lt;class &apos;tuple&apos;&gt;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p><strong>locals()对象的值不能修改，globals()对象的值可以修改</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#test globals() and locals()</span><br><span class="line"></span><br><span class="line">z=0</span><br><span class="line">def f():    </span><br><span class="line">    z = 1    </span><br><span class="line">    print (locals())        </span><br><span class="line">    locals()[&quot;z&quot;] = 2    </span><br><span class="line">    print (locals())      </span><br><span class="line">f() </span><br><span class="line">globals()[&quot;z&quot;] = 2</span><br><span class="line">print (z)  # 结果为&#123;&apos;z&apos;: 1&#125;  &#123;&apos;z&apos;: 1&#125;   2</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<p><code>`</code>   </p>
+<li><p><strong>eval有安全性问题,比如用户恶意输入就会获得当前目录文件</strong><br><code>eval(&quot;__import__(&#39;os&#39;).system(&#39;dir&#39;)&quot;)</code></p>
+</li>
+<li><p><strong>怎么避免安全问题？</strong></p>
+</li>
+</ul>
 <ol>
-<li><strong>如何找出僵尸进程呢？</strong>  <code>ps aux | grep Z</code>or <code>ps -ef | grep defunct</code></li>
-<li><strong>解决方法：</strong></li>
+<li>自行写检查函数；</li>
+<li><h1 id="使用ast-literal-eval"><a href="#使用ast-literal-eval" class="headerlink" title="使用ast.literal_eval"></a>使用ast.literal_eval</h1></li>
 </ol>
-<ul>
-<li>设置SIGCLD信号为SIG_IGN，系统将不产生僵死进程。</li>
-<li>用两次fork()，而且使紧跟的子进程直接退出，是的孙子进程成为孤儿进程，从而init进程将负责清除这个孤儿进程。</li>
-<li>重启服务器电脑，这个是最简单，最易用的方法，但是如果你服务器电脑上运行有其他的程序，那么这个方法，代价很大。所以，尽量使用下面一种方法。</li>
-<li>找到该defunct僵尸进程的父进程，将该进程的父进程杀掉，则此defunct进程将自动消失。 如何找到defunct僵尸进程的父进程？很简单，一句命令就够了：<code>ps -ef | grep defunct_process_pid</code></li>
-<li>正常情况下我们可以用 SIGKILL 信号来杀死进程，但是僵尸进程已经死了， 你不能杀死已经死掉的东西。 因此你需要输入的命令应该是<code>kill -s SIGCHLD pid</code> 。    将这里的 pid 替换成父进程的进程 id，这样父进程就会删除所有以及完成并死掉的子进程了。</li>
-</ul>
+<p><strong>tips</strong><br><code>if __name__ == &quot;__main__&quot;:</code> 第一开始不是很理解，今天经过学习知道了这句代码的作用。是编写私有化部分 ，这句代码以上的部分，可以被其它的调用，以下的部分只有这个文件自己可以看见，如果文件被调用了，其他人是无法看见私有化部分的。比如进行单元测试的时候会用到！他的原理是每个py文件都有<strong>name</strong>属性，如果当前属性和<strong>main</strong>一样，则值为真，否则为假，就不执行！</p>
 
       
     </div>
@@ -470,7 +432,7 @@ else if(pid &gt; 0)
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/03/28/僵尸进程/" title="僵尸进程">http://yoursite.com/2018/03/28/僵尸进程/</a>
+    <a href="http://yoursite.com/2018/03/29/python中的eval函数/" title="python中的eval函数">http://yoursite.com/2018/03/29/python中的eval函数/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -485,7 +447,7 @@ else if(pid &gt; 0)
       
         <div class="post-tags">
           
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
+            <a href="/tags/Python/" rel="tag"># Python</a>
           
         </div>
       
@@ -510,8 +472,8 @@ else if(pid &gt; 0)
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/28/哈希表/" rel="next" title="哈希表">
-                <i class="fa fa-chevron-left"></i> 哈希表
+              <a href="/2018/03/29/python多线程/" rel="next" title="python多线程">
+                <i class="fa fa-chevron-left"></i> python多线程
               </a>
             
           </div>
@@ -519,10 +481,6 @@ else if(pid &gt; 0)
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/29/python多线程/" rel="prev" title="python多线程">
-                python多线程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
