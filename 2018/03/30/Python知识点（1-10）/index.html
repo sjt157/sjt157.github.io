@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="python知识点 在python中，strings, tuples, 和numbers是不可更改的对象，而list,dict等则是可以修改的对象。当一个引用传递给函数的时候,函数自动复制一份引用,这个函数里的引用和外边的引用没有半毛关系了.所以第一个例子里函数把引用指向了一个不可变对象,当函数返回的时候,外面的引用没半毛感觉.而第二个例子就不一样了,函数内的引用指向的是可变对象,对它的操作就和定">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-30T09:47:49.086Z">
+<meta property="og:updated_time" content="2018-03-31T06:57:55.279Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python知识点（1-10）">
 <meta name="twitter:description" content="python知识点 在python中，strings, tuples, 和numbers是不可更改的对象，而list,dict等则是可以修改的对象。当一个引用传递给函数的时候,函数自动复制一份引用,这个函数里的引用和外边的引用没有半毛关系了.所以第一个例子里函数把引用指向了一个不可变对象,当函数返回的时候,外面的引用没半毛感觉.而第二个例子就不一样了,函数内的引用指向的是可变对象,对它的操作就和定">
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-30T17:47:49+08:00">
-                2018-03-30
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-31T14:57:55+08:00">
+                2018-03-31
               </time>
             
           </span>
@@ -378,8 +378,11 @@
 </li>
 <li><p>当你不确定你的函数里将要传递多少参数时你可以用*args   **kwargs允许你使用没有事先定义的参数名</p>
 </li>
-<li>面向切面编程AOP和装饰器<br>装饰器是一个很著名的设计模式，经常被用于有切面需求的场景，较为经典的有插入日志、性能测试、事务处理等。装饰器是解决这类问题的绝佳设计，有了装饰器，我们就可以抽离出大量函数中与函数功能本身无关的雷同代码并继续重用。概括的讲，装饰器的作用就是为已经存在的对象添加额外的功能。</li>
-<li>函数重载主要是为了解决两个问题。可变参数类型。可变参数个数。一个基本的设计原则是，仅仅当两个函数除了参数类型和参数个数不同以外，其功能是完全相同的，此时才使用函数重载，如果两个函数的功能其实不同，那么不应当使用重载，而应当使用一个名字不同的函数。但是因为python可以接受任何类型的参数、和任何数量的参数，所以不需要重载。</li>
+<li><p>面向切面编程AOP和装饰器<br>装饰器是一个很著名的设计模式，经常被用于有切面需求的场景，较为经典的有插入日志、性能测试、事务处理等。装饰器是解决这类问题的绝佳设计，有了装饰器，我们就可以抽离出大量函数中与函数功能本身无关的雷同代码并继续重用。概括的讲，装饰器的作用就是为已经存在的对象添加额外的功能。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 字体变粗装饰器</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">makebold</span><span class="params">(fn)</span>:</span></span><br><span class="line">    <span class="comment"># 装饰器将返回新的函数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">warpper</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"&lt;b&gt;"</span>+ fn() + <span class="string">"&lt;/b&gt;"</span></span><br><span class="line">    <span class="keyword">return</span> warpper</span><br><span class="line"><span class="meta">@makebold</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"hello"</span></span><br><span class="line">print(say())   <span class="comment"># &lt;b&gt;hello&lt;/b&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数重载主要是为了解决两个问题。可变参数类型。可变参数个数。一个基本的设计原则是，仅仅当两个函数除了参数类型和参数个数不同以外，其功能是完全相同的，此时才使用函数重载，如果两个函数的功能其实不同，那么不应当使用重载，而应当使用一个名字不同的函数。但是因为python可以接受任何类型的参数、和任何数量的参数，所以不需要重载。</p>
+</li>
 </ol>
 
       
