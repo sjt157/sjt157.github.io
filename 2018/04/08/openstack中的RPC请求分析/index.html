@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="openstack中的RPC请求分析 首先，什么是RPC请求？我们都知道，rpc就是远程过程调用，是Openstack中一种用来实现跨进程(或者跨机器)的通信机制。Openstack中同项目内(如nova, neutron, cinder…)各服务(service)及通过RPC实现彼此间通信。Openstack中还有另外两种跨进程的通信方式：数据库和Rest API。一般情况下，openstack">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-08T13:01:34.113Z">
+<meta property="og:updated_time" content="2018-04-08T13:17:19.192Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="openstack中的RPC请求分析">
 <meta name="twitter:description" content="openstack中的RPC请求分析 首先，什么是RPC请求？我们都知道，rpc就是远程过程调用，是Openstack中一种用来实现跨进程(或者跨机器)的通信机制。Openstack中同项目内(如nova, neutron, cinder…)各服务(service)及通过RPC实现彼此间通信。Openstack中还有另外两种跨进程的通信方式：数据库和Rest API。一般情况下，openstack">
@@ -298,7 +298,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-08T21:01:34+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-08T21:17:19+08:00">
                 2018-04-08
               </time>
             
@@ -361,8 +361,8 @@
 </ol>
 <ul>
 <li>随机调用某server上的一个方法：<br>Invoke Method on One of Multiple Servers<br>这个应该是Openstack中最常用的一种RPC调用，每个方法都会有多个server来提供，client调用时由底层机制选择一个server来处理这个调用请求。像nova-scheduler, nova-conductor都可以以这种多部署方式提供服务。这种场景通过AMQP的topic exchange实现。<br>所有server在binding中为binding key指定一个相同的topic， client在调用时使用这个topic既可实现。</li>
-<li>调用某特定server上的一个方法：<br>Invoke Method on a Specific Server<br>一般Openstack中的各种scheduler会以这种方式调用。通常scheduler都会先选定一个节点，然后调用该节点上的服务。<br>这种场景通过AMQP的topic exchange实现。<br>每个server在binding中为其binding key指定一个自己都有的topic， client在调用时使用这个topic既可实现。</li>
-<li>调用所有server上的一个方法：<br>Invoke Method on all of Multiple Servers<br>这种其实就是一个广播系统。就像开会议，台上的人讲话，台下的人都能听到。<br>Openstack中有些rpcapi.py的某些方法带有fanout=True参数，这些都是让所有server处理某个请求的情况。<br>例子： neutron中所有plugin都会有一个AgentNotifierApi，这个rpc是用来调用安装在compute上的L2 agent。因为存在多个L2 agent(每个compute上都会有)，所以要用广播模式。<br>这种场景通过AMQP的fanout exchange实现。<br>每个server在binding中将其队列绑定到一个fanout exchange， client在调用时指定exchange类型为fanout即可。server和client使用同一个exchange。</li>
+<li>调用某特定server上的一个方法：<br>Invoke Method on a Specific Server 一般Openstack中的各种scheduler会以这种方式调用。通常scheduler都会先选定一个节点，然后调用该节点上的服务。这种场景通过AMQP的topic exchange实现。每个server在binding中为其binding key指定一个自己都有的topic， client在调用时使用这个topic既可实现。</li>
+<li>调用所有server上的一个方法：<br>Invoke Method on all of Multiple Servers 这种其实就是一个广播系统。就像开会议，台上的人讲话，台下的人都能听到。Openstack中有些rpcapi.py的某些方法带有fanout=True参数，这些都是让所有server处理某个请求的情况。例子： neutron中所有plugin都会有一个AgentNotifierApi，这个rpc是用来调用安装在compute上的L2 agent。因为存在多个L2 agent(每个compute上都会有)，所以要用广播模式。这种场景通过AMQP的fanout exchange实现。每个server在binding中将其队列绑定到一个fanout exchange， client在调用时指定exchange类型为fanout即可。server和client使用同一个exchange。</li>
 </ul>
 <ol>
 <li><strong>rpc.call和rpc.cast的区别：</strong></li>
