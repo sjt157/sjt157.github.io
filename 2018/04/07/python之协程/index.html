@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="Generator 其中一个特性就是不是一次性生成数据，而是生成一个可迭代的对象，在迭代时，根据我们所写的逻辑来控制其启动时机。 Generator 另一个很大作用可以说就是当做协程使用。协程就是你可以暂停执行的函数。简而言之，协程是比线程更为轻量的一种模型，我们可以自行控制启动与停止的时机。知乎上说的，最易懂的解释：你行你就上，不行旁边等着让别人上，啥时候行了你再上。在 Python 中其实没">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-07T02:39:17.430Z">
+<meta property="og:updated_time" content="2018-04-08T13:02:38.762Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python之协程">
 <meta name="twitter:description" content="Generator 其中一个特性就是不是一次性生成数据，而是生成一个可迭代的对象，在迭代时，根据我们所写的逻辑来控制其启动时机。 Generator 另一个很大作用可以说就是当做协程使用。协程就是你可以暂停执行的函数。简而言之，协程是比线程更为轻量的一种模型，我们可以自行控制启动与停止的时机。知乎上说的，最易懂的解释：你行你就上，不行旁边等着让别人上，啥时候行了你再上。在 Python 中其实没">
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-07T10:39:17+08:00">
-                2018-04-07
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-08T21:02:38+08:00">
+                2018-04-08
               </time>
             
           </span>
@@ -364,7 +364,10 @@
 <li><p>但是基于async的协程和基于生成器的协程会在对应的暂停表达式上面有所不同？主要原因是出于最优化Python性能的考虑，确保你不会将刚好有同样API的不同对象混为一谈。由于生成器默认实现协程的API，因此很有可能在你希望用协程的时候错用了一个生成器。而由于并不是所有的生成器都可以用在基于协程的控制流中，你需要避免错误地使用生成器。但是由于 Python 并不是静态编译的，它最好也只能在用基于生成器定义的协程时提供运行时检查。这意味着当用types.coroutine时，Python 的编译器将无法判断这个生成器是用作协程还是仅仅是普通的生成器（记住，仅仅因为types.coroutine这一语法的字面意思，并不意味着在此之前没有人做过types = spam的操作），因此编译器只能基于当前的情况生成有着不同限制的操作码。关于基于生成器的协程和async定义的协程之间的差异，我想说明的关键点是只有基于生成器的协程可以真正的暂停执行并强制性返回给事件循环。你可能不了解这些重要的细节，因为通常你调用的像是asyncio.sleep() function 这种事件循环相关的函数，由于事件循环实现他们自己的API，而这些函数会处理这些小的细节。对于我们绝大多数人来说，我们只会跟事件循环打交道，而不需要处理这些细节，因此可以只用async定义的协程。但是如果你和我一样好奇为什么不能在async定义的协程中使用asyncio.sleep()，那么这里的解释应该可以让你顿悟。</p>
 </li>
 <li>Generator迭代的就是通过内建的next（）或<strong>next</strong>()方法调用内建的send（）方法。</li>
-<li>与其它特性一起，PEP 342 为生成器引入了 send() 方法。这让我们不仅可以暂停生成器，而且能够传递值到生成器暂停的地方。还是以我们的 range() 为例，你可以让序列向前或向后跳过几个值。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">jumping_range</span><span class="params">(up_to)</span>:</span></span><br><span class="line">    <span class="string">"""Generator for the sequence of integers from 0 to up_to, exclusive.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Sending a value into the generator will shift the sequence by that amount.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> index &lt; up_to:</span><br><span class="line">        jump = <span class="keyword">yield</span> index</span><br><span class="line">        <span class="keyword">if</span> jump <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            jump = <span class="number">1</span></span><br><span class="line">        index += jump</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    iterator = jumping_range(<span class="number">5</span>)</span><br><span class="line">    print(next(iterator))  <span class="comment"># 0</span></span><br><span class="line">    print(iterator.send(<span class="number">2</span>))  <span class="comment"># 2</span></span><br><span class="line">    print(next(iterator))  <span class="comment"># 3</span></span><br><span class="line">    print(iterator.send(<span class="number">-1</span>))  <span class="comment"># 2</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> iterator:</span><br><span class="line">        print(x)  <span class="comment"># 3, 4</span></span><br></pre></td></tr></table></figure>
+<li><p>与其它特性一起，PEP 342 为生成器引入了 send() 方法。这让我们不仅可以暂停生成器，而且能够传递值到生成器暂停的地方。还是以我们的 range() 为例，你可以让序列向前或向后跳过几个值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">jumping_range</span><span class="params">(up_to)</span>:</span></span><br><span class="line">    <span class="string">"""Generator for the sequence of integers from 0 to up_to, exclusive.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Sending a value into the generator will shift the sequence by that amount.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> index &lt; up_to:</span><br><span class="line">        jump = <span class="keyword">yield</span> index</span><br><span class="line">        <span class="keyword">if</span> jump <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            jump = <span class="number">1</span></span><br><span class="line">        index += jump</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    iterator = jumping_range(<span class="number">5</span>)</span><br><span class="line">    print(next(iterator))  <span class="comment"># 0</span></span><br><span class="line">    print(iterator.send(<span class="number">2</span>))  <span class="comment"># 2</span></span><br><span class="line">    print(next(iterator))  <span class="comment"># 3</span></span><br><span class="line">    print(iterator.send(<span class="number">-1</span>))  <span class="comment"># 2</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> iterator:</span><br><span class="line">        print(x)  <span class="comment"># 3, 4</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>openstack中就是用了协程模型，利用Python库Eventlet可以产生很多协程，这些协程之间只有在调用到了某些特殊的Eventlet库函数的时候（比如睡眠sleep、IO调用等）才会发生切换。协程的实现主要是在协程休息时把当前的寄存器保存起来，然后重新工作时将其恢复，可以简单的理解为，在单个线程内部有多个栈去保存切换时的线程上下文，因此，协程可以理解为一个线程内的伪并发方式。但是由于Eventlet本身的一些局限性，目前openstack考虑用AsynclIO来代替他。</p>
 </li>
 </ul>
 
@@ -471,6 +474,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/04/08/python之intern机制/" rel="prev" title="python之intern机制">
+                python之intern机制 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -542,7 +549,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
