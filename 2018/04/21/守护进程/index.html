@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Python," />
+  <meta name="keywords" content="Linux," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="python中的eval() 这个函数意义在哪？在编译语言里要动态地产生代码，基本上是不可能的，但动态语言是可以，意味着软件已经部署到服务器上了，但只要作很少的更改，只好直接修改这部分的代码，就可立即实现变化，不用整个软件重新加载。  先举个栗子：123a = 1g = &amp;#123;&amp;apos;a&amp;apos;: 20&amp;#125;print(eval(&amp;quot;a+1&amp;quot;, g))  #返">
-<meta name="keywords" content="Python">
+<meta name="description" content="什么是守护进程  守护进程（Daemon）是运行在后台的一种特殊进程。它独立于控制终端并且周期性地执行某种任务或等待处理某些发生的事件。守护进程是一种很有用的进 程。 Linux的大多数服务器就是用守护进程实现的。比如，Internet服务器inetd，Web服务器httpd等。同时，守护进程完成许多系统任务。 比如，作业规划进程crond，打印进程lpd等。 守护进程最重要的特性是后台运行。在这">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python中的eval函数">
-<meta property="og:url" content="http://yoursite.com/2018/03/29/python中的eval函数/index.html">
+<meta property="og:title" content="守护进程">
+<meta property="og:url" content="http://yoursite.com/2018/04/21/守护进程/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="python中的eval() 这个函数意义在哪？在编译语言里要动态地产生代码，基本上是不可能的，但动态语言是可以，意味着软件已经部署到服务器上了，但只要作很少的更改，只好直接修改这部分的代码，就可立即实现变化，不用整个软件重新加载。  先举个栗子：123a = 1g = &amp;#123;&amp;apos;a&amp;apos;: 20&amp;#125;print(eval(&amp;quot;a+1&amp;quot;, g))  #返">
+<meta property="og:description" content="什么是守护进程  守护进程（Daemon）是运行在后台的一种特殊进程。它独立于控制终端并且周期性地执行某种任务或等待处理某些发生的事件。守护进程是一种很有用的进 程。 Linux的大多数服务器就是用守护进程实现的。比如，Internet服务器inetd，Web服务器httpd等。同时，守护进程完成许多系统任务。 比如，作业规划进程crond，打印进程lpd等。 守护进程最重要的特性是后台运行。在这">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-29T13:59:09.641Z">
+<meta property="og:updated_time" content="2018-04-21T02:33:02.372Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python中的eval函数">
-<meta name="twitter:description" content="python中的eval() 这个函数意义在哪？在编译语言里要动态地产生代码，基本上是不可能的，但动态语言是可以，意味着软件已经部署到服务器上了，但只要作很少的更改，只好直接修改这部分的代码，就可立即实现变化，不用整个软件重新加载。  先举个栗子：123a = 1g = &amp;#123;&amp;apos;a&amp;apos;: 20&amp;#125;print(eval(&amp;quot;a+1&amp;quot;, g))  #返">
+<meta name="twitter:title" content="守护进程">
+<meta name="twitter:description" content="什么是守护进程  守护进程（Daemon）是运行在后台的一种特殊进程。它独立于控制终端并且周期性地执行某种任务或等待处理某些发生的事件。守护进程是一种很有用的进 程。 Linux的大多数服务器就是用守护进程实现的。比如，Internet服务器inetd，Web服务器httpd等。同时，守护进程完成许多系统任务。 比如，作业规划进程crond，打印进程lpd等。 守护进程最重要的特性是后台运行。在这">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/29/python中的eval函数/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/21/守护进程/"/>
 
 
 
 
 
-  <title>python中的eval函数 | 诗与远方</title>
+  <title>守护进程 | 诗与远方</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/29/python中的eval函数/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/21/守护进程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songjiantao">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python中的eval函数</h1>
+          <h1 class="post-title" itemprop="name headline">守护进程</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-29T21:57:32+08:00">
-                2018-03-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T10:32:04+08:00">
+                2018-04-21
               </time>
             
 
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-29T21:59:09+08:00">
-                2018-03-29
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-21T10:33:02+08:00">
+                2018-04-21
               </time>
             
           </span>
@@ -317,8 +317,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -354,30 +354,35 @@
       
 
       
-        <h2 id="python中的eval"><a href="#python中的eval" class="headerlink" title="python中的eval()"></a>python中的eval()</h2><ul>
-<li><strong>这个函数意义在哪？</strong><br>在编译语言里要动态地产生代码，基本上是不可能的，但动态语言是可以，意味着软件已经部署到服务器上了，但只要作很少的更改，只好直接修改这部分的代码，就可立即实现变化，不用整个软件重新加载。</li>
-</ul>
-<p>先举个栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = 1</span><br><span class="line">g = &#123;&apos;a&apos;: 20&#125;</span><br><span class="line">print(eval(&quot;a+1&quot;, g))  #返回21</span><br></pre></td></tr></table></figure></p>
-<p>再举个栗子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># test eval() and locals()</span><br><span class="line">x = 1</span><br><span class="line">y = 1</span><br><span class="line">num1 = eval(&quot;x+y&quot;)</span><br><span class="line">print(num1)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def g():</span><br><span class="line">x = 2</span><br><span class="line">y = 2</span><br><span class="line">num3 = eval(&quot;x+y&quot;)</span><br><span class="line">print(num3)</span><br><span class="line">num2 = eval(&quot;x+y&quot;, globals())  # 搜全局</span><br><span class="line">num4 = eval(&quot;x+y&quot;,globals(),locals())  # 先搜索局部，搜索到停止</span><br><span class="line">print(num2)</span><br><span class="line">print(num4)</span><br><span class="line">g()   # 值依次为2 4 2 4</span><br></pre></td></tr></table></figure></p>
+        <p><strong>什么是守护进程</strong></p>
 <ul>
-<li><strong>eval在字符串对象和list、dictinoary、tuple对象之间互相转换</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def evala():</span><br><span class="line">    l = &apos;[1,2,3,4,[5,6,7,8,9]]&apos;</span><br><span class="line">    d = &quot;&#123;&apos;a&apos;:123,&apos;b&apos;:456,&apos;c&apos;:789&#125;&quot;</span><br><span class="line">    t = &apos;([1,3,5],[5,6,7,8,9],[123,456,789])&apos;</span><br><span class="line"></span><br><span class="line">    print(type(l), type(eval(l)))</span><br><span class="line">    print(type(d), type(eval(d)))</span><br><span class="line">    print(type(t), type(eval(t)))</span><br><span class="line">evala()</span><br></pre></td></tr></table></figure>
+<li>守护进程（Daemon）是运行在后台的一种特殊进程。它独立于控制终端并且周期性地执行某种任务或等待处理某些发生的事件。守护进程是一种很有用的进 程。 Linux的大多数服务器就是用守护进程实现的。比如，Internet服务器inetd，Web服务器httpd等。同时，守护进程完成许多系统任务。 比如，作业规划进程crond，打印进程lpd等。</li>
+<li>守护进程最重要的特性是后台运行。在这一点上DOS下的常驻内存程序TSR与之相似。其次，守护进程必须与其运行前的环境隔离开来。这些环 境包括未关闭的文件描述符，控制终端，会话和进程组，工作目录以及文件创建掩模等。这些环境通常是守护进程从执行它的父进程（特别是shell）中继承下 来的。最后，守护进程的启动方式有其特殊之处。它可以在Linux系统启动时从启动脚本/etc/rc.d中启动，可以由作业规划进程crond启动，还 可以由用户终端（通常是 shell）执行。</li>
+<li><p>一个守护进程的父进程是init进程，因为它真正的父进程在fork出子进程后就先于子进程exit退出了，所以它是一个由init继承的孤儿进程。守护进程是非交互式程序，没有控制终端，所以任何输出，无论是向标准输出设备stdout还是标准出错设备stderr的输出都需要特殊处理。<br><strong>实现守护进程要注意的地方</strong></p>
 </li>
+<li><p>在后台运行<br>为避免挂起控制终端将Daemon放入后台执行。方法是在进程中调用fork使父进程终止，让Daemon在子进程中后台执行。<br>if(pid=fork())exit(0); //是父进程，结束父进程，子进程继续</p>
+</li>
+<li>脱离控制终端，登录会话和进程组</li>
 </ul>
-<p>结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;class &apos;str&apos;&gt; &lt;class &apos;list&apos;&gt;</span><br><span class="line">   &lt;class &apos;str&apos;&gt; &lt;class &apos;dict&apos;&gt;</span><br><span class="line">   &lt;class &apos;str&apos;&gt; &lt;class &apos;tuple&apos;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>有必要先介绍一下Linux中的进程与控制终端，登录会话和进程组之间的关系：进程属于一个进程组，进程组号（GID）就是进程组长的进程号（PID）。登录会话可以包含多个进程组。这些进程组共享一个控制终端。这个控制终端通常是创建进程的登录终端。 控制终端，登录会话和进程组通常是从父进程继承下来的。我们的目的就是要摆脱它们，使之不受它们的影响。方法是在第1点的基础上，调用setsid()使进程成为会话组长：</p>
+<p>setsid();</p>
+<p>说明：当进程是会话组长时setsid()调用失败。但第一点已经保证进程不是会话组长。setsid()调用成功后，进程成为新的会话组长和新的进程组长，并与原来的登录会话和进程组脱离。由于会话过程对控制终端的独占性，进程同时与控制终端脱离。</p>
 <ul>
-<li><p><strong>locals()对象的值不能修改，globals()对象的值可以修改</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#test globals() and locals()</span><br><span class="line"></span><br><span class="line">z=0</span><br><span class="line">def f():    </span><br><span class="line">    z = 1    </span><br><span class="line">    print (locals())        </span><br><span class="line">    locals()[&quot;z&quot;] = 2    </span><br><span class="line">    print (locals())      </span><br><span class="line">f() </span><br><span class="line">globals()[&quot;z&quot;] = 2</span><br><span class="line">print (z)  # 结果为&#123;&apos;z&apos;: 1&#125;  &#123;&apos;z&apos;: 1&#125;   2</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>eval有安全性问题,比如用户恶意输入就会获得当前目录文件</strong><br><code>eval(&quot;__import__(&#39;os&#39;).system(&#39;dir&#39;)&quot;)</code></p>
-</li>
-<li><p><strong>怎么避免安全问题？</strong></p>
-</li>
+<li>禁止进程重新打开控制终端<br>现在，进程已经成为无终端的会话组长。但它可以重新申请打开一个控制终端。可以通过使进程不再成为会话组长来禁止进程重新打开控制终端：</li>
 </ul>
-<ol>
-<li>自行写检查函数；</li>
-<li><h1 id="使用ast-literal-eval"><a href="#使用ast-literal-eval" class="headerlink" title="使用ast.literal_eval"></a>使用ast.literal_eval</h1></li>
-</ol>
-<p><strong>tips</strong><br><code>if __name__ == &quot;__main__&quot;:</code> 第一开始不是很理解，今天经过学习知道了这句代码的作用。是编写私有化部分 ，这句代码以上的部分，可以被其它的调用，以下的部分只有这个文件自己可以看见，如果文件被调用了，其他人是无法看见私有化部分的。比如进行单元测试的时候会用到！他的原理是每个py文件都有<strong>name</strong>属性，如果当前属性和<strong>main</strong>一样，则值为真，否则为假，就不执行！</p>
+<p>if(pid=fork()) exit(0); //结束第一子进程，第二子进程继续（第二子进程不再是会话组长）</p>
+<ul>
+<li>关闭打开的文件描述符</li>
+</ul>
+<p>进程从创建它的父进程那里继承了打开的文件描述符。如不关闭，将会浪费系统资源，造成进程所在的文件系统无法卸下以及引起无法预料的错误。按如下方法关闭它们：</p>
+<p>for(i=0;i 关闭打开的文件描述符close(i);</p>
+<ul>
+<li>改变当前工作目录<br>进程活动时，其工作目录所在的文件系统不能卸下。一般需要将工作目录改变到根目录。对于需要转储核心，写运行日志的进程将工作目录改变到特定目录如 /tmpchdir(“/“)</li>
+<li>重设文件创建掩模<br>进程从创建它的父进程那里继承了文件创建掩模。它可能修改守护进程所创建的文件的存取位。为防止这一点，将文件创建掩模清除：umask(0);</li>
+<li>处理SIGCHLD信号<br>处理SIGCHLD信号并不是必须的。但对于某些进程，特别是服务器进程往往在请求到来时生成子进程处理请求。如果父进程不等待子进程结 束，子进程将成为僵尸进程（zombie）从而占用系统资源。如果父进程等待子进程结束，将增加父进程的负担，影响服务器进程的并发性能。在Linux下 可以简单地将 SIGCHLD信号的操作设为SIG_IGN。</li>
+</ul>
+<p>signal(SIGCHLD,SIG_IGN);</p>
+<p>这样，内核在子进程结束时不会产生僵尸进程。这一点与BSD4不同，BSD4下必须显式等待子进程结束才能释放僵尸进程。</p>
 
       
     </div>
@@ -432,7 +437,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/03/29/python中的eval函数/" title="python中的eval函数">http://yoursite.com/2018/03/29/python中的eval函数/</a>
+    <a href="http://yoursite.com/2018/04/21/守护进程/" title="守护进程">http://yoursite.com/2018/04/21/守护进程/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -447,7 +452,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
           
         </div>
       
@@ -472,8 +477,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/29/python多线程/" rel="next" title="python多线程">
-                <i class="fa fa-chevron-left"></i> python多线程
+              <a href="/2018/04/17/python之闭包/" rel="next" title="python之闭包">
+                <i class="fa fa-chevron-left"></i> python之闭包
               </a>
             
           </div>
@@ -481,10 +486,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/30/Python知识点（1-10）/" rel="prev" title="Python知识点（1-10）">
-                Python知识点（1-10） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
