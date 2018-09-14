@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="红黑树，AVL树简单来说都是用来搜索的呗。 AVL树：平衡二叉树，一般是用平衡因子差值决定并通过旋转来实现，左右子树树高差不超过1，那么和红黑树比较它是严格的平衡二叉树，平衡条件非常严格（树高差只有1），只要插入或删除不满足上面的条件就要通过旋转来保持平衡。由于旋转是非常耗费时间的。我们可以推出AVL树适合用于插入删除次数比较少，但查找多的情况。 红黑树：平衡二叉树，通过对任何一条从根到叶子的简">
+<meta name="description" content="简介BloomFilter（布隆过滤器）是一种可以高效地判断元素是否在某个集合中的算法。 在很多日常场景中，都大量存在着布隆过滤器的应用。例如：检查单词是否拼写正确、网络爬虫的URL去重、黑名单检验，微博中昵称不能重复的检测。在工业界中，Google著名的分布式数据库BigTable也用了布隆过滤器来查找不存在的行或列，以减少磁盘查找的IO次数；Google Chrome浏览器使用BloomFil">
 <meta name="keywords" content="DataStructure">
 <meta property="og:type" content="article">
-<meta property="og:title" content="各种树">
-<meta property="og:url" content="http://yoursite.com/2018/03/27/各种树/index.html">
+<meta property="og:title" content="BloomFilter">
+<meta property="og:url" content="http://yoursite.com/2018/09/14/BloomFilter/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="红黑树，AVL树简单来说都是用来搜索的呗。 AVL树：平衡二叉树，一般是用平衡因子差值决定并通过旋转来实现，左右子树树高差不超过1，那么和红黑树比较它是严格的平衡二叉树，平衡条件非常严格（树高差只有1），只要插入或删除不满足上面的条件就要通过旋转来保持平衡。由于旋转是非常耗费时间的。我们可以推出AVL树适合用于插入删除次数比较少，但查找多的情况。 红黑树：平衡二叉树，通过对任何一条从根到叶子的简">
+<meta property="og:description" content="简介BloomFilter（布隆过滤器）是一种可以高效地判断元素是否在某个集合中的算法。 在很多日常场景中，都大量存在着布隆过滤器的应用。例如：检查单词是否拼写正确、网络爬虫的URL去重、黑名单检验，微博中昵称不能重复的检测。在工业界中，Google著名的分布式数据库BigTable也用了布隆过滤器来查找不存在的行或列，以减少磁盘查找的IO次数；Google Chrome浏览器使用BloomFil">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-27T05:19:03.592Z">
+<meta property="og:updated_time" content="2018-09-14T13:00:26.357Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="各种树">
-<meta name="twitter:description" content="红黑树，AVL树简单来说都是用来搜索的呗。 AVL树：平衡二叉树，一般是用平衡因子差值决定并通过旋转来实现，左右子树树高差不超过1，那么和红黑树比较它是严格的平衡二叉树，平衡条件非常严格（树高差只有1），只要插入或删除不满足上面的条件就要通过旋转来保持平衡。由于旋转是非常耗费时间的。我们可以推出AVL树适合用于插入删除次数比较少，但查找多的情况。 红黑树：平衡二叉树，通过对任何一条从根到叶子的简">
+<meta name="twitter:title" content="BloomFilter">
+<meta name="twitter:description" content="简介BloomFilter（布隆过滤器）是一种可以高效地判断元素是否在某个集合中的算法。 在很多日常场景中，都大量存在着布隆过滤器的应用。例如：检查单词是否拼写正确、网络爬虫的URL去重、黑名单检验，微博中昵称不能重复的检测。在工业界中，Google著名的分布式数据库BigTable也用了布隆过滤器来查找不存在的行或列，以减少磁盘查找的IO次数；Google Chrome浏览器使用BloomFil">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/27/各种树/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/14/BloomFilter/"/>
 
 
 
 
 
-  <title>各种树 | 诗与远方</title>
+  <title>BloomFilter | 诗与远方</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/各种树/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/14/BloomFilter/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songjiantao">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">各种树</h1>
+          <h1 class="post-title" itemprop="name headline">BloomFilter</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T13:07:11+08:00">
-                2018-03-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-14T20:57:40+08:00">
+                2018-09-14
               </time>
             
 
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-27T13:19:03+08:00">
-                2018-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-14T21:00:26+08:00">
+                2018-09-14
               </time>
             
           </span>
@@ -364,18 +364,17 @@
       
 
       
-        <ul>
-<li>红黑树，AVL树简单来说都是用来搜索的呗。</li>
-<li>AVL树：平衡二叉树，一般是用平衡因子差值决定并通过旋转来实现，左右子树树高差不超过1，那么和红黑树比较它是严格的平衡二叉树，平衡条件非常严格（树高差只有1），只要插入或删除不满足上面的条件就要通过旋转来保持平衡。由于旋转是非常耗费时间的。我们可以推出AVL树适合用于插入删除次数比较少，但查找多的情况。</li>
-<li>红黑树：平衡二叉树，通过对任何一条从根到叶子的简单路径上各个节点的颜色进行约束，确保没有一条路径会比其他路径长2倍，因而是近似平衡的。所以相对于严格要求平衡的AVL树来说，它的旋转保持平衡次数较少。用于搜索时，插入删除次数多的情况下我们就用红黑树来取代AVL。（现在部分场景使用跳表来替换红黑树，可搜索“为啥 redis 使用跳表(skiplist)而不是使用 red-black？”）</li>
-<li>B树，B+树：它们特点是一样的，是多路查找树，一般用于数据库系统中，为什么，因为它们分支多层数少呗，都知道磁盘IO是非常耗时的，而像大量数据存储在磁盘中所以我们要有效的减少磁盘IO次数避免磁盘频繁的查找。B+树是B树的变种树，有n棵子树的节点中含有n个关键字，每个关键字不保存数据，只用来索引，数据都保存在叶子节点。是为文件系统而生的。b+树是b树的一个变种，只在leaf node存储数据，可以方便地遍历所有数据。b树相较于b+树可以把热点数据放在internal node中以便更快地查找。</li>
-<li>B+树本来就是为 SQL 实现的，它比 B 树的优势在于范围查询更快，因为数据都在叶子节点上，所有的叶子节点又在同一底层上。</li>
-<li>磁盘中的B+树以文件的形式将整体都存放磁盘当中，使用时只在内存中缓存部份结构。</li>
-<li>先了解下相关的硬件知识，才能很好的了解为什么需要B~tree这种外存数据结构。 B-tree就是指的B树。</li>
-<li>B+-tree的查询效率更加稳定   由于非终结点并不是最终指向文件内容的结点，而只是叶子结点中关键字的索引。所以任何关键字的查找必须走一条从根结点到叶子结点的路。所有关键字查询的路径长度相同，导致每一个数据的查询效率相当。</li>
-<li>数据库索引采用B+树的主要原因是 B树在提高了磁盘IO性能的同时并没有解决元素遍历的效率低下的问题。正是为了解决这个问题，B+树应运而生。B+树只要遍历叶子节点就可以实现整棵树的遍历。而且在数据库中基于范围的查询是非常频繁的，而B树不支持这样的操作（或者说效率太低）。</li>
-<li>Trie树：又名单词查找树，一种树形结构，常用来操作字符串,比如在百度搜索时，会给出提示。它是不同字符串的相同前缀只保存一份。相对直接保存字符串肯定是节省空间的，但是它保存大量字符串时会很耗费内存（是内存）。类似的有前缀树(prefix tree)，后缀树(suffix tree)，radix tree(patricia tree, compact prefix tree)，crit-bit tree（解决耗费内存问题），以及前面说的double array trie。简单的补充下我了解应用前缀树：字符串快速检索，字符串排序，最长公共前缀，自动匹配前缀显示后缀。后缀树：查找字符串s1在s2中，字符串s1在s2中出现的次数，字符串s1,s2最长公共部分，最长回文串。radix tree：linux内核，nginx。</li>
-</ul>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>BloomFilter（布隆过滤器）是一种可以高效地判断元素是否在某个集合中的算法。</p>
+<p>在很多日常场景中，都大量存在着布隆过滤器的应用。例如：检查单词是否拼写正确、网络爬虫的URL去重、黑名单检验，微博中昵称不能重复的检测。在工业界中，Google著名的分布式数据库BigTable也用了布隆过滤器来查找不存在的行或列，以减少磁盘查找的IO次数；Google Chrome浏览器使用BloomFilter来判断一个网站是否为恶意网站。</p>
+<p>对于以上场景，可能很多人会说，用HashSet甚至简单的链表、数组做存储，然后判断是否存在不就可以了吗？</p>
+<p>当然，对于少量数据来说，HashSet是很好的选择。但是对于海量数据来说，BloomFilter相比于其他数据结构在空间效率和时间效率方面都有着明显的优势。</p>
+<p>但是，布隆过滤器具有一定的误判率，有可能会将本不存在的元素判定为存在。因此，对于那些需要“零错误”的应用场景，布隆过滤器将不太适用。具体的原因将会在第二部分中介绍。</p>
+<p>在本文的第二部分，本文将会介绍BloomFilter的基本算法思想；第三部分将会基于Google开源库Guava来讲解BloomFilter的具体实现；在第四部分中，将会介绍一些开源的BloomFilter的扩展，以解决目前BloomFilter的不足。</p>
+<h2 id="算法讲述"><a href="#算法讲述" class="headerlink" title="算法讲述"></a>算法讲述</h2><p>布隆过滤器是基于Hash来实现的，在学习BloomFilter之前，也需要对Hash的原理有基本的了解。个人认为，BloomFilter的总体思想实际上和bitmap很像，但是比bitmap更节省空间，误判率也更低。</p>
+<p>BloomFilter的整体思想并不复杂，主要是使用k个Hash函数将元素映射到位向量的k个位置上面，并将这k个位置全部置为1。当查找某元素是否存在时，查找该元素所对应的k位是否全部为1即可说明该元素是否存在。</p>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>BloomFilter 由于并不存储元素，而是用位的01来表示元素是否存在，并且很有可能一个位时被多个元素同时使用。所以无法通过将某元素对应的位置为0来删除元素。</p>
+<p>幸运的是，目前学术界和工业界都有很多方法扩展已解决以上问题。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"bloomfilter.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"hashs.h"</span></span></span><br><span class="line"><span class="comment">//#include "md5.h" </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"crc32.h"</span></span></span><br><span class="line"><span class="comment">//#include "sha1.h"</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> HASH_FUNC_NUM 8</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLOOM_SIZE 1000000</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BITSIZE_PER_BLOOM  32</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LIMIT   (BLOOM_SIZE * BITSIZE_PER_BLOOM)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * m=10n, k=8 when e=0.01 (m is bitsize, n is inputnum, k is hash_func num, e is error rate)</span></span><br><span class="line"><span class="comment"> * here m = BLOOM_SIZE*BITSIZE_PER_BLOOM = 32,000,000 (bits)</span></span><br><span class="line"><span class="comment"> * so n = m/10 = 3,200,000 (urls)</span></span><br><span class="line"><span class="comment"> * enough for crawling a website</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> bloom_table[BLOOM_SIZE] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">pthread_mutex_t</span> bt_lock = PTHREAD_MUTEX_INITIALIZER;</span><br><span class="line"></span><br><span class="line"><span class="comment">//static MD5_CTX md5;</span></span><br><span class="line"><span class="comment">//static SHA1_CONTEXT sha;  </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">encrypt</span><span class="params">(<span class="keyword">char</span> *key, <span class="keyword">unsigned</span> <span class="keyword">int</span> id)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> val = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span>(id)&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">            val = times33(key); <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            val = timesnum(key,<span class="number">31</span>); <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">            val = aphash(key); <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">            val = hash16777619(key); <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">            val = mysqlhash(key); <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">            <span class="comment">//basically multithreads supported</span></span><br><span class="line">            val = crc32((<span class="keyword">unsigned</span> <span class="keyword">char</span> *)key, <span class="built_in">strlen</span>(key));</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">            val = timesnum(key,<span class="number">131</span>); <span class="keyword">break</span>;</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">               int i;</span></span><br><span class="line"><span class="comment">               unsigned char decrypt[16];</span></span><br><span class="line"><span class="comment">               MD5Init(&amp;md5);</span></span><br><span class="line"><span class="comment">               MD5Update(&amp;md5, (unsigned char *)key, strlen(key));</span></span><br><span class="line"><span class="comment">               MD5Final(&amp;md5, decrypt);</span></span><br><span class="line"><span class="comment">               for(i = 0; i &lt; 16; i++)</span></span><br><span class="line"><span class="comment">               val = (val &lt;&lt; 5) + val + decrypt[i];</span></span><br><span class="line"><span class="comment">               break;</span></span><br><span class="line"><span class="comment">               */</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">7</span>:</span><br><span class="line">            val = timesnum(key,<span class="number">1313</span>); <span class="keyword">break</span>;</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">               sha1_init(&amp;sha);  </span></span><br><span class="line"><span class="comment">               sha1_write(&amp;sha, (unsigned char *)key, strlen(key));</span></span><br><span class="line"><span class="comment">               sha1_final(&amp;sha);</span></span><br><span class="line"><span class="comment">               for (i=0; i &lt; 20; i++)  </span></span><br><span class="line"><span class="comment">               val = (val &lt;&lt; 5) + val + sha.buf[i];</span></span><br><span class="line"><span class="comment">               break;</span></span><br><span class="line"><span class="comment">               */</span></span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="comment">// should not be here</span></span><br><span class="line">            <span class="built_in">abort</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">char</span> *url)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> h, i, index, pos;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    pthread_mutex_lock(&amp;bt_lock);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; HASH_FUNC_NUM; i++) &#123;</span><br><span class="line">        h = encrypt(url, i);</span><br><span class="line">        h %= LIMIT;</span><br><span class="line">        index = h / BITSIZE_PER_BLOOM;</span><br><span class="line">        pos = h % BITSIZE_PER_BLOOM;</span><br><span class="line">        <span class="keyword">if</span> (bloom_table[index] &amp; (<span class="number">0x80000000</span> &gt;&gt; pos))</span><br><span class="line">            res++;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            bloom_table[index] |= (<span class="number">0x80000000</span> &gt;&gt; pos);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pthread_mutex_unlock(&amp;bt_lock);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (res == HASH_FUNC_NUM);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -430,7 +429,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/03/27/各种树/" title="各种树">http://yoursite.com/2018/03/27/各种树/</a>
+    <a href="http://yoursite.com/2018/09/14/BloomFilter/" title="BloomFilter">http://yoursite.com/2018/09/14/BloomFilter/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -470,8 +469,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/24/虚拟机通过桥接模式上网（补充）/" rel="next" title="虚拟机通过桥接模式上网（补充）">
-                <i class="fa fa-chevron-left"></i> 虚拟机通过桥接模式上网（补充）
+              <a href="/2018/07/10/Linux可以Ping通但不能traceroute/" rel="next" title="Linux可以Ping通但不能traceroute">
+                <i class="fa fa-chevron-left"></i> Linux可以Ping通但不能traceroute
               </a>
             
           </div>
@@ -479,10 +478,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/28/哈希表/" rel="prev" title="哈希表">
-                哈希表 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
