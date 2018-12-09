@@ -87,10 +87,12 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="/dev/null  位桶（bit bucket）传送到此文件的数据会被丢掉,可以用来测试一个文件是否包含某个pattern。 1234if grep pattern myfile &amp;gt;  /dev/nullthen ... 找到模式else ...没找到模式fi  Shell脚本的命令行参数超多9时，用数字框起来${10}  ^$ 用来匹配空字符串或行列，cc -E foo.c | gre">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-11T10:17:09.818Z">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/DockerMiaoSha/5.png">
+<meta property="og:updated_time" content="2018-12-09T13:37:22.946Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shell知识点">
 <meta name="twitter:description" content="/dev/null  位桶（bit bucket）传送到此文件的数据会被丢掉,可以用来测试一个文件是否包含某个pattern。 1234if grep pattern myfile &amp;gt;  /dev/nullthen ... 找到模式else ...没找到模式fi  Shell脚本的命令行参数超多9时，用数字框起来${10}  ^$ 用来匹配空字符串或行列，cc -E foo.c | gre">
+<meta name="twitter:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/DockerMiaoSha/5.png">
 
 
 
@@ -308,8 +310,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-11T18:17:09+08:00">
-                2018-03-11
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-09T21:37:22+08:00">
+                2018-12-09
               </time>
             
           </span>
@@ -392,7 +394,16 @@
 </li>
 <li><p>特殊变量$$ 可在编写脚本时用来建立具有唯一性的文件名，多半是临时的，根据Shell的进程编号建立文件名，不过，mktemp也能做。</p>
 </li>
+<li>set -e<br>当命令以非零状态退出时，则退出shell。主要作用是，当脚本执行出现意料之外的情况时，立即退出，避免错误被忽略，导致最终结果不正确。说明set -e 选项对set.sh起作用。脚本作为一个进程去描述set -e选项的范围应该是：set -e选项只作用于当前进行，不作用于其创建的子进程。<br>set -e 命令用法总结如下：1.当命令的返回值为非零状态时，则立即退出脚本的执行。2.作用范围只限于脚本执行的当前进行，不作用于其创建的子进程。<br>3.另外，当想根据命令执行的返回值，输出对应的log时，最好不要采用set -e选项，而是通过配合exit 命令来达到输出log并退出执行的目的。</li>
+<li><p>shell 脚本中set-x 与set+x的区别<br>linux shell 脚本编写好要经过漫长的调试阶段，可以使用sh -x 执行。但是这种情况在远程调用脚本的时候，就有诸多不便。<br>又想知道脚本内部执行的变量的值或执行结果，这个时候可以使用在脚本内部用 set -x 。set去追踪一段代码的显示情况，执行后在整个脚本有效，set -x 开启，set +x关闭，set -o 查看</p>
+</li>
+<li><p>shell if条件判断中的-z到-d的意思</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[ -a FILE ] 如果 FILE 存在则为真。</span><br><span class="line">[ -b FILE ] 如果 FILE 存在且是一个块特殊文件则为真。</span><br><span class="line">[ -c FILE ] 如果 FILE 存在且是一个字特殊文件则为真。</span><br><span class="line">[ -d FILE ] 如果 FILE 存在且是一个目录则为真。</span><br><span class="line">[ -e FILE ] 如果 FILE 存在则为真。</span><br><span class="line">[ -f FILE ] 如果 FILE 存在且是一个普通文件则为真。</span><br><span class="line">[ -g FILE ] 如果 FILE 存在且已经设置了SGID则为真。</span><br><span class="line">[ -h FILE ] 如果 FILE 存在且是一个符号连接则为真。</span><br><span class="line">[ -k FILE ] 如果 FILE 存在且已经设置了粘制位则为真。</span><br><span class="line">[ -p FILE ] 如果 FILE 存在且是一个名字管道(F如果O)则为真。</span><br><span class="line">[ -r FILE ] 如果 FILE 存在且是可读的则为真。</span><br><span class="line">[ -s FILE ] 如果 FILE 存在且大小不为0则为真。</span><br><span class="line">[ -t FD ] 如果文件描述符 FD 打开且指向一个终端则为真。</span><br><span class="line">[ -u FILE ] 如果 FILE 存在且设置了SUID (set user ID)则为真。</span><br><span class="line">[ -w FILE ] 如果 FILE 如果 FILE 存在且是可写的则为真。</span><br><span class="line">[ -x FILE ] 如果 FILE 存在且是可执行的则为真。</span><br><span class="line">[ -O FILE ] 如果 FILE 存在且属有效用户ID则为真。</span><br><span class="line">[ -G FILE ] 如果 FILE 存在且属有效用户组则为真。</span><br><span class="line">[ -L FILE ] 如果 FILE 存在且是一个符号连接则为真。</span><br><span class="line">[ -N FILE ] 如果 FILE 存在 and has been mod如果ied since it was last read则为真。</span><br><span class="line">[ -S FILE ] 如果 FILE 存在且是一个套接字则为真。</span><br><span class="line">[ FILE1 -nt FILE2 ] 如果 FILE1 has been changed more recently than FILE2, or 如果 FILE1 exists and FILE2 does not则为真。</span><br><span class="line">[ FILE1 -ot FILE2 ] 如果 FILE1 比 FILE2 要老, 或者 FILE2 存在且 FILE1 不存在则为真。</span><br><span class="line">[ FILE1 -ef FILE2 ] 如果 FILE1 和 FILE2 指向相同的设备和节点号则为真。</span><br><span class="line">[ -o OPTIONNAME ] 如果 shell选项 “OPTIONNAME” 开启则为真。</span><br><span class="line">[ -z STRING ] “STRING” 的长度为零则为真。</span><br><span class="line">[ -n STRING ] or [ STRING ] “STRING” 的长度为非零 non-zero则为真。</span><br><span class="line">[ STRING1 == STRING2 ] 如果2个字符串相同。 “=” may be used instead of “==” for strict POSIX compliance则为真。</span><br><span class="line">[ STRING1 != STRING2 ] 如果字符串不相等则为真。</span><br><span class="line">[ STRING1 &lt; STRING2 ] 如果 “STRING1” sorts before “STRING2” lexicographically in the current locale则为真。</span><br><span class="line">[ STRING1 &gt; STRING2 ] 如果 “STRING1” sorts after “STRING2” lexicographically in the current locale则为真。</span><br><span class="line">[ ARG1 OP ARG2 ] “OP” is one of -eq, -ne, -lt, -le, -gt or -ge. These arithmetic binary operators return true if “ARG1” is equal to, not equal to, less than, less than or equal to, greater than, or greater than or equal to “ARG2”, respectively. “ARG1” and “ARG2” are integers.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Shell变量表达式<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/DockerMiaoSha/5.png" alt="image"></p>
+</li>
 </ol>
+<p>举个栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">str=&quot;a b c d e f g h i j&quot;</span><br><span class="line"></span><br><span class="line">echo &quot;the source string is &quot;$&#123;str&#125;                         #源字符串</span><br><span class="line">echo &quot;the string length is &quot;$&#123;#str&#125;                        #字符串长度</span><br><span class="line">echo &quot;the 6th to last string is &quot;$&#123;str:5&#125;                  #截取从第五个后面开始到最后的字符</span><br><span class="line">echo &quot;the 6th to 8th string is &quot;$&#123;str:5:2&#125;                 #截取从第五个后面开始的2个字符</span><br><span class="line">echo &quot;after delete shortest string of start is &quot;$&#123;str#a*f&#125; #从开头删除a到f的字符</span><br><span class="line">echo &quot;after delete widest string of start is &quot;$&#123;str##a*&#125;   #从开头删除a以后的字符</span><br><span class="line">echo &quot;after delete shortest string of end is &quot;$&#123;str%f*j&#125;   #从结尾删除f到j的字符</span><br><span class="line">echo &quot;after delete widest string of end is &quot;$&#123;str%%*j&#125;     #从结尾删除j前面的所有字</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
