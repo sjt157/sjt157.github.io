@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="KVM," />
+  <meta name="keywords" content="Openstack," />
 
 
 
@@ -79,24 +79,24 @@
 
 
 
-<meta name="description" content="主机：Ubuntu14.04 64bit虚拟机：Ubuntu14.04 64bitVMM:KVM 基础知识：默认创建的网桥virbr0用于NAT模式，如果想用brigde模式，需要自己创建一个br0。Bridge方式即虚拟网桥的网络连接方式，是客户机和子网里面的机器能够互相通信。可以使虚拟机成为网络中具有独立IP的主机。 桥接网络（也叫物理设备共享）被用作把一个物理设备复制到一台虚拟机。网桥多用作">
-<meta name="keywords" content="KVM">
+<meta name="description" content="云之迷雾 今天发现了一件奇事，过程是这样的，我想SSH一个虚拟机，但是怎么也出不来，排除了防火墙等等一系列原因都无果，结果想到了在VNC界面上查看一下，不看还好，一看吓了自己一跳，为什么在3月份创建虚拟机的时候明明指定的IP是172.21.4.68，但是不知道怎么自己偷摸摸的变成了172.21.4.197。我也不能在现在再改该虚拟机IP，因为按openstack的规定：虚拟机的IP默认都是DHCP">
+<meta name="keywords" content="Openstack">
 <meta property="og:type" content="article">
-<meta property="og:title" content="KVM配置虚拟机桥接（bridge）模式">
-<meta property="og:url" content="http://yoursite.com/2018/03/14/KVM配置虚拟机桥接（bridge）模式/index.html">
+<meta property="og:title" content="openstack-vm-cannot-ssh">
+<meta property="og:url" content="http://yoursite.com/2018/12/09/openstack-vm-cannot-ssh/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="主机：Ubuntu14.04 64bit虚拟机：Ubuntu14.04 64bitVMM:KVM 基础知识：默认创建的网桥virbr0用于NAT模式，如果想用brigde模式，需要自己创建一个br0。Bridge方式即虚拟网桥的网络连接方式，是客户机和子网里面的机器能够互相通信。可以使虚拟机成为网络中具有独立IP的主机。 桥接网络（也叫物理设备共享）被用作把一个物理设备复制到一台虚拟机。网桥多用作">
+<meta property="og:description" content="云之迷雾 今天发现了一件奇事，过程是这样的，我想SSH一个虚拟机，但是怎么也出不来，排除了防火墙等等一系列原因都无果，结果想到了在VNC界面上查看一下，不看还好，一看吓了自己一跳，为什么在3月份创建虚拟机的时候明明指定的IP是172.21.4.68，但是不知道怎么自己偷摸摸的变成了172.21.4.197。我也不能在现在再改该虚拟机IP，因为按openstack的规定：虚拟机的IP默认都是DHCP">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/1.png">
-<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/2.png">
-<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/3.png">
-<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/4.png">
-<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/5.png">
-<meta property="og:updated_time" content="2018-03-14T13:37:50.163Z">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/openstack-vm-cannot-ssh/1.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/openstack-vm-cannot-ssh/2.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/openstack-vm-cannot-ssh/3.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/openstack-vm-cannot-ssh/4.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/openstack-vm-cannot-ssh/5.png">
+<meta property="og:updated_time" content="2018-12-09T08:55:06.725Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KVM配置虚拟机桥接（bridge）模式">
-<meta name="twitter:description" content="主机：Ubuntu14.04 64bit虚拟机：Ubuntu14.04 64bitVMM:KVM 基础知识：默认创建的网桥virbr0用于NAT模式，如果想用brigde模式，需要自己创建一个br0。Bridge方式即虚拟网桥的网络连接方式，是客户机和子网里面的机器能够互相通信。可以使虚拟机成为网络中具有独立IP的主机。 桥接网络（也叫物理设备共享）被用作把一个物理设备复制到一台虚拟机。网桥多用作">
-<meta name="twitter:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/1.png">
+<meta name="twitter:title" content="openstack-vm-cannot-ssh">
+<meta name="twitter:description" content="云之迷雾 今天发现了一件奇事，过程是这样的，我想SSH一个虚拟机，但是怎么也出不来，排除了防火墙等等一系列原因都无果，结果想到了在VNC界面上查看一下，不看还好，一看吓了自己一跳，为什么在3月份创建虚拟机的时候明明指定的IP是172.21.4.68，但是不知道怎么自己偷摸摸的变成了172.21.4.197。我也不能在现在再改该虚拟机IP，因为按openstack的规定：虚拟机的IP默认都是DHCP">
+<meta name="twitter:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/openstack-vm-cannot-ssh/1.png">
 
 
 
@@ -126,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/14/KVM配置虚拟机桥接（bridge）模式/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/09/openstack-vm-cannot-ssh/"/>
 
 
 
 
 
-  <title>KVM配置虚拟机桥接（bridge）模式 | 诗与远方</title>
+  <title>openstack-vm-cannot-ssh | 诗与远方</title>
   
 
 
@@ -269,7 +269,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/14/KVM配置虚拟机桥接（bridge）模式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/09/openstack-vm-cannot-ssh/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songjiantao">
@@ -286,7 +286,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">KVM配置虚拟机桥接（bridge）模式</h1>
+          <h1 class="post-title" itemprop="name headline">openstack-vm-cannot-ssh</h1>
         
 
         <div class="post-meta">
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-14T20:18:56+08:00">
-                2018-03-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-09T16:53:58+08:00">
+                2018-12-09
               </time>
             
 
@@ -314,8 +314,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-14T21:37:50+08:00">
-                2018-03-14
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-09T16:55:06+08:00">
+                2018-12-09
               </time>
             
           </span>
@@ -333,8 +333,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/KVM/" itemprop="url" rel="index">
-                    <span itemprop="name">KVM</span>
+                  <a href="/categories/Openstack/" itemprop="url" rel="index">
+                    <span itemprop="name">Openstack</span>
                   </a>
                 </span>
 
@@ -370,27 +370,20 @@
       
 
       
-        <p>主机：Ubuntu14.04 64bit<br>虚拟机：Ubuntu14.04 64bit<br>VMM:KVM</p>
-<p>基础知识：默认创建的网桥virbr0用于NAT模式，如果想用brigde模式，需要自己创建一个br0。Bridge方式即虚拟网桥的网络连接方式，是客户机和子网里面的机器能够互相通信。可以使虚拟机成为网络中具有独立IP的主机。 桥接网络（也叫物理设备共享）被用作把一个物理设备复制到一台虚拟机。网桥多用作高级设置，特别是主机多个网络接口的情况。<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/1.png" alt="image"></p>
-<ol>
-<li><p>修改网络配置文件 /etc/network/interfaces ，此处是DHCP方式，也可以static方式。（Ubuntu系统，centos在etc/sysconfig里）输入 brctl addbr br0    建立一个网桥br0，此时在Linux内核里创建虚拟网卡br0，enp11s0 是host主机的网卡。<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/2.png" alt="image">  </p>
+        <h1 id="云之迷雾"><a href="#云之迷雾" class="headerlink" title="云之迷雾"></a>云之迷雾</h1><ol>
+<li>今天发现了一件奇事，过程是这样的，我想SSH一个虚拟机，但是怎么也出不来，排除了防火墙等等一系列原因都无果，结果想到了在VNC界面上查看一下，不看还好，一看吓了自己一跳，为什么在3月份创建虚拟机的时候明明指定的IP是172.21.4.68，但是不知道怎么自己偷摸摸的变成了172.21.4.197。我也不能在现在再改该虚拟机IP，因为按openstack的规定：虚拟机的IP默认都是DHCP分配的，如果要设置固定IP，需要在创建虚拟机时就指定，直接在虚拟机上更改IP是会被过滤的，所以此法无效。</li>
+<li>现在的情况就是除了通过在VNC界面查看ip是172.21.4.197 以外 ， 在电科华云界面上 和 通过openstack的命令查看的ip 都是 172.21.4.68  ，也就是说虚拟机的IP是真的改了，但是openstack还未知道。到底是哪的原因呢？按照重启大法重启了两次，发现自己又变成了172.21.4.68的网址，后来左思右想都不对，再仔细一看，原来Bcast的地方变成了172.21.6.255，按道理来讲正常应该为172.21.4.255，为什么会变成172.21.6.255呢？<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/openstack-vm-cannot-ssh/1.png" alt="image"></li>
+<li>首先，我查了一下什么是Bcast：broadcast address 即广播地址。Broadcast Address(广播地址)是专门用于同时向网络中所有工作站进行发送的一个地址。在使用TCP/IP 协议的网络中，主机标识段host ID 为全1 的IP 地址为广播地址，广播的分组传送给host ID段所涉及的所有计算机。例如，对于172.21.4.0（255.255.255.0 ）网段，其广播地址为172.21.4.255 （255 即为2 进制的11111111 ），当发出一个目的地址为172.21.4.255 的分组（封包）时，它将被分发给该网段上的所有计算机。按正常来讲，这些信息都是由DHCP服务器来分配的，那么是不是也就是说可能存在别的DHCP服务器（比如172.21.6.X）扰乱了这个虚拟机的网络，而且按正常来讲，B类私有网址（172.21.4.X）的网络掩码应该是255.255.0.0，现在是255.255.255.0，这样做是为了能多一些子网。多8位掩码，就是多了2的8次方个子网（256个），毕竟学校没有那么多网络资源。<br>在虚拟机正常的情况下我查看了一下该虚拟机上的syslog情况，发现了如下：<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/openstack-vm-cannot-ssh/2.png" alt="image"></li>
+<li>可知该虚拟机正常情况下与172.21.4.3这个dhcp服务器进行了 交互，DHCP租约过程就是DHCP客户机动态获取IP地址的过程。<br>DHCP租约过程分为4步：①客户机请求IP（客户机发DHCPDISCOVER广播包）；②服务器响应（服务器发DHCPOFFER广播包）；③客户机选择IP（客户机发DHCPREQUEST广播包）；④服务器确定租约（服务器发DHCPACK/DHCPNAK广播包）。<br>我又查看了一下出问题的这个虚拟机的日志（出问题的时候）发现了问题<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/openstack-vm-cannot-ssh/3.png" alt="image"></li>
+<li>可以发现这个出问题的虚拟机早先通过了172.21.4.254进行了DHCP交互，获得了有问题的IP地址，因为这个iP地址是它分配的，所以也ping不通就很正常了，因为172.21.4.254也ping不通，这个是我们学校的网关，还有一个网关是172.21.6.254，可得出结论：172.21.4.254不仅是一个网关还是一个dhcp服务器，还有一张图，如下<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/openstack-vm-cannot-ssh/4.png" alt="image"></li>
+<li><p>172.21.201.1 是一个DHCP服务器也。而且不单单是4网段的会与之交互，连6网段的也会与之交互，难道说172.21.201.1是一个学校总的DHCp服务器？经过查看别的服务器可确定172.21.201.1确实是一个DHCP服务器。是不是可能172.21.4.254是一个中继DHCP服务呢？DHCP服务器是可以分配不同网段的IP地址的，可以通过两个网卡，比如一个网卡可以提供4网段的，一个可以提供6网段的，这样也和日志上的证据对上了。</p>
 </li>
-<li><p>重新启动网络服务便可<br>重启计算机或者sudo systemctl restart networking / sudo systemctl restart network-manager，此时输入ifconfig，显示如图。（据说br0与enp11s0只能有一个有ip地址，此处不是很明白，但是目前并不影响使用。）<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/3.png" alt="image">  </p>
-</li>
-<li><p>输入该命令，可以看到此时已有br0的网桥。</p>
-</li>
+<li><p>最后，经过查看一批虚拟机发现所有的都会与172.21.4.3（既有DNS也有DHCP）交互，难道是那个有问题的虚拟机与172.21.4.254，然后再与172.21.201.1 进行DHCP交互，扰乱了正常的应该与172.21.4.3的交互？<br>最后经与云提供商询问，可能就是这个原因<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/openstack-vm-cannot-ssh/5.png" alt="image"></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2></li>
 </ol>
-<ol>
-<li><p>创建虚拟机时，指定—bridge=br0。（–bridge与—network只能二选一，不能同时指定）<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/4.png" alt="image">  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virt-install --virt-type kvm --name test2 --ram 1024 --vcpus 1 --bridge=br0 \ --cdrom=/home/lib206/vmimage/ubuntu-16.04.1-server-amd64.iso \--disk path=/home/lib206/vmimage/Test.img,size=20,format=raw --graphics vnc,port=5901  --os-type=linux  --boot cdrom</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建成功后，如果启动虚拟机时出现不能引导Booting from No bootable device，按下图所示设置，可能是引导顺序的原因。<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/5.png" alt="image">  </p>
-</li>
-<li><p>此时虚拟机即处于桥接模式，ip由路由器DHCP随即分配。通过以上步骤的设置KVM的桥接问题解决了，此时可以查看一下虚拟机网络IP地址，应该跟主机的IP地址处于同一个网段；但是还是有问题的， 无线网卡桥接是不成功的，默认的是有线网卡！</p>
-</li>
-<li><p>如果想指定该虚拟机的ip地址，按另一篇文章设置。</p>
-</li>
-</ol>
+<ul>
+<li>最后的猜想：是不是因为172.21.201.1扰乱了我们的虚拟机，毕竟广播地址是172.21.6.255，现在我有个问题就是Bcast由谁来决定？？？？？</li>
+</ul>
 
       
     </div>
@@ -445,7 +438,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/03/14/KVM配置虚拟机桥接（bridge）模式/" title="KVM配置虚拟机桥接（bridge）模式">http://yoursite.com/2018/03/14/KVM配置虚拟机桥接（bridge）模式/</a>
+    <a href="http://yoursite.com/2018/12/09/openstack-vm-cannot-ssh/" title="openstack-vm-cannot-ssh">http://yoursite.com/2018/12/09/openstack-vm-cannot-ssh/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -460,7 +453,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/KVM/" rel="tag"># KVM</a>
+            <a href="/tags/Openstack/" rel="tag"># Openstack</a>
           
         </div>
       
@@ -485,8 +478,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/11/Shell知识点/" rel="next" title="Shell知识点">
-                <i class="fa fa-chevron-left"></i> Shell知识点
+              <a href="/2018/09/14/BloomFilter/" rel="next" title="BloomFilter">
+                <i class="fa fa-chevron-left"></i> BloomFilter
               </a>
             
           </div>
@@ -494,10 +487,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/15/虚拟机IP/" rel="prev" title="虚拟机IP">
-                虚拟机IP <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
