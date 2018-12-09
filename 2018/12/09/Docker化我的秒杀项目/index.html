@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Linux," />
+  <meta name="keywords" content="Docker," />
 
 
 
@@ -79,18 +79,23 @@
 
 
 
-<meta name="description" content="因为服务器一重启很多配置就要重新配，很麻烦，那么有没有一种方式可以实现开机自启动。当然有了，那就是配置rc.local文件了！  那什么是rc.local脚本嗯？rc.local脚本是一个Ubuntu开机后会自动执行的脚本，我们可以在该脚本内添加命令行指令。该脚本位于/etc/路径下，需要root权限才能修改。该脚本具体格式如下： 1234567891011121314#!/bin/sh -e#">
-<meta name="keywords" content="Linux">
+<meta name="description" content="Docker化秒杀项目 首先构建jar包，因为该秒杀基于maven的，第一开始想把配置文件啥的都放一起，可以用一些eclipse插件啥的，但是后来一想这样不好，因为如果我想改配置的话需要重新构建，所以在网上找了个方法，构建好maven install 之后是这样子的，参考的这篇文章http://https://blog.csdn.net/qq_22857293/article/details/79">
+<meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="服务器不能上网之谜">
-<meta property="og:url" content="http://yoursite.com/2018/05/11/服务器不能上网之谜/index.html">
+<meta property="og:title" content="Docker化我的秒杀项目">
+<meta property="og:url" content="http://yoursite.com/2018/12/09/Docker化我的秒杀项目/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="因为服务器一重启很多配置就要重新配，很麻烦，那么有没有一种方式可以实现开机自启动。当然有了，那就是配置rc.local文件了！  那什么是rc.local脚本嗯？rc.local脚本是一个Ubuntu开机后会自动执行的脚本，我们可以在该脚本内添加命令行指令。该脚本位于/etc/路径下，需要root权限才能修改。该脚本具体格式如下： 1234567891011121314#!/bin/sh -e#">
+<meta property="og:description" content="Docker化秒杀项目 首先构建jar包，因为该秒杀基于maven的，第一开始想把配置文件啥的都放一起，可以用一些eclipse插件啥的，但是后来一想这样不好，因为如果我想改配置的话需要重新构建，所以在网上找了个方法，构建好maven install 之后是这样子的，参考的这篇文章http://https://blog.csdn.net/qq_22857293/article/details/79">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-11T12:14:08.057Z">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/DockerMiaoSha/1.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/DockerMiaoSha/2.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/DockerMiaoSha/3.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/DockerMiaoSha/4.png">
+<meta property="og:updated_time" content="2018-12-09T09:59:11.628Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="服务器不能上网之谜">
-<meta name="twitter:description" content="因为服务器一重启很多配置就要重新配，很麻烦，那么有没有一种方式可以实现开机自启动。当然有了，那就是配置rc.local文件了！  那什么是rc.local脚本嗯？rc.local脚本是一个Ubuntu开机后会自动执行的脚本，我们可以在该脚本内添加命令行指令。该脚本位于/etc/路径下，需要root权限才能修改。该脚本具体格式如下： 1234567891011121314#!/bin/sh -e#">
+<meta name="twitter:title" content="Docker化我的秒杀项目">
+<meta name="twitter:description" content="Docker化秒杀项目 首先构建jar包，因为该秒杀基于maven的，第一开始想把配置文件啥的都放一起，可以用一些eclipse插件啥的，但是后来一想这样不好，因为如果我想改配置的话需要重新构建，所以在网上找了个方法，构建好maven install 之后是这样子的，参考的这篇文章http://https://blog.csdn.net/qq_22857293/article/details/79">
+<meta name="twitter:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/DockerMiaoSha/1.png">
 
 
 
@@ -120,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/11/服务器不能上网之谜/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/09/Docker化我的秒杀项目/"/>
 
 
 
 
 
-  <title>服务器不能上网之谜 | 诗与远方</title>
+  <title>Docker化我的秒杀项目 | 诗与远方</title>
   
 
 
@@ -263,7 +268,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/11/服务器不能上网之谜/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/09/Docker化我的秒杀项目/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songjiantao">
@@ -280,7 +285,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">服务器不能上网之谜</h1>
+          <h1 class="post-title" itemprop="name headline">Docker化我的秒杀项目</h1>
         
 
         <div class="post-meta">
@@ -292,8 +297,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-11T20:12:33+08:00">
-                2018-05-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-09T17:58:10+08:00">
+                2018-12-09
               </time>
             
 
@@ -308,8 +313,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-11T20:14:08+08:00">
-                2018-05-11
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-09T17:59:11+08:00">
+                2018-12-09
               </time>
             
           </span>
@@ -327,8 +332,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
                   </a>
                 </span>
 
@@ -364,24 +369,43 @@
       
 
       
-        <ul>
-<li><p>因为服务器一重启很多配置就要重新配，很麻烦，那么有没有一种方式可以实现开机自启动。当然有了，那就是配置rc.local文件了！</p>
+        <h2 id="Docker化秒杀项目"><a href="#Docker化秒杀项目" class="headerlink" title="Docker化秒杀项目"></a>Docker化秒杀项目</h2><ul>
+<li>首先构建jar包，因为该秒杀基于maven的，第一开始想把配置文件啥的都放一起，可以用一些eclipse插件啥的，但是后来一想这样不好，因为如果我想改配置的话需要重新构建，所以在网上找了个方法，构建好maven install 之后是这样子的，参考的这篇文章<a href="http://https://blog.csdn.net/qq_22857293/article/details/79416165" target="_blank" rel="noopener">http://https://blog.csdn.net/qq_22857293/article/details/79416165</a>，最后构建之后的结果如图，可以看出第三方依赖，配置文件，资源分离开来：</li>
+<li><p>（当把jar包通过Xshell上传文件的时候出现了不能上传的问题，这是因为目标目录没有相应写权限造成的，通过chmod o+w 赋予相应权限即可。） *<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/DockerMiaoSha/1.png" alt="image"></p>
 </li>
-<li><p>那什么是rc.local脚本嗯？<br>rc.local脚本是一个Ubuntu开机后会自动执行的脚本，我们可以在该脚本内添加命令行指令。该脚本位于/etc/路径下，需要root权限才能修改。<br>该脚本具体格式如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/sh -e</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span> rc.local</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span> This script is executed at the end of each multiuser runlevel.</span><br><span class="line"><span class="meta">#</span> Make sure that the script will "exit 0" on success or any other</span><br><span class="line"><span class="meta">#</span> value on error.</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span> In order to enable or disable this script just change the execution</span><br><span class="line"><span class="meta">#</span> bits.</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span> By default this script does nothing.</span><br><span class="line"></span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>注意: 一定要将命令添加在exit 0之前。里面可以直接写命令或者执行Shell脚本文件sh。</strong></p>
-</li>
-<li><p>下面这个是用来开机自启动网络的命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> add by SongJianTao 2018-5-8</span><br><span class="line"><span class="meta">#</span> use to config network auto</span><br><span class="line">ip addr del dev enp11s0 192.168.1.50/24</span><br><span class="line">tunctl -t tap0</span><br><span class="line">brctl addif be-ex tap0</span><br><span class="line">ifconfig tap0 0.0.0.0 promisc up</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>end by SongJianTao</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>注意</strong>如果不生效的话，可以尝试rc.local文件头部/bin/sh修改为/bin/bash，还可以增加日志输出功能，来查看最终为什么这个脚本不启动的原因，代码如下所示：</p>
+<li><p>启动jar包的命令是java -jar -Dloader.path=.,config,resources,3rd-lib miaosha.jar<br>然后我写了Dockerfile，内容如下：<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/DockerMiaoSha/2.png" alt="image"><br>构建镜像 docker build -t sjt157/miaoshaapp:v2 .（注意后边有个.）<br>运行docker容器：docker run -d -p 65534:65510 sjt157/miaoshaapp:v2</p>
 </li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span>log</span><br><span class="line">exec 2&gt; /tmp/rc.local.log  # send stderr from rc.local to a log file  </span><br><span class="line">exec 1&gt;&amp;2                  # send stdout to the same log file  </span><br><span class="line">set -x                     # tell sh to display commands before execution</span><br></pre></td></tr></table></figure>
+<h2 id="Docker化Rabbit"><a href="#Docker化Rabbit" class="headerlink" title="Docker化Rabbit"></a>Docker化Rabbit</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">首先pull官方镜像，Docker pull rabbitmq:<span class="number">3</span></span><br><span class="line">启动docker run -d --name miaosharabbit -p <span class="number">5672</span>:<span class="number">5672</span> -p <span class="number">15672</span>:<span class="number">15672</span> rabbitmq:<span class="number">3</span></span><br><span class="line">当时启动rabbit容器的时候出现了异常 An unexpected connection driver error occurred的话，执行这个</span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/DockerMiaoSha/3.png" alt="image"></p>
+<h2 id="Docker化Mysql"><a href="#Docker化Mysql" class="headerlink" title="Docker化Mysql"></a>Docker化Mysql</h2><pre><code class="python">
+首先拉取镜像，docker pull mysql:<span class="number">5.7</span>
+使用镜像创建容器
+docker run -p <span class="number">3306</span>:<span class="number">3306</span> --name miaoshaMysql -e MYSQL_ROOT_PASSWORD=<span class="number">123</span> -d mysql:<span class="number">5.7</span>
+进入容器
+docker <span class="keyword">exec</span> -it miaoshaMysql bash
+进入mysql -uroot -p
+输入 GRANT ALL PRIVILEGES ON *.* TO <span class="string">'root'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'123'</span> WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+复制sql文件到容器
+docker inspect -f <span class="string">'{{.ID}}'</span> miaoshaMysql
+docker cp 本地路径 容器长ID:容器路径
+我把文件考到了根目录下
+docker cp /home/ubuntu16/docker/miaoshaMysql/seckill.sql <span class="number">561e41</span>a0347d:/
+首先进入mysql 创建数据库
+create database miaosha;
+在执行mysql -uroot -p  miaosha &lt; miaosha.sql命令导入文件
+我要把原镜像 重新弄一个我的数据库镜像
+docker commit -m <span class="string">"added miaosha.sql"</span> -a <span class="string">"sjt157"</span> <span class="number">561e41</span>a0347d sjt157/miaoshamysql:v2
+运行我自己的镜像
+docker run -p <span class="number">3306</span>:<span class="number">3306</span> --name miaoshamysql -e MYSQL_ROOT_PASSWORD=<span class="number">123</span> -d sjt157/miaoshamysql:v2
+</code></pre>
 <ul>
-<li>今天正在奋笔疾书、焦头烂额的写报告，老胡说他要上网，但是服务器怎么也上不去网，查了很多原因也不知道（mmp，原来没出现过这种情况啊），经过层层排查，最后可能是因为交换机长期没有关的的问题，导致不能用（交换机的质量这么差的吗）， 所以直接把网线接在了路由器上，那就要更改配置了，不要直接在/etc/resolve.conf那设置，因为重启会消失，要在/etc/resolvconf/resolv.conf.d/base 这个文件下改，加上nameserver 192.168.1.1 这样就可以了，然后果然可以了，所以这个不能赖我了，要赖交换机！这个锅我不背！</li>
+<li>此处有个疑问？？？<br>为什么在官方mysql镜像上 我做了相应操作，存了文件，执行了命令，只有文件被保存了，但是 我做的其他命令 却没有保存上？？？比如创建数据库表等命令 这是为什么？那如果是用Dockerfile创建的自己的镜像会不会也是这样呢，相关命令不保存？？？还有一个，为什么容器已经是退出状态了，却也不能重名呢？？必须要rm掉吗。因为已经是退出状态了，所以不能kill。</li>
 </ul>
+<h2 id="Docker化Redis"><a href="#Docker化Redis" class="headerlink" title="Docker化Redis"></a>Docker化Redis</h2><p>不用 redis.password=123456这个加密码的配置了，因为默认的官方镜像是没有的。<br>docker pull  redis:4（有个疑问。不能制定详细的版本信息吗？？应该可以把）<br>启动redis容器docker run -p 6379:6379 –name miaosharedis -d redis<br>最后可以看到4个容器均运行成功。</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/DockerMiaoSha/4.png" alt="image"></p>
+<h2 id="下一步工作"><a href="#下一步工作" class="headerlink" title="下一步工作"></a>下一步工作</h2><p>这样太麻烦了，每次都要手动执行，能不能自动编排呢？利用compose来操作。</p>
 
       
     </div>
@@ -436,7 +460,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/05/11/服务器不能上网之谜/" title="服务器不能上网之谜">http://yoursite.com/2018/05/11/服务器不能上网之谜/</a>
+    <a href="http://yoursite.com/2018/12/09/Docker化我的秒杀项目/" title="Docker化我的秒杀项目">http://yoursite.com/2018/12/09/Docker化我的秒杀项目/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -451,7 +475,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
           
         </div>
       
@@ -476,8 +500,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/27/快速排序/" rel="next" title="快速排序">
-                <i class="fa fa-chevron-left"></i> 快速排序
+              <a href="/2018/12/09/openstack-vm-cannot-ssh/" rel="next" title="openstack-vm-cannot-ssh">
+                <i class="fa fa-chevron-left"></i> openstack-vm-cannot-ssh
               </a>
             
           </div>
@@ -485,10 +509,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/10/Linux可以Ping通但不能traceroute/" rel="prev" title="Linux可以Ping通但不能traceroute">
-                Linux可以Ping通但不能traceroute <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
