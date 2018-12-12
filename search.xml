@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[国密算法之SM4]]></title>
+    <url>%2F2018%2F12%2F12%2F%E5%9B%BD%E5%AF%86%E7%AE%97%E6%B3%95%E4%B9%8BSM4%2F</url>
+    <content type="text"><![CDATA[为什么用SM4加密后文件会略长于明文文件？ 首先了解什么是SM4算法 参考： https://blog.csdn.net/Soul_Programmer_Swh/article/details/80263822 https://www.cnblogs.com/TaiYangXiManYouZhe/p/4317519.html https://blog.csdn.net/cg129054036/article/details/83016958 原因就在于sm4 算法加解密时，采用的是 TCM_ES_SM4_CBC 模式，该模式会填 充加密数据以保证其长度为 16 的整数倍，因此加密后文件会略长于明文文件，解 密后文件长度将恢复。 那么什么是又CBC？在密码学中，分组加密（英语：Block cipher），又称分块加密或块密码，是一种对称密钥算法。它将明文分成多个等长的模块（block），使用确定的算法和对称密钥对每组分别加密解密。分组加密是极其重要的加密协议组成，其中典型的如DES和AES作为美国政府核定的标准加密算法，应用领域从电子邮件加密到银行交易转帐，非常广泛。现代分组加密创建在迭代的思想上产生密文。其思想由克劳德·香农在他1949年的重要论文《保密系统的通信理论》（Communication Theory of Secrecy Systems）中提出，作为一种通过简单操作如替代和排列等以有效改善保密性的方法。[1] 迭代产生的密文在每一轮加密中使用不同的子密钥，而子密钥生成自原始密钥。DES加密在1977年由前美国国家标准局（今“美国国家标准与技术研究所”）颁布，是现代分组加密设计的基础思想。它同样也影响了密码分析的学术进展。 https://zh.wikipedia.org/wiki/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F#%E5%AF%86%E7%A0%81%E5%9D%97%E9%93%BE%E6%8E%A5%EF%BC%88CBC%EF%BC%89]]></content>
+      <categories>
+        <category>TrustComputing</category>
+      </categories>
+      <tags>
+        <tag>TrustComputing</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Docker化我的秒杀项目]]></title>
     <url>%2F2018%2F12%2F09%2FDocker%E5%8C%96%E6%88%91%E7%9A%84%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE%2F</url>
     <content type="text"><![CDATA[Docker化秒杀项目 首先构建jar包，因为该秒杀基于maven的，第一开始想把配置文件啥的都放一起，可以用一些eclipse插件啥的，但是后来一想这样不好，因为如果我想改配置的话需要重新构建，所以在网上找了个方法，构建好maven install 之后是这样子的，参考的这篇文章http://https://blog.csdn.net/qq_22857293/article/details/79416165，最后构建之后的结果如图，可以看出第三方依赖，配置文件，资源分离开来： （当把jar包通过Xshell上传文件的时候出现了不能上传的问题，这是因为目标目录没有相应写权限造成的，通过chmod o+w 赋予相应权限即可。） * 启动jar包的命令是java -jar -Dloader.path=.,config,resources,3rd-lib miaosha.jar然后我写了Dockerfile，内容如下：构建镜像 docker build -t sjt157/miaoshaapp:v2 .（注意后边有个.）运行docker容器：docker run -d -p 65534:65510 sjt157/miaoshaapp:v2 Docker化Rabbit1234首先pull官方镜像，Docker pull rabbitmq:3启动docker run -d --name miaosharabbit -p 5672:5672 -p 15672:15672 rabbitmq:3当时启动rabbit容器的时候出现了异常 An unexpected connection driver error occurred的话，执行这个 Docker化Mysql 首先拉取镜像，docker pull mysql:5.7 使用镜像创建容器 docker run -p 3306:3306 --name miaoshaMysql -e MYSQL_ROOT_PASSWORD=123 -d mysql:5.7 进入容器 docker exec -it miaoshaMysql bash 进入mysql -uroot -p 输入 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123' WITH GRANT OPTION; FLUSH PRIVILEGES; 复制sql文件到容器 docker inspect -f '{{.ID}}' miaoshaMysql docker cp 本地路径 容器长ID:容器路径 我把文件考到了根目录下 docker cp /home/ubuntu16/docker/miaoshaMysql/seckill.sql 561e41a0347d:/ 首先进入mysql 创建数据库 create database miaosha; 在执行mysql -uroot -p miaosha &lt; miaosha.sql命令导入文件 我要把原镜像 重新弄一个我的数据库镜像 docker commit -m "added miaosha.sql" -a "sjt157" 561e41a0347d sjt157/miaoshamysql:v2 运行我自己的镜像 docker run -p 3306:3306 --name miaoshamysql -e MYSQL_ROOT_PASSWORD=123 -d sjt157/miaoshamysql:v2 此处有个疑问？？？为什么在官方mysql镜像上 我做了相应操作，存了文件，执行了命令，只有文件被保存了，但是 我做的其他命令 却没有保存上？？？比如创建数据库表等命令 这是为什么？那如果是用Dockerfile创建的自己的镜像会不会也是这样呢，相关命令不保存？？？还有一个，为什么容器已经是退出状态了，却也不能重名呢？？必须要rm掉吗。因为已经是退出状态了，所以不能kill。 Docker化Redis不用 redis.password=123456这个加密码的配置了，因为默认的官方镜像是没有的。docker pull redis:4（有个疑问。不能制定详细的版本信息吗？？应该可以把）启动redis容器docker run -p 6379:6379 –name miaosharedis -d redis最后可以看到4个容器均运行成功。 下一步工作这样太麻烦了，每次都要手动执行，能不能自动编排呢？利用compose来操作。]]></content>
