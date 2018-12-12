@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[VM与HOST之间传输文件]]></title>
+    <url>%2F2018%2F12%2F12%2FVM%E4%B8%8EHOST%E4%B9%8B%E9%97%B4%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6%2F</url>
+    <content type="text"><![CDATA[今天老师有一个需求，是从host向qemu创建的虚拟机中传输文件，调研了几个方法，起初是通过网络传输，但是在新的这个平台上没有搭建网桥等设备，而且想还没有别的其他的方式。经过查询，主要有以下方式： 共享文件夹的方式Docker中也有此方法https://blog.csdn.net/zhongbeida_xue/article/details/80747212?utm_source=blogxgwz9 把数据存到usb设备（可真可假）中https://blog.csdn.net/kingtj/article/details/82952783 总结：qemu-kvm虚拟机与宿主机之间实现文件传输，大概两类方法： 虚拟机与宿主机之间，使用网络来进行文件传输。这个需要先在宿主机上配置网络桥架，在qemu-kvm启动配置网卡就可以实现文件传输。 使用9psetup协议实现虚拟机与宿主机之间文件传输。该方法先要宿主机需要在内核中配置了9p选项，即：12345CONFIG_NET_9P=yCONFIG_net_9P_VIRTIO=yCONFIG_NET_9P_DEBUG=y (可选项)CONFIG_9P_FS=yCONFIG_9P_FS_POSIX_ACL=y 另外，qemu在编译时需要支持ATTR/XATTR。 综上，两类方法配置起来都比较麻烦。其实有一个比较简单的方法123456789101. 使用dd创建一个文件，作为虚拟机和宿主机之间传输桥梁 dd if=/dev/zero of=/opt/share.img bs=1M count=2002. 格式化share.img文件 mkfs.ext4 /opt/share.img3. 在宿主机上创建一个文件夹， mkdir /tmp/share mount -o loop /opt/share.img /tmp/share这样，在宿主机上把需要传输给虚拟机的文件放到/tmp/share 下即可。4. 启动qemu-kvm虚拟机，添加上/opt/share.img文件。5. 在虚拟机中 mount上添加的一块硬盘。即可以获得宿主机上放在/tmp/share文件夹下的文件 但是该方法有个缺点：宿主机和虚拟机文件传输不能实时传输。如果需要传输新文件，需要重启虚拟机。 有没有其他的方式呢还？待补充。。。]]></content>
+      <categories>
+        <category>KVM</category>
+      </categories>
+      <tags>
+        <tag>KVM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[国密算法之SM4]]></title>
     <url>%2F2018%2F12%2F12%2F%E5%9B%BD%E5%AF%86%E7%AE%97%E6%B3%95%E4%B9%8BSM4%2F</url>
     <content type="text"><![CDATA[为什么用SM4加密后文件会略长于明文文件？ 首先了解什么是SM4算法 参考： https://blog.csdn.net/Soul_Programmer_Swh/article/details/80263822 https://www.cnblogs.com/TaiYangXiManYouZhe/p/4317519.html https://blog.csdn.net/cg129054036/article/details/83016958 原因就在于sm4 算法加解密时，采用的是 TCM_ES_SM4_CBC 模式，该模式会填 充加密数据以保证其长度为 16 的整数倍，因此加密后文件会略长于明文文件，解 密后文件长度将恢复。 那么什么是又CBC？在密码学中，分组加密（英语：Block cipher），又称分块加密或块密码，是一种对称密钥算法。它将明文分成多个等长的模块（block），使用确定的算法和对称密钥对每组分别加密解密。分组加密是极其重要的加密协议组成，其中典型的如DES和AES作为美国政府核定的标准加密算法，应用领域从电子邮件加密到银行交易转帐，非常广泛。现代分组加密创建在迭代的思想上产生密文。其思想由克劳德·香农在他1949年的重要论文《保密系统的通信理论》（Communication Theory of Secrecy Systems）中提出，作为一种通过简单操作如替代和排列等以有效改善保密性的方法。[1] 迭代产生的密文在每一轮加密中使用不同的子密钥，而子密钥生成自原始密钥。DES加密在1977年由前美国国家标准局（今“美国国家标准与技术研究所”）颁布，是现代分组加密设计的基础思想。它同样也影响了密码分析的学术进展。 https://zh.wikipedia.org/wiki/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F#%E5%AF%86%E7%A0%81%E5%9D%97%E9%93%BE%E6%8E%A5%EF%BC%88CBC%EF%BC%89]]></content>
