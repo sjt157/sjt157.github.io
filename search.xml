@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[谷歌之Percolator模型]]></title>
+    <url>%2F2018%2F12%2F15%2F%E8%B0%B7%E6%AD%8C%E4%B9%8BPercolator%E6%A8%A1%E5%9E%8B%2F</url>
+    <content type="text"><![CDATA[论文今天读了一篇论文https://www.usenix.org/legacy/event/osdi10/tech/full_papers/Peng.pdf 思考 在谷歌的索引系统中。通过MapReduce将爬取下来的页面弄到Percolator中，该模型提供用户随机访问一个超大的数据库，避免了MapReduce的全局scan。该模型中因为有很多线程并发，所以提供了ACID。 Percolator由一系列observers组成。每个observer可以完成一个任务而且可以为下游的observers指派更多的任务。 Percolator使用于增量处理。 该模型如下图，A Percolator system由这三部分组成。还需要依赖两个服务the timestamp oracle and the lightweight lock service。该模型的事务：Percolator provides cross-row, cross-table transactions with ACID snapshot-isolation semantics. 提出了snapshot isolation。意思如图 这里边还讲了个很有意思的比喻。扫描线程一多可能会导致parallelism的减少，拿公交车来作比喻，公交车一慢，会导致等的乘客过多，从而导致车更慢。该模型中为了解决这个问题，采取了如下做法：当一个线程发现别的线程慢的时候，它选择一个随机的位置进行扫描。 TiDB通过查询知道TiKV 的事务采用的就是是 Percolator 模型，并且做了大量的优化。事务的细节这里不详述，大家可以参考论文。这里只提一点，TiKV 的事务采用乐观锁，事务的执行过程中，不会检测写写冲突，只有在提交过程中，才会做冲突检测，冲突的双方中比较早完成提交的会写入成功，另一方会尝试重新执行整个事务。当业务的写入冲突不严重的情况下，这种模型性能会很好，比如随机更新表中某一行的数据，并且表很大。但是如果业务的写入冲突严重，性能就会很差，举一个极端的例子，就是计数器，多个客户端同时修改少量行，导致冲突严重的，造成大量的无效重试。 初体验TiDB 通过docker-compose来部署，目前为止，所以组件已经准备完毕，如图 123访问集群: mysql -h 127.0.0.1 -P 4000 -u root访问集群 Grafana 监控页面: http://localhost:3000 默认用户名和密码均为 admin。集群数据可视化： http://localhost:8010 效果如图：]]></content>
+      <categories>
+        <category>TiDB</category>
+      </categories>
+      <tags>
+        <tag>TiDB</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[VM与HOST之间传输文件]]></title>
     <url>%2F2018%2F12%2F12%2FVM%E4%B8%8EHOST%E4%B9%8B%E9%97%B4%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6%2F</url>
     <content type="text"><![CDATA[今天老师有一个需求，是从host向qemu创建的虚拟机中传输文件，调研了几个方法，起初是通过网络传输，但是在新的这个平台上没有搭建网桥等设备，而且想还没有别的其他的方式。经过查询，主要有以下方式： 共享文件夹的方式Docker中也有此方法https://blog.csdn.net/zhongbeida_xue/article/details/80747212?utm_source=blogxgwz9 把数据存到usb设备（可真可假）中https://blog.csdn.net/kingtj/article/details/82952783 总结：qemu-kvm虚拟机与宿主机之间实现文件传输，大概两类方法： 虚拟机与宿主机之间，使用网络来进行文件传输。这个需要先在宿主机上配置网络桥架，在qemu-kvm启动配置网卡就可以实现文件传输。 使用9psetup协议实现虚拟机与宿主机之间文件传输。该方法先要宿主机需要在内核中配置了9p选项，即：12345CONFIG_NET_9P=yCONFIG_net_9P_VIRTIO=yCONFIG_NET_9P_DEBUG=y (可选项)CONFIG_9P_FS=yCONFIG_9P_FS_POSIX_ACL=y 另外，qemu在编译时需要支持ATTR/XATTR。 综上，两类方法配置起来都比较麻烦。其实有一个比较简单的方法123456789101. 使用dd创建一个文件，作为虚拟机和宿主机之间传输桥梁 dd if=/dev/zero of=/opt/share.img bs=1M count=2002. 格式化share.img文件 mkfs.ext4 /opt/share.img3. 在宿主机上创建一个文件夹， mkdir /tmp/share mount -o loop /opt/share.img /tmp/share这样，在宿主机上把需要传输给虚拟机的文件放到/tmp/share 下即可。4. 启动qemu-kvm虚拟机，添加上/opt/share.img文件。5. 在虚拟机中 mount上添加的一块硬盘。即可以获得宿主机上放在/tmp/share文件夹下的文件 但是该方法有个缺点：宿主机和虚拟机文件传输不能实时传输。如果需要传输新文件，需要重启虚拟机。 有没有其他的方式呢还？待补充。。。]]></content>
