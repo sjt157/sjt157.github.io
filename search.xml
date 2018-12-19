@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[当SDN遇见NFV]]></title>
+    <url>%2F2018%2F12%2F19%2F%E5%BD%93SDN%E9%81%87%E8%A7%81NFV%2F</url>
+    <content type="text"><![CDATA[SDN从2012年开始，在学术界受到了广泛的关注。在阅读了部分国外大牛写的相关综述性文章若干之后，发现其中似乎并没有看到NFV的影子。提到SDN，能想到的基本上绕不过“控制转发分离、可编程接口、集中控制”，这三个特点。固然这三个特定很重要，也是SDN存在的价值。但除此之外，伴随着SDN一起成长的还有NFV，即网络功能虚拟化。 SDN出身于斯坦福实验室，算是学术界吧。而NFV出身于工业界，相对而言，NFV是一种技术。 SDN和NFV是可以相互独立存在的，据相关研究表明，二者结合起来的效果更优，但是需要处理的问题也更多。 从大的方面讲，SDN和NFV都提出将软件和硬件分离的概念。但是细化之后： SDN侧重于将设备层面的控制模块分离出来，简化底层设备，进行集中控制，底层设备仅仅只负责数据的转发。目的在于降低网络管理的复杂度、协议部署的成本和灵活、以及网络创新。而NFV则看中将设备中的功能提取出来，通过虚拟化的技术在上层提供虚拟功能模块。也就是，NFV希望能够使用通用的x86体系结构的机器替代底层的各种异构的专用设备，然后通过虚拟化技术，在虚拟层提供不同的功能，允许功能进行组合和分离。 SDN中也存在虚拟化技术，但是和NFV有本质上的区别。SDN虚拟的是设备，而NFV虚拟的是功能，当然NFV也包括对基础设备的虚拟，即NFVI。 目前ETSI组织已经于2015-1完成了对NFV的第一阶段的工作，主要包括对NFV的架构设计，各层之间的接口以及管理。并且计划在未来两年内实现对NFV第二阶段的规划，据ETSI ISG给出的白皮书介绍，第二阶段将主要关注于解决NFV中的互操作性问题（应该是VNF之间的以及与VM之间的通信、协作等关系）。]]></content>
+      <categories>
+        <category>openstack</category>
+      </categories>
+      <tags>
+        <tag>openstack</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[谷歌之Percolator模型]]></title>
     <url>%2F2018%2F12%2F15%2F%E8%B0%B7%E6%AD%8C%E4%B9%8BPercolator%E6%A8%A1%E5%9E%8B%2F</url>
     <content type="text"><![CDATA[论文今天读了一篇论文https://www.usenix.org/legacy/event/osdi10/tech/full_papers/Peng.pdf 思考 在谷歌的索引系统中。通过MapReduce将爬取下来的页面弄到Percolator中，该模型提供用户随机访问一个超大的数据库，避免了MapReduce的全局scan。该模型中因为有很多线程并发，所以提供了ACID。 Percolator由一系列observers组成。每个observer可以完成一个任务而且可以为下游的observers指派更多的任务。 Percolator使用于增量处理。 该模型如下图，A Percolator system由这三部分组成。还需要依赖两个服务the timestamp oracle and the lightweight lock service。该模型的事务：Percolator provides cross-row, cross-table transactions with ACID snapshot-isolation semantics. 提出了snapshot isolation。意思如图 这里边还讲了个很有意思的比喻。扫描线程一多可能会导致parallelism的减少，拿公交车来作比喻，公交车一慢，会导致等的乘客过多，从而导致车更慢。该模型中为了解决这个问题，采取了如下做法：当一个线程发现别的线程慢的时候，它选择一个随机的位置进行扫描。 TiDB通过查询知道TiKV 的事务采用的就是是 Percolator 模型，并且做了大量的优化。事务的细节这里不详述，大家可以参考论文。这里只提一点，TiKV 的事务采用乐观锁，事务的执行过程中，不会检测写写冲突，只有在提交过程中，才会做冲突检测，冲突的双方中比较早完成提交的会写入成功，另一方会尝试重新执行整个事务。当业务的写入冲突不严重的情况下，这种模型性能会很好，比如随机更新表中某一行的数据，并且表很大。但是如果业务的写入冲突严重，性能就会很差，举一个极端的例子，就是计数器，多个客户端同时修改少量行，导致冲突严重的，造成大量的无效重试。 初体验TiDB 通过docker-compose来部署，目前为止，所以组件已经准备完毕，如图 123访问集群: mysql -h 127.0.0.1 -P 4000 -u root访问集群 Grafana 监控页面: http://localhost:3000 默认用户名和密码均为 admin。集群数据可视化： http://localhost:8010 效果如图：]]></content>
