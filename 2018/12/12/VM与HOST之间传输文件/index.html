@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="今天老师有一个需求，是从host向qemu创建的虚拟机中传输文件，调研了几个方法，起初是通过网络传输，但是在新的这个平台上没有搭建网桥等设备，而且想还没有别的其他的方式。经过查询，主要有以下方式：  共享文件夹的方式Docker中也有此方法https://blog.csdn.net/zhongbeida_xue/article/details/80747212?utm_source=blogxgw">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-12T11:42:19.082Z">
+<meta property="og:updated_time" content="2018-12-27T08:57:43.473Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VM与HOST之间传输文件">
 <meta name="twitter:description" content="今天老师有一个需求，是从host向qemu创建的虚拟机中传输文件，调研了几个方法，起初是通过网络传输，但是在新的这个平台上没有搭建网桥等设备，而且想还没有别的其他的方式。经过查询，主要有以下方式：  共享文件夹的方式Docker中也有此方法https://blog.csdn.net/zhongbeida_xue/article/details/80747212?utm_source=blogxgw">
@@ -352,8 +352,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-12T19:42:19+08:00">
-                2018-12-12
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-27T16:57:43+08:00">
+                2018-12-27
               </time>
             
           </span>
@@ -444,8 +444,8 @@
 </li>
 </ul>
 <p>另外，qemu在编译时需要支持ATTR/XATTR。</p>
-<p>综上，两类方法配置起来都比较麻烦。其实有一个比较简单的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1. 使用dd创建一个文件，作为虚拟机和宿主机之间传输桥梁</span><br><span class="line"> dd if=/dev/zero of=/opt/share.img bs=1M count=200</span><br><span class="line">2. 格式化share.img文件</span><br><span class="line">  mkfs.ext4 /opt/share.img</span><br><span class="line">3. 在宿主机上创建一个文件夹，</span><br><span class="line">   mkdir /tmp/share</span><br><span class="line">   mount -o loop /opt/share.img /tmp/share</span><br><span class="line">这样，在宿主机上把需要传输给虚拟机的文件放到/tmp/share 下即可。</span><br><span class="line">4. 启动qemu-kvm虚拟机，添加上/opt/share.img文件。</span><br><span class="line">5. 在虚拟机中 mount上添加的一块硬盘。即可以获得宿主机上放在/tmp/share文件夹下的文件</span><br></pre></td></tr></table></figure></p>
-<p>但是该方法有个缺点：宿主机和虚拟机文件传输不能实时传输。如果需要传输新文件，需要重启虚拟机。</p>
+<p>综上，两类方法配置起来都比较麻烦。其实有一个比较简单的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">在虚拟机环境下，我们可能会遇到在宿主机和客户机之间传输文件的需求，目前有几种方法可以实现这个例如通过9p协议，或者为客户机和宿主机之间搭建一个网络等。这些都太不容易实现，下面我介绍一种简单的方法。</span><br><span class="line"></span><br><span class="line">1. 使用dd创建一个文件，作为虚拟机和宿主机之间传输桥梁</span><br><span class="line"></span><br><span class="line">dd if=/dev/zero of=/var/lib/libvirt/images/share.img bs=1M count=350</span><br><span class="line">2. 格式化share.img文件</span><br><span class="line">mkfs.ext4/var/lib/libvirt/images/share.img</span><br><span class="line">3. 在宿主机上创建一个文件夹，</span><br><span class="line">mkdir /tmp/share</span><br><span class="line">mount -o loop/var/lib/libvirt/images/share.img /tmp/share</span><br><span class="line">这样，在宿主机上把需要传输给虚拟机的文件放到/tmp/share 下即可。</span><br><span class="line">4. 启动qemu-kvm虚拟机，可以额外为客户机添加上一块硬盘。</span><br><span class="line"></span><br><span class="line">-drive file=/var/lib/libvirt/images/share.img,if=virtio</span><br><span class="line"></span><br><span class="line">5. 在虚拟机中 mount上添加的一块硬盘。即可以获得宿主机上放在/tmp/share文件夹下的文件，具体做法是：通过dmesg的输出找到新挂在的硬盘是什么，然后将硬盘直接mount上来。</span><br><span class="line"></span><br><span class="line">mount -t ext4 /dev/vdb /mnt/</span><br></pre></td></tr></table></figure></p>
+<p>当然，该方法虽然简单，但它也有缺点, 宿主机和虚拟机文件传输不能实时传输。如果需要传输新文件，需要重启虚拟机。</p>
 <h3 id="有没有其他的方式呢还？待补充。。。"><a href="#有没有其他的方式呢还？待补充。。。" class="headerlink" title="有没有其他的方式呢还？待补充。。。"></a>有没有其他的方式呢还？待补充。。。</h3>
       
     </div>
