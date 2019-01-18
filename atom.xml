@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>诗与远方</title>
+  
+  <subtitle>一个走在前端的后端人</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2019-01-18T03:42:39.797Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>songjiantao</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mysql之s_profiling</title>
+    <link href="http://yoursite.com/2019/01/18/Mysql%E4%B9%8Bs-profiling/"/>
+    <id>http://yoursite.com/2019/01/18/Mysql之s-profiling/</id>
+    <published>2019-01-18T03:41:57.000Z</published>
+    <updated>2019-01-18T03:42:39.797Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;今天在听Cetus课程的时候，看到了老师说了set profiling=1； 并不知道这是干什么的，来记录一下。&lt;/p&gt;
+&lt;p&gt;Query Profiler 来定位一条 Query 的性能瓶颈，这里我们再详细介绍一下 Profiling
+        
+      
+    
+    </summary>
+    
+      <category term="Mysql" scheme="http://yoursite.com/categories/Mysql/"/>
+    
+    
+      <category term="Mysql" scheme="http://yoursite.com/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据库分片、分区、分表、分库傻傻分不清楚</title>
+    <link href="http://yoursite.com/2019/01/18/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E7%89%87%E3%80%81%E5%88%86%E5%8C%BA%E3%80%81%E5%88%86%E8%A1%A8%E3%80%81%E5%88%86%E5%BA%93%E5%82%BB%E5%82%BB%E5%88%86%E4%B8%8D%E6%B8%85%E6%A5%9A/"/>
+    <id>http://yoursite.com/2019/01/18/数据库分片、分区、分表、分库傻傻分不清楚/</id>
+    <published>2019-01-18T03:09:39.000Z</published>
+    <updated>2019-01-18T03:10:39.204Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;分片&quot;&gt;&lt;a href=&quot;#分片&quot; class=&quot;headerlink&quot; title=&quot;分片&quot;&gt;&lt;/a&gt;分片&lt;/h2&gt;&lt;h3 id=&quot;什么是分片&quot;&gt;&lt;a href=&quot;#什么是分片&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Mysql" scheme="http://yoursite.com/categories/Mysql/"/>
+    
+    
+      <category term="Mysql" scheme="http://yoursite.com/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>读《码出高效》笔记</title>
+    <link href="http://yoursite.com/2019/01/17/%E8%AF%BB%E3%80%8A%E7%A0%81%E5%87%BA%E9%AB%98%E6%95%88%E3%80%8B%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2019/01/17/读《码出高效》笔记/</id>
+    <published>2019-01-17T03:26:31.000Z</published>
+    <updated>2019-01-17T03:28:56.319Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ol&gt;
+&lt;li&gt;&lt;p&gt;基于 0与1的信号处理为我们带来了缤纷多彩的计算机世界，随着基础材料和信 号处理技术的发展，未来计算机能够处理的基础信号将不仅仅是二进制信息。比如， 三进制（ 高电平、低电平、断电），甚至十进制信息，届时计算机世界又会迎来一次
+        
+      
+    
+    </summary>
+    
+      <category term="Books" scheme="http://yoursite.com/categories/Books/"/>
+    
+    
+      <category term="Books" scheme="http://yoursite.com/tags/Books/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>为什么不应该使用ZooKeeper做服务发现</title>
+    <link href="http://yoursite.com/2019/01/17/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8ZooKeeper%E5%81%9A%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/"/>
+    <id>http://yoursite.com/2019/01/17/为什么不应该使用ZooKeeper做服务发现/</id>
+    <published>2019-01-17T03:15:34.000Z</published>
+    <updated>2019-01-17T03:22:39.871Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;本文作者通过ZooKeeper与Eureka作为 Service发现服务（注：WebServices
+        
+      
+    
+    </summary>
+    
+      <category term="Zookeeper" scheme="http://yoursite.com/categories/Zookeeper/"/>
+    
+    
+      <category term="Zookeeper" scheme="http://yoursite.com/tags/Zookeeper/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>你了解Node.js吗？</title>
+    <link href="http://yoursite.com/2019/01/17/%E4%BD%A0%E4%BA%86%E8%A7%A3Node-js%E5%90%97%EF%BC%9F/"/>
+    <id>http://yoursite.com/2019/01/17/你了解Node-js吗？/</id>
+    <published>2019-01-17T02:57:46.000Z</published>
+    <updated>2019-01-17T02:59:26.567Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;如果你去年注意过技术方面的新闻，我敢说你至少看到node.js不下一两次。那么问题来了“node.js是什么？”。有些人没准会告诉你“这是一种通过JavaScript语言开发web服务端的东西”。如果这种晦涩解释还没把你搞晕，你没准会接着问：“为什么我们要用node.js？
+        
+      
+    
+    </summary>
+    
+      <category term="Node.js" scheme="http://yoursite.com/categories/Node-js/"/>
+    
+    
+      <category term="Node.js" scheme="http://yoursite.com/tags/Node-js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>你了解响应式编程吗？</title>
+    <link href="http://yoursite.com/2019/01/17/%E4%BD%A0%E4%BA%86%E8%A7%A3%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%90%97%EF%BC%9F/"/>
+    <id>http://yoursite.com/2019/01/17/你了解响应式编程吗？/</id>
+    <published>2019-01-17T02:47:27.000Z</published>
+    <updated>2019-01-17T02:49:36.304Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;响应式编程？&quot;&gt;&lt;a href=&quot;#响应式编程？&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Architecture" scheme="http://yoursite.com/categories/Architecture/"/>
+    
+    
+      <category term="Architecture" scheme="http://yoursite.com/tags/Architecture/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文件锁</title>
+    <link href="http://yoursite.com/2019/01/17/%E6%96%87%E4%BB%B6%E9%94%81/"/>
+    <id>http://yoursite.com/2019/01/17/文件锁/</id>
+    <published>2019-01-17T01:48:43.000Z</published>
+    <updated>2019-01-17T02:08:49.859Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;我们都知道，Nginx是多进程程序，80端口是各进程所共享的，多进程同时listen
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>你知道女巫攻击吗？</title>
+    <link href="http://yoursite.com/2018/12/27/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%A5%B3%E5%B7%AB%E6%94%BB%E5%87%BB%E5%90%97%EF%BC%9F/"/>
+    <id>http://yoursite.com/2018/12/27/你知道女巫攻击吗？/</id>
+    <published>2018-12-27T08:59:39.000Z</published>
+    <updated>2018-12-27T09:05:32.901Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h3&gt;&lt;p&gt;女巫攻击(Sybil Attack)是2002年由John R. Douceur在《the Sybil
+        
+      
+    
+    </summary>
+    
+      <category term="Information Safety" scheme="http://yoursite.com/categories/Information-Safety/"/>
+    
+    
+      <category term="Information Safety" scheme="http://yoursite.com/tags/Information-Safety/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>你知道可信计算吗</title>
+    <link href="http://yoursite.com/2018/12/19/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E5%90%97/"/>
+    <id>http://yoursite.com/2018/12/19/你知道可信计算吗/</id>
+    <published>2018-12-19T09:42:06.000Z</published>
+    <updated>2018-12-19T09:42:50.557Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;安全和可信的区别？？&lt;br&gt;安全分两条，有功能性和保障性 （保密性 完整性 可用性  可查性）&lt;br&gt;可信本质是可预期 ，是保障安全四个特性的可预期 。利用密码学通过保障硬件系统的可预期 来保障 上层的可预期。&lt;br&gt;安全就是加密 ，可信就是加密的程度
+        
+      
+    
+    </summary>
+    
+      <category term="TrustComputing" scheme="http://yoursite.com/categories/TrustComputing/"/>
+    
+    
+      <category term="TrustComputing" scheme="http://yoursite.com/tags/TrustComputing/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>当SDN遇见NFV</title>
+    <link href="http://yoursite.com/2018/12/19/%E5%BD%93SDN%E9%81%87%E8%A7%81NFV/"/>
+    <id>http://yoursite.com/2018/12/19/当SDN遇见NFV/</id>
+    <published>2018-12-19T09:23:17.000Z</published>
+    <updated>2018-12-19T09:26:16.009Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ul&gt;
+&lt;li&gt;SDN从2012年开始，在学术界受到了广泛的关注。在阅读了部分国外大牛写的相关综述性文章若干之后，发现其中似乎并没有看到NFV的影子。&lt;br&gt;提到SDN，能想到的基本上绕不过“控制转发分离、可编程接口、集中控制”，这三个特点。固然这三个特定很重要，也是SDN存在
+        
+      
+    
+    </summary>
+    
+      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
+    
+    
+      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>谷歌之Percolator模型</title>
+    <link href="http://yoursite.com/2018/12/15/%E8%B0%B7%E6%AD%8C%E4%B9%8BPercolator%E6%A8%A1%E5%9E%8B/"/>
+    <id>http://yoursite.com/2018/12/15/谷歌之Percolator模型/</id>
+    <published>2018-12-15T08:10:29.000Z</published>
+    <updated>2018-12-19T09:37:20.302Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;论文&quot;&gt;&lt;a href=&quot;#论文&quot; class=&quot;headerlink&quot; title=&quot;论文&quot;&gt;&lt;/a&gt;论文&lt;/h2&gt;&lt;p&gt;今天读了一篇论文&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="TiDB" scheme="http://yoursite.com/categories/TiDB/"/>
+    
+    
+      <category term="TiDB" scheme="http://yoursite.com/tags/TiDB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>VM与HOST之间传输文件</title>
+    <link href="http://yoursite.com/2018/12/12/VM%E4%B8%8EHOST%E4%B9%8B%E9%97%B4%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6/"/>
+    <id>http://yoursite.com/2018/12/12/VM与HOST之间传输文件/</id>
+    <published>2018-12-12T11:41:33.000Z</published>
+    <updated>2018-12-27T08:57:43.473Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;今天老师有一个需求，是从host向qemu创建的虚拟机中传输文件，调研了几个方法，起初是通过网络传输，但是在新的这个平台上没有搭建网桥等设备，而且想还没有别的其他的方式。经过查询，主要有以下方式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;共享文件夹的方式&lt;br&gt;Docker中也有此
+        
+      
+    
+    </summary>
+    
+      <category term="KVM" scheme="http://yoursite.com/categories/KVM/"/>
+    
+    
+      <category term="KVM" scheme="http://yoursite.com/tags/KVM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>国密算法之SM4</title>
+    <link href="http://yoursite.com/2018/12/12/%E5%9B%BD%E5%AF%86%E7%AE%97%E6%B3%95%E4%B9%8BSM4/"/>
+    <id>http://yoursite.com/2018/12/12/国密算法之SM4/</id>
+    <published>2018-12-12T11:24:55.000Z</published>
+    <updated>2018-12-15T08:57:41.291Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;为什么用SM4加密后文件会略长于明文文件？&quot;&gt;&lt;a href=&quot;#为什么用SM4加密后文件会略长于明文文件？&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="TrustComputing" scheme="http://yoursite.com/categories/TrustComputing/"/>
+    
+    
+      <category term="TrustComputing" scheme="http://yoursite.com/tags/TrustComputing/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker化我的秒杀项目</title>
+    <link href="http://yoursite.com/2018/12/09/Docker%E5%8C%96%E6%88%91%E7%9A%84%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE/"/>
+    <id>http://yoursite.com/2018/12/09/Docker化我的秒杀项目/</id>
+    <published>2018-12-09T09:58:10.000Z</published>
+    <updated>2018-12-09T09:59:11.628Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Docker化秒杀项目&quot;&gt;&lt;a href=&quot;#Docker化秒杀项目&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Docker" scheme="http://yoursite.com/categories/Docker/"/>
+    
+    
+      <category term="Docker" scheme="http://yoursite.com/tags/Docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>openstack-vm-cannot-ssh</title>
+    <link href="http://yoursite.com/2018/12/09/openstack-vm-cannot-ssh/"/>
+    <id>http://yoursite.com/2018/12/09/openstack-vm-cannot-ssh/</id>
+    <published>2018-12-09T08:53:58.000Z</published>
+    <updated>2018-12-09T09:00:20.517Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;云之迷雾&quot;&gt;&lt;a href=&quot;#云之迷雾&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
+    
+    
+      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BloomFilter</title>
+    <link href="http://yoursite.com/2018/09/14/BloomFilter/"/>
+    <id>http://yoursite.com/2018/09/14/BloomFilter/</id>
+    <published>2018-09-14T12:57:40.000Z</published>
+    <updated>2018-09-14T13:00:26.357Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="DataStructure" scheme="http://yoursite.com/categories/DataStructure/"/>
+    
+    
+      <category term="DataStructure" scheme="http://yoursite.com/tags/DataStructure/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux可以Ping通但不能traceroute</title>
+    <link href="http://yoursite.com/2018/07/10/Linux%E5%8F%AF%E4%BB%A5Ping%E9%80%9A%E4%BD%86%E4%B8%8D%E8%83%BDtraceroute/"/>
+    <id>http://yoursite.com/2018/07/10/Linux可以Ping通但不能traceroute/</id>
+    <published>2018-07-10T08:53:34.000Z</published>
+    <updated>2018-07-10T08:54:52.718Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;今天闲来无事，想弄清楚学校至百度服务器的网络问题，结果不试不知道，一试吓一跳。完全出乎我的意料。我们学校的网关是172.21.6.254,172.21.4.254和172.21.7.254。发现可以ping通学校网关，却不能traceroute。如下图：&lt;
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>服务器不能上网之谜</title>
+    <link href="http://yoursite.com/2018/05/11/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8D%E8%83%BD%E4%B8%8A%E7%BD%91%E4%B9%8B%E8%B0%9C/"/>
+    <id>http://yoursite.com/2018/05/11/服务器不能上网之谜/</id>
+    <published>2018-05-11T12:12:33.000Z</published>
+    <updated>2018-05-11T12:14:08.057Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;因为服务器一重启很多配置就要重新配，很麻烦，那么有没有一种方式可以实现开机自启动。当然有了，那就是配置rc.local文件了！&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;那什么是rc.local脚本嗯？&lt;br&gt;rc.local脚本是一个Ubuntu开机后会自动执行
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>快速排序</title>
+    <link href="http://yoursite.com/2018/04/27/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"/>
+    <id>http://yoursite.com/2018/04/27/快速排序/</id>
+    <published>2018-04-27T07:07:48.000Z</published>
+    <updated>2018-04-27T07:09:54.638Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;快速排序的基本思想&lt;br&gt;快速排序（Quicksort）是对冒泡排序的一种改进。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以
+        
+      
+    
+    </summary>
+    
+      <category term="Interview" scheme="http://yoursite.com/categories/Interview/"/>
+    
+    
+      <category term="InterView" scheme="http://yoursite.com/tags/InterView/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>守护进程</title>
+    <link href="http://yoursite.com/2018/04/21/%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/"/>
+    <id>http://yoursite.com/2018/04/21/守护进程/</id>
+    <published>2018-04-21T02:32:04.000Z</published>
+    <updated>2018-04-21T02:33:02.372Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;strong&gt;什么是守护进程&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;守护进程（Daemon）是运行在后台的一种特殊进程。它独立于控制终端并且周期性地执行某种任务或等待处理某些发生的事件。守护进程是一种很有用的进 程。
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+  </entry>
+  
+</feed>
