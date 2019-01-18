@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-18T03:42:39.797Z</updated>
+  <updated>2019-01-18T05:26:12.752Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git团队协作中经常使用哪些术语</title>
+    <link href="http://yoursite.com/2019/01/18/Git%E5%9B%A2%E9%98%9F%E5%8D%8F%E4%BD%9C%E4%B8%AD%E7%BB%8F%E5%B8%B8%E4%BD%BF%E7%94%A8%E5%93%AA%E4%BA%9B%E6%9C%AF%E8%AF%AD/"/>
+    <id>http://yoursite.com/2019/01/18/Git团队协作中经常使用哪些术语/</id>
+    <published>2019-01-18T05:25:30.000Z</published>
+    <updated>2019-01-18T05:26:12.752Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;ACK  —  acknowledgement, i.e. agreed/accepted change&lt;/p&gt;
+&lt;p&gt;AFAIK   As Far As I Know （就我所知） &lt;/p&gt;
+&lt;p&gt;ASAP   abbr.    As Soon As Possible
+        
+      
+    
+    </summary>
+    
+      <category term="Git" scheme="http://yoursite.com/categories/Git/"/>
+    
+    
+      <category term="Git" scheme="http://yoursite.com/tags/Git/"/>
+    
+  </entry>
   
   <entry>
     <title>Mysql之s_profiling</title>
@@ -518,34 +546,6 @@
     
     
       <category term="InterView" scheme="http://yoursite.com/tags/InterView/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>守护进程</title>
-    <link href="http://yoursite.com/2018/04/21/%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/"/>
-    <id>http://yoursite.com/2018/04/21/守护进程/</id>
-    <published>2018-04-21T02:32:04.000Z</published>
-    <updated>2018-04-21T02:33:02.372Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;strong&gt;什么是守护进程&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;守护进程（Daemon）是运行在后台的一种特殊进程。它独立于控制终端并且周期性地执行某种任务或等待处理某些发生的事件。守护进程是一种很有用的进 程。
-        
-      
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
     
   </entry>
   

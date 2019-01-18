@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Git团队协作中经常使用哪些术语]]></title>
+    <url>%2F2019%2F01%2F18%2FGit%E5%9B%A2%E9%98%9F%E5%8D%8F%E4%BD%9C%E4%B8%AD%E7%BB%8F%E5%B8%B8%E4%BD%BF%E7%94%A8%E5%93%AA%E4%BA%9B%E6%9C%AF%E8%AF%AD%2F</url>
+    <content type="text"><![CDATA[ACK — acknowledgement, i.e. agreed/accepted change AFAIK As Far As I Know （就我所知） ASAP abbr. As Soon As Possible 尽快; BTW By The Way 顺便 Ditto. 最经典的一句 出自《人鬼情未了》 ——I love you ——Ditto. EOL end of life 寿命终止 FYI abbr. For Your Information 供参考; IMHO In My Humble Opinion 恕我直言 IIRC — if I recall correctly IANAL — “ I am not a lawyer ”, but I smell licensing issues LGTM LOOKS GOOD TO ME Review完别人的PR，没有问题 NACK/NAK — negative acknowledgement, i.e. disagree with change and/or conceptOk, thanks :) PTAL Please Take A Look 帮我看下，一般都是请别人 review 自己的 PR RFC — request for comments, i.e. I think this is a good idea, lets discuss REVNO 修订版号 revision number 的缩写 thx Thanks That makes sense to me cc 对我来说有意义 TR,DR Too long,dont read 一翻到底 WIP work in progress 工作在进行中;]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Mysql之s_profiling]]></title>
     <url>%2F2019%2F01%2F18%2FMysql%E4%B9%8Bs-profiling%2F</url>
     <content type="text"><![CDATA[今天在听Cetus课程的时候，看到了老师说了set profiling=1； 并不知道这是干什么的，来记录一下。 Query Profiler 来定位一条 Query 的性能瓶颈，这里我们再详细介绍一下 Profiling 的用途及使用方法。 要想优化一条 Query，我们就需要清楚的知道这条 Query 的性能瓶颈到底在哪里，是消耗的 CPU计算太多，还是需要的的 IO 操作太多？要想能够清楚的了解这些信息，在 MySQL 5.0 和 MySQL 5.1正式版中已经可以非常容易做到了，那就是通过 Query Profiler 功能。 MySQL 的 Query Profiler 是一个使用非常方便的 Query 诊断分析工具，通过该工具可以获取一条Query 在整个执行过程中多种资源的消耗情况，如 CPU，IO，IPC，SWAP 等，以及发生的 PAGE FAULTS，CONTEXT SWITCHE 等等，同时还能得到该 Query 执行过程中 MySQL 所调用的各个函数在源文件中的位置。 下面我们看看 Query Profiler 的具体用法。 开启 profiling 参数 执行Query 在开启 Query Profiler 功能之后，MySQL 就会自动记录所有执行的 Query 的 profile 信息了。 取系统中保存的所有 Query 的 profile 概要信息通过执行 “SHOW PROFILE” 命令获取当前系统中保存的多个 Query 的 profile 的概要信息。 针对单个 Query 获取详细的 profile 信息上面的例子中是获取 CPU 和 Block IO 的消耗，非常清晰，对于定位性能瓶颈非常适用。希望得到取其他的信息，都可以通过执行 “SHOW PROFILE *** FOR QUERY n” 来获取，各位读者朋友可以自行测试熟悉。 参考https://www.cnblogs.com/ggjucheng/archive/2012/11/15/2772058.html]]></content>
