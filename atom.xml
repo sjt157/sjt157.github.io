@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-18T09:05:58.769Z</updated>
+  <updated>2019-01-18T13:04:24.067Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MYSQL之binlog</title>
+    <link href="http://yoursite.com/2019/01/18/MYSQL%E4%B9%8Bbinlog/"/>
+    <id>http://yoursite.com/2019/01/18/MYSQL之binlog/</id>
+    <published>2019-01-18T12:58:21.000Z</published>
+    <updated>2019-01-18T13:04:24.067Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;什么是binlog&quot;&gt;&lt;a href=&quot;#什么是binlog&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Mysql" scheme="http://yoursite.com/categories/Mysql/"/>
+    
+    
+      <category term="Mysql" scheme="http://yoursite.com/tags/Mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>Java之ShutDownHook</title>
@@ -517,33 +543,6 @@
     
     
       <category term="DataStructure" scheme="http://yoursite.com/tags/DataStructure/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux可以Ping通但不能traceroute</title>
-    <link href="http://yoursite.com/2018/07/10/Linux%E5%8F%AF%E4%BB%A5Ping%E9%80%9A%E4%BD%86%E4%B8%8D%E8%83%BDtraceroute/"/>
-    <id>http://yoursite.com/2018/07/10/Linux可以Ping通但不能traceroute/</id>
-    <published>2018-07-10T08:53:34.000Z</published>
-    <updated>2018-07-10T08:54:52.718Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;今天闲来无事，想弄清楚学校至百度服务器的网络问题，结果不试不知道，一试吓一跳。完全出乎我的意料。我们学校的网关是172.21.6.254,172.21.4.254和172.21.7.254。发现可以ping通学校网关，却不能traceroute。如下图：&lt;
-        
-      
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
     
   </entry>
   
