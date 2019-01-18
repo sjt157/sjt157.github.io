@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Netty-CPU使用率高达100%]]></title>
+    <url>%2F2019%2F01%2F18%2FNetty-CPU%E4%BD%BF%E7%94%A8%E7%8E%87%E9%AB%98%E8%BE%BE100%2F</url>
+    <content type="text"><![CDATA[Netty做数据转发，但是CPU使用率太高了。 解决方案：System.setProperty(&quot;org.jboss.netty.epollBugWorkaround&quot;, &quot;true&quot;);//避免CPU使用率达到100% Googling for sun.nio.ch.WindowsSelectorImpl$SubSelector high cpu brings up a few hits from as last at 2015. Are you running an older version of Netty? Also see https://github.com/netty/netty/issues/3857 - you may want to try running with -Dorg.jboss.netty.epollBugWorkaround=true. https://stackoverflow.com/questions/37881109/netty-eats-100-of-cpu]]></content>
+      <categories>
+        <category>Netty</category>
+      </categories>
+      <tags>
+        <tag>Netty</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Git团队协作中经常使用哪些术语]]></title>
     <url>%2F2019%2F01%2F18%2FGit%E5%9B%A2%E9%98%9F%E5%8D%8F%E4%BD%9C%E4%B8%AD%E7%BB%8F%E5%B8%B8%E4%BD%BF%E7%94%A8%E5%93%AA%E4%BA%9B%E6%9C%AF%E8%AF%AD%2F</url>
     <content type="text"><![CDATA[ACK — acknowledgement, i.e. agreed/accepted change AFAIK As Far As I Know （就我所知） ASAP abbr. As Soon As Possible 尽快; BTW By The Way 顺便 Ditto. 最经典的一句 出自《人鬼情未了》 ——I love you ——Ditto. EOL end of life 寿命终止 FYI abbr. For Your Information 供参考; IMHO In My Humble Opinion 恕我直言 IIRC — if I recall correctly IANAL — “ I am not a lawyer ”, but I smell licensing issues LGTM LOOKS GOOD TO ME Review完别人的PR，没有问题 NACK/NAK — negative acknowledgement, i.e. disagree with change and/or conceptOk, thanks :) PTAL Please Take A Look 帮我看下，一般都是请别人 review 自己的 PR RFC — request for comments, i.e. I think this is a good idea, lets discuss REVNO 修订版号 revision number 的缩写 thx Thanks That makes sense to me cc 对我来说有意义 TR,DR Too long,dont read 一翻到底 WIP work in progress 工作在进行中;]]></content>
