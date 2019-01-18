@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-18T08:27:19.457Z</updated>
+  <updated>2019-01-18T09:05:58.769Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java之ShutDownHook</title>
+    <link href="http://yoursite.com/2019/01/18/Java%E4%B9%8BShutDownHook/"/>
+    <id>http://yoursite.com/2019/01/18/Java之ShutDownHook/</id>
+    <published>2019-01-18T09:05:13.000Z</published>
+    <updated>2019-01-18T09:05:58.769Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;线上JVM挂掉怎么办，不要怕，有优雅停机&quot;&gt;&lt;a href=&quot;#线上JVM挂掉怎么办，不要怕，有优雅停机&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Netty-CPU使用率高达100%</title>
@@ -509,35 +535,6 @@
         
           &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;今天闲来无事，想弄清楚学校至百度服务器的网络问题，结果不试不知道，一试吓一跳。完全出乎我的意料。我们学校的网关是172.21.6.254,172.21.4.254和172.21.7.254。发现可以ping通学校网关，却不能traceroute。如下图：&lt;
-        
-      
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>服务器不能上网之谜</title>
-    <link href="http://yoursite.com/2018/05/11/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8D%E8%83%BD%E4%B8%8A%E7%BD%91%E4%B9%8B%E8%B0%9C/"/>
-    <id>http://yoursite.com/2018/05/11/服务器不能上网之谜/</id>
-    <published>2018-05-11T12:12:33.000Z</published>
-    <updated>2018-05-11T12:14:08.057Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;因为服务器一重启很多配置就要重新配，很麻烦，那么有没有一种方式可以实现开机自启动。当然有了，那就是配置rc.local文件了！&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;那什么是rc.local脚本嗯？&lt;br&gt;rc.local脚本是一个Ubuntu开机后会自动执行
         
       
     
