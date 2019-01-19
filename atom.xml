@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-18T13:04:24.067Z</updated>
+  <updated>2019-01-19T06:55:58.840Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Netty之高水位、低水位</title>
+    <link href="http://yoursite.com/2019/01/19/Netty%E4%B9%8B%E9%AB%98%E6%B0%B4%E4%BD%8D%E3%80%81%E4%BD%8E%E6%B0%B4%E4%BD%8D/"/>
+    <id>http://yoursite.com/2019/01/19/Netty之高水位、低水位/</id>
+    <published>2019-01-19T06:55:00.000Z</published>
+    <updated>2019-01-19T06:55:58.840Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;我们一听高低水位，肯定首先想到的肯定就是“大爸”（三峡大坝），我们都知道，三峡的水位曾经到达过172.85米，最高限制水位175米，其实这就是三峡的高水位，如果再进水，那么恐怕啥都不好用了。&lt;br&gt;同理，Netty中有缓冲区，就相当于大坝起存储缓冲作用。当缓冲区达到一定大小
+        
+      
+    
+    </summary>
+    
+      <category term="Netty" scheme="http://yoursite.com/categories/Netty/"/>
+    
+    
+      <category term="Netty" scheme="http://yoursite.com/tags/Netty/"/>
+    
+  </entry>
   
   <entry>
     <title>MYSQL之binlog</title>
@@ -517,32 +543,6 @@
     
     
       <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>BloomFilter</title>
-    <link href="http://yoursite.com/2018/09/14/BloomFilter/"/>
-    <id>http://yoursite.com/2018/09/14/BloomFilter/</id>
-    <published>2018-09-14T12:57:40.000Z</published>
-    <updated>2018-09-14T13:00:26.357Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="DataStructure" scheme="http://yoursite.com/categories/DataStructure/"/>
-    
-    
-      <category term="DataStructure" scheme="http://yoursite.com/tags/DataStructure/"/>
     
   </entry>
   
