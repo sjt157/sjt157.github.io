@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-25T09:18:26.612Z</updated>
+  <updated>2019-01-25T09:59:50.351Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker化秒杀疑云</title>
+    <link href="http://yoursite.com/2019/01/25/Docker%E5%8C%96%E7%A7%92%E6%9D%80%E7%96%91%E4%BA%91/"/>
+    <id>http://yoursite.com/2019/01/25/Docker化秒杀疑云/</id>
+    <published>2019-01-25T09:58:55.000Z</published>
+    <updated>2019-01-25T09:59:50.351Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ol&gt;
+&lt;li&gt;为什么用docker-compose就有一堆错误，而一个一个起容器就不会有错误呢？所有的操作都一样啊。。莫非跟网关有关系吗？？一个用br-xxxxx，一个用docker0。docker-compose用的网关是br-10e925ab0d49这种形式的。而且每次b
+        
+      
+    
+    </summary>
+    
+      <category term="Docker" scheme="http://yoursite.com/categories/Docker/"/>
+    
+    
+      <category term="Docker" scheme="http://yoursite.com/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>秒杀项目优化</title>
@@ -515,34 +542,6 @@
     
     
       <category term="TiDB" scheme="http://yoursite.com/tags/TiDB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>VM与HOST之间传输文件</title>
-    <link href="http://yoursite.com/2018/12/12/VM%E4%B8%8EHOST%E4%B9%8B%E9%97%B4%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6/"/>
-    <id>http://yoursite.com/2018/12/12/VM与HOST之间传输文件/</id>
-    <published>2018-12-12T11:41:33.000Z</published>
-    <updated>2018-12-27T08:57:43.473Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;今天老师有一个需求，是从host向qemu创建的虚拟机中传输文件，调研了几个方法，起初是通过网络传输，但是在新的这个平台上没有搭建网桥等设备，而且想还没有别的其他的方式。经过查询，主要有以下方式：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;共享文件夹的方式&lt;br&gt;Docker中也有此
-        
-      
-    
-    </summary>
-    
-      <category term="KVM" scheme="http://yoursite.com/categories/KVM/"/>
-    
-    
-      <category term="KVM" scheme="http://yoursite.com/tags/KVM/"/>
     
   </entry>
   
