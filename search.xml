@@ -25,7 +25,7 @@
   <entry>
     <title><![CDATA[Zero-Copy]]></title>
     <url>%2F2019%2F01%2F25%2FZero-Copy%2F</url>
-    <content type="text"><![CDATA[这是一篇关于“零拷贝”的英文文献，写的非常好。有时间翻译一下。https://developer.ibm.com/articles/j-zerocopy/]]></content>
+    <content type="text"><![CDATA[这是关于“零拷贝”的英文文献，写的非常好。有时间翻译一下。https://developer.ibm.com/articles/j-zerocopy/]]></content>
       <categories>
         <category>Linux</category>
       </categories>
