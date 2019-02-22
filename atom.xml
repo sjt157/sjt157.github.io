@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-02-16T03:28:18.816Z</updated>
+  <updated>2019-02-22T09:00:11.423Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网络之raw_socket</title>
+    <link href="http://yoursite.com/2019/02/22/%E7%BD%91%E7%BB%9C%E4%B9%8Braw-socket/"/>
+    <id>http://yoursite.com/2019/02/22/网络之raw-socket/</id>
+    <published>2019-02-22T08:53:56.000Z</published>
+    <updated>2019-02-22T09:00:11.423Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;什么是Raw-Socket&quot;&gt;&lt;a href=&quot;#什么是Raw-Socket&quot; class=&quot;headerlink&quot; title=&quot;什么是Raw_Socket?&quot;&gt;&lt;/a&gt;什么是Raw_Socket?&lt;/h2&gt;&lt;p&gt;raw
+        
+      
+    
+    </summary>
+    
+      <category term="TCP/IP" scheme="http://yoursite.com/categories/TCP-IP/"/>
+    
+    
+      <category term="TCP/IP" scheme="http://yoursite.com/tags/TCP-IP/"/>
+    
+  </entry>
   
   <entry>
     <title>使用travis-ci自动部署github上的项目</title>
@@ -520,33 +546,6 @@
     
     
       <category term="TrustComputing" scheme="http://yoursite.com/tags/TrustComputing/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>当SDN遇见NFV</title>
-    <link href="http://yoursite.com/2018/12/19/%E5%BD%93SDN%E9%81%87%E8%A7%81NFV/"/>
-    <id>http://yoursite.com/2018/12/19/当SDN遇见NFV/</id>
-    <published>2018-12-19T09:23:17.000Z</published>
-    <updated>2018-12-19T09:26:16.009Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;ul&gt;
-&lt;li&gt;SDN从2012年开始，在学术界受到了广泛的关注。在阅读了部分国外大牛写的相关综述性文章若干之后，发现其中似乎并没有看到NFV的影子。&lt;br&gt;提到SDN，能想到的基本上绕不过“控制转发分离、可编程接口、集中控制”，这三个特点。固然这三个特定很重要，也是SDN存在
-        
-      
-    
-    </summary>
-    
-      <category term="openstack" scheme="http://yoursite.com/categories/openstack/"/>
-    
-    
-      <category term="openstack" scheme="http://yoursite.com/tags/openstack/"/>
     
   </entry>
   
