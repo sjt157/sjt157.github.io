@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Linux," />
+  <meta name="keywords" content="Docker," />
 
 
 
@@ -81,18 +81,23 @@
 
 
 
-<meta name="description" content="因为服务器一重启很多配置就要重新配，很麻烦，那么有没有一种方式可以实现开机自启动。当然有了，那就是配置rc.local文件了！  那什么是rc.local脚本嗯？rc.local脚本是一个Ubuntu开机后会自动执行的脚本，我们可以在该脚本内添加命令行指令。该脚本位于/etc/路径下，需要root权限才能修改。该脚本具体格式如下： 1234567891011121314#!/bin/sh -e#">
-<meta name="keywords" content="Linux">
+<meta name="description" content="今天我启动docker-compose的时候，出现了如下问题 经过查询得知https://blog.csdn.net/tianshuhao521/article/details/84782309，原因是关闭防火墙之后docker需要重启，执行以下命令重启docker即可：service docker restart 但是我重启不行，journalctl -xe查看日志，发现 原来有访问控制了，可能">
+<meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="服务器不能上网之谜">
-<meta property="og:url" content="http://yoursite.com/2018/05/11/服务器不能上网之谜/index.html">
+<meta property="og:title" content="docker-compose的问题">
+<meta property="og:url" content="http://yoursite.com/2019/02/22/docker-compose的问题/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="因为服务器一重启很多配置就要重新配，很麻烦，那么有没有一种方式可以实现开机自启动。当然有了，那就是配置rc.local文件了！  那什么是rc.local脚本嗯？rc.local脚本是一个Ubuntu开机后会自动执行的脚本，我们可以在该脚本内添加命令行指令。该脚本位于/etc/路径下，需要root权限才能修改。该脚本具体格式如下： 1234567891011121314#!/bin/sh -e#">
+<meta property="og:description" content="今天我启动docker-compose的时候，出现了如下问题 经过查询得知https://blog.csdn.net/tianshuhao521/article/details/84782309，原因是关闭防火墙之后docker需要重启，执行以下命令重启docker即可：service docker restart 但是我重启不行，journalctl -xe查看日志，发现 原来有访问控制了，可能">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-11T12:14:08.057Z">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/WhiteList/1.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/WhiteList/2.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/WhiteList/3.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/WhiteList/4.png">
+<meta property="og:updated_time" content="2019-02-22T09:45:27.149Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="服务器不能上网之谜">
-<meta name="twitter:description" content="因为服务器一重启很多配置就要重新配，很麻烦，那么有没有一种方式可以实现开机自启动。当然有了，那就是配置rc.local文件了！  那什么是rc.local脚本嗯？rc.local脚本是一个Ubuntu开机后会自动执行的脚本，我们可以在该脚本内添加命令行指令。该脚本位于/etc/路径下，需要root权限才能修改。该脚本具体格式如下： 1234567891011121314#!/bin/sh -e#">
+<meta name="twitter:title" content="docker-compose的问题">
+<meta name="twitter:description" content="今天我启动docker-compose的时候，出现了如下问题 经过查询得知https://blog.csdn.net/tianshuhao521/article/details/84782309，原因是关闭防火墙之后docker需要重启，执行以下命令重启docker即可：service docker restart 但是我重启不行，journalctl -xe查看日志，发现 原来有访问控制了，可能">
+<meta name="twitter:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/WhiteList/1.png">
 
 
 
@@ -122,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/11/服务器不能上网之谜/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/02/22/docker-compose的问题/"/>
 
 
 
 
 
-  <title>服务器不能上网之谜 | 诗与远方</title>
+  <title>docker-compose的问题 | 诗与远方</title>
   
 
 
@@ -309,7 +314,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/11/服务器不能上网之谜/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/22/docker-compose的问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songjiantao">
@@ -326,7 +331,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">服务器不能上网之谜</h1>
+          <h1 class="post-title" itemprop="name headline">docker-compose的问题</h1>
         
 
         <div class="post-meta">
@@ -338,8 +343,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-11T20:12:33+08:00">
-                2018-05-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-22T17:44:45+08:00">
+                2019-02-22
               </time>
             
 
@@ -354,8 +359,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-11T20:14:08+08:00">
-                2018-05-11
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-22T17:45:27+08:00">
+                2019-02-22
               </time>
             
           </span>
@@ -373,8 +378,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
                   </a>
                 </span>
 
@@ -391,8 +396,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/05/11/服务器不能上网之谜/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/11/服务器不能上网之谜/" itemprop="commentCount"></span>
+                <a href="/2019/02/22/docker-compose的问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/02/22/docker-compose的问题/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -400,7 +405,7 @@
 
           
           
-             <span id="/2018/05/11/服务器不能上网之谜/" class="leancloud_visitors" data-flag-title="服务器不能上网之谜">
+             <span id="/2019/02/22/docker-compose的问题/" class="leancloud_visitors" data-flag-title="docker-compose的问题">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -432,24 +437,13 @@
       
 
       
-        <ul>
-<li><p>因为服务器一重启很多配置就要重新配，很麻烦，那么有没有一种方式可以实现开机自启动。当然有了，那就是配置rc.local文件了！</p>
-</li>
-<li><p>那什么是rc.local脚本嗯？<br>rc.local脚本是一个Ubuntu开机后会自动执行的脚本，我们可以在该脚本内添加命令行指令。该脚本位于/etc/路径下，需要root权限才能修改。<br>该脚本具体格式如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/sh -e</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span> rc.local</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span> This script is executed at the end of each multiuser runlevel.</span><br><span class="line"><span class="meta">#</span> Make sure that the script will "exit 0" on success or any other</span><br><span class="line"><span class="meta">#</span> value on error.</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span> In order to enable or disable this script just change the execution</span><br><span class="line"><span class="meta">#</span> bits.</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span> By default this script does nothing.</span><br><span class="line"></span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>注意: 一定要将命令添加在exit 0之前。里面可以直接写命令或者执行Shell脚本文件sh。</strong></p>
-</li>
-<li><p>下面这个是用来开机自启动网络的命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> add by SongJianTao 2018-5-8</span><br><span class="line"><span class="meta">#</span> use to config network auto</span><br><span class="line">ip addr del dev enp11s0 192.168.1.50/24</span><br><span class="line">tunctl -t tap0</span><br><span class="line">brctl addif be-ex tap0</span><br><span class="line">ifconfig tap0 0.0.0.0 promisc up</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>end by SongJianTao</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>注意</strong>如果不生效的话，可以尝试rc.local文件头部/bin/sh修改为/bin/bash，还可以增加日志输出功能，来查看最终为什么这个脚本不启动的原因，代码如下所示：</p>
-</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span>log</span><br><span class="line">exec 2&gt; /tmp/rc.local.log  # send stderr from rc.local to a log file  </span><br><span class="line">exec 1&gt;&amp;2                  # send stdout to the same log file  </span><br><span class="line">set -x                     # tell sh to display commands before execution</span><br></pre></td></tr></table></figure>
-<ul>
-<li>今天正在奋笔疾书、焦头烂额的写报告，老胡说他要上网，但是服务器怎么也上不去网，查了很多原因也不知道（mmp，原来没出现过这种情况啊），经过层层排查，最后可能是因为交换机长期没有关的的问题，导致不能用（交换机的质量这么差的吗）， 所以直接把网线接在了路由器上，那就要更改配置了，不要直接在/etc/resolve.conf那设置，因为重启会消失，要在/etc/resolvconf/resolv.conf.d/base 这个文件下改，加上nameserver 192.168.1.1 这样就可以了，然后果然可以了，所以这个不能赖我了，要赖交换机！这个锅我不背！</li>
-</ul>
+        <p>今天我启动docker-compose的时候，出现了如下问题<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/WhiteList/1.png" alt="image"></p>
+<p>经过查询得知<a href="https://blog.csdn.net/tianshuhao521/article/details/84782309" target="_blank" rel="noopener">https://blog.csdn.net/tianshuhao521/article/details/84782309</a>，<br>原因是关闭防火墙之后docker需要重启，执行以下命令重启docker即可：<br>service docker restart</p>
+<p>但是我重启不行，journalctl -xe查看日志，发现<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/WhiteList/2.png" alt="image"></p>
+<p>原来有访问控制了，可能是因为我们实验室对该服务器的内核进行了白名单。lsmod命令一输，结果如下，发现确实有一个操作系统安全module。<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/WhiteList/3.png" alt="image"></p>
+<p>通过rmmod卸载掉之后就可以 了。</p>
+<p>通过dmesg查看信息发现，<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/WhiteList/4.png" alt="image"></p>
+<h3 id="进一步思考："><a href="#进一步思考：" class="headerlink" title="进一步思考："></a>进一步思考：</h3><p>他的这个原理是什么？有待补充</p>
 
       
     </div>
@@ -504,7 +498,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/05/11/服务器不能上网之谜/" title="服务器不能上网之谜">http://yoursite.com/2018/05/11/服务器不能上网之谜/</a>
+    <a href="http://yoursite.com/2019/02/22/docker-compose的问题/" title="docker-compose的问题">http://yoursite.com/2019/02/22/docker-compose的问题/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -519,7 +513,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
           
         </div>
       
@@ -544,8 +538,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/27/快速排序/" rel="next" title="快速排序">
-                <i class="fa fa-chevron-left"></i> 快速排序
+              <a href="/2019/02/22/跳表/" rel="next" title="跳表">
+                <i class="fa fa-chevron-left"></i> 跳表
               </a>
             
           </div>
@@ -553,10 +547,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/10/Linux可以Ping通但不能traceroute/" rel="prev" title="Linux可以Ping通但不能traceroute">
-                Linux可以Ping通但不能traceroute <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
