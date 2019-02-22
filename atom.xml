@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-02-22T09:00:11.423Z</updated>
+  <updated>2019-02-22T09:05:33.473Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mysql查询缓存</title>
+    <link href="http://yoursite.com/2019/02/22/Mysql%E6%9F%A5%E8%AF%A2%E7%BC%93%E5%AD%98/"/>
+    <id>http://yoursite.com/2019/02/22/Mysql查询缓存/</id>
+    <published>2019-02-22T09:03:31.000Z</published>
+    <updated>2019-02-22T09:05:33.473Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;开启查询缓存后，查询语句的解析过程：&quot;&gt;&lt;a href=&quot;#开启查询缓存后，查询语句的解析过程：&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Mysql" scheme="http://yoursite.com/tags/Mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>网络之raw_socket</title>
@@ -519,33 +543,6 @@
     
     
       <category term="Information Safety" scheme="http://yoursite.com/tags/Information-Safety/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>你知道可信计算吗</title>
-    <link href="http://yoursite.com/2018/12/19/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%8F%AF%E4%BF%A1%E8%AE%A1%E7%AE%97%E5%90%97/"/>
-    <id>http://yoursite.com/2018/12/19/你知道可信计算吗/</id>
-    <published>2018-12-19T09:42:06.000Z</published>
-    <updated>2018-12-19T09:42:50.557Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;安全和可信的区别？？&lt;br&gt;安全分两条，有功能性和保障性 （保密性 完整性 可用性  可查性）&lt;br&gt;可信本质是可预期 ，是保障安全四个特性的可预期 。利用密码学通过保障硬件系统的可预期 来保障 上层的可预期。&lt;br&gt;安全就是加密 ，可信就是加密的程度
-        
-      
-    
-    </summary>
-    
-      <category term="TrustComputing" scheme="http://yoursite.com/categories/TrustComputing/"/>
-    
-    
-      <category term="TrustComputing" scheme="http://yoursite.com/tags/TrustComputing/"/>
     
   </entry>
   

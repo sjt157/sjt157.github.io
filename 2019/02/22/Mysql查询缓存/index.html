@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Mysql," />
 
 
 
@@ -81,16 +81,18 @@
 
 
 
-<meta name="description" content="生活不应当只有眼前的苟且，还有诗和远方，与其用泪水忏悔昨天，不如用汗水拼搏明天．">
-<meta property="og:type" content="website">
-<meta property="og:title" content="诗与远方">
-<meta property="og:url" content="http://yoursite.com/categories/TravisCI/index.html">
+<meta name="description" content="开启查询缓存后，查询语句的解析过程： 在解析一个查询语句之前，如果查询缓存是打开的，那么MySQL会优先检查这个查询是否命中查询缓存中的数据。如果当前的查询恰好命中了查询缓存，那么在返回查询结果之前MySQL会检查一次用户权限。若权限没有问题，MySQL会跳过所有其他阶段（解析、优化、执行等），直接从缓存中拿到结果并返回给客户端。这种情况下，查询不会被解析，不用生成执行计划，不会被执行。  开启查">
+<meta name="keywords" content="Mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql查询缓存">
+<meta property="og:url" content="http://yoursite.com/2019/02/22/Mysql查询缓存/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="生活不应当只有眼前的苟且，还有诗和远方，与其用泪水忏悔昨天，不如用汗水拼搏明天．">
+<meta property="og:description" content="开启查询缓存后，查询语句的解析过程： 在解析一个查询语句之前，如果查询缓存是打开的，那么MySQL会优先检查这个查询是否命中查询缓存中的数据。如果当前的查询恰好命中了查询缓存，那么在返回查询结果之前MySQL会检查一次用户权限。若权限没有问题，MySQL会跳过所有其他阶段（解析、优化、执行等），直接从缓存中拿到结果并返回给客户端。这种情况下，查询不会被解析，不用生成执行计划，不会被执行。  开启查">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-22T09:05:33.473Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="诗与远方">
-<meta name="twitter:description" content="生活不应当只有眼前的苟且，还有诗和远方，与其用泪水忏悔昨天，不如用汗水拼搏明天．">
+<meta name="twitter:title" content="Mysql查询缓存">
+<meta name="twitter:description" content="开启查询缓存后，查询语句的解析过程： 在解析一个查询语句之前，如果查询缓存是打开的，那么MySQL会优先检查这个查询是否命中查询缓存中的数据。如果当前的查询恰好命中了查询缓存，那么在返回查询结果之前MySQL会检查一次用户权限。若权限没有问题，MySQL会跳过所有其他阶段（解析、优化、执行等），直接从缓存中拿到结果并返回给客户端。这种情况下，查询不会被解析，不用生成执行计划，不会被执行。  开启查">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/TravisCI/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/02/22/Mysql查询缓存/"/>
 
 
 
 
 
-  <title>分类: TravisCI | 诗与远方</title>
+  <title>Mysql查询缓存 | 诗与远方</title>
   
 
 
@@ -145,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-right ">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -293,55 +295,287 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>TravisCI<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/22/Mysql查询缓存/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songjiantao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/15856742?s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗与远方">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/02/03/使用travis-ci自动部署github上的项目/" itemprop="url">
-              
-                <span itemprop="name">使用travis-ci自动部署github上的项目</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Mysql查询缓存</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-02-03T16:22:32+08:00"
-              content="2019-02-03" >
-          02-03
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-22T17:03:31+08:00">
+                2019-02-22
+              </time>
+            
 
-    </header>
-  </article>
+            
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-22T17:05:33+08:00">
+                2019-02-22
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/22/Mysql查询缓存/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/02/22/Mysql查询缓存/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/02/22/Mysql查询缓存/" class="leancloud_visitors" data-flag-title="Mysql查询缓存">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+	         <span> ℃ </span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="开启查询缓存后，查询语句的解析过程："><a href="#开启查询缓存后，查询语句的解析过程：" class="headerlink" title="开启查询缓存后，查询语句的解析过程："></a>开启查询缓存后，查询语句的解析过程：</h3><blockquote>
+<p>在解析一个查询语句之前，如果查询缓存是打开的，那么MySQL会优先检查这个查询是否命中查询缓存中的数据。如果当前的查询恰好命中了查询缓存，那么在返回查询结果之前MySQL会检查一次用户权限。若权限没有问题，MySQL会跳过所有其他阶段（解析、优化、执行等），直接从缓存中拿到结果并返回给客户端。这种情况下，查询不会被解析，不用生成执行计划，不会被执行。</p>
+</blockquote>
+<h3 id="开启查询缓存"><a href="#开启查询缓存" class="headerlink" title="开启查询缓存"></a>开启查询缓存</h3><h4 id="设置使用查询缓存的方式"><a href="#设置使用查询缓存的方式" class="headerlink" title="设置使用查询缓存的方式"></a>设置使用查询缓存的方式</h4><p>使用 query_cache_type 变量来开启查询缓存，开启方式有三种：</p>
+<ul>
+<li>ON : 正常缓存。表示在使用 SELECT 语句查询时，若没指定 SQL_NO_CACHE 或其他非确定性函数，则一般都会将查询结果缓存下来。</li>
+<li>DEMAND ：指定SQL_CACHE才缓存。表示在使用 SELECT 语句查询时，必须在该 SELECT 语句中指定 SQL_CACHE 才会将该SELECT语句的查询结果缓存下来。</li>
+</ul>
+<blockquote>
+<p>例如：select SQL_CACHE name from user where id = 15;    #只有明确指定  SQL_CACHE 的SELECT语句，才会将查询结果缓存。</p>
+</blockquote>
+<ul>
+<li>OFF： 关闭查询缓存。</li>
+</ul>
+<h4 id="立刻生效，重启服务失效"><a href="#立刻生效，重启服务失效" class="headerlink" title="立刻生效，重启服务失效"></a>立刻生效，重启服务失效</h4><ul>
+<li><code>mysql&gt; set global query_cache_type=1;</code></li>
+<li>当my.cnf 中，query_cache_type = OFF ，启动mysql服务后，在mysql命令行中使用上面语句开启查询缓存，会报错：ERROR 1651 (HY000): Query cache is disabled; restart the server with query_cache_type=1 to enable it。遇到这种情况，是无法在mysql命令行中开启查询缓存的，必须修改my.cnf的query_cache_type = ON，然后重启mysql服务。</li>
+</ul>
+<h3 id="设置查询缓存的大小"><a href="#设置查询缓存的大小" class="headerlink" title="设置查询缓存的大小"></a>设置查询缓存的大小</h3><blockquote>
+<p>query_cache_size ：查询缓存的总体可用空间。</p>
+<ul>
+<li><strong>注意</strong>：如果 query_cache_size=0 ，那即便你设置了 query_cache_type = ON，查询缓存仍然是无法工作的。</li>
+</ul>
+</blockquote>
+<h3 id="查询缓存相关参数"><a href="#查询缓存相关参数" class="headerlink" title="查询缓存相关参数"></a>查询缓存相关参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">uery_cache_limit :  MySQL能够缓存的最大查询结果；如果某查询的结果大小大于此值，则不会被缓存；</span><br><span class="line">query_cache_min_res_unit : 查询缓存中分配内存的最小单位；(注意：此值通常是需要调整的，此值被调整为接近所有查询结果的平均值是最好的)</span><br><span class="line">                           计算单个查询的平均缓存大小：（query_cache_size-Qcache_free_memory）/Qcache_queries_in_cache</span><br><span class="line">query_cache_size : 查询缓存的总体可用空间，单位为字节；其必须为1024的倍数；</span><br><span class="line">query_cache_type: 查询缓存类型；是否开启缓存功能，开启方式有三种&#123;ON|OFF|DEMAND&#125;；</span><br><span class="line">query_cache_wlock_invalidate : 当其它会话锁定此次查询用到的资源时，是否不能再从缓存中返回数据；（OFF表示可以从缓存中返回数据）</span><br></pre></td></tr></table></figure>
+<h3 id="查询缓存状态"><a href="#查询缓存状态" class="headerlink" title="查询缓存状态"></a>查询缓存状态</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW  GLOBAL STATUS  LIKE  &apos;Qcache%&apos;;</span><br><span class="line">+-------------------------+----------+</span><br><span class="line">| Variable_name            | Value   |</span><br><span class="line">+-------------------------+----------+</span><br><span class="line">| Qcache_free_blocks       | 1       | #查询缓存中的空闲块</span><br><span class="line">| Qcache_free_memory       | 16759656| #查询缓存中尚未使用的空闲内存空间</span><br><span class="line">| Qcache_hits              | 16      | #缓存命中次数</span><br><span class="line">| Qcache_inserts           | 71      | #向查询缓存中添加缓存记录的条数</span><br><span class="line">| Qcache_lowmem_prunes     | 0       | #表示因缓存满了而不得不清理部分缓存以存储新的缓存，这样操作的次数。若此数值过大，则表示缓存空间太小了。</span><br><span class="line">| Qcache_not_cached        | 57      | #没能被缓存的次数</span><br><span class="line">| Qcache_queries_in_cache  | 0       | #此时仍留在查询缓存的缓存个数</span><br><span class="line">| Qcache_total_blocks      | 1       | #共分配出去的块数</span><br><span class="line">+-------------------------+----------+</span><br></pre></td></tr></table></figure>
+<h3 id="衡量缓存是否有效"><a href="#衡量缓存是否有效" class="headerlink" title="衡量缓存是否有效"></a>衡量缓存是否有效</h3><h4 id="方式一："><a href="#方式一：" class="headerlink" title="方式一："></a>方式一：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW GLOBAL STATUS WHERE Variable_name=&apos;Qcache_hits&apos; OR Variable_name=&apos;Com_select&apos;;</span><br><span class="line">+---------------+-----------+</span><br><span class="line">| Variable_name | Value |</span><br><span class="line">+---------------+-----------+</span><br><span class="line">| Com_select    | 279292490 | #非缓存查询次数</span><br><span class="line">| Qcache_hits   | 307366973 | # 缓存命中次数</span><br><span class="line">+---------------+-----------</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>缓存命中率：Qcache_hits/(Qcache_hits+Com_select)</p>
+</blockquote>
+<h4 id="方式二：“命中和写入”的比率"><a href="#方式二：“命中和写入”的比率" class="headerlink" title="方式二：“命中和写入”的比率"></a>方式二：“命中和写入”的比率</h4><p>这是另外一种衡量缓存是否有效的指标。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW GLOBAL STATUS WHERE Variable_name=&apos;Qcache_hits&apos; OR Variable_name=&apos;Qcache_inserts&apos;;</span><br><span class="line">+----------------+-----------+</span><br><span class="line">| Variable_name  | Value     |</span><br><span class="line">+----------------+-----------+</span><br><span class="line">| Qcache_hits | 307416113    | #缓存命中次数</span><br><span class="line">| Qcache_inserts | 108873957 | #向查询缓存中添加缓存记录的条数</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>“命中和写入”的比率: Qcache_hits/Qcache_inserts # 如果此比值大于3:1, 说明缓存也是有效的；如果高于10:1，相当理想；</p>
+</blockquote>
+<h3 id="缓存失效问题"><a href="#缓存失效问题" class="headerlink" title="缓存失效问题"></a>缓存失效问题</h3><p>当数据表改动时，基于该数据表的任何缓存都会被删除。（表层面的管理，不是记录层面的管理，因此失效率较高）</p>
+<p><strong>注意事项</strong>：</p>
+<ul>
+<li>应用程序，不应该关心query cache的使用情况。可以尝试使用，但不能由query cache决定业务逻辑，因为query cache由DBA来管理。</li>
+<li>缓存是以SQL语句为key存储的，因此即使SQL语句功能相同，但如果多了一个空格或者大小写有差异都会导致匹配不到缓存。</li>
+</ul>
+<h2 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h2><p><a href="https://www.jianshu.com/p/5c3ddf9a454c" target="_blank" rel="noopener">https://www.jianshu.com/p/5c3ddf9a454c</a><br><a href="https://juejin.im/post/5c6b9c09f265da2d8a55a855" target="_blank" rel="noopener">https://juejin.im/post/5c6b9c09f265da2d8a55a855</a></p>
 
       
     </div>
+    
+    
+    
+
+    
+    <div>
+        
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+     
+    </div>
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="songjiantao 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
 
   </div>
-  
-  
-  
+</div>
 
-  
+      </div>
+    
 
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    songjiantao
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/02/22/Mysql查询缓存/" title="Mysql查询缓存">http://yoursite.com/2019/02/22/Mysql查询缓存/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mysql/" rel="tag"># Mysql</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/22/网络之raw-socket/" rel="next" title="网络之raw_socket">
+                <i class="fa fa-chevron-left"></i> 网络之raw_socket
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+   
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -349,6 +583,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -622,6 +863,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1148,6 +1393,23 @@
   </script>
 
   
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 10113,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
 
   
   
