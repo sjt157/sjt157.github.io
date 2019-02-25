@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="什么是守护进程  守护进程（Daemon）是运行在后台的一种特殊进程。它独立于控制终端并且周期性地执行某种任务或等待处理某些发生的事件。守护进程是一种很有用的进 程。 Linux的大多数服务器就是用守护进程实现的。比如，Internet服务器inetd，Web服务器httpd等。同时，守护进程完成许多系统任务。 比如，作业规划进程crond，打印进程lpd等。 守护进程最重要的特性是后台运行。在这">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-21T02:33:02.372Z">
+<meta property="og:updated_time" content="2019-02-25T06:23:50.571Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="守护进程">
 <meta name="twitter:description" content="什么是守护进程  守护进程（Daemon）是运行在后台的一种特殊进程。它独立于控制终端并且周期性地执行某种任务或等待处理某些发生的事件。守护进程是一种很有用的进 程。 Linux的大多数服务器就是用守护进程实现的。比如，Internet服务器inetd，Web服务器httpd等。同时，守护进程完成许多系统任务。 比如，作业规划进程crond，打印进程lpd等。 守护进程最重要的特性是后台运行。在这">
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-21T10:33:02+08:00">
-                2018-04-21
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-25T14:23:50+08:00">
+                2019-02-25
               </time>
             
           </span>
@@ -461,6 +461,52 @@
 </ul>
 <p>signal(SIGCHLD,SIG_IGN);</p>
 <p>这样，内核在子进程结束时不会产生僵尸进程。这一点与BSD4不同，BSD4下必须显式等待子进程结束才能释放僵尸进程。</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Create_Daemon</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> pid;</span><br><span class="line">    <span class="comment">//屏蔽一些控制终端信号    </span></span><br><span class="line">    signal(SIGTTOU,SIG_IGN);   </span><br><span class="line">    signal(SIGTTIN,SIG_IGN);   </span><br><span class="line">    signal(SIGTSTP,SIG_IGN);   </span><br><span class="line">    signal(SIGHUP ,SIG_IGN); </span><br><span class="line">    <span class="comment">//设置文件掩码</span></span><br><span class="line">    umask(<span class="number">0</span>);</span><br><span class="line">    <span class="comment">//调用fork函数，父进程退出</span></span><br><span class="line">    pid = fork();</span><br><span class="line">    <span class="keyword">if</span>(pid &lt; <span class="number">0</span> )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"error fork"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(pid &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;<span class="comment">//father</span></span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//设置新会话</span></span><br><span class="line">    setsid();</span><br><span class="line">    <span class="comment">//处理SIGCHlD信号</span></span><br><span class="line">    signal(SIGCHLD,SIG_IGN);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//禁止进程重新打开控制终端</span></span><br><span class="line">    <span class="keyword">if</span>(pid = fork())</span><br><span class="line">    &#123;<span class="comment">//father</span></span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(pid &lt;<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        perror(<span class="string">"fork"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//关闭打开的文件描述符</span></span><br><span class="line">    close(<span class="number">0</span>);close(<span class="number">1</span>);close(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//改变当前的工作目录</span></span><br><span class="line">    chdir(<span class="string">"/"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Create_Daemon();</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>创建过程：</p>
+<ol>
+<li>创建子进程，父进程退出。</li>
+</ol>
+<ul>
+<li>即创建子进程后，显示退出父进程，造成在终端这一进程已运行完毕的假象。之后的操作都由子进程完成。形式上做到与控制终端脱离。</li>
+<li>孤儿进程：父进程先于子进程退出，则称为孤儿进程。系统发现一个孤儿进程后，就自动有1号进程（init进程）收养，即该子进程称为init进程的子进程。</li>
+</ul>
+<ol>
+<li>在子进程中创建新会话。</li>
+</ol>
+<ul>
+<li>继承：调用fork()函数，子进程会拷贝父进程的所有会话期、进程组、控制终端等。需要重设这些，才使子进程真正的与控制终端脱离。</li>
+<li>进程组：一个或多个进程集合。每个进程有进程pid，进程组有组ID。pid和进程组ID都是一个进程的必备属性。每个进程组都有组长进程，其进程号等于进程组ID。当进程组ID不受组长进程退出的影响。</li>
+<li>会话期：一个或多个进程组集合。通常，一个会话始于用户登录，终于用户退出，这之间的所有进程都属于该会话期。</li>
+<li>setsid：创建新会话，并担任该会话组组长。有3个作用：<br>让进程摆脱原会话的控制<br>让进程摆脱原会话组的控制<br>让进程摆脱原控制终端的控制</li>
+</ul>
+<ol>
+<li>改变当前目录为根目录</li>
+</ol>
+<ul>
+<li>继承：fork()创建的子进程还拷贝了父进程的当前工作目录。需要重设。</li>
+<li>进程运行中，当前目录所在文件系统是不能卸载的，即原工作目录无法卸载。可能造成很多麻烦，如需要进入单用户模式。所以必须重设当前目录。</li>
+<li>chdir(“/“)：重设为根目录</li>
+</ul>
+<ol>
+<li>重设文件权限掩码</li>
+</ol>
+<ul>
+<li>文件权限掩码：屏蔽掉文件权限中的对应位。有个文件权限掩码是050，它就屏蔽了文件组拥有者的可读与可执行权限。</li>
+<li>继承：fork()创建的子进程还继承了父进程的文件权限掩码。</li>
+<li>umask(0)：重设为0，灵活性更强。</li>
+</ul>
+<ol>
+<li>关闭文件描述符</li>
+</ol>
+<ul>
+<li>继承：fork()创建的子进程从父进程继承了一些已经打开了的文件。被打开的进程可能永远不会被守护进程使用，却消耗资源。所以必须手动关闭文件描述符为0、1和2 的3个文件（常说的输入、输出和报错）。</li>
+</ul>
+<ol>
+<li>守护进程退出处理</li>
+</ol>
+<ul>
+<li>可能需要支持用户在外部手动停止守护进程运行，通常使用kill命令。编码实现kill发出的signal信号处理，达到线程正常退出。</li>
+</ul>
 
       
     </div>
