@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JVM," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="诗与远方" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="实验出问题了在服务器上执行nohup java -jar server-v1.0.jar -d /data/wave/wzm/out3/2018-03/ -s 172.18.20.215 -t wave201803 &amp;gt; nohup5.out 2&amp;gt;&amp;amp;1 &amp;amp;之后的nohup.out文件，如下12345678910111213141516171819202122nohup:">
+<meta name="keywords" content="JVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM致命错误日志hs_err_pid.log分析">
+<meta property="og:url" content="http://yoursite.com/2019/03/11/JVM致命错误日志hs-err-pid-log分析/index.html">
+<meta property="og:site_name" content="诗与远方">
+<meta property="og:description" content="实验出问题了在服务器上执行nohup java -jar server-v1.0.jar -d /data/wave/wzm/out3/2018-03/ -s 172.18.20.215 -t wave201803 &amp;gt; nohup5.out 2&amp;gt;&amp;amp;1 &amp;amp;之后的nohup.out文件，如下12345678910111213141516171819202122nohup:">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-11T10:00:19.647Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JVM致命错误日志hs_err_pid.log分析">
+<meta name="twitter:description" content="实验出问题了在服务器上执行nohup java -jar server-v1.0.jar -d /data/wave/wzm/out3/2018-03/ -s 172.18.20.215 -t wave201803 &amp;gt; nohup5.out 2&amp;gt;&amp;amp;1 &amp;amp;之后的nohup.out文件，如下12345678910111213141516171819202122nohup:">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","offset":12,"b2t":true,"scrollpercent":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/11/JVM致命错误日志hs-err-pid-log分析/"/>
+
+
+
+
+
+  <title>JVM致命错误日志hs_err_pid.log分析 | 诗与远方</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">诗与远方</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个走在前端的后端人</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-top">
+          <a href="/top/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            阅读排行
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/JVM致命错误日志hs-err-pid-log分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songjiantao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/15856742?s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗与远方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JVM致命错误日志hs_err_pid.log分析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-11T17:59:38+08:00">
+                2019-03-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-11T18:00:19+08:00">
+                2019-03-11
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/" itemprop="url" rel="index">
+                    <span itemprop="name">JVM</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/11/JVM致命错误日志hs-err-pid-log分析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/11/JVM致命错误日志hs-err-pid-log分析/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/03/11/JVM致命错误日志hs-err-pid-log分析/" class="leancloud_visitors" data-flag-title="JVM致命错误日志hs_err_pid.log分析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+	         <span> ℃ </span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="实验出问题了"><a href="#实验出问题了" class="headerlink" title="实验出问题了"></a>实验出问题了</h3><p>在服务器上执行<br><code>nohup java -jar server-v1.0.jar -d /data/wave/wzm/out3/2018-03/ -s 172.18.20.215 -t wave201803 &gt; nohup5.out 2&gt;&amp;1 &amp;</code>之后的nohup.out文件，如下<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">nohup: ignoring input</span><br><span class="line">ERROR StatusLogger No log4j2 configuration file found. Using <span class="keyword">default</span> configuration: logging only errors to the console.</span><br><span class="line">SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".</span><br><span class="line">SLF4J: Defaulting to no-operation (NOP) logger implementation</span><br><span class="line">SLF4J: See http:<span class="comment">//www.slf4j.org/codes.html#StaticLoggerBinder for further details.</span></span><br><span class="line">完成 resource 初始化！</span><br><span class="line"><span class="number">22</span>:<span class="number">14</span>:<span class="number">44.694</span> [nioEventLoopGroup-<span class="number">2</span>-<span class="number">1</span>] ERROR com.globigdata.server.LineParseHandler - java.io.IOException: Invalid argument</span><br><span class="line"><span class="number">5</span>, tid=<span class="number">0x00007f799d0fb700</span></span><br><span class="line">#</span><br><span class="line"># JRE version: Java(TM) SE Runtime Environment (8.0_171-b11) (build 1.8.0_171-b11)</span><br><span class="line"># Java VM: Java HotSpot(TM) 64-Bit Server VM (25.171-b11 mixed mode linux-amd64 compressed oops)</span><br><span class="line"># Problematic frame:</span><br><span class="line"># J 1748 C2 sun.nio.ch.IOUtil.write(Ljava/io/FileDescriptor;[Ljava/nio/ByteBuffer;IILsun/nio/ch/NativeDispatcher;)J (509 bytes) @ 0x00007f79a5</span><br><span class="line">2ee461 [0x00007f79a52edce0+0x781]#</span><br><span class="line"># Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again</span><br><span class="line">#</span><br><span class="line"># An error report file with more information is saved as:</span><br><span class="line"># /data/hs_err_pid18285.log</span><br><span class="line">#</span><br><span class="line"># If you would like to submit a bug report, please visit:</span><br><span class="line">#   http://bugreport.java.com/bugreport/crash.jsp</span><br><span class="line">#</span><br></pre></td></tr></table></figure></p>
+<h3 id="什么时候会产生该文件？"><a href="#什么时候会产生该文件？" class="headerlink" title="什么时候会产生该文件？"></a>什么时候会产生该文件？</h3><p>当JVM发生致命错误导致崩溃时，会生成一个hs_err_pid_xxx.log这样的文件，该文件包含了导致 JVM crash 的重要信息，我们可以通过分析该文件定位到导致 JVM Crash 的原因，从而修复保证系统稳定。</p>
+<h3 id="he-err-pid-log包含的内容"><a href="#he-err-pid-log包含的内容" class="headerlink" title="he_err_pid.log包含的内容"></a>he_err_pid.log包含的内容</h3><h4 id="日志头文件"><a href="#日志头文件" class="headerlink" title="日志头文件"></a>日志头文件</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># A fatal error has been detected by the Java Runtime Environment:</span><br><span class="line">#</span><br><span class="line">#  SIGSEGV (0xb) at pc=0x00007f79a52ee461, pid=18285, tid=0x00007f799d0fb700</span><br><span class="line">#</span><br><span class="line"># JRE version: Java(TM) SE Runtime Environment (8.0_171-b11) (build 1.8.0_171-b11)</span><br><span class="line"># Java VM: Java HotSpot(TM) 64-Bit Server VM (25.171-b11 mixed mode linux-amd64 compressed oops)</span><br><span class="line"># Problematic frame:</span><br><span class="line"># J 1748 C2 sun.nio.ch.IOUtil.write(Ljava/io/FileDescriptor;[Ljava/nio/ByteBuffer;IILsun/nio/ch/NativeDispatcher;)J (509 bytes) @ 0x00007f79a5</span><br><span class="line">2ee461 [0x00007f79a52edce0+0x781]#</span><br><span class="line"># Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again</span><br><span class="line">#</span><br><span class="line"># If you would like to submit a bug report, please visit:</span><br><span class="line">#   http://bugreport.java.com/bugreport/crash.jsp</span><br></pre></td></tr></table></figure>
+<p>这段内容主要简述了导致 JVM Crash 的原因。常见的原因有 JVM 自身的 bug，应用程序错误，JVM 参数，服务器资源不足，JNI 调用错误等。当然还有一些版本和配置信息，<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SIGSEGV (<span class="number">0xb</span>) at pc=<span class="number">0x00007f79a52ee461</span>, pid=<span class="number">18285</span>, tid=<span class="number">0x00007f799d0fb700</span></span><br></pre></td></tr></table></figure></p>
+<p>非预期的错误被 JRE 检测到了，其中</p>
+<ul>
+<li>SIGSEGV ：信号量</li>
+<li>0xb ：信号码</li>
+<li>pc=0x00007f79a52ee461 ：程序计数器的值</li>
+<li>pid=18285 ：进程号</li>
+<li>tid=0x00007f799d0fb700：线程号</li>
+</ul>
+<p>SIGSEGV(0xb) 表示 JVM Crash 时正在执行 JNI 代码，常见的描述还有EXCEPTION_ACCESS_VIOLATION，该描述表示 JVM Crash 时正在执行 JVM 自身的代码，这往往是因为 JVM 的 Bug 导致的 Crash；另一种常见的描述是EXCEPTION_STACK_OVERFLOW，该描述表示这是个栈溢出导致的错误，这往往是应用程序中存在深层递归导致的。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Problematic frame:</span><br><span class="line"># J 1748 C2 sun.nio.ch.IOUtil.write(Ljava/io/FileDescriptor;[Ljava/nio/ByteBuffer;IILsun/nio/ch/NativeDispatcher;)J (509 bytes) @ 0x00007f79a5</span><br><span class="line">2ee461 [0x00007f79a52edce0+0x781]#</span><br></pre></td></tr></table></figure></p>
+<p>这个信息比较重要，问题帧信息：</p>
+<p>C : 表示帧类型为本地帧<br>j ：解释的Java帧<br>V : 虚拟机帧<br>v ：虚拟机生成的存根栈帧<br>J ：其他帧类型，包括编译后的Java帧</p>
+<h4 id="导致-crash-的线程信息"><a href="#导致-crash-的线程信息" class="headerlink" title="导致 crash 的线程信息"></a>导致 crash 的线程信息</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">---------------  T H R E A D  ---------------</span><br><span class="line"></span><br><span class="line"><span class="function">Current <span class="title">thread</span> <span class="params">(<span class="number">0x00007f79b462c000</span>)</span>:  JavaThread "nioEventLoopGroup-2-1" [_thread_in_Java, id</span>=<span class="number">18354</span>, stack(<span class="number">0x00007f799cffb000</span>,<span class="number">0x00007f799d0fc0</span></span><br><span class="line"><span class="number">00</span>)]</span><br><span class="line"><span class="comment">//表示导致虚拟机终止的非预期的信号信息</span></span><br><span class="line">siginfo: si_signo: <span class="number">11</span> (SIGSEGV), si_code: <span class="number">1</span> (SEGV_MAPERR), si_addr: <span class="number">0x00007f789bc0e010</span></span><br><span class="line"></span><br><span class="line">Registers:</span><br><span class="line">RAX=<span class="number">0x000000075390acc8</span>, RBX=<span class="number">0x0000000789d35f30</span>, RCX=<span class="number">0x00007f790d624180</span>, RDX=<span class="number">0x0000000000000000</span></span><br><span class="line">RSP=<span class="number">0x00007f799d0fa5a0</span>, RBP=<span class="number">0x0000000000000008</span>, RSI=<span class="number">0x00000000eaf66bf5</span>, RDI=<span class="number">0x0000000003a9c856</span></span><br><span class="line">R8 =<span class="number">0x000000074d36a0f8</span>, R9 =<span class="number">0x0000000000000067</span>, R10=<span class="number">0x00007f789bc0e010</span>, R11=<span class="number">0x00000000f8008092</span></span><br><span class="line">R12=<span class="number">0x0000000000000000</span>, R13=<span class="number">0x00007f79b651b000</span>, R14=<span class="number">0x0000000001000000</span>, R15=<span class="number">0x00007f79b462c000</span></span><br><span class="line">RIP=<span class="number">0x00007f79a52ee461</span>, EFLAGS=<span class="number">0x0000000000010202</span>, CSGSFS=<span class="number">0x0000000000000033</span>, ERR=<span class="number">0x0000000000000006</span></span><br><span class="line">  TRAPNO=<span class="number">0x000000000000000e</span></span><br><span class="line"></span><br><span class="line">Top of Stack: (sp=<span class="number">0x00007f799d0fa5a0</span>)</span><br><span class="line"><span class="number">0x00007f799d0fa5a0</span>:   <span class="number">000000074</span>d36a0f8 <span class="number">0000000000000000</span></span><br><span class="line"><span class="number">0x00007f799d0fa5b0</span>:   d9755167d974151e <span class="number">00007f</span>799d0fa6e8</span><br><span class="line"><span class="number">0x00007f799d0fa5c0</span>:   <span class="number">000000075390</span>acc8 <span class="number">00007f</span>79a536192c</span><br><span class="line"><span class="number">0x00007f799d0fa5d0</span>:   <span class="number">00000000</span>d97580ab <span class="number">00007f</span>799d0fa620</span><br><span class="line"><span class="number">0x00007f799d0fa5e0</span>:   <span class="number">00007f</span>799d0fa630 <span class="number">00000006</span>cbab8a10</span><br><span class="line"><span class="number">0x00007f799d0fa5f0</span>:   <span class="number">00000006</span>cbc133f0 <span class="number">00000002000733</span>c0</span><br><span class="line"><span class="number">0x00007f799d0fa600</span>:   <span class="number">00000006</span>cba00668 <span class="number">000733</span>bf00000001</span><br><span class="line"><span class="number">0x00007f799d0fa610</span>:   <span class="number">00000006</span>cba0a8e0 <span class="number">00007f</span>79a5423da4</span><br><span class="line"><span class="number">0x00007f799d0fa620</span>:   <span class="number">00000006</span>cba0a860 <span class="number">000000074</span>d36a0f8</span><br><span class="line"><span class="number">0x00007f799d0fa630</span>:   <span class="number">000733</span>c07e2166e0 <span class="number">00000006</span>cba0a870</span><br><span class="line"><span class="number">0x00007f799d0fa640</span>:   <span class="number">00000006</span>cba0a8e0 <span class="number">0000000001801f</span>04</span><br><span class="line"><span class="number">0x00007f799d0fa650</span>:   <span class="number">00000006000733</span>c0 d974151c7e216868</span><br><span class="line"><span class="number">0x00007f799d0fa660</span>:   <span class="number">00000006</span>cbac04b0 <span class="number">0000000700000000</span></span><br><span class="line"><span class="number">0x00007f799d0fa670</span>:   <span class="number">0000000000000001</span> d97580c700000000</span><br><span class="line"><span class="number">0x00007f799d0fa680</span>:   <span class="number">0000000000000000</span> <span class="number">00000006</span>cba85ef8</span><br><span class="line"><span class="number">0x00007f799d0fa690</span>:   <span class="number">0000000000000031</span> <span class="number">0000000000000031</span></span><br><span class="line"><span class="number">0x00007f799d0fa6a0</span>:   <span class="number">0000000000000000</span> <span class="number">00000006</span>cba0aa60</span><br><span class="line"><span class="number">0x00007f799d0fa6b0</span>:   <span class="number">00000006</span>cba0a8f0 <span class="number">00007f</span>79a552c3d4</span><br><span class="line"><span class="number">0x00007f799d0fa6c0</span>:   <span class="number">00000006</span>cba0a958 <span class="number">0000000001801f</span>04</span><br><span class="line"><span class="number">0x00007f799d0fa6d0</span>:   <span class="number">000000074</span>d36a0f8 d974150e000733c0</span><br><span class="line"><span class="number">0x00007f799d0fa6e0</span>:   <span class="number">0000000000000000</span> <span class="number">000000000000000f</span></span><br><span class="line"><span class="number">0x00007f799d0fa6f0</span>:   <span class="number">00000006</span>cba0a870 <span class="number">0000000025</span>c5eeec</span><br><span class="line"><span class="number">0x00007f799d0fa700</span>:   <span class="number">00000006</span>cba0aa60 <span class="number">00007f</span>79a537d62c</span><br><span class="line"><span class="number">0x00007f799d0fa710</span>:   <span class="number">00000006</span>cba0a930 <span class="number">00007f</span>79a516830c</span><br><span class="line"><span class="number">0x00007f799d0fa720</span>:   <span class="number">00000006</span>cba0a930 <span class="number">00000000</span>d974151e</span><br><span class="line"><span class="number">0x00007f799d0fa730</span>:   <span class="number">00000006</span>cba0a8f0 <span class="number">00007f</span>79b462c000</span><br><span class="line"><span class="number">0x00007f799d0fa740</span>:   <span class="number">00007f</span>799d0fa770 <span class="number">00007f</span>79bc56196d</span><br><span class="line"><span class="number">0x00007f799d0fa750</span>:   <span class="number">0000000000000004</span> <span class="number">00007f</span>79bbd76eff</span><br><span class="line"><span class="number">0x00007f799d0fa760</span>:   <span class="number">0000000000000031</span> <span class="number">0000000025</span>c6a2c9</span><br><span class="line"><span class="number">0x00007f799d0fa770</span>:   <span class="number">00000000</span>d974152b <span class="number">00007f</span>79a55495e4</span><br><span class="line"><span class="number">0x00007f799d0fa780</span>:   <span class="number">0000000000000400</span> d9750bed00000032</span><br><span class="line"><span class="number">0x00007f799d0fa790</span>:   <span class="number">0000608676</span>b9d6c9 <span class="number">0000000000000032</span></span><br><span class="line"></span><br><span class="line">Instructions: (pc=<span class="number">0x00007f79a52ee461</span>)</span><br><span class="line"><span class="number">0x00007f79a52ee441</span>:   f8 <span class="number">0f</span> <span class="number">85</span> <span class="number">58</span> <span class="number">05</span> <span class="number">00</span> <span class="number">00</span> <span class="number">48</span> <span class="number">63</span> c9 <span class="number">48</span> <span class="number">03</span> <span class="number">4</span>b <span class="number">10</span> <span class="number">83</span> fd</span><br><span class="line"><span class="number">0x00007f79a52ee451</span>:   <span class="number">04</span> <span class="number">0f</span> <span class="number">84</span> <span class="number">34</span> <span class="number">05</span> <span class="number">00</span> <span class="number">00</span> <span class="number">44</span> <span class="number">8</span>b <span class="number">50</span> <span class="number">18</span> <span class="number">4f</span> <span class="number">8</span>b <span class="number">54</span> d4 <span class="number">18</span></span><br><span class="line"><span class="number">0x00007f79a52ee461</span>:   <span class="number">49</span> <span class="number">89</span> <span class="number">0</span>a <span class="number">4</span>d <span class="number">63</span> d9 <span class="number">4</span>d <span class="number">89</span> <span class="number">5</span>a <span class="number">08</span> <span class="number">41</span> ba <span class="number">01</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">0x00007f79a52ee471</span>:   <span class="number">8</span>b <span class="number">7</span>c <span class="number">24</span> <span class="number">58</span> e9 fd f8 ff ff <span class="number">33</span> c0 e9 <span class="number">51</span> fe ff ff</span><br><span class="line"></span><br><span class="line">Register to memory mapping:</span><br><span class="line"></span><br><span class="line">RAX=<span class="number">0x000000075390acc8</span> is an oop</span><br><span class="line">sun.nio.ch.IOVecWrapper</span><br><span class="line"> - klass: <span class="string">'sun/nio/ch/IOVecWrapper'</span></span><br><span class="line">RBX=<span class="number">0x0000000789d35f30</span> is an oop</span><br><span class="line">RCX=<span class="number">0x00007f790d624180</span> is an unknown value</span><br><span class="line">RDI=<span class="number">0x0000000003a9c856</span> is an unknown value</span><br><span class="line">R8 =<span class="number">0x000000074d36a0f8</span> is an oop</span><br><span class="line">[Ljava.nio.ByteBuffer;</span><br><span class="line"> - klass: <span class="string">'java/nio/ByteBuffer'</span>[]</span><br><span class="line"> - length: <span class="number">16777216</span></span><br><span class="line">R9 =<span class="number">0x0000000000000067</span> is an unknown value</span><br><span class="line">R10=<span class="number">0x00007f789bc0e010</span> is an unknown value</span><br><span class="line">R11=<span class="number">0x00000000f8008092</span> is an unknown value</span><br><span class="line">R12=<span class="number">0x0000000000000000</span> is an unknown value</span><br><span class="line">R13=<span class="number">0x00007f79b651b000</span> is an unknown value</span><br><span class="line">R14=<span class="number">0x0000000001000000</span> is an unknown value</span><br><span class="line">R15=<span class="number">0x00007f79b462c000</span> is a thread</span><br><span class="line"></span><br><span class="line"><span class="comment">//栈顶程序计数器旁的操作码，它们可以被反汇编成系统崩溃前执行的指令。</span></span><br><span class="line">Stack: [<span class="number">0x00007f799cffb000</span>,<span class="number">0x00007f799d0fc000</span>],  sp=<span class="number">0x00007f799d0fa5a0</span>,  free space=<span class="number">1021</span>k</span><br><span class="line">Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=<span class="keyword">native</span> code)</span><br><span class="line"></span><br><span class="line"><span class="comment">//线程栈信息。包含了地址、栈顶、栈计数器和线程尚未使用的栈信息。到这里就基本上已经确定了问题所在原因了。</span></span><br><span class="line">Stack: [<span class="number">0x00007f799cffb000</span>,<span class="number">0x00007f799d0fc000</span>],  sp=<span class="number">0x00007f799d0fa5a0</span>,  free space=<span class="number">1021</span>k</span><br><span class="line">Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=<span class="keyword">native</span> code)</span><br><span class="line">J <span class="number">2132</span> C2 sun.nio.ch.SocketChannelImpl.write([Ljava/nio/ByteBuffer;II)J (<span class="number">436</span> bytes) @ <span class="number">0x00007f79a5423da4</span> [<span class="number">0x00007f79a5423a20</span>+<span class="number">0x384</span>]</span><br><span class="line">J <span class="number">2159</span> C2 io.netty.channel.socket.nio.NioSocketChannel.doWrite(Lio/netty/channel/ChannelOutboundBuffer;)V (<span class="number">259</span> bytes) @ <span class="number">0x00007f79a552c3d4</span> [<span class="number">0</span>x</span><br><span class="line"><span class="number">00007f</span>79a552bf00+<span class="number">0x4d4</span>]J <span class="number">2300</span> C2 io.netty.channel.nio.NioEventLoop.processSelectedKey(Ljava/nio/channels/SelectionKey;Lio/netty/channel/nio/AbstractNioChannel;)V (<span class="number">14</span></span><br><span class="line"><span class="number">2</span> bytes) @ <span class="number">0x00007f79a516830c</span> [<span class="number">0x00007f79a5168180</span>+<span class="number">0x18c</span>]J <span class="number">2134</span>% C2 io.netty.channel.nio.NioEventLoop.run()V (<span class="number">221</span> bytes) @ <span class="number">0x00007f79a55495e4</span> [<span class="number">0x00007f79a5548f40</span>+<span class="number">0x6a4</span>]</span><br><span class="line">j  io.netty.util.concurrent.SingleThreadEventExecutor$<span class="number">5</span>.run()V+<span class="number">44</span></span><br><span class="line">j  io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run()V+<span class="number">4</span></span><br><span class="line">j  java.lang.Thread.run()V+<span class="number">11</span></span><br><span class="line">v  ~StubRoutines::call_stub</span><br><span class="line">V  [libjvm.so+<span class="number">0x695b96</span>]  JavaCalls::call_helper(JavaValue*, methodHandle*, JavaCallArguments*, Thread*)+<span class="number">0x1056</span></span><br><span class="line">V  [libjvm.so+<span class="number">0x6960a1</span>]  JavaCalls::call_virtual(JavaValue*, KlassHandle, Symbol*, Symbol*, JavaCallArguments*, Thread*)+<span class="number">0x321</span></span><br><span class="line">V  [libjvm.so+<span class="number">0x696537</span>]  JavaCalls::call_virtual(JavaValue*, Handle, KlassHandle, Symbol*, Symbol*, Thread*)+<span class="number">0x47</span></span><br><span class="line">V  [libjvm.so+<span class="number">0x71596e</span>]  thread_entry(JavaThread*, Thread*)+<span class="number">0x7e</span></span><br><span class="line">V  [libjvm.so+<span class="number">0xa7f243</span>]  JavaThread::thread_main_inner()+<span class="number">0x103</span></span><br><span class="line">V  [libjvm.so+<span class="number">0xa7f38c</span>]  JavaThread::run()+<span class="number">0x11c</span></span><br><span class="line">V  [libjvm.so+<span class="number">0x92e0f8</span>]  java_start(Thread*)+<span class="number">0x108</span></span><br><span class="line">C  [libpthread.so.0+<span class="number">0x7e25</span>]  start_thread+<span class="number">0xc5</span></span><br></pre></td></tr></table></figure>
+<p>这部分内容包含触发 JVM 致命错误的线程详细信息和线程栈<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Current <span class="title">thread</span> <span class="params">(<span class="number">0x00007f79b462c000</span>)</span>:  JavaThread "nioEventLoopGroup-2-1" [_thread_in_Java, id</span>=<span class="number">18354</span>, stack(<span class="number">0x00007f799cffb000</span>,<span class="number">0x00007f799d0fc0</span></span><br><span class="line"><span class="number">00</span>)]</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>0x00007f79b462c000：出错的线程指针</li>
+<li><p>JavaThread：线程类型，可能的类型包括<br>JavaThread：Java线程<br>VMThread : JVM 的内部线程<br>CompilerThread：用来调用JITing，实时编译装卸class 。 通常，jvm会启动多个线程来处理这部分工作，线程名称后面的数字也会累加，例如：CompilerThread1<br>GCTaskThread：执行gc的线程<br>WatcherThread：JVM 周期性任务调度的线程，是一个单例对象<br>ConcurrentMarkSweepThread：jvm在进行CMS GC的时候，会创建一个该线程去进行GC，该线程被创建的同时会创建一个SurrogateLockerThread（简称SLT）线程并且启动它，SLT启动之后，处于等待阶段。CMST开始GC时，会发一个消息给SLT让它去获取Java层Reference对象的全局锁：Lock</p>
+</li>
+<li><p>nioEventLoopGroup-2-1：线程名称</p>
+</li>
+<li>_thread_in_native：当前线程状态。该描述还包含有：</li>
+</ul>
+<p>_thread_in_native：线程当前状态，状态枚举包括：<br>_thread_uninitialized：线程还没有创建，它只在内存原因崩溃的时候才出现<br>_thread_new：线程已经被创建，但是还没有启动<br>_thread_in_native：线程正在执行本地代码，一般这种情况很可能是本地代码有问题<br>_thread_in_vm：线程正在执行虚拟机代码<br>_thread_in_Java：线程正在执行解释或者编译后的Java代码<br>_thread_blocked：线程处于阻塞状态<br>…_trans：以_trans结尾，线程正处于要切换到其它状态的中间状态</p>
+<ul>
+<li>id=18354：线程ID</li>
+<li>stack(0x00007f799cffb000,0x00007f799d0fc000)：栈区间</li>
+</ul>
+<h4 id="所有线程信息"><a href="#所有线程信息" class="headerlink" title="所有线程信息"></a>所有线程信息</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Java Threads: ( =&gt; current thread )</span><br><span class="line">  <span class="number">0x00007f79280ae000</span> JavaThread <span class="string">"Thread-1"</span> [_thread_blocked, id=<span class="number">18363</span>, stack(<span class="number">0x00007f799caf8000</span>,<span class="number">0x00007f799cbf9000</span>)]</span><br><span class="line">  <span class="number">0x00007f7928076800</span> JavaThread <span class="string">"kafka-producer-network-thread | producer-1"</span> daemon [_thread_in_native, id=<span class="number">18361</span>, stack(<span class="number">0x00007f799cbf9000</span>,<span class="number">0x0</span></span><br><span class="line"><span class="number">0007f</span>799ccfa000)]  <span class="number">0x00007f7928011800</span> JavaThread <span class="string">"threadDeathWatcher-3-1"</span> daemon [_thread_blocked, id=<span class="number">18355</span>, stack(<span class="number">0x00007f799ccfa000</span>,<span class="number">0x00007f799cdfb000</span>)]</span><br><span class="line">=&gt;<span class="number">0x00007f79b462c000</span> JavaThread <span class="string">"nioEventLoopGroup-2-1"</span> [_thread_in_Java, id=<span class="number">18354</span>, stack(<span class="number">0x00007f799cffb000</span>,<span class="number">0x00007f799d0fc000</span>)]</span><br><span class="line">  <span class="number">0x00007f79b4268800</span> JavaThread <span class="string">"Service Thread"</span> daemon [_thread_blocked, id=<span class="number">18341</span>, stack(<span class="number">0x00007f799dedf000</span>,<span class="number">0x00007f799dfe0000</span>)]</span><br><span class="line">  <span class="number">0x00007f79b4253000</span> JavaThread <span class="string">"C1 CompilerThread3"</span> daemon [_thread_blocked, id=<span class="number">18338</span>, stack(<span class="number">0x00007f799dfe1000</span>,<span class="number">0x00007f799e0e1000</span>)]</span><br><span class="line">  <span class="number">0x00007f79b4251000</span> JavaThread <span class="string">"C2 CompilerThread2"</span> daemon [_thread_blocked, id=<span class="number">18336</span>, stack(<span class="number">0x00007f799e0e2000</span>,<span class="number">0x00007f799e1e2000</span>)]</span><br><span class="line">  <span class="number">0x00007f79b424f000</span> JavaThread <span class="string">"C2 CompilerThread1"</span> daemon [_thread_blocked, id=<span class="number">18335</span>, stack(<span class="number">0x00007f799e1e3000</span>,<span class="number">0x00007f799e2e3000</span>)]</span><br><span class="line">  <span class="number">0x00007f79b424c000</span> JavaThread <span class="string">"C2 CompilerThread0"</span> daemon [_thread_blocked, id=<span class="number">18333</span>, stack(<span class="number">0x00007f799e2e4000</span>,<span class="number">0x00007f799e3e4000</span>)]</span><br><span class="line">  <span class="number">0x00007f79b424a800</span> JavaThread <span class="string">"Signal Dispatcher"</span> daemon [_thread_blocked, id=<span class="number">18331</span>, stack(<span class="number">0x00007f799e3e4000</span>,<span class="number">0x00007f799e4e5000</span>)]</span><br><span class="line">  <span class="number">0x00007f79b4217800</span> JavaThread <span class="string">"Finalizer"</span> daemon [_thread_blocked, id=<span class="number">18328</span>, stack(<span class="number">0x00007f799e4e5000</span>,<span class="number">0x00007f799e5e6000</span>)]</span><br><span class="line">  <span class="number">0x00007f79b4213000</span> JavaThread <span class="string">"Reference Handler"</span> daemon [_thread_blocked, id=<span class="number">18325</span>, stack(<span class="number">0x00007f799e5e6000</span>,<span class="number">0x00007f799e6e7000</span>)]</span><br><span class="line">  <span class="number">0x00007f79b4009000</span> JavaThread <span class="string">"main"</span> [_thread_blocked, id=<span class="number">18288</span>, stack(<span class="number">0x00007f79bcf58000</span>,<span class="number">0x00007f79bd058000</span>)]</span><br></pre></td></tr></table></figure>
+<p>_thread_blocked表示阻塞</p>
+<h4 id="安全点和锁信息"><a href="#安全点和锁信息" class="headerlink" title="安全点和锁信息"></a>安全点和锁信息</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">VM state:<span class="function">not at <span class="title">safepoint</span> <span class="params">(normal execution)</span></span></span><br></pre></td></tr></table></figure>
+<p>虚拟机状态。not at safepoint 表示正常运行。其余状态：</p>
+<p>at safepoint：所有线程都因为虚拟机等待状态而阻塞，等待一个虚拟机操作完成；<br>synchronizing：一个特殊的虚拟机操作，要求虚拟机内的其它线程保持等待状态。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">VM Mutex/Monitor currently owned by a thread: None</span><br></pre></td></tr></table></figure></p>
+<p>虚拟机的 Mutex 和 Monitor目前没有被线程持有。Mutex 是虚拟机内部的锁，而 Monitor 则关联到了 Java 对象。</p>
+<h4 id="堆信息"><a href="#堆信息" class="headerlink" title="堆信息"></a>堆信息</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Heap:</span><br><span class="line"> PSYoungGen      total <span class="number">889856</span>K, used <span class="number">459726</span>K [<span class="number">0x000000076e900000</span>, <span class="number">0x00000007c0000000</span>, <span class="number">0x00000007c0000000</span>)</span><br><span class="line">  eden space <span class="number">445440</span>K, <span class="number">64</span>% used [<span class="number">0x000000076e900000</span>,<span class="number">0x000000077ffbb808</span>,<span class="number">0x0000000789c00000</span>)</span><br><span class="line">  from space <span class="number">444416</span>K, <span class="number">39</span>% used [<span class="number">0x0000000789c00000</span>,<span class="number">0x0000000794638000</span>,<span class="number">0x00000007a4e00000</span>)</span><br><span class="line">  to   space <span class="number">444416</span>K, <span class="number">0</span>% used [<span class="number">0x00000007a4e00000</span>,<span class="number">0x00000007a4e00000</span>,<span class="number">0x00000007c0000000</span>)</span><br><span class="line"> ParOldGen       total <span class="number">2669568</span>K, used <span class="number">2452299</span>K [<span class="number">0x00000006cba00000</span>, <span class="number">0x000000076e900000</span>, <span class="number">0x000000076e900000</span>)</span><br><span class="line">  object space <span class="number">2669568</span>K, <span class="number">91</span>% used [<span class="number">0x00000006cba00000</span>,<span class="number">0x00000007614d2d60</span>,<span class="number">0x000000076e900000</span>)</span><br><span class="line"> Metaspace       used <span class="number">15147</span>K, capacity <span class="number">15314</span>K, committed <span class="number">15616</span>K, reserved <span class="number">1062912</span>K</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">space</span>    <span class="title">used</span> 1858<span class="title">K</span>, <span class="title">capacity</span> 1927<span class="title">K</span>, <span class="title">committed</span> 2048<span class="title">K</span>, <span class="title">reserved</span> 1048576<span class="title">K</span></span></span><br><span class="line">Card table byte_map: [0x00007f79b9b78000,0x00007f79ba31c000] byte_map_base: 0x00007f79b651b000</span><br></pre></td></tr></table></figure>
+<p>新生代、老年代、元空间一目了然。</p>
+<p>Card table表示一种卡表，是 jvm 维护的一种数据结构，用于记录更改对象时的引用，以便 gc 时遍历更少的 table 和 root。</p>
+<h4 id="本地代码缓存"><a href="#本地代码缓存" class="headerlink" title="本地代码缓存"></a>本地代码缓存</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CodeCache: size=<span class="number">245760</span>Kb used=<span class="number">5251</span>Kb max_used=<span class="number">5700</span>Kb free=<span class="number">240509</span>Kb</span><br><span class="line"> bounds [<span class="number">0x00007f79a5000000</span>, <span class="number">0x00007f79a55b0000</span>, <span class="number">0x00007f79b4000000</span>]</span><br><span class="line"> total_blobs=<span class="number">2174</span> nmethods=<span class="number">1737</span> adapters=<span class="number">350</span></span><br><span class="line"> compilation: enabled</span><br></pre></td></tr></table></figure>
+<p>一块用于编译和保存本地代码的内存。</p>
+<h4 id="编译事件"><a href="#编译事件" class="headerlink" title="编译事件"></a>编译事件</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Compilation <span class="title">events</span> <span class="params">(<span class="number">10</span> events)</span>:</span></span><br><span class="line"><span class="function">Event: 6618.434 Thread 0x00007f79b424f000 2366       4       io.netty.util.internal.PromiseNotificationUtil::<span class="title">tryFailure</span> <span class="params">(<span class="number">66</span> bytes)</span></span></span><br><span class="line"><span class="function">Event: 6618.439 Thread 0x00007f79b424f000 nmethod 2366 0x00007f79a53d9110 code [0x00007f79a53d9260, 0x00007f79a53d9328]</span></span><br><span class="line"><span class="function">Event: 6618.486 Thread 0x00007f79b424c000 nmethod 2364 0x00007f79a52d9a50 code [0x00007f79a52d9d60, 0x00007f79a52db770]</span></span><br><span class="line"><span class="function">Event: 6618.722 Thread 0x00007f79b4251000 nmethod 2361% 0x00007f79a54b0550 code [0x00007f79a54b0860, 0x00007f79a54b21f0]</span></span><br><span class="line"><span class="function">Event: 6618.723 Thread 0x00007f79b424f000 2367   !   4       io.netty.channel.ChannelOutboundBuffer::<span class="title">failFlushed</span> <span class="params">(<span class="number">42</span> bytes)</span></span></span><br><span class="line"><span class="function">Event: 6618.726 Thread 0x00007f79b424f000 nmethod 2367 0x00007f79a540c810 code [0x00007f79a540c980, 0x00007f79a540ca78]</span></span><br><span class="line"><span class="function">Event: 6651.937 Thread 0x00007f79b4253000 2368       3       sun.misc.Unsafe::<span class="title">getAndAddLong</span> <span class="params">(<span class="number">27</span> bytes)</span></span></span><br><span class="line"><span class="function">Event: 6651.939 Thread 0x00007f79b4253000 nmethod 2368 0x00007f79a5529c10 code [0x00007f79a5529d80, 0x00007f79a5529f90]</span></span><br><span class="line"><span class="function">Event: 6652.498 Thread 0x00007f79b424f000 2369       4       io.netty.util.internal.PlatformDependent0::<span class="title">directBufferAddress</span> <span class="params">(<span class="number">8</span> bytes)</span></span></span><br><span class="line"><span class="function">Event: 6652.519 Thread 0x00007f79b424f000 nmethod 2369 0x00007f79a5147050 code [0x00007f79a5147180, 0x00007f79a51471b8]</span></span><br></pre></td></tr></table></figure>
+<p>记录10次编译事件。这里的信息也印证了上面的结论。</p>
+<h4 id="gc-相关记录"><a href="#gc-相关记录" class="headerlink" title="gc 相关记录"></a>gc 相关记录</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">GC Heap <span class="title">History</span> <span class="params">(<span class="number">10</span> events)</span>:</span></span><br><span class="line"><span class="function">Event: 6483.329 GC heap before</span></span><br><span class="line"><span class="function"></span>&#123;Heap before GC invocations=<span class="number">1775</span> (full <span class="number">41</span>):</span><br><span class="line"> PSYoungGen      total <span class="number">889856</span>K, used <span class="number">433403</span>K [<span class="number">0x000000076e900000</span>, <span class="number">0x00000007c0000000</span>, <span class="number">0x00000007c0000000</span>)</span><br><span class="line">  eden space <span class="number">445440</span>K, <span class="number">97</span>% used [<span class="number">0x000000076e900000</span>,<span class="number">0x000000078903ecd8</span>,<span class="number">0x0000000789c00000</span>)</span><br><span class="line">  from space <span class="number">444416</span>K, <span class="number">0</span>% used [<span class="number">0x00000007a4e00000</span>,<span class="number">0x00000007a4e00000</span>,<span class="number">0x00000007c0000000</span>)</span><br><span class="line">  to   space <span class="number">444416</span>K, <span class="number">0</span>% used [<span class="number">0x0000000789c00000</span>,<span class="number">0x0000000789c00000</span>,<span class="number">0x00000007a4e00000</span>)</span><br><span class="line"> ParOldGen       total <span class="number">2669568</span>K, used <span class="number">2669359</span>K [<span class="number">0x00000006cba00000</span>, <span class="number">0x000000076e900000</span>, <span class="number">0x000000076e900000</span>)</span><br><span class="line">  object space <span class="number">2669568</span>K, <span class="number">99</span>% used [<span class="number">0x00000006cba00000</span>,<span class="number">0x000000076e8cbc50</span>,<span class="number">0x000000076e900000</span>)</span><br><span class="line"> Metaspace       used <span class="number">15146</span>K, capacity <span class="number">15314</span>K, committed <span class="number">15616</span>K, reserved <span class="number">1062912</span>K</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">space</span>    <span class="title">used</span> 1858<span class="title">K</span>, <span class="title">capacity</span> 1927<span class="title">K</span>, <span class="title">committed</span> 2048<span class="title">K</span>, <span class="title">reserved</span> 1048576<span class="title">K</span></span></span><br><span class="line">Event: 6534.282 GC heap after</span><br><span class="line">Heap after GC invocations=<span class="number">1775</span> (full <span class="number">41</span>):</span><br><span class="line"> PSYoungGen      total <span class="number">889856</span>K, used <span class="number">419683</span>K [<span class="number">0x000000076e900000</span>, <span class="number">0x00000007c0000000</span>, <span class="number">0x00000007c0000000</span>)</span><br><span class="line">  eden space <span class="number">445440</span>K, <span class="number">94</span>% used [<span class="number">0x000000076e900000</span>,<span class="number">0x00000007882d8de0</span>,<span class="number">0x0000000789c00000</span>)</span><br><span class="line">  from space <span class="number">444416</span>K, <span class="number">0</span>% used [<span class="number">0x00000007a4e00000</span>,<span class="number">0x00000007a4e00000</span>,<span class="number">0x00000007c0000000</span>)</span><br><span class="line">  to   space <span class="number">444416</span>K, <span class="number">0</span>% used [<span class="number">0x0000000789c00000</span>,<span class="number">0x0000000789c00000</span>,<span class="number">0x00000007a4e00000</span>)</span><br><span class="line"> ParOldGen       total <span class="number">2669568</span>K, used <span class="number">2669358</span>K [<span class="number">0x00000006cba00000</span>, <span class="number">0x000000076e900000</span>, <span class="number">0x000000076e900000</span>)</span><br><span class="line">  object space <span class="number">2669568</span>K, <span class="number">99</span>% used [<span class="number">0x00000006cba00000</span>,<span class="number">0x000000076e8cbbe0</span>,<span class="number">0x000000076e900000</span>)</span><br><span class="line"> Metaspace       used <span class="number">15146</span>K, capacity <span class="number">15314</span>K, committed <span class="number">15616</span>K, reserved <span class="number">1062912</span>K</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">space</span>    <span class="title">used</span> 1858<span class="title">K</span>, <span class="title">capacity</span> 1927<span class="title">K</span>, <span class="title">committed</span> 2048<span class="title">K</span>, <span class="title">reserved</span> 1048576<span class="title">K</span></span></span><br><span class="line"><span class="class">&#125;</span></span><br><span class="line">Event: 6534.282 GC heap before</span><br><span class="line">&#123;Heap before GC invocations=<span class="number">1776</span> (full <span class="number">42</span>):</span><br><span class="line"> PSYoungGen      total <span class="number">889856</span>K, used <span class="number">419683</span>K [<span class="number">0x000000076e900000</span>, <span class="number">0x00000007c0000000</span>, <span class="number">0x00000007c0000000</span>)</span><br><span class="line">  eden space <span class="number">445440</span>K, <span class="number">94</span>% used [<span class="number">0x000000076e900000</span>,<span class="number">0x00000007882d8de0</span>,<span class="number">0x0000000789c00000</span>)</span><br><span class="line">  from space <span class="number">444416</span>K, <span class="number">0</span>% used [<span class="number">0x00000007a4e00000</span>,<span class="number">0x00000007a4e00000</span>,<span class="number">0x00000007c0000000</span>)</span><br><span class="line">  to   space <span class="number">444416</span>K, <span class="number">0</span>% used [<span class="number">0x0000000789c00000</span>,<span class="number">0x0000000789c00000</span>,<span class="number">0x00000007a4e00000</span>)</span><br><span class="line"> ParOldGen       total <span class="number">2669568</span>K, used <span class="number">2669358</span>K [<span class="number">0x00000006cba00000</span>, <span class="number">0x000000076e900000</span>, <span class="number">0x000000076e900000</span>)</span><br><span class="line">  object space <span class="number">2669568</span>K, <span class="number">99</span>% used [<span class="number">0x00000006cba00000</span>,<span class="number">0x000000076e8cbbe0</span>,<span class="number">0x000000076e900000</span>)</span><br><span class="line"> Metaspace       used <span class="number">15146</span>K, capacity <span class="number">15314</span>K, committed <span class="number">15616</span>K, reserved <span class="number">1062912</span>K</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">space</span>    <span class="title">used</span> 1858<span class="title">K</span>, <span class="title">capacity</span> 1927<span class="title">K</span>, <span class="title">committed</span> 2048<span class="title">K</span>, <span class="title">reserved</span> 1048576<span class="title">K</span></span></span><br><span class="line">Event: 6579.155 GC heap after</span><br><span class="line">Heap after GC invocations=<span class="number">1776</span> (full <span class="number">42</span>):</span><br><span class="line"> PSYoungGen      total <span class="number">889856</span>K, used <span class="number">419683</span>K [<span class="number">0x000000076e900000</span>, <span class="number">0x00000007c0000000</span>, <span class="number">0x00000007c0000000</span>)</span><br><span class="line">  eden space <span class="number">445440</span>K, <span class="number">94</span>% used [<span class="number">0x000000076e900000</span>,<span class="number">0x00000007882d8de0</span>,<span class="number">0x0000000789c00000</span>)</span><br><span class="line">  from space <span class="number">444416</span>K, <span class="number">0</span>% used [<span class="number">0x00000007a4e00000</span>,<span class="number">0x00000007a4e00000</span>,<span class="number">0x00000007c0000000</span>)</span><br><span class="line">  to   space <span class="number">444416</span>K, <span class="number">0</span>% used [<span class="number">0x0000000789c00000</span>,<span class="number">0x0000000789c00000</span>,<span class="number">0x00000007a4e00000</span>)</span><br><span class="line"> ParOldGen       total <span class="number">2669568</span>K, used <span class="number">2669358</span>K [<span class="number">0x00000006cba00000</span>, <span class="number">0x000000076e900000</span>, <span class="number">0x000000076e900000</span>)</span><br><span class="line">  object space <span class="number">2669568</span>K, <span class="number">99</span>% used [<span class="number">0x00000006cba00000</span>,<span class="number">0x000000076e8cbb28</span>,<span class="number">0x000000076e900000</span>)</span><br><span class="line"> Metaspace       used <span class="number">15146</span>K, capacity <span class="number">15314</span>K, committed <span class="number">15616</span>K, reserved <span class="number">1062912</span>K</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">space</span>    <span class="title">used</span> 1858<span class="title">K</span>, <span class="title">capacity</span> 1927<span class="title">K</span>, <span class="title">committed</span> 2048<span class="title">K</span>, <span class="title">reserved</span> 1048576<span class="title">K</span></span></span><br><span class="line"><span class="class">&#125;</span></span><br><span class="line">Event: 6579.728 GC heap before</span><br><span class="line">&#123;Heap before GC invocations=<span class="number">1777</span> (full <span class="number">43</span>):</span><br><span class="line"> PSYoungGen      total <span class="number">889856</span>K, used <span class="number">445440</span>K [<span class="number">0x000000076e900000</span>, <span class="number">0x00000007c0000000</span>, <span class="number">0x00000007c0000000</span>)</span><br><span class="line">  eden space <span class="number">445440</span>K, <span class="number">100</span>% used [<span class="number">0x000000076e900000</span>,<span class="number">0x0000000789c00000</span>,<span class="number">0x0000000789c00000</span>)</span><br><span class="line">  from space <span class="number">444416</span>K, <span class="number">0</span>% used [<span class="number">0x00000007a4e00000</span>,<span class="number">0x00000007a4e00000</span>,<span class="number">0x00000007c0000000</span>)</span><br><span class="line">  to   space <span class="number">444416</span>K, <span class="number">0</span>% used [<span class="number">0x0000000789c00000</span>,<span class="number">0x0000000789c00000</span>,<span class="number">0x00000007a4e00000</span>)</span><br><span class="line"> ParOldGen       total <span class="number">2669568</span>K, used <span class="number">2669362</span>K [<span class="number">0x00000006cba00000</span>, <span class="number">0x000000076e900000</span>, <span class="number">0x000000076e900000</span>)</span><br><span class="line">  object space <span class="number">2669568</span>K, <span class="number">99</span>% used [<span class="number">0x00000006cba00000</span>,<span class="number">0x000000076e8cc8c8</span>,<span class="number">0x000000076e900000</span>)</span><br><span class="line"> Metaspace       used <span class="number">15146</span>K, capacity <span class="number">15314</span>K, committed <span class="number">15616</span>K, reserved <span class="number">1062912</span>K</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">space</span>    <span class="title">used</span> 1858<span class="title">K</span>, <span class="title">capacity</span> 1927<span class="title">K</span>, <span class="title">committed</span> 2048<span class="title">K</span>, <span class="title">reserved</span> 1048576<span class="title">K</span></span></span><br><span class="line">Event: 6618.338 GC heap after</span><br><span class="line">Heap after GC invocations=<span class="number">1777</span> (full <span class="number">43</span>):</span><br><span class="line"> PSYoungGen      total <span class="number">889856</span>K, used <span class="number">318952</span>K [<span class="number">0x000000076e900000</span>, <span class="number">0x00000007c0000000</span>, <span class="number">0x00000007c0000000</span>)</span><br><span class="line">  eden space <span class="number">445440</span>K, <span class="number">71</span>% used [<span class="number">0x000000076e900000</span>,<span class="number">0x000000078207a230</span>,<span class="number">0x0000000789c00000</span>)</span><br><span class="line">  from space <span class="number">444416</span>K, <span class="number">0</span>% used [<span class="number">0x00000007a4e00000</span>,<span class="number">0x00000007a4e00000</span>,<span class="number">0x00000007c0000000</span>)</span><br><span class="line">  to   space <span class="number">444416</span>K, <span class="number">0</span>% used [<span class="number">0x0000000789c00000</span>,<span class="number">0x0000000789c00000</span>,<span class="number">0x00000007a4e00000</span>)</span><br><span class="line"> ParOldGen       total <span class="number">2669568</span>K, used <span class="number">2669283</span>K [<span class="number">0x00000006cba00000</span>, <span class="number">0x000000076e900000</span>, <span class="number">0x000000076e900000</span>)</span><br><span class="line">  object space <span class="number">2669568</span>K, <span class="number">99</span>% used [<span class="number">0x00000006cba00000</span>,<span class="number">0x000000076e8b8cb0</span>,<span class="number">0x000000076e900000</span>)</span><br><span class="line"> Metaspace       used <span class="number">15146</span>K, capacity <span class="number">15314</span>K, committed <span class="number">15616</span>K, reserved <span class="number">1062912</span>K</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">space</span>    <span class="title">used</span> 1858<span class="title">K</span>, <span class="title">capacity</span> 1927<span class="title">K</span>, <span class="title">committed</span> 2048<span class="title">K</span>, <span class="title">reserved</span> 1048576<span class="title">K</span></span></span><br><span class="line"><span class="class">&#125;</span></span><br><span class="line">Event: 6620.112 GC heap before</span><br><span class="line">&#123;Heap before GC invocations=<span class="number">1778</span> (full <span class="number">44</span>):</span><br><span class="line"> PSYoungGen      total <span class="number">889856</span>K, used <span class="number">445440</span>K [<span class="number">0x000000076e900000</span>, <span class="number">0x00000007c0000000</span>, <span class="number">0x00000007c0000000</span>)</span><br><span class="line">  eden space <span class="number">445440</span>K, <span class="number">100</span>% used [<span class="number">0x000000076e900000</span>,<span class="number">0x0000000789c00000</span>,<span class="number">0x0000000789c00000</span>)</span><br><span class="line">  from space <span class="number">444416</span>K, <span class="number">0</span>% used [<span class="number">0x00000007a4e00000</span>,<span class="number">0x00000007a4e00000</span>,<span class="number">0x00000007c0000000</span>)</span><br><span class="line">  to   space <span class="number">444416</span>K, <span class="number">0</span>% used [<span class="number">0x0000000789c00000</span>,<span class="number">0x0000000789c00000</span>,<span class="number">0x00000007a4e00000</span>)</span><br><span class="line"> ParOldGen       total <span class="number">2669568</span>K, used <span class="number">2669283</span>K [<span class="number">0x00000006cba00000</span>, <span class="number">0x000000076e900000</span>, <span class="number">0x000000076e900000</span>)</span><br><span class="line">  object space <span class="number">2669568</span>K, <span class="number">99</span>% used [<span class="number">0x00000006cba00000</span>,<span class="number">0x000000076e8b8cb0</span>,<span class="number">0x000000076e900000</span>)</span><br><span class="line"> Metaspace       used <span class="number">15146</span>K, capacity <span class="number">15314</span>K, committed <span class="number">15616</span>K, reserved <span class="number">1062912</span>K</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">space</span>    <span class="title">used</span> 1858<span class="title">K</span>, <span class="title">capacity</span> 1927<span class="title">K</span>, <span class="title">committed</span> 2048<span class="title">K</span>, <span class="title">reserved</span> 1048576<span class="title">K</span></span></span><br><span class="line">Event: 6649.833 GC heap after</span><br><span class="line">Heap after GC invocations=<span class="number">1778</span> (full <span class="number">44</span>):</span><br><span class="line"> PSYoungGen      total <span class="number">889856</span>K, used <span class="number">0</span>K [<span class="number">0x000000076e900000</span>, <span class="number">0x00000007c0000000</span>, <span class="number">0x00000007c0000000</span>)</span><br><span class="line">  eden space <span class="number">445440</span>K, <span class="number">0</span>% used [<span class="number">0x000000076e900000</span>,<span class="number">0x000000076e900000</span>,<span class="number">0x0000000789c00000</span>)</span><br><span class="line">  from space <span class="number">444416</span>K, <span class="number">0</span>% used [<span class="number">0x00000007a4e00000</span>,<span class="number">0x00000007a4e00000</span>,<span class="number">0x00000007c0000000</span>)</span><br><span class="line">  to   space <span class="number">444416</span>K, <span class="number">0</span>% used [<span class="number">0x0000000789c00000</span>,<span class="number">0x0000000789c00000</span>,<span class="number">0x00000007a4e00000</span>)</span><br><span class="line"> ParOldGen       total <span class="number">2669568</span>K, used <span class="number">2452299</span>K [<span class="number">0x00000006cba00000</span>, <span class="number">0x000000076e900000</span>, <span class="number">0x000000076e900000</span>)</span><br><span class="line">  object space <span class="number">2669568</span>K, <span class="number">91</span>% used [<span class="number">0x00000006cba00000</span>,<span class="number">0x00000007614d2d60</span>,<span class="number">0x000000076e900000</span>)</span><br><span class="line"> Metaspace       used <span class="number">15146</span>K, capacity <span class="number">15314</span>K, committed <span class="number">15616</span>K, reserved <span class="number">1062912</span>K</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">space</span>    <span class="title">used</span> 1858<span class="title">K</span>, <span class="title">capacity</span> 1927<span class="title">K</span>, <span class="title">committed</span> 2048<span class="title">K</span>, <span class="title">reserved</span> 1048576<span class="title">K</span></span></span><br><span class="line"><span class="class">&#125;</span></span><br><span class="line"><span class="class">&#125;</span></span><br><span class="line"><span class="class"></span></span><br><span class="line">Deoptimization events (10 events):</span><br><span class="line"> ParOldGen       total <span class="number">2669568</span>K, used <span class="number">2452299</span>K [<span class="number">0x00000006cba00000</span>, <span class="number">0x000000076e900000</span>, <span class="number">0x000000076e900000</span>)</span><br><span class="line">  object space <span class="number">2669568</span>K, <span class="number">91</span>% used [<span class="number">0x00000006cba00000</span>,<span class="number">0x00000007614d2d60</span>,<span class="number">0x000000076e900000</span>)</span><br><span class="line"> Metaspace       used <span class="number">15147</span>K, capacity <span class="number">15314</span>K, committed <span class="number">15616</span>K, reserved <span class="number">1062912</span>K</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">space</span>    <span class="title">used</span> 1858<span class="title">K</span>, <span class="title">capacity</span> 1927<span class="title">K</span>, <span class="title">committed</span> 2048<span class="title">K</span>, <span class="title">reserved</span> 1048576<span class="title">K</span></span></span><br><span class="line">Event: 6657.512 GC heap after</span><br><span class="line">Heap after GC invocations=<span class="number">1779</span> (full <span class="number">44</span>):</span><br><span class="line"> PSYoungGen      total <span class="number">889856</span>K, used <span class="number">174304</span>K [<span class="number">0x000000076e900000</span>, <span class="number">0x00000007c0000000</span>, <span class="number">0x00000007c0000000</span>)</span><br><span class="line">  eden space <span class="number">445440</span>K, <span class="number">0</span>% used [<span class="number">0x000000076e900000</span>,<span class="number">0x000000076e900000</span>,<span class="number">0x0000000789c00000</span>)</span><br><span class="line">  from space <span class="number">444416</span>K, <span class="number">39</span>% used [<span class="number">0x0000000789c00000</span>,<span class="number">0x0000000794638000</span>,<span class="number">0x00000007a4e00000</span>)</span><br><span class="line">  to   space <span class="number">444416</span>K, <span class="number">0</span>% used [<span class="number">0x00000007a4e00000</span>,<span class="number">0x00000007a4e00000</span>,<span class="number">0x00000007c0000000</span>)</span><br><span class="line"> ParOldGen       total <span class="number">2669568</span>K, used <span class="number">2452299</span>K [<span class="number">0x00000006cba00000</span>, <span class="number">0x000000076e900000</span>, <span class="number">0x000000076e900000</span>)</span><br><span class="line">  object space <span class="number">2669568</span>K, <span class="number">91</span>% used [<span class="number">0x00000006cba00000</span>,<span class="number">0x00000007614d2d60</span>,<span class="number">0x000000076e900000</span>)</span><br><span class="line"> Metaspace       used <span class="number">15147</span>K, capacity <span class="number">15314</span>K, committed <span class="number">15616</span>K, reserved <span class="number">1062912</span>K</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">space</span>    <span class="title">used</span> 1858<span class="title">K</span>, <span class="title">capacity</span> 1927<span class="title">K</span>, <span class="title">committed</span> 2048<span class="title">K</span>, <span class="title">reserved</span> 1048576<span class="title">K</span></span></span><br><span class="line"><span class="class">&#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="jvm-内存映射"><a href="#jvm-内存映射" class="headerlink" title="jvm 内存映射"></a>jvm 内存映射</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Dynamic libraries:</span><br><span class="line"><span class="number">00400000</span>-<span class="number">00401000</span> r-xp <span class="number">00000000</span> fd:<span class="number">00</span> <span class="number">2149917265</span>                         /usr/java/jdk1.8.0_171/bin/java</span><br><span class="line"><span class="number">00600000</span>-<span class="number">00601000</span> rw-p <span class="number">00000000</span> fd:<span class="number">00</span> <span class="number">2149917265</span>                         /usr/java/jdk1.8.0_171/bin/java</span><br><span class="line"><span class="number">01</span>b84000-<span class="number">01</span>ba5000 rw-p <span class="number">00000000</span> <span class="number">00</span>:<span class="number">00</span> <span class="number">0</span>                                  [heap]</span><br><span class="line"><span class="number">6</span>cba00000-<span class="number">76e900000</span> rw-p <span class="number">00000000</span> <span class="number">00</span>:<span class="number">00</span> <span class="number">0</span></span><br><span class="line"><span class="number">76e900000</span>-<span class="number">7</span>c0000000 rw-p <span class="number">00000000</span> <span class="number">00</span>:<span class="number">00</span> <span class="number">0</span></span><br><span class="line"><span class="number">7</span>c0000000-<span class="number">7</span>c0200000 rw-p <span class="number">00000000</span> <span class="number">00</span>:<span class="number">00</span> <span class="number">0</span></span><br><span class="line"><span class="number">7</span>c0200000-<span class="number">800000000</span> ---p <span class="number">00000000</span> <span class="number">00</span>:<span class="number">00</span> <span class="number">0</span></span><br><span class="line"><span class="number">7f</span>78a4000000-<span class="number">7f</span>78a7001000 rw-p <span class="number">00000000</span> <span class="number">00</span>:<span class="number">00</span> <span class="number">0</span></span><br><span class="line"><span class="number">7f</span>78a7001000-<span class="number">7f</span>78a8000000 ---p <span class="number">00000000</span> <span class="number">00</span>:<span class="number">00</span> <span class="number">0</span></span><br><span class="line"><span class="number">7f</span>78a8000000-<span class="number">7f</span>78ab001000 rw-p <span class="number">00000000</span> <span class="number">00</span>:<span class="number">00</span> <span class="number">0</span></span><br><span class="line"><span class="number">7f</span>78ab001000-<span class="number">7f</span>78ac000000 ---p <span class="number">00000000</span> <span class="number">00</span>:<span class="number">00</span> <span class="number">0</span></span><br><span class="line"><span class="number">7f</span>78ac000000-<span class="number">7f</span>78af001000 rw-p <span class="number">00000000</span> <span class="number">00</span>:<span class="number">00</span> <span class="number">0</span></span><br><span class="line"><span class="number">7f</span>78af001000-<span class="number">7f</span>78b0000000 ---p <span class="number">00000000</span> <span class="number">00</span>:<span class="number">00</span> <span class="number">0</span></span><br><span class="line"><span class="number">7f</span>78b0000000-<span class="number">7f</span>78b3001000 rw-p <span class="number">00000000</span> <span class="number">00</span>:<span class="number">00</span> <span class="number">0</span></span><br><span class="line">.........</span><br></pre></td></tr></table></figure>
+<p>这些信息是虚拟机崩溃时的虚拟内存列表区域。它可以告诉你崩溃原因时哪些类库正在被使用，位置在哪里，还有堆栈和守护页信息。</p>
+<ul>
+<li>00400000-00401000：内存区域</li>
+<li>r-xp：权限，r/w/x/p/s分别表示读/写/执行/私有/共享</li>
+<li>00000000：文件内的偏移量</li>
+</ul>
+<h4 id="jvm-启动参数"><a href="#jvm-启动参数" class="headerlink" title="jvm 启动参数"></a>jvm 启动参数</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">VM Arguments:</span><br><span class="line">java_command: server-v1.0.jar -d /data/wave/wzm/out3/<span class="number">2018</span>-<span class="number">02</span>/ -s <span class="number">172.18</span>.20.215 -t wave201802</span><br><span class="line">java_class_path (initial): server-v1.0.jar</span><br><span class="line">Launcher Type: SUN_STANDARD</span><br><span class="line"></span><br><span class="line">Environment Variables:</span><br><span class="line">JAVA_HOME=/usr/java/jdk1.8.0_171</span><br><span class="line">JRE_HOME=/usr/java/jdk1.8.0_171/jre</span><br><span class="line">CLASSPATH=.:/usr/java/jdk1.8.0_171/lib/dt.jar:/usr/java/jdk1.8.0_171/lib/tools.jar:/usr/java/jdk1.8.0_171/jre/lib</span><br><span class="line">PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/java/jdk1.8.0_171/bin:/usr/java/jdk1.8.0_171/jre/bin:/root/bin</span><br><span class="line">SHELL=/bin/bash</span><br></pre></td></tr></table></figure>
+<p>jvm 虚拟机参数和环境变量</p>
+<h4 id="服务器信息"><a href="#服务器信息" class="headerlink" title="服务器信息"></a>服务器信息</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">---------------  S Y S T E M  ---------------</span><br><span class="line"></span><br><span class="line">OS:CentOS Linux release <span class="number">7.4</span>.1708 (Core)</span><br><span class="line"></span><br><span class="line">uname:Linux 3.10.0-693.el7.x86_64 #1 SMP Tue Aug 22 21:09:27 UTC 2017 x86_64</span><br><span class="line">libc:glibc <span class="number">2.17</span> NPTL <span class="number">2.17</span></span><br><span class="line">rlimit: STACK <span class="number">8192</span>k, CORE <span class="number">0</span>k, NPROC <span class="number">62424</span>, NOFILE <span class="number">102400</span>, AS infinity</span><br><span class="line">load average:<span class="number">19.77</span> <span class="number">19.23</span> <span class="number">14.25</span></span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.jianshu.com/p/7652f931cafd" target="_blank" rel="noopener">https://www.jianshu.com/p/7652f931cafd</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+    <div>
+        
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+     
+    </div>
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="songjiantao 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    songjiantao
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/03/11/JVM致命错误日志hs-err-pid-log分析/" title="JVM致命错误日志hs_err_pid.log分析">http://yoursite.com/2019/03/11/JVM致命错误日志hs-err-pid-log分析/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JVM/" rel="tag"># JVM</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/11/Java之内部类/" rel="next" title="Java之内部类">
+                <i class="fa fa-chevron-left"></i> Java之内部类
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+   
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/15856742?s=400"
+                alt="songjiantao" />
+            
+              <p class="site-author-name" itemprop="name">songjiantao</p>
+              <p class="site-description motion-element" itemprop="description">生活不应当只有眼前的苟且，还有诗和远方，与其用泪水忏悔昨天，不如用汗水拼搏明天．</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sjt157" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1872963677@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/song-jian-tao-82" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+    <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=558458785&auto=1&height=66"></iframe>
+    </div>
+ 
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018-3-8 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songjiantao</span>
+
+  
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+   <div class="bg_content">
+    <canvas id="canvas"></canvas>
+   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'spv7r9cfhkwcTbTSRWBwCvAx-gzGzoHsz',
+        appKey: 'cN59JvEEU10QfUffybuDd4ai',
+        placeholder: '轻轻地来，留下一句话再轻轻地走吧！~~',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("XbebmEYzcC5xK6pt32pG6Wu9-gzGzoHsz", "iwAHCTEI8zqrflOEjkSucSnU");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 10113,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascripr" src="/js/src/zhihu.js"></script>
