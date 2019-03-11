@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-11T11:13:30.525Z</updated>
+  <updated>2019-03-11T11:36:16.612Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Epoll模型</title>
+    <link href="http://yoursite.com/2019/03/11/Epoll%E6%A8%A1%E5%9E%8B/"/>
+    <id>http://yoursite.com/2019/03/11/Epoll模型/</id>
+    <published>2019-03-11T11:35:43.000Z</published>
+    <updated>2019-03-11T11:36:16.612Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;select-VS-epoll&quot;&gt;&lt;a href=&quot;#select-VS-epoll&quot; class=&quot;headerlink&quot; title=&quot;select VS epoll&quot;&gt;&lt;/a&gt;select VS
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Dubbo如何支持异步调用？</title>
@@ -511,32 +537,6 @@
     
     
       <category term="Netty" scheme="http://yoursite.com/tags/Netty/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MYSQL之binlog</title>
-    <link href="http://yoursite.com/2019/01/18/MYSQL%E4%B9%8Bbinlog/"/>
-    <id>http://yoursite.com/2019/01/18/MYSQL之binlog/</id>
-    <published>2019-01-18T12:58:21.000Z</published>
-    <updated>2019-01-18T13:04:24.067Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;什么是binlog&quot;&gt;&lt;a href=&quot;#什么是binlog&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Mysql" scheme="http://yoursite.com/categories/Mysql/"/>
-    
-    
-      <category term="Mysql" scheme="http://yoursite.com/tags/Mysql/"/>
     
   </entry>
   
