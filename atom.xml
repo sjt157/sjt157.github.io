@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-11T05:00:04.098Z</updated>
+  <updated>2019-03-11T07:23:33.321Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java之ThreadLocal</title>
+    <link href="http://yoursite.com/2019/03/11/Java%E4%B9%8BThreadLocal/"/>
+    <id>http://yoursite.com/2019/03/11/Java之ThreadLocal/</id>
+    <published>2019-03-11T06:58:14.000Z</published>
+    <updated>2019-03-11T07:23:33.321Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;什么是ThreadLocal&quot;&gt;&lt;a href=&quot;#什么是ThreadLocal&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker之seccomp</title>
@@ -515,33 +541,6 @@
     
     
       <category term="Git" scheme="http://yoursite.com/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mysql之s_profiling</title>
-    <link href="http://yoursite.com/2019/01/18/Mysql%E4%B9%8Bs-profiling/"/>
-    <id>http://yoursite.com/2019/01/18/Mysql之s-profiling/</id>
-    <published>2019-01-18T03:41:57.000Z</published>
-    <updated>2019-01-18T03:42:39.797Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;今天在听Cetus课程的时候，看到了老师说了set profiling=1； 并不知道这是干什么的，来记录一下。&lt;/p&gt;
-&lt;p&gt;Query Profiler 来定位一条 Query 的性能瓶颈，这里我们再详细介绍一下 Profiling
-        
-      
-    
-    </summary>
-    
-      <category term="Mysql" scheme="http://yoursite.com/categories/Mysql/"/>
-    
-    
-      <category term="Mysql" scheme="http://yoursite.com/tags/Mysql/"/>
     
   </entry>
   
