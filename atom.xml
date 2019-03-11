@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-02-22T09:45:27.149Z</updated>
+  <updated>2019-03-11T02:48:30.449Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>你知道CoreDump吗？</title>
+    <link href="http://yoursite.com/2019/03/11/%E4%BD%A0%E7%9F%A5%E9%81%93CoreDump%E5%90%97%EF%BC%9F/"/>
+    <id>http://yoursite.com/2019/03/11/你知道CoreDump吗？/</id>
+    <published>2019-03-11T02:26:28.000Z</published>
+    <updated>2019-03-11T02:48:30.449Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;什么是core-dump文件&quot;&gt;&lt;a href=&quot;#什么是core-dump文件&quot; class=&quot;headerlink&quot; title=&quot;什么是core dump文件&quot;&gt;&lt;/a&gt;什么是core dump文件&lt;/h3&gt;&lt;p&gt;Core
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>docker-compose的问题</title>
@@ -517,32 +543,6 @@
     
     
       <category term="Zookeeper" scheme="http://yoursite.com/tags/Zookeeper/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>你了解Node.js吗？</title>
-    <link href="http://yoursite.com/2019/01/17/%E4%BD%A0%E4%BA%86%E8%A7%A3Node-js%E5%90%97%EF%BC%9F/"/>
-    <id>http://yoursite.com/2019/01/17/你了解Node-js吗？/</id>
-    <published>2019-01-17T02:57:46.000Z</published>
-    <updated>2019-01-17T02:59:26.567Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;如果你去年注意过技术方面的新闻，我敢说你至少看到node.js不下一两次。那么问题来了“node.js是什么？”。有些人没准会告诉你“这是一种通过JavaScript语言开发web服务端的东西”。如果这种晦涩解释还没把你搞晕，你没准会接着问：“为什么我们要用node.js？
-        
-      
-    
-    </summary>
-    
-      <category term="Node.js" scheme="http://yoursite.com/categories/Node-js/"/>
-    
-    
-      <category term="Node.js" scheme="http://yoursite.com/tags/Node-js/"/>
     
   </entry>
   
