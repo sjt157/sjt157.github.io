@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-11T03:38:42.357Z</updated>
+  <updated>2019-03-11T03:50:11.242Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>用户态与内核态</title>
+    <link href="http://yoursite.com/2019/03/11/%E7%94%A8%E6%88%B7%E6%80%81%E4%B8%8E%E5%86%85%E6%A0%B8%E6%80%81/"/>
+    <id>http://yoursite.com/2019/03/11/用户态与内核态/</id>
+    <published>2019-03-11T03:42:47.000Z</published>
+    <updated>2019-03-11T03:50:11.242Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;内核态与用户态&quot;&gt;&lt;a href=&quot;#内核态与用户态&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>分布式锁</title>
@@ -516,33 +542,6 @@
     
     
       <category term="Mysql" scheme="http://yoursite.com/tags/Mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>读《码出高效》笔记</title>
-    <link href="http://yoursite.com/2019/01/17/%E8%AF%BB%E3%80%8A%E7%A0%81%E5%87%BA%E9%AB%98%E6%95%88%E3%80%8B%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2019/01/17/读《码出高效》笔记/</id>
-    <published>2019-01-17T03:26:31.000Z</published>
-    <updated>2019-01-17T03:28:56.319Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;基于 0与1的信号处理为我们带来了缤纷多彩的计算机世界，随着基础材料和信 号处理技术的发展，未来计算机能够处理的基础信号将不仅仅是二进制信息。比如， 三进制（ 高电平、低电平、断电），甚至十进制信息，届时计算机世界又会迎来一次
-        
-      
-    
-    </summary>
-    
-      <category term="Books" scheme="http://yoursite.com/categories/Books/"/>
-    
-    
-      <category term="Books" scheme="http://yoursite.com/tags/Books/"/>
     
   </entry>
   
