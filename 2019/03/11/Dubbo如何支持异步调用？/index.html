@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Architecture," />
+  <meta name="keywords" content="Dubbo," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="响应式编程？其实说白了，和传统的编程方式没什么区别，都是一些函数调用，只不过是增加了很多适配模式等。响应式编程的英文名，Reactive Programming，那就是针对响应的呗。那啥叫响应呢？你烧水呢，水烧开了，水壶会叫，这就是一下响应了。不要想的太复杂，这些东西都是基于现实世界的需要而来的。响应式它是依赖于事件的，响应式的代码它的运行不是按代码的顺序，而是跟多个按时间发生的事件有关。可能你会">
-<meta name="keywords" content="Architecture">
+<meta name="description" content="为什么异步？异步化的好处也是比较明显的，可以加快后台的处理效率，做到代码直接的解耦，Dubbo就是一个支持异步调用的RPC框架。 在Dubbo中使用异步 异步调用的场景  假设系统A，远程调用B系统的某个方法，这个方法与数据库的交互很多，逻辑相对复杂，正常的代码执行的时间是3秒，A系统调用完B系统之后，还需要做一些其他的逻辑操作，这个代码耗时可能需要4秒，等这个3秒的逻辑做完之后，根据B系统返回的">
+<meta name="keywords" content="Dubbo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="你了解响应式编程吗？">
-<meta property="og:url" content="http://yoursite.com/2019/01/17/你了解响应式编程吗？/index.html">
+<meta property="og:title" content="Dubbo如何支持异步调用？">
+<meta property="og:url" content="http://yoursite.com/2019/03/11/Dubbo如何支持异步调用？/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="响应式编程？其实说白了，和传统的编程方式没什么区别，都是一些函数调用，只不过是增加了很多适配模式等。响应式编程的英文名，Reactive Programming，那就是针对响应的呗。那啥叫响应呢？你烧水呢，水烧开了，水壶会叫，这就是一下响应了。不要想的太复杂，这些东西都是基于现实世界的需要而来的。响应式它是依赖于事件的，响应式的代码它的运行不是按代码的顺序，而是跟多个按时间发生的事件有关。可能你会">
+<meta property="og:description" content="为什么异步？异步化的好处也是比较明显的，可以加快后台的处理效率，做到代码直接的解耦，Dubbo就是一个支持异步调用的RPC框架。 在Dubbo中使用异步 异步调用的场景  假设系统A，远程调用B系统的某个方法，这个方法与数据库的交互很多，逻辑相对复杂，正常的代码执行的时间是3秒，A系统调用完B系统之后，还需要做一些其他的逻辑操作，这个代码耗时可能需要4秒，等这个3秒的逻辑做完之后，根据B系统返回的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-17T02:49:36.304Z">
+<meta property="og:updated_time" content="2019-03-11T11:13:30.525Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="你了解响应式编程吗？">
-<meta name="twitter:description" content="响应式编程？其实说白了，和传统的编程方式没什么区别，都是一些函数调用，只不过是增加了很多适配模式等。响应式编程的英文名，Reactive Programming，那就是针对响应的呗。那啥叫响应呢？你烧水呢，水烧开了，水壶会叫，这就是一下响应了。不要想的太复杂，这些东西都是基于现实世界的需要而来的。响应式它是依赖于事件的，响应式的代码它的运行不是按代码的顺序，而是跟多个按时间发生的事件有关。可能你会">
+<meta name="twitter:title" content="Dubbo如何支持异步调用？">
+<meta name="twitter:description" content="为什么异步？异步化的好处也是比较明显的，可以加快后台的处理效率，做到代码直接的解耦，Dubbo就是一个支持异步调用的RPC框架。 在Dubbo中使用异步 异步调用的场景  假设系统A，远程调用B系统的某个方法，这个方法与数据库的交互很多，逻辑相对复杂，正常的代码执行的时间是3秒，A系统调用完B系统之后，还需要做一些其他的逻辑操作，这个代码耗时可能需要4秒，等这个3秒的逻辑做完之后，根据B系统返回的">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/17/你了解响应式编程吗？/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/11/Dubbo如何支持异步调用？/"/>
 
 
 
 
 
-  <title>你了解响应式编程吗？ | 诗与远方</title>
+  <title>Dubbo如何支持异步调用？ | 诗与远方</title>
   
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/17/你了解响应式编程吗？/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/Dubbo如何支持异步调用？/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songjiantao">
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">你了解响应式编程吗？</h1>
+          <h1 class="post-title" itemprop="name headline">Dubbo如何支持异步调用？</h1>
         
 
         <div class="post-meta">
@@ -338,8 +338,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-17T10:47:27+08:00">
-                2019-01-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-11T19:12:49+08:00">
+                2019-03-11
               </time>
             
 
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-17T10:49:36+08:00">
-                2019-01-17
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-11T19:13:30+08:00">
+                2019-03-11
               </time>
             
           </span>
@@ -373,8 +373,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Architecture/" itemprop="url" rel="index">
-                    <span itemprop="name">Architecture</span>
+                  <a href="/categories/Dubbo/" itemprop="url" rel="index">
+                    <span itemprop="name">Dubbo</span>
                   </a>
                 </span>
 
@@ -391,8 +391,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/17/你了解响应式编程吗？/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/17/你了解响应式编程吗？/" itemprop="commentCount"></span>
+                <a href="/2019/03/11/Dubbo如何支持异步调用？/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/11/Dubbo如何支持异步调用？/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -400,7 +400,7 @@
 
           
           
-             <span id="/2019/01/17/你了解响应式编程吗？/" class="leancloud_visitors" data-flag-title="你了解响应式编程吗？">
+             <span id="/2019/03/11/Dubbo如何支持异步调用？/" class="leancloud_visitors" data-flag-title="Dubbo如何支持异步调用？">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -432,26 +432,33 @@
       
 
       
-        <h3 id="响应式编程？"><a href="#响应式编程？" class="headerlink" title="响应式编程？"></a>响应式编程？</h3><p>其实说白了，和传统的编程方式没什么区别，都是一些函数调用，只不过是增加了很多适配模式等。<br>响应式编程的英文名，Reactive Programming，那就是针对响应的呗。那啥叫响应呢？你烧水呢，水烧开了，水壶会叫，这就是一下响应了。不要想的太复杂，这些东西都是基于现实世界的需要而来的。<br>响应式它是依赖于事件的，响应式的代码它的运行不是按代码的顺序，而是跟多个按时间发生的事件有关。可能你会想，依赖事件？这不就是“回调”嘛，但在响应式编程里，这些按时间排列的事件，被称为“流”，stream。</p>
-<p>简单的讲，响应式中的事件序列类似于js的数组，它里面的事件流就是时间的序列。<br>响应式编程，就是异步的数据流的开发。<br>响应式编程，它的关注重点在于“大量的UI事件与数据的互相影响”。啥意思呢，就例如某篇文章，你点个赞，那么一、所有其它人能看到赞；二、作者本人赞数量增加；三、文章权重提升；四、作者排名可能变化；。。。更多，“一个数据的变化，它的影响可能是呈现网状扩散”。<br>它的特点吧，一是速度响应快，低延迟；二是健壮性弹性，有故障也能尽量响应；三是资源弹性，访问量大自动加资源，少了自动减；四是有消息自动传递。<br>响应式的思想，实际是观察者模式 + （stream与事件源的通信控制）。</p>
-<h3 id="函数式编程？"><a href="#函数式编程？" class="headerlink" title="函数式编程？"></a>函数式编程？</h3><p>函数式编程是一系列被不公平对待的编程思想的保护伞，它的核心思想是，它是一种将程序看成是数学方法的求值、不会改变状态、不会产生副作用（后面我们马上会谈到）的编程方式。</p>
-<p>FP 核心思想强调：</p>
-<p>声明式代码 —— 程序员应该关心是什么，让编译器和运行环境去关心怎样做。</p>
-<p>明确性 —— 代码应该尽可能的明显。尤其是要隔离副作用避免意外。要明确定义数据流和错误处理，要避免 GOTO 语句和 异常，因为它们会将应用置于意外的状态。</p>
-<p>并发 —— 因为纯函数的概念，大多数函数式代码默认都是并行的。由于CPU运行速度没有像以前那样逐年加快（(详见 摩尔定律)）， 普遍看来这个特点导致函数式编程渐受欢迎。以及我们也必须利用多核架构的优点，让代码尽量的可并行。</p>
-<p>高阶函数 —— 函数和其他的语言基本元素一样是一等公民。你可以像使用 string 和 int 一样的去传递函数。</p>
-<p>不变性 —— 变量一经初始化将不能修改。一经创建，永不改变。如果需要改变，需要创建新的。这是明确性和避免副作用之外的另一方面。如果你知道一个变量不能改变，当你使用时会对它的状态更有信心。</p>
-<p>函数式编程：JS、Scala、Erlang</p>
-<h3 id="响应式编程与函数式编程的区别？"><a href="#响应式编程与函数式编程的区别？" class="headerlink" title="响应式编程与函数式编程的区别？"></a>响应式编程与函数式编程的区别？</h3><p>它和函数式编程的区别，这个简单的说一下，函数式编程就是二个字，“不变”。啥都不变，一经创建永远不变。如果要变，再创建个新的。在它里面函数就是数据的通道。参数确定时，结果是可以预测的。</p>
-<p>##更进一步</p>
-<h3 id="怎么理解响应式的背压？"><a href="#怎么理解响应式的背压？" class="headerlink" title="怎么理解响应式的背压？"></a>怎么理解响应式的背压？</h3><p>可以理解为承上启下。比如洪水，大坝的作用就是背压。背压应该写在靠近生产者的地方，或者说是连接元素生产者和消费者的一个地方，即生产者和消费者的连线者。背压应该具有承载元素的能力，也就是其必须是一个容器的，而且元素的存储与下发应该具有先后的，可以使用队列来实现。<br>打一个比喻：去电影院看电影，我们作为消费者消费电影，电影厂商提供生产电影，电影院负责下发电影，电影院作为生产者与消费者之间的连线者，我们不需要关心电影院会放映多少电影，我们只需要观看就行了。</p>
-<h3 id="怎么理解阻塞和异步？"><a href="#怎么理解阻塞和异步？" class="headerlink" title="怎么理解阻塞和异步？"></a>怎么理解阻塞和异步？</h3><p>咖啡很烫，不能喝，只能等到冷却，这个冷却就作为了阻塞，因为其占据了一条线程，但我们可以看电视，也就是说你阻塞你的 ，但是我仍然可以看电视。看电视是主线程。于是异步就出现了，涉及到异步，就涉及到线程的状态。<br>既然阻塞要占据一条线程来工作，那么必然会有线程状态的管理。</p>
-<p>非阻塞更多体现在等待层面，现实中我们等一个人，往往都是由时间限制的，难道我们要用一生的时间去街口等待一个人而荒废一生？总有跳出阻塞的路子。在nio里就是timeout。</p>
-<p>我们讲的非阻塞都是相对的，具体某个任务该阻塞还是得阻塞。</p>
-<h3 id="Socket下同步-异步和阻塞-非阻塞"><a href="#Socket下同步-异步和阻塞-非阻塞" class="headerlink" title="Socket下同步/异步和阻塞/非阻塞:"></a>Socket下同步/异步和阻塞/非阻塞:</h3><p>同步/异步是属于操作系统级别的，指的是操作系统在收到程序请求的IO之后，如果IO资源没有准备好的话，该如何响应程序的问题，同步的话就是不响应，直到IO资源准备好；而异步的话则会返回给程序一个标志，这个标志用于当IO资源准备好后通过事件机制发送的内容应该发到什么地方。</p>
-<p>阻塞/非阻塞是属于程序级别的，指的是程序在请求操作系统进行IO操作时，如果IO资源没有准备好的话，程序该怎么处理的问题，阻塞的话就是程序什么都不做，一直等到IO资源准备好，非阻塞的话程序则继续运行，但是会时不时的去查看下IO到底准备好没有呢；</p>
-<p>我们通常见到的BIO是同步阻塞式的，同步的话说明操作系统底层是一直等待IO资源准备直到ok的，阻塞的话是程序本身也在一直等待IO资源准备直到ok，具体来讲程序级别的阻塞就是accept和read造成的，我们可以通过改造将其变成非阻塞式，但是操作系统层次的阻塞我们没法改变。</p>
-<p>我们的NIO是同步非阻塞式的，其实它的非阻塞实现原理和我们上面的讲解差不多的，就是为了改善accept和read方法带来的阻塞现象，所以引入了Channel和Buffer的概念。 </p>
+        <h3 id="为什么异步？"><a href="#为什么异步？" class="headerlink" title="为什么异步？"></a>为什么异步？</h3><p>异步化的好处也是比较明显的，可以加快后台的处理效率，做到代码直接的解耦，Dubbo就是一个支持异步调用的RPC框架。</p>
+<h3 id="在Dubbo中使用异步"><a href="#在Dubbo中使用异步" class="headerlink" title="在Dubbo中使用异步"></a>在Dubbo中使用异步</h3><ul>
+<li>异步调用的场景</li>
+</ul>
+<p>假设系统A，远程调用B系统的某个方法，这个方法与数据库的交互很多，逻辑相对复杂，<br>正常的代码执行的时间是3秒，A系统调用完B系统之后，还需要做一些其他的逻辑操作，<br>这个代码耗时可能需要4秒，等这个3秒的逻辑做完之后，根据B系统返回的结果再做一些其他的操作，<br>那么同步调用的时间是3秒+4秒 = 7秒，那么一次操作的时间就是7秒</p>
+<ul>
+<li>同步调用的实现：</li>
+</ul>
+<p>接口实现（provider和consumer端都需要）<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> org.bazinga.service;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AsyncInvokeService</span> </span>&#123;  </span><br><span class="line">      </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getResult</span><span class="params">()</span></span>;  </span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>接口实现，我们默认线程sleep三秒，3秒代表代码复杂的逻辑操作和数据库的交互的时间<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> org.bazinga.service.impl;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">import</span> org.bazinga.service.AsyncInvokeService;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AsyncInvokeServiceImpl</span> <span class="keyword">implements</span> <span class="title">AsyncInvokeService</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getResult</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">          </span><br><span class="line">        <span class="keyword">try</span> &#123;  </span><br><span class="line">            Thread.sleep(<span class="number">3000l</span>); <span class="comment">//模拟复杂的逻辑操作时间和数据库交互的时间消耗  </span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;  </span><br><span class="line">            e.printStackTrace();  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在不开启异步调用的配置的时候，spring的配置文件和普通配置是一样的spring-dubbo-provider-async.xml，<br>需要注意的是我们线程故意睡了3秒，这边我们配置timeout的时间为4秒，否则就会调用超时：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;?xml version="1.1" encoding="UTF-8"?&gt;  </span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span>  </span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="attr">xmlns:dubbo</span>=<span class="string">"http://code.alibabatech.com/schema/dubbo"</span>  </span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans    </span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/beans/spring-beans.xsd    </span></span></span><br><span class="line"><span class="tag"><span class="string">       http://code.alibabatech.com/schema/dubbo    </span></span></span><br><span class="line"><span class="tag"><span class="string">       http://code.alibabatech.com/schema/dubbo/dubbo.xsd"</span>&gt;</span>  </span><br><span class="line">         </span><br><span class="line">    <span class="tag">&lt;<span class="name">dubbo:application</span> <span class="attr">owner</span>=<span class="string">"lyncc"</span> <span class="attr">name</span>=<span class="string">"bazinga-app"</span> /&gt;</span>  </span><br><span class="line">    <span class="comment">&lt;!--zookeeper注册中心 --&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">dubbo:registry</span> <span class="attr">protocol</span>=<span class="string">"zookeeper"</span> <span class="attr">address</span>=<span class="string">"127.0.0.1:2181"</span>/&gt;</span>   </span><br><span class="line">      </span><br><span class="line">    <span class="tag">&lt;<span class="name">dubbo:protocol</span> <span class="attr">name</span> =<span class="string">"dubbo"</span> <span class="attr">port</span>=<span class="string">"20880"</span> /&gt;</span>  </span><br><span class="line">    <span class="comment">&lt;!-- 发布这个服务  调用超时是4秒，支持异步调用--&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">dubbo:service</span>  <span class="attr">protocol</span>=<span class="string">"dubbo"</span>  <span class="attr">timeout</span>=<span class="string">"4000"</span>  <span class="attr">interface</span> =<span class="string">"org.bazinga.service.AsyncInvokeService"</span> <span class="attr">ref</span>=<span class="string">"asyncInvokeService"</span>/&gt;</span>         </span><br><span class="line">    <span class="comment">&lt;!-- 和本地bean一样实现服务 --&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"asyncInvokeService"</span> <span class="attr">class</span>=<span class="string">"org.bazinga.service.impl.AsyncInvokeServiceImpl"</span> /&gt;</span>  </span><br><span class="line">      </span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>消费端的spring配置文件spring-dubbo-consumer-async.xml：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;?xml version="1.1" encoding="UTF-8"?&gt;  </span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span>  </span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="attr">xmlns:dubbo</span>=<span class="string">"http://code.alibabatech.com/schema/dubbo"</span>  </span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans    </span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/beans/spring-beans.xsd    </span></span></span><br><span class="line"><span class="tag"><span class="string">       http://code.alibabatech.com/schema/dubbo    </span></span></span><br><span class="line"><span class="tag"><span class="string">       http://code.alibabatech.com/schema/dubbo/dubbo.xsd"</span>&gt;</span>  </span><br><span class="line">         </span><br><span class="line">    <span class="tag">&lt;<span class="name">dubbo:application</span> <span class="attr">owner</span>=<span class="string">"lyncc"</span> <span class="attr">name</span>=<span class="string">"bazinga-consumer"</span> /&gt;</span>  </span><br><span class="line">    <span class="comment">&lt;!--zookeeper注册中心 --&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">dubbo:registry</span> <span class="attr">protocol</span>=<span class="string">"zookeeper"</span> <span class="attr">address</span>=<span class="string">"127.0.0.1:2181"</span>/&gt;</span>   </span><br><span class="line">      </span><br><span class="line">    <span class="tag">&lt;<span class="name">dubbo:reference</span> <span class="attr">id</span>=<span class="string">"asyncInvokeService"</span> <span class="attr">interface</span>=<span class="string">"org.bazinga.service.AsyncInvokeService"</span>/&gt;</span>   </span><br><span class="line">      </span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>服务提供者端的测试类：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> org.bazinga.service.test;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DubboxProviderAsyncService</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;  </span><br><span class="line">        ClassPathXmlApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(  </span><br><span class="line">                <span class="string">"spring-dubbo-provider-async.xml"</span>);  </span><br><span class="line">        context.start();  </span><br><span class="line">        Thread.sleep(<span class="number">2000000l</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>服务消费者端的测试类：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> org.bazinga.service.test;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">import</span> org.bazinga.service.AsyncInvokeService;  </span><br><span class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DubboConsumerAsyncService</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;  </span><br><span class="line">        ClassPathXmlApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(  </span><br><span class="line">                <span class="string">"spring-dubbo-consumer-async.xml"</span>);  </span><br><span class="line">        context.start();  </span><br><span class="line">  </span><br><span class="line">        <span class="keyword">long</span> beginTime = System.currentTimeMillis();  </span><br><span class="line">  </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> count = <span class="number">0</span>; count &lt; <span class="number">10</span>; count++) &#123; <span class="comment">// 调用10次  </span></span><br><span class="line">             AsyncInvokeService asyncInvokeService =  </span><br><span class="line">             (AsyncInvokeService)context.getBean(<span class="string">"asyncInvokeService"</span>);  </span><br><span class="line">             Integer result = asyncInvokeService.getResult(); <span class="comment">//wait 返回结果 等待3秒  </span></span><br><span class="line">              </span><br><span class="line">             Thread.sleep(<span class="number">4000l</span>); <span class="comment">//模拟本地复杂的逻辑操作，耗时4秒  </span></span><br><span class="line">              </span><br><span class="line">             Integer localcalcResult = <span class="number">2</span>;<span class="comment">//本地经过4秒处理得到的计算数据是2  </span></span><br><span class="line">              </span><br><span class="line">             System.out.println(result + localcalcResult);<span class="comment">//根据远程调用返回的结果和本地操作的值，得到结果集  </span></span><br><span class="line">  </span><br><span class="line">        &#125;  </span><br><span class="line">        System.out.println(<span class="string">"call 10 times,cost time is "</span>  </span><br><span class="line">                + (System.currentTimeMillis() - beginTime));  </span><br><span class="line">  </span><br><span class="line">        Thread.sleep(<span class="number">2000000l</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>先启动DubboxProviderAsyncService，然后再启动DubboConsumerAsyncService的main函数：</p>
+<p>消费端的控制台打印信息是：<br>运行没有问题，但是调用10次，一共耗时71秒，假如改成异步调用，我们不需要等待调用返回的结果，而是在用的时候，再去获取值的话，这样会大大的提高执行的速度</p>
+<ul>
+<li>异步调用实现</li>
+</ul>
+<p>异步调用的实现，很简单，现在我们修改一下配置文件，使其支持异步调用，其实配置相对比较简单，只需要在调用端的spring的配置文件中加上async=”true”,注意一定是在调用端配置该关键字，异步调用，顾名思义，就是需要告之调用者，调用之后不需要等待（Note：修改的是调用的spring配置文件spring-dubbo-consumer-async.xml）<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;?xml version="1.1" encoding="UTF-8"?&gt;  </span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span>  </span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="attr">xmlns:dubbo</span>=<span class="string">"http://code.alibabatech.com/schema/dubbo"</span>  </span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans    </span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/beans/spring-beans.xsd    </span></span></span><br><span class="line"><span class="tag"><span class="string">       http://code.alibabatech.com/schema/dubbo    </span></span></span><br><span class="line"><span class="tag"><span class="string">       http://code.alibabatech.com/schema/dubbo/dubbo.xsd"</span>&gt;</span>  </span><br><span class="line">         </span><br><span class="line">    <span class="tag">&lt;<span class="name">dubbo:application</span> <span class="attr">owner</span>=<span class="string">"lyncc"</span> <span class="attr">name</span>=<span class="string">"bazinga-consumer"</span> /&gt;</span>  </span><br><span class="line">    <span class="comment">&lt;!--zookeeper注册中心 --&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">dubbo:registry</span> <span class="attr">protocol</span>=<span class="string">"zookeeper"</span> <span class="attr">address</span>=<span class="string">"127.0.0.1:2181"</span>/&gt;</span>   </span><br><span class="line">      </span><br><span class="line">    <span class="tag">&lt;<span class="name">dubbo:reference</span> <span class="attr">id</span>=<span class="string">"asyncInvokeService"</span> <span class="attr">interface</span>=<span class="string">"org.bazinga.service.AsyncInvokeService"</span> <span class="attr">async</span>=<span class="string">"true"</span>/&gt;</span>   </span><br><span class="line">      </span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>其实就是加了一个标签的支持，async=”true”，这样就支持了异步的调用了</p>
+<p>修改消费者的测试代码，配置文件的修改只是告诉Dubbo，调用者会进行异步调用，但如何异步调用，还是需要调用者自己去实现的，实现依赖于RpcContext：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> org.bazinga.service.test;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Future;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">import</span> org.bazinga.service.AsyncInvokeService;  </span><br><span class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.rpc.RpcContext;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DubboConsumerAsyncService</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;  </span><br><span class="line">        ClassPathXmlApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(  </span><br><span class="line">                <span class="string">"spring-dubbo-consumer-async.xml"</span>);  </span><br><span class="line">        context.start();  </span><br><span class="line">  </span><br><span class="line">        <span class="keyword">long</span> beginTime = System.currentTimeMillis();  </span><br><span class="line">  </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> count = <span class="number">0</span>; count &lt; <span class="number">10</span>; count++) &#123; <span class="comment">// 调用10次  </span></span><br><span class="line"><span class="comment">//           AsyncInvokeService asyncInvokeService =  </span></span><br><span class="line"><span class="comment">//           (AsyncInvokeService)context.getBean("asyncInvokeService");  </span></span><br><span class="line"><span class="comment">//           Integer result = asyncInvokeService.getResult(); //wait 返回结果 等待3秒  </span></span><br><span class="line"><span class="comment">//            </span></span><br><span class="line"><span class="comment">//           Thread.sleep(4000l); //模拟本地复杂的逻辑操作，耗时4秒  </span></span><br><span class="line"><span class="comment">//            </span></span><br><span class="line"><span class="comment">//           Integer localcalcResult = 2;//本地经过4秒处理得到的计算数据是2  </span></span><br><span class="line"><span class="comment">//            </span></span><br><span class="line"><span class="comment">//           System.out.println(result + localcalcResult);//根据远程调用返回的结果和本地操作的值，得到结果集  </span></span><br><span class="line">               </span><br><span class="line">            AsyncInvokeService asyncInvokeService = (AsyncInvokeService) context  </span><br><span class="line">            .getBean(<span class="string">"asyncInvokeService"</span>);  </span><br><span class="line">            Integer remotingResult = asyncInvokeService.getResult(); <span class="comment">// 不等待  </span></span><br><span class="line">              </span><br><span class="line">            Thread.sleep(<span class="number">4000l</span>); <span class="comment">// 模拟本地复杂的逻辑操作，耗时4秒  </span></span><br><span class="line">              </span><br><span class="line">            Future&lt;Integer&gt; future = RpcContext.getContext().getFuture();  </span><br><span class="line">            <span class="keyword">try</span> &#123;  </span><br><span class="line">            remotingResult = future.get();  </span><br><span class="line">            &#125; <span class="keyword">catch</span> (java.util.concurrent.ExecutionException e) &#123;  </span><br><span class="line">            e.printStackTrace();  </span><br><span class="line">              </span><br><span class="line">            &#125;  </span><br><span class="line">            Integer localcalcResult = <span class="number">2</span>;<span class="comment">// 本地经过4秒处理得到的计算数据是2  </span></span><br><span class="line">              </span><br><span class="line">            System.out.println(remotingResult + localcalcResult);<span class="comment">// 根据远程调用返回的结果和本地操作的值，得到结果集  </span></span><br><span class="line">  </span><br><span class="line">        &#125;  </span><br><span class="line">        System.out.println(<span class="string">"call 10 times,cost time is "</span>  </span><br><span class="line">                + (System.currentTimeMillis() - beginTime));  </span><br><span class="line">  </span><br><span class="line">        Thread.sleep(<span class="number">2000000l</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>关键代码就是：</p>
+<pre><code>`Integer remotingResult = asyncInvokeService.getResult(); // 不等待`  
+</code></pre><p>这行代码不会阻塞至服务提供者端把数据返回，而是直接返回，然后睡了4秒，这个4秒，模仿的是本地的逻辑操作，这是其实远程的逻辑也在执行，这样就可以并行操作了，最后调用：</p>
+<pre><code>`Future&lt;Integer&gt; future = RpcContext.getContext().getFuture(); ` 
+</code></pre><p>获取到远程调用异步返回的结果，完成最后的操作，我们可以看啊看控制台打印的结果：<br>可以看出结果没有变，仍旧是3，但是调用时间变成了41秒，异步调用的好处就可以显示出来了</p>
 
       
     </div>
@@ -506,7 +513,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2019/01/17/你了解响应式编程吗？/" title="你了解响应式编程吗？">http://yoursite.com/2019/01/17/你了解响应式编程吗？/</a>
+    <a href="http://yoursite.com/2019/03/11/Dubbo如何支持异步调用？/" title="Dubbo如何支持异步调用？">http://yoursite.com/2019/03/11/Dubbo如何支持异步调用？/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -521,7 +528,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Architecture/" rel="tag"># Architecture</a>
+            <a href="/tags/Dubbo/" rel="tag"># Dubbo</a>
           
         </div>
       
@@ -546,8 +553,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/17/文件锁/" rel="next" title="文件锁">
-                <i class="fa fa-chevron-left"></i> 文件锁
+              <a href="/2019/03/11/JVM致命错误日志hs-err-pid-log分析/" rel="next" title="JVM致命错误日志hs_err_pid.log分析">
+                <i class="fa fa-chevron-left"></i> JVM致命错误日志hs_err_pid.log分析
               </a>
             
           </div>
@@ -555,10 +562,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/17/你了解Node-js吗？/" rel="prev" title="你了解Node.js吗？">
-                你了解Node.js吗？ <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

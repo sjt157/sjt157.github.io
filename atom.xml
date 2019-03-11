@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-11T10:00:19.647Z</updated>
+  <updated>2019-03-11T11:13:30.525Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Dubbo如何支持异步调用？</title>
+    <link href="http://yoursite.com/2019/03/11/Dubbo%E5%A6%82%E4%BD%95%E6%94%AF%E6%8C%81%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8%EF%BC%9F/"/>
+    <id>http://yoursite.com/2019/03/11/Dubbo如何支持异步调用？/</id>
+    <published>2019-03-11T11:12:49.000Z</published>
+    <updated>2019-03-11T11:13:30.525Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;为什么异步？&quot;&gt;&lt;a href=&quot;#为什么异步？&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Dubbo" scheme="http://yoursite.com/categories/Dubbo/"/>
+    
+    
+      <category term="Dubbo" scheme="http://yoursite.com/tags/Dubbo/"/>
+    
+  </entry>
   
   <entry>
     <title>JVM致命错误日志hs_err_pid.log分析</title>
@@ -511,32 +537,6 @@
     
     
       <category term="Mysql" scheme="http://yoursite.com/tags/Mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java之ShutDownHook</title>
-    <link href="http://yoursite.com/2019/01/18/Java%E4%B9%8BShutDownHook/"/>
-    <id>http://yoursite.com/2019/01/18/Java之ShutDownHook/</id>
-    <published>2019-01-18T09:05:13.000Z</published>
-    <updated>2019-01-18T09:05:58.769Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;线上JVM挂掉怎么办，不要怕，有优雅停机&quot;&gt;&lt;a href=&quot;#线上JVM挂掉怎么办，不要怕，有优雅停机&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
     
   </entry>
   
