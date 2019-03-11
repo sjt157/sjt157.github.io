@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-11T03:50:11.242Z</updated>
+  <updated>2019-03-11T05:00:04.098Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker之seccomp</title>
+    <link href="http://yoursite.com/2019/03/11/Docker%E4%B9%8Bseccomp/"/>
+    <id>http://yoursite.com/2019/03/11/Docker之seccomp/</id>
+    <published>2019-03-11T04:56:57.000Z</published>
+    <updated>2019-03-11T05:00:04.098Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;什么是seccomp&quot;&gt;&lt;a href=&quot;#什么是seccomp&quot; class=&quot;headerlink&quot; title=&quot;什么是seccomp&quot;&gt;&lt;/a&gt;什么是seccomp&lt;/h3&gt;&lt;p&gt;seccomp（全称securecomputing mode）是linux
+        
+      
+    
+    </summary>
+    
+      <category term="Docker" scheme="http://yoursite.com/categories/Docker/"/>
+    
+    
+      <category term="Docker" scheme="http://yoursite.com/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>用户态与内核态</title>
@@ -507,32 +533,6 @@
         
           &lt;p&gt;今天在听Cetus课程的时候，看到了老师说了set profiling=1； 并不知道这是干什么的，来记录一下。&lt;/p&gt;
 &lt;p&gt;Query Profiler 来定位一条 Query 的性能瓶颈，这里我们再详细介绍一下 Profiling
-        
-      
-    
-    </summary>
-    
-      <category term="Mysql" scheme="http://yoursite.com/categories/Mysql/"/>
-    
-    
-      <category term="Mysql" scheme="http://yoursite.com/tags/Mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据库分片、分区、分表、分库傻傻分不清楚</title>
-    <link href="http://yoursite.com/2019/01/18/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E7%89%87%E3%80%81%E5%88%86%E5%8C%BA%E3%80%81%E5%88%86%E8%A1%A8%E3%80%81%E5%88%86%E5%BA%93%E5%82%BB%E5%82%BB%E5%88%86%E4%B8%8D%E6%B8%85%E6%A5%9A/"/>
-    <id>http://yoursite.com/2019/01/18/数据库分片、分区、分表、分库傻傻分不清楚/</id>
-    <published>2019-01-18T03:09:39.000Z</published>
-    <updated>2019-01-18T03:10:39.204Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;分片&quot;&gt;&lt;a href=&quot;#分片&quot; class=&quot;headerlink&quot; title=&quot;分片&quot;&gt;&lt;/a&gt;分片&lt;/h2&gt;&lt;h3 id=&quot;什么是分片&quot;&gt;&lt;a href=&quot;#什么是分片&quot; class=&quot;headerlink&quot;
         
       
     

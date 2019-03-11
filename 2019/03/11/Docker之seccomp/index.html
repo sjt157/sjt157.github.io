@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Docker," />
 
 
 
@@ -81,16 +81,18 @@
 
 
 
-<meta name="description" content="生活不应当只有眼前的苟且，还有诗和远方，与其用泪水忏悔昨天，不如用汗水拼搏明天．">
-<meta property="og:type" content="website">
-<meta property="og:title" content="诗与远方">
-<meta property="og:url" content="http://yoursite.com/archives/2018/page/3/index.html">
+<meta name="description" content="什么是seccompseccomp（全称securecomputing mode）是linux kernel从2.6.23版本开始所支持的一种安全机制。 在Linux系统里，大量的系统调用（systemcall）直接暴露给用户态程序。但是，并不是所有的系统调用都被需要，而且不安全的代码滥用系统调用会对系统造成安全威胁。通过seccomp，我们限制程序使用某些系统调用，这样可以减少系统的暴露面，同时">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker之seccomp">
+<meta property="og:url" content="http://yoursite.com/2019/03/11/Docker之seccomp/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="生活不应当只有眼前的苟且，还有诗和远方，与其用泪水忏悔昨天，不如用汗水拼搏明天．">
+<meta property="og:description" content="什么是seccompseccomp（全称securecomputing mode）是linux kernel从2.6.23版本开始所支持的一种安全机制。 在Linux系统里，大量的系统调用（systemcall）直接暴露给用户态程序。但是，并不是所有的系统调用都被需要，而且不安全的代码滥用系统调用会对系统造成安全威胁。通过seccomp，我们限制程序使用某些系统调用，这样可以减少系统的暴露面，同时">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-11T05:00:04.098Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="诗与远方">
-<meta name="twitter:description" content="生活不应当只有眼前的苟且，还有诗和远方，与其用泪水忏悔昨天，不如用汗水拼搏明天．">
+<meta name="twitter:title" content="Docker之seccomp">
+<meta name="twitter:description" content="什么是seccompseccomp（全称securecomputing mode）是linux kernel从2.6.23版本开始所支持的一种安全机制。 在Linux系统里，大量的系统调用（systemcall）直接暴露给用户态程序。但是，并不是所有的系统调用都被需要，而且不安全的代码滥用系统调用会对系统造成安全威胁。通过seccomp，我们限制程序使用某些系统调用，这样可以减少系统的暴露面，同时">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2018/page/3/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/11/Docker之seccomp/"/>
 
 
 
 
 
-  <title>归档 | 诗与远方</title>
+  <title>Docker之seccomp | 诗与远方</title>
   
 
 
@@ -145,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -293,410 +295,292 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/Docker之seccomp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songjiantao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/15856742?s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗与远方">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
-         
+          <h1 class="post-title" itemprop="name headline">Docker之seccomp</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-11T12:56:57+08:00">
+                2019-03-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-11T13:00:04+08:00">
+                2019-03-11
+              </time>
+            
+          </span>
+
           
-        好! 目前共计 61 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/11/Docker之seccomp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/11/Docker之seccomp/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/03/11/Docker之seccomp/" class="leancloud_visitors" data-flag-title="Docker之seccomp">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+	         <span> ℃ </span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
-        
-        
-        
+      
+        <h3 id="什么是seccomp"><a href="#什么是seccomp" class="headerlink" title="什么是seccomp"></a>什么是seccomp</h3><p>seccomp（全称securecomputing mode）是linux kernel从2.6.23版本开始所支持的一种安全机制。</p>
+<p>在Linux系统里，大量的系统调用（systemcall）直接暴露给用户态程序。但是，并不是所有的系统调用都被需要，而且不安全的代码滥用系统调用会对系统造成安全威胁。通过seccomp，我们限制程序使用某些系统调用，这样可以减少系统的暴露面，同时是程序进入一种“安全”的状态。</p>
+<h3 id="如何使用seccomp"><a href="#如何使用seccomp" class="headerlink" title="如何使用seccomp"></a>如何使用seccomp</h3><p>seccomp可以通过系统调用ptrctl(2)或者通过系统调用seccomp(2)开启，前提是内核配置中开启了CONFIG_SECCOMP和CONFIG_SECCOMP_FILTER。</p>
+<p>seccomp支持两种模式：SECCOMP_MODE_STRICT和SECCOMP_MODE_FILTER。</p>
+<ul>
+<li>在SECCOMP_MODE_STRICT模式下，进程不能使用read(2)，write(2)，_exit(2)和sigreturn(2)以外的其他系统调用。</li>
+<li>在SECCOMP_MODE_FILTER模式下，可以利用BerkeleyPacket Filter配置哪些系统调用及它们的参数可以被进程使用。</li>
+</ul>
+<h3 id="如何查看是否使用了seccomp"><a href="#如何查看是否使用了seccomp" class="headerlink" title="如何查看是否使用了seccomp"></a>如何查看是否使用了seccomp</h3><p>通常有两种方法：</p>
+<ul>
+<li><p>利用prctl(2)的PR_GET_SECCOMP的参数获取当前进程的seccomp状态。返回值0表示没有使用seccomp;返回值2表示使用了seccomp并处于SECCOMP_MODE_FILTER模式；其他情况进程会被SIGKILL信号杀死。</p>
+</li>
+<li><p>从Linux3.8开始，可以利用/proc/[pid]/status中的Seccomp字段查看。如果没有seccomp字段，说明内核不支持seccomp。</p>
+</li>
+<li>下面这个是docker守护进程的status<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">Name:	dockerd</span><br><span class="line">State:	S (sleeping)</span><br><span class="line">Tgid:	<span class="number">1345</span></span><br><span class="line">Ngid:	<span class="number">0</span></span><br><span class="line">Pid:	<span class="number">1345</span></span><br><span class="line">PPid:	<span class="number">1</span></span><br><span class="line">TracerPid:	<span class="number">0</span></span><br><span class="line">Uid:	<span class="number">0</span>	<span class="number">0</span>	<span class="number">0</span>	<span class="number">0</span></span><br><span class="line">Gid:	<span class="number">0</span>	<span class="number">0</span>	<span class="number">0</span>	<span class="number">0</span></span><br><span class="line">FDSize:	<span class="number">256</span></span><br><span class="line">Groups:	</span><br><span class="line">NStgid:	<span class="number">1345</span></span><br><span class="line">NSpid:	<span class="number">1345</span></span><br><span class="line">NSpgid:	<span class="number">1345</span></span><br><span class="line">NSsid:	<span class="number">1345</span></span><br><span class="line">VmPeak:	 <span class="number">1150756</span> kB</span><br><span class="line">VmSize:	 <span class="number">1150628</span> kB</span><br><span class="line">VmLck:	       <span class="number">0</span> kB</span><br><span class="line">VmPin:	       <span class="number">0</span> kB</span><br><span class="line">VmHWM:	  <span class="number">102020</span> kB</span><br><span class="line">VmRSS:	   <span class="number">87212</span> kB</span><br><span class="line">VmData:	 <span class="number">1049204</span> kB</span><br><span class="line">VmStk:	     <span class="number">132</span> kB</span><br><span class="line">VmExe:	   <span class="number">46768</span> kB</span><br><span class="line">VmLib:	    <span class="number">4612</span> kB</span><br><span class="line">VmPTE:	     <span class="number">484</span> kB</span><br><span class="line">VmPMD:	      <span class="number">24</span> kB</span><br><span class="line">VmSwap:	       <span class="number">0</span> kB</span><br><span class="line">HugetlbPages:	       <span class="number">0</span> kB</span><br><span class="line">Threads:	<span class="number">36</span></span><br><span class="line">SigQ:	<span class="number">0</span>/<span class="number">62554</span></span><br><span class="line">SigPnd:	<span class="number">0000000000000000</span></span><br><span class="line">ShdPnd:	<span class="number">0000000000000000</span></span><br><span class="line">SigBlk:	fffffffe3bfa2800</span><br><span class="line">SigIgn:	<span class="number">0000000000000000</span></span><br><span class="line">SigCgt:	ffffffffffc1feff</span><br><span class="line">CapInh:	<span class="number">0000000000000000</span></span><br><span class="line">CapPrm:	<span class="number">0000003f</span>ffffffff</span><br><span class="line">CapEff:	<span class="number">0000003f</span>ffffffff</span><br><span class="line">CapBnd:	<span class="number">0000003f</span>ffffffff</span><br><span class="line">CapAmb:	<span class="number">0000000000000000</span></span><br><span class="line">Seccomp:	<span class="number">0</span>    <span class="comment">//这是0，表示没有使用seccomp</span></span><br><span class="line">Cpus_allowed:	ff</span><br><span class="line">Cpus_allowed_list:	<span class="number">0</span><span class="number">-7</span></span><br><span class="line">Mems_allowed:	<span class="number">00000000</span>,<span class="number">00000001</span></span><br><span class="line">Mems_allowed_list:	<span class="number">0</span></span><br><span class="line">voluntary_ctxt_switches:	<span class="number">2334</span></span><br><span class="line">nonvoluntary_ctxt_switches:	<span class="number">4</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="在docker中使用"><a href="#在docker中使用" class="headerlink" title="在docker中使用"></a>在docker中使用</h3><p>只有在使用 seccomp 构建 Docker 并且内核配置了 CONFIG_SECCOMP 的情况下，此功能才可用。要检查你的内核是否支持 seccomp：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat /boot/config-`uname -r` | grep CONFIG_SECCOMP=</span><br><span class="line">CONFIG_SECCOMP=y</span><br></pre></td></tr></table></figure></p>
+<h3 id="为容器传递配置文件"><a href="#为容器传递配置文件" class="headerlink" title="为容器传递配置文件"></a>为容器传递配置文件</h3><p>默认的 seccomp 配置文件为使用 seccomp 运行容器提供了一个合理的设置，并禁用了大约 44 个超过 300+ 的系统调用。它具有适度的保护性，同时提供广泛的应用兼容性。默认的 Docker 配置文件可以在 这里 找到。<br><a href="https://github.com/moby/moby/blob/master/profiles/seccomp/default.json" target="_blank" rel="noopener">https://github.com/moby/moby/blob/master/profiles/seccomp/default.json</a></p>
+<p>实际上，该配置文件是白名单，默认情况下阻止访问所有的系统调用，然后将特定的系统调用列入白名单。该配置文件工作时需要定义 SCMP_ACT_ERRNO 的 defaultAction 并仅针对特定的系统调用覆盖该 action。SCMP_ACT_ERRNO 的影响是触发 Permission Denied 错误。接下来，配置文件中通过将 action 被覆盖为 SCMP_ACT_ALLOW，定义一个完全允许的系统调用的特定列表。最后，一些特定规则适用于个别的系统调用，如 personality，socket，socketcall 等，以允许具有特定参数的那些系统调用的变体（to allow variants of those system calls with specific arguments）。</p>
+<p>seccomp 有助于以最小权限运行 Docker 容器。不建议更改默认的 seccomp 配置文件。</p>
+<p>运行容器时，如果没有通过 –security-opt 选项覆盖容器，则会使用默认配置。例如，以下显式指定了一个策略：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run --rm \</span><br><span class="line">             -it \</span><br><span class="line">             --security-opt seccomp=/path/to/seccomp/profile.json \</span><br><span class="line">             hello-world</span><br></pre></td></tr></table></figure></p>
+<h3 id="不使用默认的-seccomp-配置文件"><a href="#不使用默认的-seccomp-配置文件" class="headerlink" title="不使用默认的 seccomp 配置文件"></a>不使用默认的 seccomp 配置文件</h3><p>可以传递 unconfined 以运行没有默认 seccomp 配置文件的容器。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run --rm -it --security-opt seccomp=unconfined debian:jessie \</span><br><span class="line">    unshare --map-root-user --user sh -c whoami</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/mashimiao/article/details/73607485" target="_blank" rel="noopener">https://blog.csdn.net/mashimiao/article/details/73607485</a><br><a href="https://blog.csdn.net/kikajack/article/details/79596843" target="_blank" rel="noopener">https://blog.csdn.net/kikajack/article/details/79596843</a></p>
 
+      
+    </div>
+    
+    
+    
+
+    
+    <div>
         
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+     
+    </div>
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="songjiantao 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    songjiantao
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/03/11/Docker之seccomp/" title="Docker之seccomp">http://yoursite.com/2019/03/11/Docker之seccomp/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
           </div>
         
-        
 
         
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
         
-            <a class="post-title-link" href="/2018/04/01/Python知识点（21-30）/" itemprop="url">
-              
-                <span itemprop="name">Python知识点（21-30）</span>
-              
-            </a>
-        
-      </h2>
+        </div>
+      
+      
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-01T14:44:29+08:00"
-              content="2018-04-01" >
-          04-01
-        </time>
-      </div>
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/11/用户态与内核态/" rel="next" title="用户态与内核态">
+                <i class="fa fa-chevron-left"></i> 用户态与内核态
+              </a>
+            
+          </div>
 
-    </header>
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+   
+  
+  
+  
   </article>
 
 
 
+    <div class="post-spread">
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/31/Python知识点（11-20）/" itemprop="url">
-              
-                <span itemprop="name">Python知识点（11-20）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-31T13:54:38+08:00"
-              content="2018-03-31" >
-          03-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/30/Python知识点（1-10）/" itemprop="url">
-              
-                <span itemprop="name">Python知识点（1-10）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-30T14:32:59+08:00"
-              content="2018-03-30" >
-          03-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/29/python中的eval函数/" itemprop="url">
-              
-                <span itemprop="name">python中的eval函数</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-29T21:57:32+08:00"
-              content="2018-03-29" >
-          03-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/29/python多线程/" itemprop="url">
-              
-                <span itemprop="name">python多线程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-29T18:35:48+08:00"
-              content="2018-03-29" >
-          03-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/28/僵尸进程/" itemprop="url">
-              
-                <span itemprop="name">僵尸进程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-28T21:42:39+08:00"
-              content="2018-03-28" >
-          03-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/28/哈希表/" itemprop="url">
-              
-                <span itemprop="name">哈希表</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-28T17:31:21+08:00"
-              content="2018-03-28" >
-          03-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/27/各种树/" itemprop="url">
-              
-                <span itemprop="name">各种树</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-27T13:07:11+08:00"
-              content="2018-03-27" >
-          03-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/24/虚拟机通过桥接模式上网（补充）/" itemprop="url">
-              
-                <span itemprop="name">虚拟机通过桥接模式上网（补充）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-24T18:04:47+08:00"
-              content="2018-03-24" >
-          03-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/24/虚拟机通过代理上外网/" itemprop="url">
-              
-                <span itemprop="name">虚拟机通过代理上外网</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-24T15:06:40+08:00"
-              content="2018-03-24" >
-          03-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
   </div>
-  
-  
-  
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2018/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2018/">1</a><a class="page-number" href="/archives/2018/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2018/page/4/">4</a><a class="extend next" rel="next" href="/archives/2018/page/4/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
 
 
           </div>
@@ -704,6 +588,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -977,6 +868,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1503,6 +1398,23 @@
   </script>
 
   
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 10113,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
 
   
   
