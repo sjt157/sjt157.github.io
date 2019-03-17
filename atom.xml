@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-17T01:52:57.572Z</updated>
+  <updated>2019-03-17T02:09:32.686Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java之checkForComodification</title>
+    <link href="http://yoursite.com/2019/03/17/Java%E4%B9%8BcheckForComodification/"/>
+    <id>http://yoursite.com/2019/03/17/Java之checkForComodification/</id>
+    <published>2019-03-17T02:09:01.000Z</published>
+    <updated>2019-03-17T02:09:32.686Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;什么时候会发生checkForComodification？&quot;&gt;&lt;a href=&quot;#什么时候会发生checkForComodification？&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring之InitializingBean接口</title>
@@ -511,32 +537,6 @@
     
     
       <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Zero-Copy</title>
-    <link href="http://yoursite.com/2019/01/25/Zero-Copy/"/>
-    <id>http://yoursite.com/2019/01/25/Zero-Copy/</id>
-    <published>2019-01-25T03:28:03.000Z</published>
-    <updated>2019-02-03T08:13:14.747Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;这是一篇关于“零拷贝”的英文文献，写的非常好。有时间翻译一下。&lt;br&gt;&lt;a href=&quot;https://developer.ibm.com/articles/j-zerocopy/&quot; target=&quot;_blank&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
     
   </entry>
   
