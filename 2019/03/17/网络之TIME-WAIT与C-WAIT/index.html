@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="KVM," />
+  <meta name="keywords" content="TCP/IP," />
 
 
 
@@ -81,24 +81,18 @@
 
 
 
-<meta name="description" content="主机：Ubuntu14.04 64bit虚拟机：Ubuntu14.04 64bitVMM:KVM 基础知识：默认创建的网桥virbr0用于NAT模式，如果想用brigde模式，需要自己创建一个br0。Bridge方式即虚拟网桥的网络连接方式，是客户机和子网里面的机器能够互相通信。可以使虚拟机成为网络中具有独立IP的主机。 桥接网络（也叫物理设备共享）被用作把一个物理设备复制到一台虚拟机。网桥多用作">
-<meta name="keywords" content="KVM">
+<meta name="description" content="如何查看TIME_WAIT与CLOSE_WAIT情况通过命令查看netstat -n | awk &amp;#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&amp;#39; 发现这台服务器上 1234[root@data9 ~]# netstat -n | awk &amp;apos;/^tcp/ &amp;#123;++S[$NF]&amp;#125; END &amp;#123;f">
+<meta name="keywords" content="TCP&#x2F;IP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="KVM配置虚拟机桥接（bridge）模式">
-<meta property="og:url" content="http://yoursite.com/2018/03/14/KVM配置虚拟机桥接（bridge）模式/index.html">
+<meta property="og:title" content="网络之TIME_WAIT与C_WAIT">
+<meta property="og:url" content="http://yoursite.com/2019/03/17/网络之TIME-WAIT与C-WAIT/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="主机：Ubuntu14.04 64bit虚拟机：Ubuntu14.04 64bitVMM:KVM 基础知识：默认创建的网桥virbr0用于NAT模式，如果想用brigde模式，需要自己创建一个br0。Bridge方式即虚拟网桥的网络连接方式，是客户机和子网里面的机器能够互相通信。可以使虚拟机成为网络中具有独立IP的主机。 桥接网络（也叫物理设备共享）被用作把一个物理设备复制到一台虚拟机。网桥多用作">
+<meta property="og:description" content="如何查看TIME_WAIT与CLOSE_WAIT情况通过命令查看netstat -n | awk &amp;#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&amp;#39; 发现这台服务器上 1234[root@data9 ~]# netstat -n | awk &amp;apos;/^tcp/ &amp;#123;++S[$NF]&amp;#125; END &amp;#123;f">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/1.png">
-<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/2.png">
-<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/3.png">
-<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/4.png">
-<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/5.png">
-<meta property="og:updated_time" content="2018-03-14T13:37:50.163Z">
+<meta property="og:updated_time" content="2019-03-17T02:37:53.051Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KVM配置虚拟机桥接（bridge）模式">
-<meta name="twitter:description" content="主机：Ubuntu14.04 64bit虚拟机：Ubuntu14.04 64bitVMM:KVM 基础知识：默认创建的网桥virbr0用于NAT模式，如果想用brigde模式，需要自己创建一个br0。Bridge方式即虚拟网桥的网络连接方式，是客户机和子网里面的机器能够互相通信。可以使虚拟机成为网络中具有独立IP的主机。 桥接网络（也叫物理设备共享）被用作把一个物理设备复制到一台虚拟机。网桥多用作">
-<meta name="twitter:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/1.png">
+<meta name="twitter:title" content="网络之TIME_WAIT与C_WAIT">
+<meta name="twitter:description" content="如何查看TIME_WAIT与CLOSE_WAIT情况通过命令查看netstat -n | awk &amp;#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&amp;#39; 发现这台服务器上 1234[root@data9 ~]# netstat -n | awk &amp;apos;/^tcp/ &amp;#123;++S[$NF]&amp;#125; END &amp;#123;f">
 
 
 
@@ -128,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/14/KVM配置虚拟机桥接（bridge）模式/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/17/网络之TIME-WAIT与C-WAIT/"/>
 
 
 
 
 
-  <title>KVM配置虚拟机桥接（bridge）模式 | 诗与远方</title>
+  <title>网络之TIME_WAIT与C_WAIT | 诗与远方</title>
   
 
 
@@ -315,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/14/KVM配置虚拟机桥接（bridge）模式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/17/网络之TIME-WAIT与C-WAIT/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songjiantao">
@@ -332,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">KVM配置虚拟机桥接（bridge）模式</h1>
+          <h1 class="post-title" itemprop="name headline">网络之TIME_WAIT与C_WAIT</h1>
         
 
         <div class="post-meta">
@@ -344,8 +338,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-14T20:18:56+08:00">
-                2018-03-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-17T10:37:13+08:00">
+                2019-03-17
               </time>
             
 
@@ -360,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-14T21:37:50+08:00">
-                2018-03-14
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-17T10:37:53+08:00">
+                2019-03-17
               </time>
             
           </span>
@@ -379,8 +373,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/KVM/" itemprop="url" rel="index">
-                    <span itemprop="name">KVM</span>
+                  <a href="/categories/TCP-IP/" itemprop="url" rel="index">
+                    <span itemprop="name">TCP/IP</span>
                   </a>
                 </span>
 
@@ -397,8 +391,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/14/KVM配置虚拟机桥接（bridge）模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/14/KVM配置虚拟机桥接（bridge）模式/" itemprop="commentCount"></span>
+                <a href="/2019/03/17/网络之TIME-WAIT与C-WAIT/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/17/网络之TIME-WAIT与C-WAIT/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -406,7 +400,7 @@
 
           
           
-             <span id="/2018/03/14/KVM配置虚拟机桥接（bridge）模式/" class="leancloud_visitors" data-flag-title="KVM配置虚拟机桥接（bridge）模式">
+             <span id="/2019/03/17/网络之TIME-WAIT与C-WAIT/" class="leancloud_visitors" data-flag-title="网络之TIME_WAIT与C_WAIT">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -438,27 +432,23 @@
       
 
       
-        <p>主机：Ubuntu14.04 64bit<br>虚拟机：Ubuntu14.04 64bit<br>VMM:KVM</p>
-<p>基础知识：默认创建的网桥virbr0用于NAT模式，如果想用brigde模式，需要自己创建一个br0。Bridge方式即虚拟网桥的网络连接方式，是客户机和子网里面的机器能够互相通信。可以使虚拟机成为网络中具有独立IP的主机。 桥接网络（也叫物理设备共享）被用作把一个物理设备复制到一台虚拟机。网桥多用作高级设置，特别是主机多个网络接口的情况。<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/1.png" alt="image"></p>
-<ol>
-<li><p>修改网络配置文件 /etc/network/interfaces ，此处是DHCP方式，也可以static方式。（Ubuntu系统，centos在etc/sysconfig里）输入 brctl addbr br0    建立一个网桥br0，此时在Linux内核里创建虚拟网卡br0，enp11s0 是host主机的网卡。<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/2.png" alt="image">  </p>
-</li>
-<li><p>重新启动网络服务便可<br>重启计算机或者sudo systemctl restart networking / sudo systemctl restart network-manager，此时输入ifconfig，显示如图。（据说br0与enp11s0只能有一个有ip地址，此处不是很明白，但是目前并不影响使用。）<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/3.png" alt="image">  </p>
-</li>
-<li><p>输入该命令，可以看到此时已有br0的网桥。</p>
-</li>
+        <h3 id="如何查看TIME-WAIT与CLOSE-WAIT情况"><a href="#如何查看TIME-WAIT与CLOSE-WAIT情况" class="headerlink" title="如何查看TIME_WAIT与CLOSE_WAIT情况"></a>如何查看TIME_WAIT与CLOSE_WAIT情况</h3><p>通过命令查看<br><code>netstat -n | awk &#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39;</code></p>
+<p>发现这台服务器上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@data9 ~]# netstat -n | awk &apos;/^tcp/ &#123;++S[$NF]&#125; END &#123;for(a in S) print a, S[a]&#125;&apos;</span><br><span class="line">CLOSE_WAIT 22    CLOSE_WAIT 表示被动关闭，出现这个说明在对方关闭连接之后，没有进行相应处理。</span><br><span class="line">ESTABLISHED 55   ESTABLISHED 表示正在通信</span><br><span class="line">TIME_WAIT 3  TIME_WAIT 表示主动关闭</span><br></pre></td></tr></table></figure>
+<h3 id="TIME-WAIT-主动关闭"><a href="#TIME-WAIT-主动关闭" class="headerlink" title="TIME_WAIT(主动关闭)"></a>TIME_WAIT(主动关闭)</h3><p>为什么TIME_WAIT状态还需要等2MSL后才能返回到CLOSED状态？<br>这是因为：虽然双方都同意关闭连接了，而且握手的4个报文也都协调和发送完毕，按理可以直接回到CLOSED状态（就好比从SYN_SEND状态到ESTABLISH状态那样）；但是因为我们必须要假想网络是不可靠的，你无法保证你最后发送的ACK报文会一定被对方收到，因此对方处于LAST_ACK状态下的SOCKET可能会因为超时未收到ACK报文，而重发FIN报文，所以这个TIME_WAIT状态的作用就是用来重发可能丢失的ACK报文，并保证于此。</p>
+<h4 id="为什么会有Time-wait状态"><a href="#为什么会有Time-wait状态" class="headerlink" title="为什么会有Time_wait状态"></a>为什么会有Time_wait状态</h4><ol>
+<li>可靠的终止TCP连接，若处于time_wait的客户端发送给服务器确认报文段丢失的话，服务器将在此重新发送FIN报文段，那么客户端必须处于一个可接收的状态就是time_wait而不是close状态。 </li>
+<li>保证迟来的TCP报文段有足够的时间被识别并丢弃，linux 中一个TCP端口不能打开两次或两次以上，当客户端处于time_wait状态时我们将无法使用此端口建立新连接，如果不存在time_wait状态，新连接可能会收到旧连接的数据。Time_wait持续的时间是2MSL，保证旧的数据可以丢弃，因为网络中的数据最大存在MSL( aximum segment lifetime)</li>
 </ol>
-<ol>
-<li><p>创建虚拟机时，指定—bridge=br0。（–bridge与—network只能二选一，不能同时指定）<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/4.png" alt="image">  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virt-install --virt-type kvm --name test2 --ram 1024 --vcpus 1 --bridge=br0 \ --cdrom=/home/lib206/vmimage/ubuntu-16.04.1-server-amd64.iso \--disk path=/home/lib206/vmimage/Test.img,size=20,format=raw --graphics vnc,port=5901  --os-type=linux  --boot cdrom</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建成功后，如果启动虚拟机时出现不能引导Booting from No bootable device，按下图所示设置，可能是引导顺序的原因。<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/KVM-bridge/5.png" alt="image">  </p>
-</li>
-<li><p>此时虚拟机即处于桥接模式，ip由路由器DHCP随即分配。通过以上步骤的设置KVM的桥接问题解决了，此时可以查看一下虚拟机网络IP地址，应该跟主机的IP地址处于同一个网段；但是还是有问题的， 无线网卡桥接是不成功的，默认的是有线网卡！</p>
-</li>
-<li><p>如果想指定该虚拟机的ip地址，按另一篇文章设置。</p>
-</li>
+<h4 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h4><p>解决思路很简单，就是让服务器能够快速回收和重用那些TIME_WAIT的资源。</p>
+<p>/etc/sysctl.conf文件的修改<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span>对于一个新建连接，内核要发送多少个 SYN 连接请求才决定放弃,不应该大于255，默认值是5，对应于180秒左右时间 </span><br><span class="line">net.ipv4.tcp_syn_retries=2</span><br><span class="line"><span class="meta">#</span>net.ipv4.tcp_synack_retries=2</span><br><span class="line"><span class="meta">#</span>表示当keepalive起用的时候，TCP发送keepalive消息的频度。缺省是2小时，改为300秒</span><br><span class="line">net.ipv4.tcp_keepalive_time=1200</span><br><span class="line">net.ipv4.tcp_orphan_retries=3</span><br><span class="line"><span class="meta">#</span>表示如果套接字由本端要求关闭，这个参数决定了它保持在FIN-WAIT-2状态的时间</span><br><span class="line">net.ipv4.tcp_fin_timeout=30  </span><br><span class="line"><span class="meta">#</span>表示SYN队列的长度，默认为1024，加大队列长度为8192，可以容纳更多等待连接的网络连接数。</span><br><span class="line">net.ipv4.tcp_max_syn_backlog = 4096</span><br><span class="line"><span class="meta">#</span>表示开启SYN Cookies。当出现SYN等待队列溢出时，启用cookies来处理，可防范少量SYN攻击，默认为0，表示关闭</span><br><span class="line">net.ipv4.tcp_syncookies = 1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>表示开启重用。允许将TIME-WAIT sockets重新用于新的TCP连接，默认为0，表示关闭</span><br><span class="line">net.ipv4.tcp_tw_reuse = 1</span><br><span class="line"><span class="meta">#</span>表示开启TCP连接中TIME-WAIT sockets的快速回收，默认为0，表示关闭</span><br><span class="line">net.ipv4.tcp_tw_recycle = 1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>#减少超时前的探测次数 </span><br><span class="line">net.ipv4.tcp_keepalive_probes=5 </span><br><span class="line"><span class="meta">#</span>#优化网络设备接收队列 </span><br><span class="line">net.core.netdev_max_backlog=3000 </span><br><span class="line"></span><br><span class="line">修改完之后执行/sbin/sysctl -p让参数生效。</span><br><span class="line"></span><br><span class="line">这里头主要注意到的是net.ipv4.tcp_tw_reuse</span><br><span class="line">net.ipv4.tcp_tw_recycle </span><br><span class="line">net.ipv4.tcp_fin_timeout </span><br><span class="line">net.ipv4.tcp_keepalive_*</span><br><span class="line">这几个参数。</span><br><span class="line"></span><br><span class="line">net.ipv4.tcp_tw_reuse和net.ipv4.tcp_tw_recycle的开启都是为了回收处于TIME_WAIT状态的资源。</span><br><span class="line">net.ipv4.tcp_fin_timeout这个时间可以减少在异常情况下服务器从FIN-WAIT-2转到TIME_WAIT的时间。</span><br><span class="line">net.ipv4.tcp_keepalive_*一系列参数，是用来设置服务器检测连接存活的相关配置。</span><br></pre></td></tr></table></figure></p>
+<h3 id="Close-Wait-被动关闭"><a href="#Close-Wait-被动关闭" class="headerlink" title="Close_Wait(被动关闭)"></a>Close_Wait(被动关闭)</h3><p>简单来说CLOSE_WAIT数目过大是由于被动关闭连接处理不当导致的。<br>我说一个场景，服务器A会去请求服务器B上面的apache获取文件资源，正常情况下，如果请求成功，那么在抓取完资源后服务器A会主动发出关闭连接的请求，这个时候就是主动关闭连接，连接状态我们可以看到是TIME_WAIT。如果一旦发生异常呢？假设请求的资源服务器B上并不存在，那么这个时候就会由服务器B发出关闭连接的请求，服务器A就是被动的关闭了连接，如果服务器A被动关闭连接之后自己并没有释放连接，那就会造成CLOSE_WAIT的状态了。</p>
+<h4 id="如何解决？"><a href="#如何解决？" class="headerlink" title="如何解决？"></a>如何解决？</h4><p>待补充</p>
+<h4 id="最后来回答两个问题："><a href="#最后来回答两个问题：" class="headerlink" title="最后来回答两个问题："></a>最后来回答两个问题：</h4><ol>
+<li>为啥一台机器区区几百个close_wait就导致不可继续访问?不合理啊，一台机器不是号称最大可以打开65535个端口吗？<br>回答：由于原因#4和#3所以导致整个IoLoop慢了，进而因为#2导致很多请求堆积，也就是说很多请求在被真正处理前已经在backlog里等了一会了。导致了SLB这端的链接批量的超时，同时又由于close_wait状态不会自动消失，导式最终无法再这个端口上创建新的链接引起了停止服务。</li>
+<li>为啥明明有多个服务器承载，却几乎同时出了close_wait？又为什么同时不能再服务？那要SLB还有啥用呢？<br>回答：有了上一个答案，结合SLB的特性，这个也就很好解释。这就是所谓的洪水蔓延，当SLB发现下面的一个节点不可用会把请求routing到其他可用节点上，导致其他节点压力增大。也犹豫相同原因，加速了其他节点出现close_wait.</li>
 </ol>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/shootyou/article/details/6622226" target="_blank" rel="noopener">https://blog.csdn.net/shootyou/article/details/6622226</a></p>
 
       
     </div>
@@ -513,7 +503,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/03/14/KVM配置虚拟机桥接（bridge）模式/" title="KVM配置虚拟机桥接（bridge）模式">http://yoursite.com/2018/03/14/KVM配置虚拟机桥接（bridge）模式/</a>
+    <a href="http://yoursite.com/2019/03/17/网络之TIME-WAIT与C-WAIT/" title="网络之TIME_WAIT与C_WAIT">http://yoursite.com/2019/03/17/网络之TIME-WAIT与C-WAIT/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -528,7 +518,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/KVM/" rel="tag"># KVM</a>
+            <a href="/tags/TCP-IP/" rel="tag"># TCP/IP</a>
           
         </div>
       
@@ -553,8 +543,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/11/Shell知识点/" rel="next" title="Shell知识点">
-                <i class="fa fa-chevron-left"></i> Shell知识点
+              <a href="/2019/03/17/Java之Semaphore/" rel="next" title="Java之Semaphore">
+                <i class="fa fa-chevron-left"></i> Java之Semaphore
               </a>
             
           </div>
@@ -562,10 +552,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/15/虚拟机IP/" rel="prev" title="虚拟机IP">
-                虚拟机IP <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

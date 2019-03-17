@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-17T02:24:53.476Z</updated>
+  <updated>2019-03-17T02:37:53.051Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网络之TIME_WAIT与C_WAIT</title>
+    <link href="http://yoursite.com/2019/03/17/%E7%BD%91%E7%BB%9C%E4%B9%8BTIME-WAIT%E4%B8%8EC-WAIT/"/>
+    <id>http://yoursite.com/2019/03/17/网络之TIME-WAIT与C-WAIT/</id>
+    <published>2019-03-17T02:37:13.000Z</published>
+    <updated>2019-03-17T02:37:53.051Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;如何查看TIME-WAIT与CLOSE-WAIT情况&quot;&gt;&lt;a href=&quot;#如何查看TIME-WAIT与CLOSE-WAIT情况&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="TCP/IP" scheme="http://yoursite.com/categories/TCP-IP/"/>
+    
+    
+      <category term="TCP/IP" scheme="http://yoursite.com/tags/TCP-IP/"/>
+    
+  </entry>
   
   <entry>
     <title>Java之Semaphore</title>
@@ -510,33 +536,6 @@
     
     
       <category term="TravisCI" scheme="http://yoursite.com/tags/TravisCI/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker化秒杀疑云</title>
-    <link href="http://yoursite.com/2019/01/25/Docker%E5%8C%96%E7%A7%92%E6%9D%80%E7%96%91%E4%BA%91/"/>
-    <id>http://yoursite.com/2019/01/25/Docker化秒杀疑云/</id>
-    <published>2019-01-25T09:58:55.000Z</published>
-    <updated>2019-01-25T09:59:50.351Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;ol&gt;
-&lt;li&gt;为什么用docker-compose就有一堆错误，而一个一个起容器就不会有错误呢？所有的操作都一样啊。。莫非跟网关有关系吗？？一个用br-xxxxx，一个用docker0。docker-compose用的网关是br-10e925ab0d49这种形式的。而且每次b
-        
-      
-    
-    </summary>
-    
-      <category term="Docker" scheme="http://yoursite.com/categories/Docker/"/>
-    
-    
-      <category term="Docker" scheme="http://yoursite.com/tags/Docker/"/>
     
   </entry>
   
