@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-17T02:37:53.051Z</updated>
+  <updated>2019-03-17T02:49:10.917Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux下的一些小工具</title>
+    <link href="http://yoursite.com/2019/03/17/Linux%E4%B8%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E5%B7%A5%E5%85%B7/"/>
+    <id>http://yoursite.com/2019/03/17/Linux下的一些小工具/</id>
+    <published>2019-03-17T02:48:26.000Z</published>
+    <updated>2019-03-17T02:49:10.917Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;扫描端口占用情况&quot;&gt;&lt;a href=&quot;#扫描端口占用情况&quot; class=&quot;headerlink&quot; title=&quot;扫描端口占用情况&quot;&gt;&lt;/a&gt;扫描端口占用情况&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>网络之TIME_WAIT与C_WAIT</title>
@@ -505,37 +531,6 @@
     
     
       <category term="TCP/IP" scheme="http://yoursite.com/tags/TCP-IP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用travis-ci自动部署github上的项目</title>
-    <link href="http://yoursite.com/2019/02/03/%E4%BD%BF%E7%94%A8travis-ci%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2github%E4%B8%8A%E7%9A%84%E9%A1%B9%E7%9B%AE/"/>
-    <id>http://yoursite.com/2019/02/03/使用travis-ci自动部署github上的项目/</id>
-    <published>2019-02-03T08:22:32.000Z</published>
-    <updated>2019-02-16T03:28:18.816Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;travis-ci账户&lt;br&gt;用github账户登录，找到对应项目进行勾选，如下图。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;生成token，如下图。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;配置token，如下图。&lt;br&gt;（配置私密的环境变量时一定要加密，因为会显示
-        
-      
-    
-    </summary>
-    
-      <category term="TravisCI" scheme="http://yoursite.com/categories/TravisCI/"/>
-    
-    
-      <category term="TravisCI" scheme="http://yoursite.com/tags/TravisCI/"/>
     
   </entry>
   
