@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="KVM," />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="今天老师有一个需求，是从host向qemu创建的虚拟机中传输文件，调研了几个方法，起初是通过网络传输，但是在新的这个平台上没有搭建网桥等设备，而且想还没有别的其他的方式。经过查询，主要有以下方式：  共享文件夹的方式Docker中也有此方法https://blog.csdn.net/zhongbeida_xue/article/details/80747212?utm_source=blogxgw">
-<meta name="keywords" content="KVM">
+<meta name="description" content="N个线程循环打印1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162public class 老司机1 implements Runnable &amp;#123;    private static final Object L">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VM与HOST之间传输文件">
-<meta property="og:url" content="http://yoursite.com/2018/12/12/VM与HOST之间传输文件/index.html">
+<meta property="og:title" content="Java之Semaphore">
+<meta property="og:url" content="http://yoursite.com/2019/03/17/Java之Semaphore/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="今天老师有一个需求，是从host向qemu创建的虚拟机中传输文件，调研了几个方法，起初是通过网络传输，但是在新的这个平台上没有搭建网桥等设备，而且想还没有别的其他的方式。经过查询，主要有以下方式：  共享文件夹的方式Docker中也有此方法https://blog.csdn.net/zhongbeida_xue/article/details/80747212?utm_source=blogxgw">
+<meta property="og:description" content="N个线程循环打印1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162public class 老司机1 implements Runnable &amp;#123;    private static final Object L">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-27T08:57:43.473Z">
+<meta property="og:updated_time" content="2019-03-17T02:24:53.476Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="VM与HOST之间传输文件">
-<meta name="twitter:description" content="今天老师有一个需求，是从host向qemu创建的虚拟机中传输文件，调研了几个方法，起初是通过网络传输，但是在新的这个平台上没有搭建网桥等设备，而且想还没有别的其他的方式。经过查询，主要有以下方式：  共享文件夹的方式Docker中也有此方法https://blog.csdn.net/zhongbeida_xue/article/details/80747212?utm_source=blogxgw">
+<meta name="twitter:title" content="Java之Semaphore">
+<meta name="twitter:description" content="N个线程循环打印1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162public class 老司机1 implements Runnable &amp;#123;    private static final Object L">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/12/VM与HOST之间传输文件/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/17/Java之Semaphore/"/>
 
 
 
 
 
-  <title>VM与HOST之间传输文件 | 诗与远方</title>
+  <title>Java之Semaphore | 诗与远方</title>
   
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/12/VM与HOST之间传输文件/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/17/Java之Semaphore/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songjiantao">
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">VM与HOST之间传输文件</h1>
+          <h1 class="post-title" itemprop="name headline">Java之Semaphore</h1>
         
 
         <div class="post-meta">
@@ -338,8 +338,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-12T19:41:33+08:00">
-                2018-12-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-17T10:24:24+08:00">
+                2019-03-17
               </time>
             
 
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-27T16:57:43+08:00">
-                2018-12-27
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-17T10:24:53+08:00">
+                2019-03-17
               </time>
             
           </span>
@@ -373,8 +373,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/KVM/" itemprop="url" rel="index">
-                    <span itemprop="name">KVM</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -391,8 +391,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/12/VM与HOST之间传输文件/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/12/VM与HOST之间传输文件/" itemprop="commentCount"></span>
+                <a href="/2019/03/17/Java之Semaphore/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/17/Java之Semaphore/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -400,7 +400,7 @@
 
           
           
-             <span id="/2018/12/12/VM与HOST之间传输文件/" class="leancloud_visitors" data-flag-title="VM与HOST之间传输文件">
+             <span id="/2019/03/17/Java之Semaphore/" class="leancloud_visitors" data-flag-title="Java之Semaphore">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -432,23 +432,24 @@
       
 
       
-        <p>今天老师有一个需求，是从host向qemu创建的虚拟机中传输文件，调研了几个方法，起初是通过网络传输，但是在新的这个平台上没有搭建网桥等设备，而且想还没有别的其他的方式。经过查询，主要有以下方式：</p>
-<ol>
-<li><p>共享文件夹的方式<br>Docker中也有此方法<br><a href="https://blog.csdn.net/zhongbeida_xue/article/details/80747212?utm_source=blogxgwz9" target="_blank" rel="noopener">https://blog.csdn.net/zhongbeida_xue/article/details/80747212?utm_source=blogxgwz9</a></p>
+        <h3 id="N个线程循环打印"><a href="#N个线程循环打印" class="headerlink" title="N个线程循环打印"></a>N个线程循环打印</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 老司机1 <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object LOCK = <span class="keyword">new</span> Object();</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 当前即将打印的数字</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> current = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 当前线程编号，从0开始</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> threadNo;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 线程数量</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> threadCount;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 打印的最大数值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> maxInt;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> 老司机<span class="number">1</span>(<span class="keyword">int</span> threadNo, <span class="keyword">int</span> threadCount, <span class="keyword">int</span> maxInt) &#123;</span><br><span class="line">        <span class="keyword">this</span>.threadNo = threadNo;</span><br><span class="line">        <span class="keyword">this</span>.threadCount = threadCount;</span><br><span class="line">        <span class="keyword">this</span>.maxInt = maxInt;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (LOCK) &#123;</span><br><span class="line">                <span class="comment">// 判断是否轮到当前线程执行</span></span><br><span class="line">                <span class="keyword">while</span> (current % threadCount != threadNo) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (current &gt; maxInt) &#123;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        <span class="comment">// 如果不是，则当前线程进入wait</span></span><br><span class="line">                        LOCK.wait();</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 最大值跳出循环</span></span><br><span class="line">                <span class="keyword">if</span> (current &gt; maxInt) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(<span class="string">"thread"</span> + threadNo + <span class="string">" : "</span> + current);</span><br><span class="line">                current++;</span><br><span class="line">                <span class="comment">// 唤醒其他wait线程</span></span><br><span class="line">                LOCK.notifyAll();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> threadCount = <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">int</span> max = <span class="number">100</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; threadCount; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> Thread(<span class="keyword">new</span> 老司机<span class="number">1</span>(i, threadCount, max)).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="上述方法存在的问题"><a href="#上述方法存在的问题" class="headerlink" title="上述方法存在的问题"></a>上述方法存在的问题</h3><p>核心方法在run里面，可以看见和我们交替打印奇偶数原理差不多，这里将我们的notify改成了notifyAll，这里要注意一下很多人会将notifyAll理解成其他wait的线程全部都会执行，其实是错误的。这里只会将wait的线程解除当前wait状态，也叫作唤醒，由于我们这里用同步锁synchronized块包裹住，那么唤醒的线程会做会抢夺同步锁。<br>这个老司机的代码的确能跑通，但是有一个问题是什么呢？当我们线程数很大的时候，由于我们不确定唤醒的线程到底是否是下一个要执行的就有可能会出现抢到了锁但不该自己执行，然后又进入wait的情况，比如现在有100个线程，现在是第一个线程在执行，他执行完之后需要第二个线程执行，但是第100个线程抢到了，发现不是自己然后又进入wait，然后第99个线程抢到了，发现不是自己然后又进入wait，然后第98,97…直到第3个线程都抢到了，最后才到第二个线程抢到同步锁，这里就会白白的多执行很多过程，虽然最后能完成目标。</p>
+<h3 id="通过Semaphore进行改进"><a href="#通过Semaphore进行改进" class="headerlink" title="通过Semaphore进行改进"></a>通过Semaphore进行改进</h3><h4 id="Mutex与Semaphore的比较"><a href="#Mutex与Semaphore的比较" class="headerlink" title="Mutex与Semaphore的比较"></a>Mutex与Semaphore的比较</h4><ul>
+<li><p>Mutex是一把钥匙，一个人拿了就可进入一个房间，出来的时候把钥匙交给队列的第一个。一般的用法是用于串行化对critical section代码的访问，保证这段代码不会被并行的运行。</p>
 </li>
-<li><p>把数据存到usb设备（可真可假）中<br><a href="https://blog.csdn.net/kingtj/article/details/82952783" target="_blank" rel="noopener">https://blog.csdn.net/kingtj/article/details/82952783</a></p>
+<li><p>Semaphore是一件可以容纳N人的房间，如果人不满就可以进去，如果人满了，就要等待有人出来。对于N=1的情况，称为binary semaphore。一般的用法是，用于限制对于某一资源的同时访问。</p>
 </li>
-</ol>
-<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>qemu-kvm虚拟机与宿主机之间实现文件传输，大概两类方法：</p>
-<ul>
-<li>虚拟机与宿主机之间，使用网络来进行文件传输。这个需要先在宿主机上配置网络桥架，在qemu-kvm启动配置网卡就可以实现文件传输。</li>
-<li>使用9psetup协议实现虚拟机与宿主机之间文件传输。该方法先要宿主机需要在内核中配置了9p选项，即：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CONFIG_NET_9P=y</span><br><span class="line">CONFIG_net_9P_VIRTIO=y</span><br><span class="line">CONFIG_NET_9P_DEBUG=y (可选项)</span><br><span class="line">CONFIG_9P_FS=y</span><br><span class="line">CONFIG_9P_FS_POSIX_ACL=y</span><br></pre></td></tr></table></figure>
+<li><p>Binary semaphore与Mutex的差异：</p>
 </li>
 </ul>
-<p>另外，qemu在编译时需要支持ATTR/XATTR。</p>
-<p>综上，两类方法配置起来都比较麻烦。其实有一个比较简单的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">在虚拟机环境下，我们可能会遇到在宿主机和客户机之间传输文件的需求，目前有几种方法可以实现这个例如通过9p协议，或者为客户机和宿主机之间搭建一个网络等。这些都太不容易实现，下面我介绍一种简单的方法。</span><br><span class="line"></span><br><span class="line">1. 使用dd创建一个文件，作为虚拟机和宿主机之间传输桥梁</span><br><span class="line"></span><br><span class="line">dd if=/dev/zero of=/var/lib/libvirt/images/share.img bs=1M count=350</span><br><span class="line">2. 格式化share.img文件</span><br><span class="line">mkfs.ext4/var/lib/libvirt/images/share.img</span><br><span class="line">3. 在宿主机上创建一个文件夹，</span><br><span class="line">mkdir /tmp/share</span><br><span class="line">mount -o loop/var/lib/libvirt/images/share.img /tmp/share</span><br><span class="line">这样，在宿主机上把需要传输给虚拟机的文件放到/tmp/share 下即可。</span><br><span class="line">4. 启动qemu-kvm虚拟机，可以额外为客户机添加上一块硬盘。</span><br><span class="line"></span><br><span class="line">-drive file=/var/lib/libvirt/images/share.img,if=virtio</span><br><span class="line"></span><br><span class="line">5. 在虚拟机中 mount上添加的一块硬盘。即可以获得宿主机上放在/tmp/share文件夹下的文件，具体做法是：通过dmesg的输出找到新挂在的硬盘是什么，然后将硬盘直接mount上来。</span><br><span class="line"></span><br><span class="line">mount -t ext4 /dev/vdb /mnt/</span><br></pre></td></tr></table></figure></p>
-<p>当然，该方法虽然简单，但它也有缺点, 宿主机和虚拟机文件传输不能实时传输。如果需要传输新文件，需要重启虚拟机。</p>
-<h3 id="有没有其他的方式呢还？待补充。。。"><a href="#有没有其他的方式呢还？待补充。。。" class="headerlink" title="有没有其他的方式呢还？待补充。。。"></a>有没有其他的方式呢还？待补充。。。</h3>
+<p>在 有的系统中Binary semaphore与Mutex是没有差异的。在有的系统上，主要的差异是mutex一定要由获得锁的进程来释放。而semaphore可以由其它进程释 放（这时的semaphore实际就是个原子的变量，大家可以加或减），因此semaphore可以用于进程间同步。Semaphore的同步功能是所有 系统都支持的，而Mutex能否由其他进程释放则未定，因此建议mutex只用于保护critical section。而semaphore则用于保护某变量，或者同步。</p>
+<h4 id="semaphore"><a href="#semaphore" class="headerlink" title="semaphore"></a>semaphore</h4><p>信号量(Semaphore)，有时被称为信号灯，是在多线程环境下使用的一种设施, 它负责协调各个线程, 以保证它们能够正确、合理的使用公共资源。 </p>
+<p>Semaphore分为单值和多值两种，前者只能被一个线程获得，后者可以被若干个线程获得。</p>
+<h4 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h4><p>以一个停车场是运作为例。为了简单起见，假设停车场只有三个车位，一开始三个车位都是空的。这是如果同时来了五辆车，看门人允许其中三辆不受阻碍的进入，然后放下车拦，剩下的车则必须在入口等待，此后来的车也都不得不在入口处等待。这时，有一辆车离开停车场，看门人得知后，打开车拦，放入一辆，如果又离开两辆，则又可以放入两辆，如此往复。<br>在这个停车场系统中，车位是公共资源，每辆车好比一个线程，看门人起的就是信号量的作用。<br>更进一步，信号量的特性如下：信号量是一个非负整数（车位数），所有通过它的线程（车辆）都会将该整数减一（通过它当然是为了使用资源），当该整数值为零时，所有试图通过它的线程都将处于等待状态。在信号量上我们定义两种操作： Wait（等待） 和 Release（释放）。 当一个线程调用Wait等待）操作时，它要么通过然后将信号量减一，要么一自等下去，直到信号量大于一或超时。Release（释放）实际上是在信号量上执行加操作，对应于车辆离开停车场，该操作之所以叫做“释放”是应为加操作实际上是释放了由信号量守护的资源。</p>
+<h4 id="如何改进"><a href="#如何改进" class="headerlink" title="如何改进"></a>如何改进</h4><p>我们上一个线程持有下一个线程的信号量，通过一个信号量数组将全部关联起来,代码如下: 通过这种方式，我们就不会有白白唤醒的线程，每一个线程都按照我们所约定的顺序去执行，让每个线程的执行都能再你手中得到控制<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N = <span class="number">3</span>;</span><br><span class="line">        Thread[] threads = <span class="keyword">new</span> Thread[N];</span><br><span class="line">        <span class="keyword">final</span> Semaphore[] syncObjects = <span class="keyword">new</span> Semaphore[N];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            syncObjects[i] = <span class="keyword">new</span> Semaphore(<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (i != N-<span class="number">1</span>)&#123;</span><br><span class="line">                syncObjects[i].acquire();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            <span class="keyword">final</span> Semaphore lastSemphore = i == <span class="number">0</span> ? syncObjects[N - <span class="number">1</span>] : syncObjects[i - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">final</span> Semaphore curSemphore = syncObjects[i];</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> index = i;</span><br><span class="line">            threads[i] = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line"></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                            lastSemphore.acquire();</span><br><span class="line">                            System.out.println(<span class="string">"thread"</span> + index + <span class="string">": "</span> + result++);</span><br><span class="line">                            <span class="keyword">if</span> (result &gt; <span class="number">100</span>)&#123;</span><br><span class="line">                                System.exit(<span class="number">0</span>);</span><br><span class="line">                            &#125;</span><br><span class="line">                            curSemphore.release();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            threads[i].start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="另外一个方法"><a href="#另外一个方法" class="headerlink" title="另外一个方法"></a>另外一个方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> chapter_1_stackandqueue;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Semaphore;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 整体思路，每个线程持有一把锁，初始化，只有第一个线程有锁</span></span><br><span class="line"><span class="comment"> * 执行完成之后把锁传递下去</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">a</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 最大线程数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> THREAD_NUMBER = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 最大数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_COUNT = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 输出值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Semaphore[] semaphores = <span class="keyword">new</span> Semaphore[THREAD_NUMBER];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; THREAD_NUMBER; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == <span class="number">0</span>) &#123;</span><br><span class="line">                semaphores[i] = <span class="keyword">new</span> Semaphore(<span class="number">1</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                semaphores[i] = <span class="keyword">new</span> Semaphore(<span class="number">0</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; THREAD_NUMBER; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> Thread(<span class="keyword">new</span> TestThread(semaphores, i)).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TestThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> Semaphore[] semaphores;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> number = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">TestThread</span><span class="params">(Semaphore[] semaphores, <span class="keyword">int</span> number)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.number = number;</span><br><span class="line">            <span class="keyword">this</span>.semaphores = semaphores;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                    semaphores[number].acquire();</span><br><span class="line">                    <span class="keyword">if</span> (count &gt;= MAX_COUNT) &#123;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">"："</span> + count);</span><br><span class="line">                    count++;</span><br><span class="line">                    <span class="keyword">int</span> current = number + <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">if</span> (current &gt;= THREAD_NUMBER) &#123;</span><br><span class="line">                        current = <span class="number">0</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    semaphores[current].release();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://juejin.im/post/5c89b9515188257e5b2befdd" target="_blank" rel="noopener">https://juejin.im/post/5c89b9515188257e5b2befdd</a></p>
+
       
     </div>
     
@@ -502,7 +503,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/12/12/VM与HOST之间传输文件/" title="VM与HOST之间传输文件">http://yoursite.com/2018/12/12/VM与HOST之间传输文件/</a>
+    <a href="http://yoursite.com/2019/03/17/Java之Semaphore/" title="Java之Semaphore">http://yoursite.com/2019/03/17/Java之Semaphore/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -517,7 +518,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/KVM/" rel="tag"># KVM</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -542,8 +543,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/12/国密算法之SM4/" rel="next" title="国密算法之SM4">
-                <i class="fa fa-chevron-left"></i> 国密算法之SM4
+              <a href="/2019/03/17/Java之checkForComodification/" rel="next" title="Java之checkForComodification">
+                <i class="fa fa-chevron-left"></i> Java之checkForComodification
               </a>
             
           </div>
@@ -551,10 +552,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/15/谷歌之Percolator模型/" rel="prev" title="谷歌之Percolator模型">
-                谷歌之Percolator模型 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
