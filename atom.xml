@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-23T05:51:54.649Z</updated>
+  <updated>2019-03-23T07:09:59.222Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mysql之GTID</title>
+    <link href="http://yoursite.com/2019/03/23/Mysql%E4%B9%8BGTID/"/>
+    <id>http://yoursite.com/2019/03/23/Mysql之GTID/</id>
+    <published>2019-03-23T07:09:24.000Z</published>
+    <updated>2019-03-23T07:09:59.222Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;万恶之源&quot;&gt;&lt;a href=&quot;#万恶之源&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Mysql" scheme="http://yoursite.com/categories/Mysql/"/>
+    
+    
+      <category term="Mysql" scheme="http://yoursite.com/tags/Mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>Java之堆外内存</title>
@@ -508,32 +534,6 @@
     
     
       <category term="Architecture" scheme="http://yoursite.com/tags/Architecture/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>你知道CoreDump吗？</title>
-    <link href="http://yoursite.com/2019/03/11/%E4%BD%A0%E7%9F%A5%E9%81%93CoreDump%E5%90%97%EF%BC%9F/"/>
-    <id>http://yoursite.com/2019/03/11/你知道CoreDump吗？/</id>
-    <published>2019-03-11T02:26:28.000Z</published>
-    <updated>2019-03-11T02:48:30.449Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;什么是core-dump文件&quot;&gt;&lt;a href=&quot;#什么是core-dump文件&quot; class=&quot;headerlink&quot; title=&quot;什么是core dump文件&quot;&gt;&lt;/a&gt;什么是core dump文件&lt;/h3&gt;&lt;p&gt;Core
-        
-      
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
     
   </entry>
   

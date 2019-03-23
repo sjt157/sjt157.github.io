@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="DataStructure," />
+  <meta name="keywords" content="Mysql," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="红黑树，AVL树简单来说都是用来搜索的呗。 AVL树：平衡二叉树，一般是用平衡因子差值决定并通过旋转来实现，左右子树树高差不超过1，那么和红黑树比较它是严格的平衡二叉树，平衡条件非常严格（树高差只有1），只要插入或删除不满足上面的条件就要通过旋转来保持平衡。由于旋转是非常耗费时间的。我们可以推出AVL树适合用于插入删除次数比较少，但查找多的情况。 红黑树：平衡二叉树，通过对任何一条从根到叶子的简">
-<meta name="keywords" content="DataStructure">
+<meta name="description" content="万恶之源今天看一个博客的时候,发现了一个新东西GTID 这篇博客说道:CDC模块可以从mysql那里拿binlogCDC 模块解析 binlog，产生特定格式的变更消息，也就完成了一次变更抓取。但这还不够，CDC 模块本身也可能挂掉，那么恢复之后如何保证不丢数据又是一个问题。这个问题的解决方案也是要针对不同数据源进行设计的，就 MySQL 而言，通常会持久化已经消费的 binlog 位点或 Gti">
+<meta name="keywords" content="Mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="各种树">
-<meta property="og:url" content="http://yoursite.com/2018/03/27/各种树/index.html">
+<meta property="og:title" content="Mysql之GTID">
+<meta property="og:url" content="http://yoursite.com/2019/03/23/Mysql之GTID/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="红黑树，AVL树简单来说都是用来搜索的呗。 AVL树：平衡二叉树，一般是用平衡因子差值决定并通过旋转来实现，左右子树树高差不超过1，那么和红黑树比较它是严格的平衡二叉树，平衡条件非常严格（树高差只有1），只要插入或删除不满足上面的条件就要通过旋转来保持平衡。由于旋转是非常耗费时间的。我们可以推出AVL树适合用于插入删除次数比较少，但查找多的情况。 红黑树：平衡二叉树，通过对任何一条从根到叶子的简">
+<meta property="og:description" content="万恶之源今天看一个博客的时候,发现了一个新东西GTID 这篇博客说道:CDC模块可以从mysql那里拿binlogCDC 模块解析 binlog，产生特定格式的变更消息，也就完成了一次变更抓取。但这还不够，CDC 模块本身也可能挂掉，那么恢复之后如何保证不丢数据又是一个问题。这个问题的解决方案也是要针对不同数据源进行设计的，就 MySQL 而言，通常会持久化已经消费的 binlog 位点或 Gti">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-27T05:19:03.592Z">
+<meta property="og:updated_time" content="2019-03-23T07:09:59.222Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="各种树">
-<meta name="twitter:description" content="红黑树，AVL树简单来说都是用来搜索的呗。 AVL树：平衡二叉树，一般是用平衡因子差值决定并通过旋转来实现，左右子树树高差不超过1，那么和红黑树比较它是严格的平衡二叉树，平衡条件非常严格（树高差只有1），只要插入或删除不满足上面的条件就要通过旋转来保持平衡。由于旋转是非常耗费时间的。我们可以推出AVL树适合用于插入删除次数比较少，但查找多的情况。 红黑树：平衡二叉树，通过对任何一条从根到叶子的简">
+<meta name="twitter:title" content="Mysql之GTID">
+<meta name="twitter:description" content="万恶之源今天看一个博客的时候,发现了一个新东西GTID 这篇博客说道:CDC模块可以从mysql那里拿binlogCDC 模块解析 binlog，产生特定格式的变更消息，也就完成了一次变更抓取。但这还不够，CDC 模块本身也可能挂掉，那么恢复之后如何保证不丢数据又是一个问题。这个问题的解决方案也是要针对不同数据源进行设计的，就 MySQL 而言，通常会持久化已经消费的 binlog 位点或 Gti">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/27/各种树/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/23/Mysql之GTID/"/>
 
 
 
 
 
-  <title>各种树 | 诗与远方</title>
+  <title>Mysql之GTID | 诗与远方</title>
   
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/各种树/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/23/Mysql之GTID/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songjiantao">
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">各种树</h1>
+          <h1 class="post-title" itemprop="name headline">Mysql之GTID</h1>
         
 
         <div class="post-meta">
@@ -338,8 +338,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T13:07:11+08:00">
-                2018-03-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-23T15:09:24+08:00">
+                2019-03-23
               </time>
             
 
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-27T13:19:03+08:00">
-                2018-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-23T15:09:59+08:00">
+                2019-03-23
               </time>
             
           </span>
@@ -373,8 +373,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DataStructure/" itemprop="url" rel="index">
-                    <span itemprop="name">DataStructure</span>
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
                   </a>
                 </span>
 
@@ -391,8 +391,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/27/各种树/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/27/各种树/" itemprop="commentCount"></span>
+                <a href="/2019/03/23/Mysql之GTID/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/23/Mysql之GTID/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -400,7 +400,7 @@
 
           
           
-             <span id="/2018/03/27/各种树/" class="leancloud_visitors" data-flag-title="各种树">
+             <span id="/2019/03/23/Mysql之GTID/" class="leancloud_visitors" data-flag-title="Mysql之GTID">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -432,18 +432,37 @@
       
 
       
-        <ul>
-<li>红黑树，AVL树简单来说都是用来搜索的呗。</li>
-<li>AVL树：平衡二叉树，一般是用平衡因子差值决定并通过旋转来实现，左右子树树高差不超过1，那么和红黑树比较它是严格的平衡二叉树，平衡条件非常严格（树高差只有1），只要插入或删除不满足上面的条件就要通过旋转来保持平衡。由于旋转是非常耗费时间的。我们可以推出AVL树适合用于插入删除次数比较少，但查找多的情况。</li>
-<li>红黑树：平衡二叉树，通过对任何一条从根到叶子的简单路径上各个节点的颜色进行约束，确保没有一条路径会比其他路径长2倍，因而是近似平衡的。所以相对于严格要求平衡的AVL树来说，它的旋转保持平衡次数较少。用于搜索时，插入删除次数多的情况下我们就用红黑树来取代AVL。（现在部分场景使用跳表来替换红黑树，可搜索“为啥 redis 使用跳表(skiplist)而不是使用 red-black？”）</li>
-<li>B树，B+树：它们特点是一样的，是多路查找树，一般用于数据库系统中，为什么，因为它们分支多层数少呗，都知道磁盘IO是非常耗时的，而像大量数据存储在磁盘中所以我们要有效的减少磁盘IO次数避免磁盘频繁的查找。B+树是B树的变种树，有n棵子树的节点中含有n个关键字，每个关键字不保存数据，只用来索引，数据都保存在叶子节点。是为文件系统而生的。b+树是b树的一个变种，只在leaf node存储数据，可以方便地遍历所有数据。b树相较于b+树可以把热点数据放在internal node中以便更快地查找。</li>
-<li>B+树本来就是为 SQL 实现的，它比 B 树的优势在于范围查询更快，因为数据都在叶子节点上，所有的叶子节点又在同一底层上。</li>
-<li>磁盘中的B+树以文件的形式将整体都存放磁盘当中，使用时只在内存中缓存部份结构。</li>
-<li>先了解下相关的硬件知识，才能很好的了解为什么需要B~tree这种外存数据结构。 B-tree就是指的B树。</li>
-<li>B+-tree的查询效率更加稳定   由于非终结点并不是最终指向文件内容的结点，而只是叶子结点中关键字的索引。所以任何关键字的查找必须走一条从根结点到叶子结点的路。所有关键字查询的路径长度相同，导致每一个数据的查询效率相当。</li>
-<li>数据库索引采用B+树的主要原因是 B树在提高了磁盘IO性能的同时并没有解决元素遍历的效率低下的问题。正是为了解决这个问题，B+树应运而生。B+树只要遍历叶子节点就可以实现整棵树的遍历。而且在数据库中基于范围的查询是非常频繁的，而B树不支持这样的操作（或者说效率太低）。</li>
-<li>Trie树：又名单词查找树，一种树形结构，常用来操作字符串,比如在百度搜索时，会给出提示。它是不同字符串的相同前缀只保存一份。相对直接保存字符串肯定是节省空间的，但是它保存大量字符串时会很耗费内存（是内存）。类似的有前缀树(prefix tree)，后缀树(suffix tree)，radix tree(patricia tree, compact prefix tree)，crit-bit tree（解决耗费内存问题），以及前面说的double array trie。简单的补充下我了解应用前缀树：字符串快速检索，字符串排序，最长公共前缀，自动匹配前缀显示后缀。后缀树：查找字符串s1在s2中，字符串s1在s2中出现的次数，字符串s1,s2最长公共部分，最长回文串。radix tree：linux内核，nginx。</li>
+        <h3 id="万恶之源"><a href="#万恶之源" class="headerlink" title="万恶之源"></a>万恶之源</h3><p>今天看一个博客的时候,发现了一个新东西GTID</p>
+<p>这篇博客说道:<br>CDC模块可以从mysql那里拿binlog<br>CDC 模块解析 binlog，产生特定格式的变更消息，也就完成了一次变更抓取。但这还不够，CDC 模块本身也可能挂掉，那么恢复之后如何保证不丢数据又是一个问题。这个问题的解决方案也是要针对不同数据源进行设计的，就 MySQL 而言，通常会持久化已经消费的 binlog 位点或 Gtid(MySQL 5.6之后引入)来标记上次消费位置。其中更好的选择是 Gtid，因为该位点对于一套 MySQL 体系（主从或多主）是全局的，而 binlog 位点是单机的，无法支持主备或多主架构。</p>
+<p><a href="https://aleiwu.com/post/vimur/" target="_blank" rel="noopener">https://aleiwu.com/post/vimur/</a></p>
+<p>我开始不懂了。。。。。。。。</p>
+<h3 id="什么是GTID"><a href="#什么是GTID" class="headerlink" title="什么是GTID"></a>什么是GTID</h3><p>MySQL5.6在5.5的基础上增加了GTID，    GTID即全局事务ID（global transaction identifier），GTID实际上是由UUID+TID组成的。其中UUID是一个MySQL实例的唯一标识。TID代表了该实例上已经提交的事务数量，并且随着事务提交单调递增，所以GTID能够保证每个MySQL实例事务的执行（不会重复执行同一个事务，并且会补全没有执行的事务）。下面是一个GTID的具体形式：</p>
+<p>4e659069-3cd8-11e5-9a49-001c4270714e:1-77</p>
+<p>GTID用于在binlog中唯一标识一个事务。当事务提交时，MySQL Server在写binlog的时候，会先写一个特殊的Binlog Event，类型为GTID_Event，指定下一个事务的GTID，然后再写事务的Binlog。主从同步时GTID_Event和事务的Binlog都会传递到从库，从库在执行的时候也是用同样的GTID写binlog，这样主从同步以后，就可通过GTID确定从库同步到的位置了。也就是说，无论是级联情况，还是一主多从情况，都可以通过GTID自动找点儿，而无需像之前那样通过File_name和File_position找点儿了。</p>
+<h3 id="GTID有啥用？"><a href="#GTID有啥用？" class="headerlink" title="GTID有啥用？"></a>GTID有啥用？</h3><ul>
+<li><p>因为清楚了GTID的格式，所以通过UUID可以知道这个事务在哪个实例上提交的。</p>
+</li>
+<li><p>通过GTID可以极方便的进行复制结构上的故障转移，新主设置。很好的解决了下面这个图（图来自高性能MySQL第10章）的问题。</p>
+</li>
 </ul>
+<p>上面图的意思是：Server1(Master)崩溃，根据从上show slave status获得Master_log_File/Read_Master_Log_Pos的值，Server2(Slave)已经跟上了主，Server3(Slave)没有跟上主。这时要是把Server2提升为主，Server3变成Server2的从。这时在Server3上执行change的时候需要做一些计算，这里就不做说明了，具体的说明见高性能MySQL第10章，相对来说是比较麻烦的。</p>
+<p>这个问题在5.6的GTID出现后，就显得非常的简单。由于同一事务的GTID在所有节点上的值一致，那么根据Server3当前停止点的GTID就能定位到Server2上的GTID。甚至由于MASTER_AUTO_POSITION功能的出现，我们都不需要知道GTID的具体值，直接使用CHANGE MASTER TO MASTER_HOST=’xxx’， MASTER_AUTO_POSITION命令就可以直接完成failover的工作。</p>
+<p>原理：<br>从服务器连接到主服务器之后，把自己执行过的GTID(Executed_Gtid_Set)&lt;SQL线程&gt; 、获取到的GTID(Retrieved_Gtid_Set）&lt;IO线程&gt;发给主服务器，主服务器把从服务器缺少的GTID及对应的transactions发过去补全即可。当主服务器挂掉的时候，找出同步最成功的那台从服务器，直接把它提升为主即可。如果硬要指定某一台不是最新的从服务器提升为主， 先change到同步最成功的那台从服务器， 等把GTID全部补全了，就可以把它提升为主了。</p>
+<h3 id="使用GTID注意事项"><a href="#使用GTID注意事项" class="headerlink" title="使用GTID注意事项"></a>使用GTID注意事项</h3><ul>
+<li><p>开启GTID以后，无法使用sql_slave_skip_counter跳过事务。前面介绍过了，使用GTID找点儿时，主库会把从库缺失的GTID，发送给从库，所以skip是没有用的。为了提前发现问题，MySQL在gtid模式下，直接禁止使用set global sql_slave_skip_counter ＝ x。正确的做法是，通过set grid_next= ‘zzzz’（’zzzz’为待跳过的事务），然后执行BIGIN;COMMIT产生一个空事务，占据这个GTID，再START SLAVE，会发现下一条事务的GTID已经执行过，就会跳过这个事务了</p>
+</li>
+<li><p>如果一个GTID已经执行过，再遇到重复的GTID，从库会直接跳过，可看作GTID执行的幂等性。</p>
+</li>
+<li><p>使用限制：<a href="https://dev.mysql.com/doc/refman/5.6/en/replication-gtids-restrictions.html" target="_blank" rel="noopener">https://dev.mysql.com/doc/refman/5.6/en/replication-gtids-restrictions.html</a></p>
+</li>
+</ul>
+<h3 id="业界经验："><a href="#业界经验：" class="headerlink" title="业界经验："></a>业界经验：</h3><ol>
+<li><p><a href="https://code.facebook.com/posts/1542273532669494/lessons-from-deploying-mysql-gtid-at-scale/" target="_blank" rel="noopener">https://code.facebook.com/posts/1542273532669494/lessons-from-deploying-mysql-gtid-at-scale/</a></p>
+</li>
+<li><p><a href="https://www.percona.com/blog/2015/02/10/online-gtid-rollout-now-available-percona-server-5-6/" target="_blank" rel="noopener">https://www.percona.com/blog/2015/02/10/online-gtid-rollout-now-available-percona-server-5-6/</a></p>
+</li>
+</ol>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.cnblogs.com/zhoujinyi/p/4717951.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhoujinyi/p/4717951.html</a><br><a href="https://www.cnblogs.com/zejin2008/p/7705473.html" target="_blank" rel="noopener">https://www.cnblogs.com/zejin2008/p/7705473.html</a></p>
 
       
     </div>
@@ -498,7 +517,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/03/27/各种树/" title="各种树">http://yoursite.com/2018/03/27/各种树/</a>
+    <a href="http://yoursite.com/2019/03/23/Mysql之GTID/" title="Mysql之GTID">http://yoursite.com/2019/03/23/Mysql之GTID/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -513,7 +532,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/DataStructure/" rel="tag"># DataStructure</a>
+            <a href="/tags/Mysql/" rel="tag"># Mysql</a>
           
         </div>
       
@@ -538,8 +557,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/24/虚拟机通过桥接模式上网（补充）/" rel="next" title="虚拟机通过桥接模式上网（补充）">
-                <i class="fa fa-chevron-left"></i> 虚拟机通过桥接模式上网（补充）
+              <a href="/2019/03/23/Java之堆外内存/" rel="next" title="Java之堆外内存">
+                <i class="fa fa-chevron-left"></i> Java之堆外内存
               </a>
             
           </div>
@@ -547,10 +566,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/28/哈希表/" rel="prev" title="哈希表">
-                哈希表 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
