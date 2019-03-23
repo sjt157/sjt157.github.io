@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-22T14:50:58.910Z</updated>
+  <updated>2019-03-23T02:23:23.778Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>操作系统之MMAP</title>
+    <link href="http://yoursite.com/2019/03/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8BMMAP/"/>
+    <id>http://yoursite.com/2019/03/23/操作系统之MMAP/</id>
+    <published>2019-03-23T02:22:34.000Z</published>
+    <updated>2019-03-23T02:23:23.778Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;MMAP是什么&quot;&gt;&lt;a href=&quot;#MMAP是什么&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="OS" scheme="http://yoursite.com/categories/OS/"/>
+    
+    
+      <category term="OS" scheme="http://yoursite.com/tags/OS/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker之为何不能停止容器</title>
@@ -507,30 +533,6 @@
     
     
       <category term="TCP/IP" scheme="http://yoursite.com/tags/TCP-IP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mysql查询缓存</title>
-    <link href="http://yoursite.com/2019/02/22/Mysql%E6%9F%A5%E8%AF%A2%E7%BC%93%E5%AD%98/"/>
-    <id>http://yoursite.com/2019/02/22/Mysql查询缓存/</id>
-    <published>2019-02-22T09:03:31.000Z</published>
-    <updated>2019-02-22T09:05:33.473Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;开启查询缓存后，查询语句的解析过程：&quot;&gt;&lt;a href=&quot;#开启查询缓存后，查询语句的解析过程：&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Mysql" scheme="http://yoursite.com/tags/Mysql/"/>
     
   </entry>
   
