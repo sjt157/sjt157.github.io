@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-23T02:23:23.778Z</updated>
+  <updated>2019-03-23T03:21:24.099Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux之iptables</title>
+    <link href="http://yoursite.com/2019/03/23/Linux%E4%B9%8Biptables/"/>
+    <id>http://yoursite.com/2019/03/23/Linux之iptables/</id>
+    <published>2019-03-23T03:20:53.000Z</published>
+    <updated>2019-03-23T03:21:24.099Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;昨天读了一篇文章说，服务器不能把防火墙关闭。那么我在unbuntu上通过ufw enable开启了防火墙，然后我执行了以下命令，懵逼了，这都是啥啊。&lt;/p&gt;
+&lt;h3 id=&quot;Filter表&quot;&gt;&lt;a href=&quot;#Filter表&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>操作系统之MMAP</title>
@@ -507,32 +534,6 @@
     
     
       <category term="DataStructure" scheme="http://yoursite.com/tags/DataStructure/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>当你在浏览器输入google.com之后</title>
-    <link href="http://yoursite.com/2019/02/22/%E5%BD%93%E4%BD%A0%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%85%A5google-com%E4%B9%8B%E5%90%8E/"/>
-    <id>http://yoursite.com/2019/02/22/当你在浏览器输入google-com之后/</id>
-    <published>2019-02-22T09:15:00.000Z</published>
-    <updated>2019-02-22T09:15:49.735Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;按下”g”键&quot;&gt;&lt;a href=&quot;#按下”g”键&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="TCP/IP" scheme="http://yoursite.com/categories/TCP-IP/"/>
-    
-    
-      <category term="TCP/IP" scheme="http://yoursite.com/tags/TCP-IP/"/>
     
   </entry>
   

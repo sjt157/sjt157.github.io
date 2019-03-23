@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linux," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="诗与远方" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="昨天读了一篇文章说，服务器不能把防火墙关闭。那么我在unbuntu上通过ufw enable开启了防火墙，然后我执行了以下命令，懵逼了，这都是啥啊。 Filter表主要和主机自身有关，真正负责主机防火墙功能（过滤流入，流出，主机的数据包）。filter是主机默认使用的表。这表定义了三个链。生产场景单台，服务器的防火墙功能全靠这张表。  INPUT：负责过滤进入主机的数据包  FORWARD：负责转">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux之iptables">
+<meta property="og:url" content="http://yoursite.com/2019/03/23/Linux之iptables/index.html">
+<meta property="og:site_name" content="诗与远方">
+<meta property="og:description" content="昨天读了一篇文章说，服务器不能把防火墙关闭。那么我在unbuntu上通过ufw enable开启了防火墙，然后我执行了以下命令，懵逼了，这都是啥啊。 Filter表主要和主机自身有关，真正负责主机防火墙功能（过滤流入，流出，主机的数据包）。filter是主机默认使用的表。这表定义了三个链。生产场景单台，服务器的防火墙功能全靠这张表。  INPUT：负责过滤进入主机的数据包  FORWARD：负责转">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-23T03:21:24.099Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux之iptables">
+<meta name="twitter:description" content="昨天读了一篇文章说，服务器不能把防火墙关闭。那么我在unbuntu上通过ufw enable开启了防火墙，然后我执行了以下命令，懵逼了，这都是啥啊。 Filter表主要和主机自身有关，真正负责主机防火墙功能（过滤流入，流出，主机的数据包）。filter是主机默认使用的表。这表定义了三个链。生产场景单台，服务器的防火墙功能全靠这张表。  INPUT：负责过滤进入主机的数据包  FORWARD：负责转">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","offset":12,"b2t":true,"scrollpercent":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/23/Linux之iptables/"/>
+
+
+
+
+
+  <title>Linux之iptables | 诗与远方</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">诗与远方</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个走在前端的后端人</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-top">
+          <a href="/top/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            阅读排行
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/23/Linux之iptables/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songjiantao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/15856742?s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗与远方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux之iptables</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-23T11:20:53+08:00">
+                2019-03-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-23T11:21:24+08:00">
+                2019-03-23
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/23/Linux之iptables/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/23/Linux之iptables/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/03/23/Linux之iptables/" class="leancloud_visitors" data-flag-title="Linux之iptables">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+	         <span> ℃ </span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>昨天读了一篇文章说，服务器不能把防火墙关闭。那么我在unbuntu上通过ufw enable开启了防火墙，然后我执行了以下命令，懵逼了，这都是啥啊。</p>
+<h3 id="Filter表"><a href="#Filter表" class="headerlink" title="Filter表"></a>Filter表</h3><p>主要和主机自身有关，真正负责主机防火墙功能（过滤流入，流出，主机的数据包）。filter是主机默认使用的表。这表定义了三个链。生产场景单台，服务器的防火墙功能全靠这张表。</p>
+<ul>
+<li><p>INPUT：负责过滤进入主机的数据包</p>
+</li>
+<li><p>FORWARD：负责转发流进主机的数据包，起转发的作用，和NAT关系很大。 net.ipv4.ip_forward=0 这个参数很重要，有的场景需要开启。echo 1  &gt; /proc/sys/net/ipv4/ip_forward暂时开始路由转发。</p>
+</li>
+<li><p>OUTPUT ： 就是处理从主机发出去的数据包</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu16-desktop:~# iptables -nL //列表形式显示默认表(filter)的所有信息 L list 列表 -n number 数字</span><br><span class="line">Chain INPUT (policy DROP)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">ufw-before-logging-input  all  --  0.0.0.0/0            0.0.0.0/0 （表示anywhere）          </span><br><span class="line">ufw-before-input  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ufw-after-input  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ufw-after-logging-input  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ufw-reject-input  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ufw-track-input  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line"></span><br><span class="line">//默认不能进行转发，就是从容器里边 到主机，默认是不行的。如果想要实现不同主机上的容器进行通信，需要对此进行修改。但是我做了下实验，开不开起net.ipv4.ip_forward，容器和主机都可以相互ping通啊。</span><br><span class="line">Chain FORWARD (policy DROP)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">DOCKER-USER  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">DOCKER-ISOLATION-STAGE-1  all  --  0.0.0.0/0            0.0.0.0/0      </span><br><span class="line">     </span><br><span class="line">ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0            ctstate RELATED,ESTABLISHED</span><br><span class="line">DOCKER     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0            ctstate RELATED,ESTABLISHED</span><br><span class="line">DOCKER     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0            ctstate RELATED,ESTABLISHED</span><br><span class="line">DOCKER     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0            ctstate RELATED,ESTABLISHED</span><br><span class="line">DOCKER     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ufw-before-logging-forward  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ufw-before-forward  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ufw-after-forward  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ufw-after-logging-forward  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ufw-reject-forward  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ufw-track-forward  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line"></span><br><span class="line">Chain OUTPUT (policy ACCEPT)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">ufw-before-logging-output  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ufw-before-output  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ufw-after-output  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ufw-after-logging-output  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ufw-reject-output  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ufw-track-output  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line"></span><br><span class="line">Chain DOCKER (4 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">ACCEPT     tcp  --  0.0.0.0/0            172.18.20.217        tcp dpt:9092</span><br><span class="line">ACCEPT     tcp  --  0.0.0.0/0            172.17.0.2           tcp dpt:9000</span><br><span class="line">ACCEPT     tcp  --  0.0.0.0/0            172.18.20.217        tcp dpt:3000</span><br><span class="line">ACCEPT     tcp  --  0.0.0.0/0            172.18.20.216        tcp dpt:9092</span><br><span class="line">ACCEPT     tcp  --  0.0.0.0/0            172.18.20.215        tcp dpt:9092</span><br><span class="line">ACCEPT     tcp  --  0.0.0.0/0            172.18.20.213        tcp dpt:2181</span><br><span class="line">ACCEPT     tcp  --  0.0.0.0/0            172.18.20.218        tcp dpt:9300</span><br><span class="line">ACCEPT     tcp  --  0.0.0.0/0            172.18.20.218        tcp dpt:9200</span><br><span class="line">ACCEPT     tcp  --  0.0.0.0/0            172.18.20.214        tcp dpt:2181</span><br><span class="line">ACCEPT     tcp  --  0.0.0.0/0            172.18.20.212        tcp dpt:2181</span><br><span class="line">ACCEPT     tcp  --  0.0.0.0/0            172.18.20.1          tcp dpt:8086</span><br><span class="line">ACCEPT     tcp  --  0.0.0.0/0            172.18.20.3          tcp dpt:3000</span><br><span class="line">ACCEPT     tcp  --  0.0.0.0/0            172.17.0.6           tcp dpt:3306</span><br><span class="line"></span><br><span class="line">Chain DOCKER-ISOLATION-STAGE-1 (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">DOCKER-ISOLATION-STAGE-2  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">DOCKER-ISOLATION-STAGE-2  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">DOCKER-ISOLATION-STAGE-2  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">DOCKER-ISOLATION-STAGE-2  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">RETURN     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line"></span><br><span class="line">//默认drop</span><br><span class="line">Chain DOCKER-ISOLATION-STAGE-2 (4 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">DROP       all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">DROP       all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">DROP       all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">DROP       all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">RETURN     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line"></span><br><span class="line">Chain DOCKER-USER (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">RETURN     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line"></span><br><span class="line">Chain ufw-after-forward (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain ufw-after-input (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">ufw-skip-to-policy-input  udp  --  0.0.0.0/0            0.0.0.0/0            udp dpt:137</span><br><span class="line">ufw-skip-to-policy-input  udp  --  0.0.0.0/0            0.0.0.0/0            udp dpt:138</span><br><span class="line">ufw-skip-to-policy-input  tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:139</span><br><span class="line">ufw-skip-to-policy-input  tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:445</span><br><span class="line">ufw-skip-to-policy-input  udp  --  0.0.0.0/0            0.0.0.0/0            udp dpt:67</span><br><span class="line">ufw-skip-to-policy-input  udp  --  0.0.0.0/0            0.0.0.0/0            udp dpt:68</span><br><span class="line">ufw-skip-to-policy-input  all  --  0.0.0.0/0            0.0.0.0/0            ADDRTYPE match dst-type BROADCAST</span><br><span class="line"></span><br><span class="line">Chain ufw-after-logging-forward (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">LOG        all  --  0.0.0.0/0            0.0.0.0/0            limit: avg 3/min burst 10 LOG flags 0 level 4 prefix "[UFW BLOCK] "</span><br><span class="line"></span><br><span class="line">Chain ufw-after-logging-input (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">LOG        all  --  0.0.0.0/0            0.0.0.0/0            limit: avg 3/min burst 10 LOG flags 0 level 4 prefix "[UFW BLOCK] "</span><br><span class="line"></span><br><span class="line">Chain ufw-after-logging-output (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain ufw-after-output (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain ufw-before-forward (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0            ctstate RELATED,ESTABLISHED</span><br><span class="line">ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0            icmptype 3</span><br><span class="line">ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0            icmptype 4</span><br><span class="line">ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0            icmptype 11</span><br><span class="line">ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0            icmptype 12</span><br><span class="line">ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0            icmptype 8</span><br><span class="line">ufw-user-forward  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line"></span><br><span class="line">Chain ufw-before-input (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0            ctstate RELATED,ESTABLISHED</span><br><span class="line">ufw-logging-deny  all  --  0.0.0.0/0            0.0.0.0/0            ctstate INVALID</span><br><span class="line">DROP       all  --  0.0.0.0/0            0.0.0.0/0            ctstate INVALID</span><br><span class="line">ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0            icmptype 3</span><br><span class="line">ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0            icmptype 4</span><br><span class="line">ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0            icmptype 11</span><br><span class="line">ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0            icmptype 12</span><br><span class="line">ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0            icmptype 8</span><br><span class="line">ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0            udp spt:67 dpt:68</span><br><span class="line">ufw-not-local  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ACCEPT     udp  --  0.0.0.0/0            224.0.0.251          udp dpt:5353</span><br><span class="line">ACCEPT     udp  --  0.0.0.0/0            239.255.255.250      udp dpt:1900</span><br><span class="line">ufw-user-input  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line"></span><br><span class="line">Chain ufw-before-logging-forward (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain ufw-before-logging-input (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain ufw-before-logging-output (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain ufw-before-output (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0            ctstate RELATED,ESTABLISHED</span><br><span class="line">ufw-user-output  all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line"></span><br><span class="line">Chain ufw-logging-allow (0 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">LOG        all  --  0.0.0.0/0            0.0.0.0/0            limit: avg 3/min burst 10 LOG flags 0 level 4 prefix "[UFW ALLOW] "</span><br><span class="line"></span><br><span class="line">Chain ufw-logging-deny (2 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">RETURN     all  --  0.0.0.0/0            0.0.0.0/0            ctstate INVALID limit: avg 3/min burst 10</span><br><span class="line">LOG        all  --  0.0.0.0/0            0.0.0.0/0            limit: avg 3/min burst 10 LOG flags 0 level 4 prefix "[UFW BLOCK] "</span><br><span class="line"></span><br><span class="line">Chain ufw-not-local (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">RETURN     all  --  0.0.0.0/0            0.0.0.0/0            ADDRTYPE match dst-type LOCAL</span><br><span class="line">RETURN     all  --  0.0.0.0/0            0.0.0.0/0            ADDRTYPE match dst-type MULTICAST</span><br><span class="line">RETURN     all  --  0.0.0.0/0            0.0.0.0/0            ADDRTYPE match dst-type BROADCAST</span><br><span class="line">ufw-logging-deny  all  --  0.0.0.0/0            0.0.0.0/0            limit: avg 3/min burst 10</span><br><span class="line">DROP       all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line"></span><br><span class="line">Chain ufw-reject-forward (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain ufw-reject-input (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain ufw-reject-output (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain ufw-skip-to-policy-forward (0 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">DROP       all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line"></span><br><span class="line">Chain ufw-skip-to-policy-input (7 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">DROP       all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line"></span><br><span class="line">Chain ufw-skip-to-policy-output (0 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line"></span><br><span class="line">Chain ufw-track-forward (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain ufw-track-input (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain ufw-track-output (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            ctstate NEW</span><br><span class="line">ACCEPT     udp  --  0.0.0.0/0            0.0.0.0/0            ctstate NEW</span><br><span class="line"></span><br><span class="line">Chain ufw-user-forward (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain ufw-user-input (1 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain ufw-user-limit (0 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">LOG        all  --  0.0.0.0/0            0.0.0.0/0            limit: avg 3/min burst 5 LOG flags 0 level 4 prefix "[UFW LIMIT BLOCK] "</span><br><span class="line">REJECT     all  --  0.0.0.0/0            0.0.0.0/0            reject-with icmp-port-unreachable</span><br><span class="line"></span><br><span class="line">Chain ufw-user-limit-accept (0 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line"></span><br><span class="line">Chain ufw-user-logging-forward (0 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain ufw-user-logging-input (0 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain ufw-user-logging-output (0 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain ufw-user-output (1 references)</span><br><span class="line">target     prot opt source               destination</span><br></pre></td></tr></table></figure>
+<h3 id="NAT表"><a href="#NAT表" class="headerlink" title="NAT表"></a>NAT表</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu16-desktop:~# iptables -nL -t nat</span><br><span class="line">Chain PREROUTING (policy ACCEPT)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">DOCKER     all  --  0.0.0.0/0            0.0.0.0/0            ADDRTYPE match dst-type LOCAL</span><br><span class="line"></span><br><span class="line">Chain INPUT (policy ACCEPT)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain OUTPUT (policy ACCEPT)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">DOCKER     all  --  0.0.0.0/0           !127.0.0.0/8          ADDRTYPE match dst-type LOCAL</span><br><span class="line"></span><br><span class="line">//MASQUERADE就是针对这种场景而设计的，他的作用是，从服务器的网卡上，自动获取当前ip地址来做NAT</span><br><span class="line">比如下边的命令：</span><br><span class="line">iptables -t nat -A POSTROUTING -s 10.8.0.0/255.255.255.0 -o eth0 -j MASQUERADE</span><br><span class="line">如此配置的话，不用指定SNAT的目标ip了</span><br><span class="line">不管现在eth0的出口获得了怎样的动态ip，MASQUERADE会自动读取eth0现在的ip地址然后做SNAT出去</span><br><span class="line">这样就实现了很好的动态SNAT地址转换</span><br><span class="line"></span><br><span class="line">Chain POSTROUTING (policy ACCEPT)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">MASQUERADE  all  --  172.17.0.0/16        0.0.0.0/0    //MASQUERADE为地址伪装，在iptables中有着和SNAT相近的效果       </span><br><span class="line">MASQUERADE  all  --  172.28.0.0/16        0.0.0.0/0           </span><br><span class="line">MASQUERADE  all  --  172.18.0.0/16        0.0.0.0/0           </span><br><span class="line">MASQUERADE  all  --  172.29.0.0/16        0.0.0.0/0           </span><br><span class="line">MASQUERADE  tcp  --  172.18.20.217        172.18.20.217        tcp dpt:9092</span><br><span class="line">MASQUERADE  tcp  --  172.17.0.2           172.17.0.2           tcp dpt:9000</span><br><span class="line">MASQUERADE  tcp  --  172.18.20.217        172.18.20.217        tcp dpt:3000</span><br><span class="line">MASQUERADE  tcp  --  172.18.20.216        172.18.20.216        tcp dpt:9092</span><br><span class="line">MASQUERADE  tcp  --  172.18.20.215        172.18.20.215        tcp dpt:9092</span><br><span class="line">MASQUERADE  tcp  --  172.18.20.213        172.18.20.213        tcp dpt:2181</span><br><span class="line">MASQUERADE  tcp  --  172.18.20.218        172.18.20.218        tcp dpt:9300</span><br><span class="line">MASQUERADE  tcp  --  172.18.20.218        172.18.20.218        tcp dpt:9200</span><br><span class="line">MASQUERADE  tcp  --  172.18.20.214        172.18.20.214        tcp dpt:2181</span><br><span class="line">MASQUERADE  tcp  --  172.18.20.212        172.18.20.212        tcp dpt:2181</span><br><span class="line">MASQUERADE  tcp  --  172.18.20.1          172.18.20.1          tcp dpt:8086</span><br><span class="line">MASQUERADE  tcp  --  172.18.20.3          172.18.20.3          tcp dpt:3000</span><br><span class="line">MASQUERADE  tcp  --  172.17.0.6           172.17.0.6           tcp dpt:3306</span><br><span class="line"></span><br><span class="line">Chain DOCKER (2 references)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">RETURN     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">RETURN     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">RETURN     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">RETURN     all  --  0.0.0.0/0            0.0.0.0/0           </span><br><span class="line">DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:9094 to:172.18.20.217:9092</span><br><span class="line">DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:9000 to:172.17.0.2:9000</span><br><span class="line">DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:3000 to:172.18.20.217:3000</span><br><span class="line">DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:9093 to:172.18.20.216:9092</span><br><span class="line">DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:9092 to:172.18.20.215:9092</span><br><span class="line">DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:2185 to:172.18.20.213:2181</span><br><span class="line">DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:9300 to:172.18.20.218:9300</span><br><span class="line">DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:9200 to:172.18.20.218:9200</span><br><span class="line">DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:2186 to:172.18.20.214:2181</span><br><span class="line">DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:2184 to:172.18.20.212:2181</span><br><span class="line">DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:8086 to:172.18.20.1:8086</span><br><span class="line">DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:5000 to:172.18.20.3:3000</span><br><span class="line">DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:3306 to:172.17.0.6:3306</span><br></pre></td></tr></table></figure>
+<h3 id="ubuntu中查看规则"><a href="#ubuntu中查看规则" class="headerlink" title="ubuntu中查看规则"></a>ubuntu中查看规则</h3><p>iptables-save</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> Generated by iptables-save v1.6.0 on Fri Mar 22 03:55:53 2019</span><br><span class="line">*nat</span><br><span class="line">:PREROUTING ACCEPT [4895:635241]</span><br><span class="line">:INPUT ACCEPT [3858:547896]</span><br><span class="line">:OUTPUT ACCEPT [2016:126826]</span><br><span class="line">:POSTROUTING ACCEPT [2018:126930]</span><br><span class="line">:DOCKER - [0:0]</span><br><span class="line">//这条规则把目标地址类型属于主机系统的本地网络地址的数据包，在数据包进入NAT表PREROUTING链时，都让它们直接jump到一个名为DOCKER的链。</span><br><span class="line">//iptables提供了众多的扩展模块，以支持更多的功能。addrtype就是这样的一个扩展模块，提供的是Address type match的功能。引用的方式就是 -m 模块名。比如还有conntrack模块。iptables -m addrtype --help查看帮助信息。</span><br><span class="line">-A PREROUTING -m addrtype --dst-type LOCAL -j DOCKER </span><br><span class="line"></span><br><span class="line">-A OUTPUT ! -d 127.0.0.0/8 -m addrtype --dst-type LOCAL -j DOCKER</span><br><span class="line"></span><br><span class="line">//这条规则是处理docker的SNAT地址伪装用的。具体含义是将容器网络网段发送到外部的数据包(!-o docker0)伪装成宿主机的ip，就是讲数据包的原来的容器ip换成了宿主机ip，做了一次snat。</span><br><span class="line">-A POSTROUTING -s 172.17.0.0/16 ! -o docker0 -j MASQUERADE</span><br><span class="line"></span><br><span class="line">-A POSTROUTING -s 172.28.0.0/16 ! -o br-c333d38dcc9f -j MASQUERADE</span><br><span class="line">//我自己建的网桥</span><br><span class="line">-A POSTROUTING -s 172.18.0.0/16 ! -o br-fd7621436686 -j MASQUERADE</span><br><span class="line">-A POSTROUTING -s 172.29.0.0/16 ! -o br-f8eb065b6c3a -j MASQUERADE</span><br><span class="line">-A POSTROUTING -s 172.18.20.217/32 -d 172.18.20.217/32 -p tcp -m tcp --dport 9092 -j MASQUERADE</span><br><span class="line">-A POSTROUTING -s 172.17.0.2/32 -d 172.17.0.2/32 -p tcp -m tcp --dport 9000 -j MASQUERADE</span><br><span class="line">-A POSTROUTING -s 172.18.20.217/32 -d 172.18.20.217/32 -p tcp -m tcp --dport 3000 -j MASQUERADE</span><br><span class="line">-A POSTROUTING -s 172.18.20.216/32 -d 172.18.20.216/32 -p tcp -m tcp --dport 9092 -j MASQUERADE</span><br><span class="line">-A POSTROUTING -s 172.18.20.215/32 -d 172.18.20.215/32 -p tcp -m tcp --dport 9092 -j MASQUERADE</span><br><span class="line">-A POSTROUTING -s 172.18.20.213/32 -d 172.18.20.213/32 -p tcp -m tcp --dport 2181 -j MASQUERADE</span><br><span class="line">-A POSTROUTING -s 172.18.20.218/32 -d 172.18.20.218/32 -p tcp -m tcp --dport 9300 -j MASQUERADE</span><br><span class="line">-A POSTROUTING -s 172.18.20.218/32 -d 172.18.20.218/32 -p tcp -m tcp --dport 9200 -j MASQUERADE</span><br><span class="line">-A POSTROUTING -s 172.18.20.214/32 -d 172.18.20.214/32 -p tcp -m tcp --dport 2181 -j MASQUERADE</span><br><span class="line">-A POSTROUTING -s 172.18.20.212/32 -d 172.18.20.212/32 -p tcp -m tcp --dport 2181 -j MASQUERADE</span><br><span class="line">-A POSTROUTING -s 172.18.20.1/32 -d 172.18.20.1/32 -p tcp -m tcp --dport 8086 -j MASQUERADE</span><br><span class="line">-A POSTROUTING -s 172.18.20.3/32 -d 172.18.20.3/32 -p tcp -m tcp --dport 3000 -j MASQUERADE</span><br><span class="line">-A POSTROUTING -s 172.17.0.6/32 -d 172.17.0.6/32 -p tcp -m tcp --dport 3306 -j MASQUERADE</span><br><span class="line"></span><br><span class="line">//docker启动，分别在filter和nat建立了名为DOCKER的chain，在forward转发链增加了一些ACCEPT规则，在nat增加了postrouting和prerouting以及output的规则。docker创建了一个名为DOKCER的自定义的链条Chain,iptables自定义链条的好处就是可以让防火墙的策略更加的层次化… …</span><br><span class="line">-A DOCKER -i docker0 -j RETURN</span><br><span class="line">-A DOCKER -i br-c333d38dcc9f -j RETURN</span><br><span class="line">-A DOCKER -i br-fd7621436686 -j RETURN</span><br><span class="line">-A DOCKER -i br-f8eb065b6c3a -j RETURN</span><br><span class="line"></span><br><span class="line">//如下命令表示把所有10.8.0.0网段的数据包SNAT成192.168.5.3的ip然后发出去(这里没有这个规则)</span><br><span class="line">//iptables -t nat -A POSTROUTING -s 10.8.0.0/255.255.255.0 -o eth0 -j SNAT –to-source 192.168.5.3</span><br><span class="line"></span><br><span class="line">-A DOCKER ! -i br-fd7621436686 -p tcp -m tcp --dport 9094 -j DNAT --to-destination 172.18.20.217:9092</span><br><span class="line">-A DOCKER ! -i docker0 -p tcp -m tcp --dport 9000 -j DNAT --to-destination 172.17.0.2:9000</span><br><span class="line">-A DOCKER ! -i br-fd7621436686 -p tcp -m tcp --dport 3000 -j DNAT --to-destination 172.18.20.217:3000</span><br><span class="line">-A DOCKER ! -i br-fd7621436686 -p tcp -m tcp --dport 9093 -j DNAT --to-destination 172.18.20.216:9092</span><br><span class="line">-A DOCKER ! -i br-fd7621436686 -p tcp -m tcp --dport 9092 -j DNAT --to-destination 172.18.20.215:9092</span><br><span class="line">-A DOCKER ! -i br-fd7621436686 -p tcp -m tcp --dport 2185 -j DNAT --to-destination 172.18.20.213:2181</span><br><span class="line">-A DOCKER ! -i br-fd7621436686 -p tcp -m tcp --dport 9300 -j DNAT --to-destination 172.18.20.218:9300</span><br><span class="line">-A DOCKER ! -i br-fd7621436686 -p tcp -m tcp --dport 9200 -j DNAT --to-destination 172.18.20.218:9200</span><br><span class="line">-A DOCKER ! -i br-fd7621436686 -p tcp -m tcp --dport 2186 -j DNAT --to-destination 172.18.20.214:2181</span><br><span class="line">-A DOCKER ! -i br-fd7621436686 -p tcp -m tcp --dport 2184 -j DNAT --to-destination 172.18.20.212:2181</span><br><span class="line">-A DOCKER ! -i br-fd7621436686 -p tcp -m tcp --dport 8086 -j DNAT --to-destination 172.18.20.1:8086</span><br><span class="line">-A DOCKER ! -i br-fd7621436686 -p tcp -m tcp --dport 5000 -j DNAT --to-destination 172.18.20.3:3000</span><br><span class="line">-A DOCKER ! -i docker0 -p tcp -m tcp --dport 3306 -j DNAT --to-destination 172.17.0.6:3306</span><br><span class="line">COMMIT</span><br><span class="line"><span class="meta">#</span> Completed on Fri Mar 22 03:55:53 2019</span><br><span class="line"><span class="meta">#</span> Generated by iptables-save v1.6.0 on Fri Mar 22 03:55:53 2019</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">*filter</span><br><span class="line">:INPUT DROP [31:868]</span><br><span class="line">:FORWARD DROP [0:0]</span><br><span class="line">:OUTPUT ACCEPT [0:0]</span><br><span class="line">:DOCKER - [0:0]</span><br><span class="line">:DOCKER-ISOLATION-STAGE-1 - [0:0]</span><br><span class="line">:DOCKER-ISOLATION-STAGE-2 - [0:0]</span><br><span class="line">:DOCKER-USER - [0:0]</span><br><span class="line">:ufw-after-forward - [0:0]</span><br><span class="line">:ufw-after-input - [0:0]</span><br><span class="line">:ufw-after-logging-forward - [0:0]</span><br><span class="line">:ufw-after-logging-input - [0:0]</span><br><span class="line">:ufw-after-logging-output - [0:0]</span><br><span class="line">:ufw-after-output - [0:0]</span><br><span class="line">:ufw-before-forward - [0:0]</span><br><span class="line">:ufw-before-input - [0:0]</span><br><span class="line">:ufw-before-logging-forward - [0:0]</span><br><span class="line">:ufw-before-logging-input - [0:0]</span><br><span class="line">:ufw-before-logging-output - [0:0]</span><br><span class="line">:ufw-before-output - [0:0]</span><br><span class="line">:ufw-logging-allow - [0:0]</span><br><span class="line">:ufw-logging-deny - [0:0]</span><br><span class="line">:ufw-not-local - [0:0]</span><br><span class="line">:ufw-reject-forward - [0:0]</span><br><span class="line">:ufw-reject-input - [0:0]</span><br><span class="line">:ufw-reject-output - [0:0]</span><br><span class="line">:ufw-skip-to-policy-forward - [0:0]</span><br><span class="line">:ufw-skip-to-policy-input - [0:0]</span><br><span class="line">:ufw-skip-to-policy-output - [0:0]</span><br><span class="line">:ufw-track-forward - [0:0]</span><br><span class="line">:ufw-track-input - [0:0]</span><br><span class="line">:ufw-track-output - [0:0]</span><br><span class="line">:ufw-user-forward - [0:0]</span><br><span class="line">:ufw-user-input - [0:0]</span><br><span class="line">:ufw-user-limit - [0:0]</span><br><span class="line">:ufw-user-limit-accept - [0:0]</span><br><span class="line">:ufw-user-logging-forward - [0:0]</span><br><span class="line">:ufw-user-logging-input - [0:0]</span><br><span class="line">:ufw-user-logging-output - [0:0]</span><br><span class="line">:ufw-user-output - [0:0]</span><br><span class="line">-A INPUT -j ufw-before-logging-input</span><br><span class="line">-A INPUT -j ufw-before-input</span><br><span class="line">-A INPUT -j ufw-after-input</span><br><span class="line">-A INPUT -j ufw-after-logging-input</span><br><span class="line">-A INPUT -j ufw-reject-input</span><br><span class="line">-A INPUT -j ufw-track-input</span><br><span class="line">//filter表中的forward主要是对容器和宿主机以及本机容器之间数据包的放行。</span><br><span class="line">-A FORWARD -j DOCKER-USER</span><br><span class="line">-A FORWARD -j DOCKER-ISOLATION-STAGE-1</span><br><span class="line">-A FORWARD -o docker0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span><br><span class="line">-A FORWARD -o docker0 -j DOCKER</span><br><span class="line">-A FORWARD -i docker0 ! -o docker0 -j ACCEPT</span><br><span class="line">-A FORWARD -i docker0 -o docker0 -j ACCEPT</span><br><span class="line">-A FORWARD -o br-c333d38dcc9f -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span><br><span class="line">-A FORWARD -o br-c333d38dcc9f -j DOCKER</span><br><span class="line">-A FORWARD -i br-c333d38dcc9f ! -o br-c333d38dcc9f -j ACCEPT</span><br><span class="line">-A FORWARD -i br-c333d38dcc9f -o br-c333d38dcc9f -j ACCEPT</span><br><span class="line">-A FORWARD -o br-fd7621436686 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span><br><span class="line">-A FORWARD -o br-fd7621436686 -j DOCKER</span><br><span class="line">-A FORWARD -i br-fd7621436686 ! -o br-fd7621436686 -j ACCEPT</span><br><span class="line">-A FORWARD -i br-fd7621436686 -o br-fd7621436686 -j ACCEPT</span><br><span class="line">-A FORWARD -o br-f8eb065b6c3a -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span><br><span class="line">-A FORWARD -o br-f8eb065b6c3a -j DOCKER</span><br><span class="line">-A FORWARD -i br-f8eb065b6c3a ! -o br-f8eb065b6c3a -j ACCEPT</span><br><span class="line">-A FORWARD -i br-f8eb065b6c3a -o br-f8eb065b6c3a -j ACCEPT</span><br><span class="line">-A FORWARD -j ufw-before-logging-forward</span><br><span class="line">-A FORWARD -j ufw-before-forward</span><br><span class="line">-A FORWARD -j ufw-after-forward</span><br><span class="line">-A FORWARD -j ufw-after-logging-forward</span><br><span class="line">-A FORWARD -j ufw-reject-forward</span><br><span class="line">-A FORWARD -j ufw-track-forward</span><br><span class="line">-A OUTPUT -j ufw-before-logging-output</span><br><span class="line">-A OUTPUT -j ufw-before-output</span><br><span class="line">-A OUTPUT -j ufw-after-output</span><br><span class="line">-A OUTPUT -j ufw-after-logging-output</span><br><span class="line">-A OUTPUT -j ufw-reject-output</span><br><span class="line">-A OUTPUT -j ufw-track-output</span><br><span class="line">-A DOCKER -d 172.18.20.217/32 ! -i br-fd7621436686 -o br-fd7621436686 -p tcp -m tcp --dport 9092 -j ACCEPT</span><br><span class="line">-A DOCKER -d 172.17.0.2/32 ! -i docker0 -o docker0 -p tcp -m tcp --dport 9000 -j ACCEPT</span><br><span class="line">-A DOCKER -d 172.18.20.217/32 ! -i br-fd7621436686 -o br-fd7621436686 -p tcp -m tcp --dport 3000 -j ACCEPT</span><br><span class="line">-A DOCKER -d 172.18.20.216/32 ! -i br-fd7621436686 -o br-fd7621436686 -p tcp -m tcp --dport 9092 -j ACCEPT</span><br><span class="line">-A DOCKER -d 172.18.20.215/32 ! -i br-fd7621436686 -o br-fd7621436686 -p tcp -m tcp --dport 9092 -j ACCEPT</span><br><span class="line">-A DOCKER -d 172.18.20.213/32 ! -i br-fd7621436686 -o br-fd7621436686 -p tcp -m tcp --dport 2181 -j ACCEPT</span><br><span class="line">-A DOCKER -d 172.18.20.218/32 ! -i br-fd7621436686 -o br-fd7621436686 -p tcp -m tcp --dport 9300 -j ACCEPT</span><br><span class="line">-A DOCKER -d 172.18.20.218/32 ! -i br-fd7621436686 -o br-fd7621436686 -p tcp -m tcp --dport 9200 -j ACCEPT</span><br><span class="line">-A DOCKER -d 172.18.20.214/32 ! -i br-fd7621436686 -o br-fd7621436686 -p tcp -m tcp --dport 2181 -j ACCEPT</span><br><span class="line">-A DOCKER -d 172.18.20.212/32 ! -i br-fd7621436686 -o br-fd7621436686 -p tcp -m tcp --dport 2181 -j ACCEPT</span><br><span class="line">-A DOCKER -d 172.18.20.1/32 ! -i br-fd7621436686 -o br-fd7621436686 -p tcp -m tcp --dport 8086 -j ACCEPT</span><br><span class="line">-A DOCKER -d 172.18.20.3/32 ! -i br-fd7621436686 -o br-fd7621436686 -p tcp -m tcp --dport 3000 -j ACCEPT</span><br><span class="line">-A DOCKER -d 172.17.0.6/32 ! -i docker0 -o docker0 -p tcp -m tcp --dport 3306 -j ACCEPT</span><br><span class="line">-A DOCKER-ISOLATION-STAGE-1 -i docker0 ! -o docker0 -j DOCKER-ISOLATION-STAGE-2</span><br><span class="line">-A DOCKER-ISOLATION-STAGE-1 -i br-c333d38dcc9f ! -o br-c333d38dcc9f -j DOCKER-ISOLATION-STAGE-2</span><br><span class="line">-A DOCKER-ISOLATION-STAGE-1 -i br-fd7621436686 ! -o br-fd7621436686 -j DOCKER-ISOLATION-STAGE-2</span><br><span class="line">-A DOCKER-ISOLATION-STAGE-1 -i br-f8eb065b6c3a ! -o br-f8eb065b6c3a -j DOCKER-ISOLATION-STAGE-2</span><br><span class="line">-A DOCKER-ISOLATION-STAGE-1 -j RETURN</span><br><span class="line">-A DOCKER-ISOLATION-STAGE-2 -o docker0 -j DROP</span><br><span class="line">-A DOCKER-ISOLATION-STAGE-2 -o br-c333d38dcc9f -j DROP</span><br><span class="line">-A DOCKER-ISOLATION-STAGE-2 -o br-fd7621436686 -j DROP</span><br><span class="line">-A DOCKER-ISOLATION-STAGE-2 -o br-f8eb065b6c3a -j DROP</span><br><span class="line">-A DOCKER-ISOLATION-STAGE-2 -j RETURN</span><br><span class="line">-A DOCKER-USER -j RETURN</span><br><span class="line">-A ufw-after-input -p udp -m udp --dport 137 -j ufw-skip-to-policy-input</span><br><span class="line">-A ufw-after-input -p udp -m udp --dport 138 -j ufw-skip-to-policy-input</span><br><span class="line">-A ufw-after-input -p tcp -m tcp --dport 139 -j ufw-skip-to-policy-input</span><br><span class="line">-A ufw-after-input -p tcp -m tcp --dport 445 -j ufw-skip-to-policy-input</span><br><span class="line">-A ufw-after-input -p udp -m udp --dport 67 -j ufw-skip-to-policy-input</span><br><span class="line">-A ufw-after-input -p udp -m udp --dport 68 -j ufw-skip-to-policy-input</span><br><span class="line">-A ufw-after-input -m addrtype --dst-type BROADCAST -j ufw-skip-to-policy-input</span><br><span class="line">-A ufw-after-logging-forward -m limit --limit 3/min --limit-burst 10 -j LOG --log-prefix "[UFW BLOCK] "</span><br><span class="line">-A ufw-after-logging-input -m limit --limit 3/min --limit-burst 10 -j LOG --log-prefix "[UFW BLOCK] "</span><br><span class="line">-A ufw-before-forward -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span><br><span class="line">-A ufw-before-forward -p icmp -m icmp --icmp-type 3 -j ACCEPT</span><br><span class="line">-A ufw-before-forward -p icmp -m icmp --icmp-type 4 -j ACCEPT</span><br><span class="line">-A ufw-before-forward -p icmp -m icmp --icmp-type 11 -j ACCEPT</span><br><span class="line">-A ufw-before-forward -p icmp -m icmp --icmp-type 12 -j ACCEPT</span><br><span class="line">-A ufw-before-forward -p icmp -m icmp --icmp-type 8 -j ACCEPT</span><br><span class="line">-A ufw-before-forward -j ufw-user-forward</span><br><span class="line">-A ufw-before-input -i lo -j ACCEPT</span><br><span class="line">-A ufw-before-input -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span><br><span class="line">-A ufw-before-input -m conntrack --ctstate INVALID -j ufw-logging-deny</span><br><span class="line">-A ufw-before-input -m conntrack --ctstate INVALID -j DROP</span><br><span class="line">-A ufw-before-input -p icmp -m icmp --icmp-type 3 -j ACCEPT</span><br><span class="line">-A ufw-before-input -p icmp -m icmp --icmp-type 4 -j ACCEPT</span><br><span class="line">-A ufw-before-input -p icmp -m icmp --icmp-type 11 -j ACCEPT</span><br><span class="line">-A ufw-before-input -p icmp -m icmp --icmp-type 12 -j ACCEPT</span><br><span class="line">-A ufw-before-input -p icmp -m icmp --icmp-type 8 -j ACCEPT</span><br><span class="line">-A ufw-before-input -p udp -m udp --sport 67 --dport 68 -j ACCEPT</span><br><span class="line">-A ufw-before-input -j ufw-not-local</span><br><span class="line">-A ufw-before-input -d 224.0.0.251/32 -p udp -m udp --dport 5353 -j ACCEPT</span><br><span class="line">-A ufw-before-input -d 239.255.255.250/32 -p udp -m udp --dport 1900 -j ACCEPT</span><br><span class="line">-A ufw-before-input -j ufw-user-input</span><br><span class="line">-A ufw-before-output -o lo -j ACCEPT</span><br><span class="line">-A ufw-before-output -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span><br><span class="line">-A ufw-before-output -j ufw-user-output</span><br><span class="line">-A ufw-logging-allow -m limit --limit 3/min --limit-burst 10 -j LOG --log-prefix "[UFW ALLOW] "</span><br><span class="line">-A ufw-logging-deny -m conntrack --ctstate INVALID -m limit --limit 3/min --limit-burst 10 -j RETURN</span><br><span class="line">-A ufw-logging-deny -m limit --limit 3/min --limit-burst 10 -j LOG --log-prefix "[UFW BLOCK] "</span><br><span class="line">-A ufw-not-local -m addrtype --dst-type LOCAL -j RETURN</span><br><span class="line">-A ufw-not-local -m addrtype --dst-type MULTICAST -j RETURN</span><br><span class="line">-A ufw-not-local -m addrtype --dst-type BROADCAST -j RETURN</span><br><span class="line">-A ufw-not-local -m limit --limit 3/min --limit-burst 10 -j ufw-logging-deny</span><br><span class="line">-A ufw-not-local -j DROP</span><br><span class="line">-A ufw-skip-to-policy-forward -j DROP</span><br><span class="line">-A ufw-skip-to-policy-input -j DROP</span><br><span class="line">-A ufw-skip-to-policy-output -j ACCEPT</span><br><span class="line">-A ufw-track-output -p tcp -m conntrack --ctstate NEW -j ACCEPT</span><br><span class="line">-A ufw-track-output -p udp -m conntrack --ctstate NEW -j ACCEPT</span><br><span class="line">-A ufw-user-limit -m limit --limit 3/min -j LOG --log-prefix "[UFW LIMIT BLOCK] "</span><br><span class="line">-A ufw-user-limit -j REJECT --reject-with icmp-port-unreachable</span><br><span class="line">-A ufw-user-limit-accept -j ACCEPT</span><br><span class="line">COMMIT</span><br><span class="line"><span class="meta">#</span> Completed on Fri Mar 22 03:55:53 2019</span><br></pre></td></tr></table></figure>
+<h3 id="SNAT与DNAT"><a href="#SNAT与DNAT" class="headerlink" title="SNAT与DNAT"></a>SNAT与DNAT</h3><p>SNAT，DNAT，MASQUERADE都是NAT，MASQUERADE是SNAT的一个特例。<br>SNAT是指在数据包从网卡发送出去的时候，把数据包中的源地址部分替换为指定的IP，这样，接收方就认为数据包的来源是被替换的那个IP的主机。</p>
+<p>MASQUERADE是用发送数据的网卡上的IP来替换源IP，因此，对于那些IP不固定的场合，比如拨号网络或者通过dhcp分配IP的情况下，就得用MASQUERADE。</p>
+<p>DNAT，就是指数据包从网卡发送出去的时候，修改数据包中的目的IP，表现为如果你想访问A，可是因为网关做了DNAT，把所有访问A的数据包的目的IP全部修改为B，那么，你实际上访问的是B。</p>
+<h3 id="centos中的防火墙"><a href="#centos中的防火墙" class="headerlink" title="centos中的防火墙"></a>centos中的防火墙</h3><p>CentOS 6使用iptables作为防火墙，CentOS 7使用firewalld作为防火墙。</p>
+<ul>
+<li>CentOS 7关闭防火墙运行：<br>systemctl stop firewalld.service</li>
+<li>CentOS 7禁止防火墙开机自动运行：<br>systemctl disable firewalld.service</li>
+<li>临时允许443/TCP端口,立即生效<br>firewall-cmd –add-port=443/tcp</li>
+<li>永久允许443/TCP端口,重启防火墙后生效<br>firewall-cmd –permanent –add-port=443/tcp</li>
+<li>永久打开端口需要reload一下，如果用了reload临时打开的端口就失效了<br>firewall-cmd –reload</li>
+<li>查看防火墙所有区域的设置，包括添加的端口和服务<br>firewall-cmd –list-all</li>
+</ul>
+<p><strong>firewalld在rule上配置非常不友好，k8s不支持firewalld，还是需要iptables来处理</strong></p>
+<h3 id="在服务端禁止掉-客户端ssh的访问"><a href="#在服务端禁止掉-客户端ssh的访问" class="headerlink" title="在服务端禁止掉,客户端ssh的访问"></a>在服务端禁止掉,客户端ssh的访问</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">iptables -t filter -A INPUT -p tcp --dport 22 -j DORP  也可以不指定表 默认是filter 表</span><br><span class="line"></span><br><span class="line">iptables -t 指定表</span><br><span class="line"></span><br><span class="line">Iptables -A 添加规则到指定链的结尾，最后一条  append 添加</span><br><span class="line"></span><br><span class="line">iptables -I   是添加规则到指定链的开头，第一条 insert 插入 插到第一行 首先执行</span><br><span class="line"></span><br><span class="line">iptables -p   指定协议  默认 不写 指的所有端口 </span><br><span class="line"></span><br><span class="line">iptables -J 指定动作  ACCEPT 接受 DROP 丢弃 REJECT 拒绝（拒绝会透漏信息一般不用） </span><br><span class="line"></span><br><span class="line">iptables --line-numbers  显示序号</span><br><span class="line"></span><br><span class="line">禁掉端口号 之后，跑到机房 VMworkstations关闭防火墙  -F清除规则 或者重启 即可</span><br><span class="line"></span><br><span class="line">iptables -t filter -A INPUT -p tcp --deport 52113 -j DROP</span><br></pre></td></tr></table></figure>
+<h3 id="允许80端口"><a href="#允许80端口" class="headerlink" title="允许80端口"></a>允许80端口</h3><p>iptables -A INPUT -p tcp –dport 80 -j ACCEPT</p>
+<h3 id="允许其他人能ping通"><a href="#允许其他人能ping通" class="headerlink" title="允许其他人能ping通"></a>允许其他人能ping通</h3><p>iptables -A INPUT -p icmp -m icmp –icmp-type any -j ACCEPT</p>
+<h3 id="允许关联的包通过"><a href="#允许关联的包通过" class="headerlink" title="允许关联的包通过"></a>允许关联的包通过</h3><p>iptables -A INPUT -m state –state ESTABLISHED,RELATED -j ACCEPT<br>iptables -A OUTPUT -m state –state ESTABLISHED,RELATED -j ACCEPT</p>
+<h3 id="如何永久保存"><a href="#如何永久保存" class="headerlink" title="如何永久保存"></a>如何永久保存</h3><p>我们在命令行中的操作，都是储存在内存当中，没有在磁盘，重启服务器就会丢失</p>
+<p>我们要将其存到配置文件，做到永久存储</p>
+<ul>
+<li>方法一：/etc/init.d/iptables save</li>
+<li>方法二:重定向iptables-save&gt;/etc/sysconfig/iptables.bak</li>
+</ul>
+<h3 id="如何查看-所有端口"><a href="#如何查看-所有端口" class="headerlink" title="如何查看 所有端口"></a>如何查看 所有端口</h3><p>nmap host的IP  -p 1-65535</p>
+<h3 id="ubuntu相关命令"><a href="#ubuntu相关命令" class="headerlink" title="ubuntu相关命令"></a>ubuntu相关命令</h3><ul>
+<li>允许ssh<br>ufw allow 22</li>
+<li>删除已经添加过的规则：<br>sudo ufw delete allow 22<br>只打开使用tcp/ip协议的22端口：</li>
+<li>udo ufw allow 22/tcp<br>打开来自192.168.0.1的tcp请求的80端口：</li>
+<li>sudo ufw allow proto tcp from 192.168.0.1 to any port 22<br>允许某特定 IP</li>
+<li>sudo ufw allow from 192.168.254.254</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+    <div>
+        
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+     
+    </div>
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="songjiantao 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    songjiantao
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/03/23/Linux之iptables/" title="Linux之iptables">http://yoursite.com/2019/03/23/Linux之iptables/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/23/操作系统之MMAP/" rel="next" title="操作系统之MMAP">
+                <i class="fa fa-chevron-left"></i> 操作系统之MMAP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+   
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/15856742?s=400"
+                alt="songjiantao" />
+            
+              <p class="site-author-name" itemprop="name">songjiantao</p>
+              <p class="site-description motion-element" itemprop="description">生活不应当只有眼前的苟且，还有诗和远方，与其用泪水忏悔昨天，不如用汗水拼搏明天．</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sjt157" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1872963677@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/song-jian-tao-82" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+    <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=558458785&auto=1&height=66"></iframe>
+    </div>
+ 
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018-3-8 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songjiantao</span>
+
+  
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+   <div class="bg_content">
+    <canvas id="canvas"></canvas>
+   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'spv7r9cfhkwcTbTSRWBwCvAx-gzGzoHsz',
+        appKey: 'cN59JvEEU10QfUffybuDd4ai',
+        placeholder: '轻轻地来，留下一句话再轻轻地走吧！~~',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("XbebmEYzcC5xK6pt32pG6Wu9-gzGzoHsz", "iwAHCTEI8zqrflOEjkSucSnU");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 10113,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascripr" src="/js/src/zhihu.js"></script>
