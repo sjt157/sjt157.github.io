@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="扫描端口占用情况123456789101112131415161718192021222324252627282930313233343536373839#!/usr/bin/env python# -*- coding:utf-8 -*-import socket, time, threadsocket.setdefaulttimeout(3) #设置默认超时时间def socket_port(">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-17T02:49:10.917Z">
+<meta property="og:updated_time" content="2019-03-23T07:30:57.835Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux下的一些小工具">
 <meta name="twitter:description" content="扫描端口占用情况123456789101112131415161718192021222324252627282930313233343536373839#!/usr/bin/env python# -*- coding:utf-8 -*-import socket, time, threadsocket.setdefaulttimeout(3) #设置默认超时时间def socket_port(">
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-17T10:49:10+08:00">
-                2019-03-17
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-23T15:30:57+08:00">
+                2019-03-23
               </time>
             
           </span>
@@ -448,6 +448,7 @@
 <h3 id="SS命令"><a href="#SS命令" class="headerlink" title="SS命令"></a>SS命令</h3><p>ss 是 socket statistics 的缩写。顾名思义，ss 命令可以用来获取socket 统计信息，它可以显示和netstat 类似的内容。但 ss 的优势在于它能够显示更多更详细的有关TCP和连接状态的信息，而且比netstat更快速更高效。<br>　　<br>当服务器的socket连接数量变得非常大时，无论是使用netstat命令还是 cat  /proc/net/tcp，执行速度都会很慢。可能你不会有切身的感受，但请相信我，当服务器维持的连接达到上万个的时候，使用 netstat 等于浪费生命，而用 ss才是 节省时间。</p>
 <p>天下武功唯快不破。ss快的秘诀在于，他利用了TCP协议栈中 tcp_diag.   tcp_diag 是一个用于分析统计的模块，可以获得Linux 内核中第一手的信息，这就确保了ss的快捷高效。当然，如果你的系统中没有 tcp_diag,ss也可以正常运行，只是效率会变得稍慢。（但仍然比  netstat 要快。）</p>
 <h3 id="查找某一个时间点以后创建或者修改的文件"><a href="#查找某一个时间点以后创建或者修改的文件" class="headerlink" title="查找某一个时间点以后创建或者修改的文件"></a>查找某一个时间点以后创建或者修改的文件</h3><p>首先创建一个对比的时间点的文件<br><code>touch -t 201407201710.00 abc  //创建一个文件，他的mtime是2014-07-20-17:10:00</code><br>要查找2014-07-20-17:10:00 这个时间点以后创建或者修改的文件，使用命令<br><code>#find -newer abc           //跟刚才创建的文件对比</code></p>
+<h3 id="rz和sz-传输文件"><a href="#rz和sz-传输文件" class="headerlink" title="rz和sz 传输文件"></a>rz和sz 传输文件</h3><p>rz是上传（从本地上传到服务器），可以使用rz -y实现覆盖上传<br>sz是下载。 实现下载可以直接使用szfilename，其中filename就是你想要下载的文件的名字，如果是目录需要打包成单个文件在实现下载。</p>
 
       
     </div>
@@ -630,7 +631,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">78</span>
+                  <span class="site-state-item-count">79</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
