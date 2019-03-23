@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Python," />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="python多线程（假多线程） 如果你的代码是IO密集型，多线程可以明显提高效率。例如制作爬虫（我就不明白为什么Python总和爬虫联系在一起…不过也只想起来这个例子…），绝大多数时间爬虫是在等待socket返回数据。这个时候C代码里是有release GIL的，最终结果是某个线程等待IO的时候其他线程可以继续执行。如果你的代码是CPU密集型，多个线程的代码很有可能是线性执行的。所以这种情况下多线">
-<meta name="keywords" content="Python">
+<meta name="description" content="synchronized基本原理Java中每个对象都有一个内置锁(监视器,也可以理解成锁标记)，而synchronized就是使用对象的内置锁(监视器)来将代码块(方法)锁定的！  同步代码块：  monitorenter和monitorexit指令实现的  同步方法（在这看不出来需要看JVM底层实现）  方法修饰符上的ACC_SYNCHRONIZED实现。 synchronized底层是是通过m">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python多线程">
-<meta property="og:url" content="http://yoursite.com/2018/03/29/python多线程/index.html">
+<meta property="og:title" content="Java之锁">
+<meta property="og:url" content="http://yoursite.com/2019/03/23/Java之锁/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="python多线程（假多线程） 如果你的代码是IO密集型，多线程可以明显提高效率。例如制作爬虫（我就不明白为什么Python总和爬虫联系在一起…不过也只想起来这个例子…），绝大多数时间爬虫是在等待socket返回数据。这个时候C代码里是有release GIL的，最终结果是某个线程等待IO的时候其他线程可以继续执行。如果你的代码是CPU密集型，多个线程的代码很有可能是线性执行的。所以这种情况下多线">
+<meta property="og:description" content="synchronized基本原理Java中每个对象都有一个内置锁(监视器,也可以理解成锁标记)，而synchronized就是使用对象的内置锁(监视器)来将代码块(方法)锁定的！  同步代码块：  monitorenter和monitorexit指令实现的  同步方法（在这看不出来需要看JVM底层实现）  方法修饰符上的ACC_SYNCHRONIZED实现。 synchronized底层是是通过m">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-06T02:22:58.385Z">
+<meta property="og:updated_time" content="2019-03-23T05:34:50.555Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python多线程">
-<meta name="twitter:description" content="python多线程（假多线程） 如果你的代码是IO密集型，多线程可以明显提高效率。例如制作爬虫（我就不明白为什么Python总和爬虫联系在一起…不过也只想起来这个例子…），绝大多数时间爬虫是在等待socket返回数据。这个时候C代码里是有release GIL的，最终结果是某个线程等待IO的时候其他线程可以继续执行。如果你的代码是CPU密集型，多个线程的代码很有可能是线性执行的。所以这种情况下多线">
+<meta name="twitter:title" content="Java之锁">
+<meta name="twitter:description" content="synchronized基本原理Java中每个对象都有一个内置锁(监视器,也可以理解成锁标记)，而synchronized就是使用对象的内置锁(监视器)来将代码块(方法)锁定的！  同步代码块：  monitorenter和monitorexit指令实现的  同步方法（在这看不出来需要看JVM底层实现）  方法修饰符上的ACC_SYNCHRONIZED实现。 synchronized底层是是通过m">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/29/python多线程/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/23/Java之锁/"/>
 
 
 
 
 
-  <title>python多线程 | 诗与远方</title>
+  <title>Java之锁 | 诗与远方</title>
   
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/29/python多线程/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/23/Java之锁/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songjiantao">
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python多线程</h1>
+          <h1 class="post-title" itemprop="name headline">Java之锁</h1>
         
 
         <div class="post-meta">
@@ -338,8 +338,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-29T18:35:48+08:00">
-                2018-03-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-23T13:33:26+08:00">
+                2019-03-23
               </time>
             
 
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-06T10:22:58+08:00">
-                2018-04-06
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-23T13:34:50+08:00">
+                2019-03-23
               </time>
             
           </span>
@@ -373,8 +373,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -391,8 +391,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/29/python多线程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/29/python多线程/" itemprop="commentCount"></span>
+                <a href="/2019/03/23/Java之锁/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/23/Java之锁/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -400,7 +400,7 @@
 
           
           
-             <span id="/2018/03/29/python多线程/" class="leancloud_visitors" data-flag-title="python多线程">
+             <span id="/2019/03/23/Java之锁/" class="leancloud_visitors" data-flag-title="Java之锁">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -432,17 +432,61 @@
       
 
       
-        <h3 id="python多线程（假多线程）"><a href="#python多线程（假多线程）" class="headerlink" title="python多线程（假多线程）"></a>python多线程（假多线程）</h3><ol>
-<li>如果你的代码是IO密集型，多线程可以明显提高效率。例如制作爬虫（我就不明白为什么Python总和爬虫联系在一起…不过也只想起来这个例子…），绝大多数时间爬虫是在等待socket返回数据。这个时候C代码里是有release GIL的，最终结果是某个线程等待IO的时候其他线程可以继续执行。如果你的代码是CPU密集型，多个线程的代码很有可能是线性执行的。所以这种情况下多线程是鸡肋，效率可能还不如单线程因为有context switch</li>
-<li>一般网络传输类应用都是IO密集型，读写硬盘操作多也算是IO密集型</li>
-<li>我们都知道，比方我有一个4核的CPU，那么这样一来，在单位时间内每个核只能跑一个线程，然后时间片轮转切换。但是Python不一样，它不管你有几个核，单位时间多个核只能跑一个线程，然后时间片轮转。看起来很不可思议？但是这就是GIL搞的鬼。任何Python线程执行前，必须先获得GIL锁，然后，每执行100条字节码，解释器就自动释放GIL锁，让别的线程有机会执行。这个GIL全局锁实际上把所有线程的执行代码都给上了锁，所以，多线程在Python中只能交替执行，即使100个线程跑在100核CPU上，也只能用到1个核。通常我们用的解释器是官方实现的CPython，要真正利用多核，除非重写一个不带GIL的解释器。（Java中的多线程是可以利用多核的，这是真正的多线程！）</li>
-<li>在Python中，可以使用多线程，但不要指望能有效利用多核。如果一定要通过多线程利用多核，那只能通过C扩展来实现，不过这样就失去了Python简单易用的特点。不过，也不用过于担心，Python虽然不能利用多线程实现多核任务，但可以通过多进程实现多核任务。多个Python进程有各自独立的GIL锁，互不影响。</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment"># 直接调用函数的多线程</span></span><br><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Thread</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loop</span><span class="params">(name, seconds)</span>:</span></span><br><span class="line">    print(<span class="string">'start loop'</span>, name, <span class="string">'at:'</span>, time.ctime())</span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">    print(<span class="string">'end loop'</span>, name, <span class="string">'at:'</span>, time.ctime())</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    loops = [<span class="number">2</span>, <span class="number">4</span>]</span><br><span class="line">    nloops = range(len(loops))</span><br><span class="line">    threads = []</span><br><span class="line">    print(<span class="string">'start at:'</span>, time.ctime())</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> nloops:</span><br><span class="line">        t = Thread(target=loop, args=(i, loops[i],))</span><br><span class="line">        threads.append(t)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> nloops:</span><br><span class="line">        threads[i].start()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> nloops:</span><br><span class="line">        threads[i].join()</span><br><span class="line">    print(<span class="string">'all done at:'</span>, time.ctime())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="comment"># 使用可调用的类对象</span></span><br><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Thread</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loop</span><span class="params">(name, seconds)</span>:</span></span><br><span class="line">    print(<span class="string">'start loop'</span>, name, <span class="string">'at:'</span>, time.ctime())</span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">    print(<span class="string">'end loop'</span>, name, <span class="string">'at:'</span>, time.ctime())</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreadFunc</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, func, args, name=<span class="string">''</span>)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.func = func</span><br><span class="line">        self.args = args</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self)</span>:</span>  <span class="comment"># 需要定义一个特殊的方法__call__</span></span><br><span class="line">        self.func(*self.args)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    loops = [<span class="number">2</span>, <span class="number">4</span>]</span><br><span class="line">    nloops = range(len(loops))</span><br><span class="line">    threads = []</span><br><span class="line">    print(<span class="string">'start at:'</span>, time.ctime())</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> nloops:</span><br><span class="line">        t = Thread(target=ThreadFunc(loop, (i, loops[i]), loop.__name__))</span><br><span class="line">        threads.append(t)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> nloops:</span><br><span class="line">        threads[i].start()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> nloops:</span><br><span class="line">        threads[i].join()</span><br><span class="line">    print(<span class="string">'all done at:'</span>, time.ctime())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 继承Thread类，也就是子类化</span></span><br><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Thread</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loop</span><span class="params">(name, seconds)</span>:</span></span><br><span class="line">    print(<span class="string">'start loop'</span>, name, <span class="string">'at:'</span>, time.ctime())</span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">    print(<span class="string">'end loop'</span>, name, <span class="string">'at:'</span>, time.ctime())</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreadFunc</span><span class="params">(Thread)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, func, args, name=<span class="string">''</span>)</span>:</span></span><br><span class="line">        super(ThreadFunc, self).__init__()</span><br><span class="line">        self.name = name</span><br><span class="line">        self.func = func</span><br><span class="line">        self.args = args</span><br><span class="line">    <span class="comment"># 将上种方式中可调用的方法改为run方法，其实就是对Thread类中run方法的重写</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.func(*self.args)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    loops = [<span class="number">2</span>, <span class="number">4</span>]</span><br><span class="line">    nloops = range(len(loops))</span><br><span class="line">    threads = []</span><br><span class="line">    print(<span class="string">'start at:'</span>, time.ctime())</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> nloops:</span><br><span class="line">        t = ThreadFunc(loop, (i, loops[i]), loop.__name__)</span><br><span class="line">        threads.append(t)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> nloops:</span><br><span class="line">        threads[i].start()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> nloops:</span><br><span class="line">        threads[i].join()</span><br><span class="line">    print(<span class="string">'all done at:'</span>, time.ctime())</span><br><span class="line"></span><br><span class="line"> <span class="comment"># 在一般推荐的方法中，我们用最后一种方式</span></span><br></pre></td></tr></table></figure>
+        <h3 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h3><h4 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h4><p>Java中每个对象都有一个内置锁(监视器,也可以理解成锁标记)，而synchronized就是使用对象的内置锁(监视器)来将代码块(方法)锁定的！</p>
 <ul>
-<li>线程同步<br>如果多个线程共同对某个数据修改，则可能出现不可预料的结果，为了保证数据的正确性，需要对多个线程进行同步。<br>使用Thread对象的Lock和Rlock可以实现简单的线程同步，这两个对象都有acquire方法和release方法，对于那些需要每次只允许一个线程操作的数据，可以将其操作放到acquire和release方法之间。如下：多线程的优势在于可以同时运行多个任务（至少感觉起来是这样）。但是当线程需要共享数据时，可能存在数据不同步的问题。<br>考虑这样一种情况：一个列表里所有元素都是0，线程”set”从后向前把所有元素改成1，而线程”print”负责从前往后读取列表并打印。那么，可能线程”set”开始改的时候，线程”print”便来打印列表了，输出就成了一半0一半1，这就是数据的不同步。为了避免这种情况，引入了锁的概念。锁有两种状态——锁定和未锁定。每当一个线程比如”set”要访问共享数据时，必须先获得锁定；如果已经有别的线程比如”print”获得锁定了，那么就让线程”set”暂停，也就是同步阻塞；等到线程”print”访问完毕，释放锁以后，再让线程”set”继续。经过这样的处理，打印列表时要么全部输出0，要么全部输出1，不会再出现一半0一半1的尴尬场面。</li>
+<li>同步代码块：</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myThread</span><span class="params">(threading.Thread)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, threadID, name, counter)</span>:</span></span><br><span class="line">        threading.Thread.__init__(self)</span><br><span class="line">        self.threadID = threadID</span><br><span class="line">        self.name = name</span><br><span class="line">        self.counter = counter</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"Starting "</span> + self.name)</span><br><span class="line">        <span class="comment"># 获得锁，成功获得锁定后返回True</span></span><br><span class="line">        <span class="comment"># 可选的timeout参数不填时将一直阻塞直到获得锁定</span></span><br><span class="line">        <span class="comment"># 否则超时后将返回False</span></span><br><span class="line">        threadLock.acquire()</span><br><span class="line">        print_time(self.name, self.counter, <span class="number">3</span>)</span><br><span class="line">        <span class="comment"># 释放锁</span></span><br><span class="line">        threadLock.release()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_time</span><span class="params">(threadName, delay, counter)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> counter:</span><br><span class="line">        time.sleep(delay)</span><br><span class="line">        print(<span class="string">"%s: %s"</span> % (threadName, time.ctime(time.time())))</span><br><span class="line">        counter -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">threadLock = threading.Lock()</span><br><span class="line">threads = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建新线程</span></span><br><span class="line">thread1 = myThread(<span class="number">1</span>, <span class="string">"Thread-1"</span>, <span class="number">1</span>)</span><br><span class="line">thread2 = myThread(<span class="number">2</span>, <span class="string">"Thread-2"</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启新线程</span></span><br><span class="line">thread1.start()</span><br><span class="line">thread2.start()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加线程到线程列表</span></span><br><span class="line">threads.append(thread1)</span><br><span class="line">threads.append(thread2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等待所有线程完成</span></span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">    t.join()</span><br><span class="line">print(<span class="string">"Exiting Main Thread"</span>)</span><br></pre></td></tr></table></figure>
+<p>monitorenter和monitorexit指令实现的</p>
+<ul>
+<li>同步方法（在这看不出来需要看JVM底层实现）</li>
+</ul>
+<p>方法修饰符上的ACC_SYNCHRONIZED实现。</p>
+<p>synchronized底层是是通过monitor对象，对象有自己的对象头，存储了很多信息，其中一个信息标示是被哪个线程持有。</p>
+<p>具体可参考：</p>
+<p><a href="https://blog.csdn.net/chenssy/article/details/54883355" target="_blank" rel="noopener">https://blog.csdn.net/chenssy/article/details/54883355</a></p>
+<p><a href="https://blog.csdn.net/u012465296/article/details/53022317" target="_blank" rel="noopener">https://blog.csdn.net/u012465296/article/details/53022317</a></p>
+<h4 id="为什么说Synchronized是重量级锁？"><a href="#为什么说Synchronized是重量级锁？" class="headerlink" title="为什么说Synchronized是重量级锁？"></a>为什么说Synchronized是重量级锁？</h4><p>这时因为当获取monitor的线程发现此monitor已被其他线程持有时会陷入BLOCKED阻塞状态，而这一操作是通过LWP来完成的，会引起用户态到内核态的切换，这甚至会导致切换到内核态调用OS将线程阻塞的时间比同步代码块执行所需的时间还要长。</p>
+<h4 id="简述锁的等级-（方法锁、对象锁、类锁）"><a href="#简述锁的等级-（方法锁、对象锁、类锁）" class="headerlink" title="简述锁的等级 （方法锁、对象锁、类锁）"></a>简述锁的等级 （方法锁、对象锁、类锁）</h4><ul>
+<li>无论是修饰方法还是修饰代码块都是 对象锁,当一个线程访问一个带synchronized方法时，由于对象锁的存在，所有加synchronized的方法都不能被访问（前提是在多个线程调用的是同一个对象实例中的方法）</li>
+<li><p>无论是修饰静态方法还是锁定某个对象,都是 类锁.一个class其中的静态方法和静态变量在内存中只会加载和初始化一份，所以，一旦一个静态的方法被申明为synchronized，此类的所有的实例化对象在调用该方法时，共用同一把锁，称之为类锁。</p>
+</li>
+<li><p>synchronized修饰静态方法获取的是类锁(类的字节码文件对象)，synchronized修饰普通方法或代码块获取的是对象锁。</p>
+</li>
+</ul>
+<p>它俩是不冲突的，也就是说：获取了类锁的线程和获取了对象锁的线程是不冲突的！<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SynchoronizedDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//synchronized修饰非静态方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">function</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="number">3</span>; i++) &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">            System.out.println(<span class="string">"function running..."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//synchronized修饰静态方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">staticFunction</span><span class="params">()</span></span></span><br><span class="line"><span class="function">            <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">            System.out.println(<span class="string">"Static function running..."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> SynchoronizedDemo demo = <span class="keyword">new</span> SynchoronizedDemo();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建线程执行静态方法</span></span><br><span class="line">        Thread t1 = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                staticFunction();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建线程执行实例方法</span></span><br><span class="line">        Thread t2 = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                demo.function();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">// 启动</span></span><br><span class="line">        t1.start();</span><br><span class="line">        t2.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Tips:</p>
+<ol>
+<li>synchronized关键字不能继承。也就是说子类重写了父类中用synchronized修饰的方法，子类的方法仍然不是同步的。</li>
+<li>定义接口方法时，不能使用synchronized关键字。</li>
+<li>构造方法不能使用synchronized关键字，但是可以使用synchronized代码块。</li>
+</ol>
+<h4 id="synchronized锁的膨胀过程是怎样的？"><a href="#synchronized锁的膨胀过程是怎样的？" class="headerlink" title="synchronized锁的膨胀过程是怎样的？"></a>synchronized锁的膨胀过程是怎样的？</h4><p>您指的是偏向锁、轻量级锁和重量级锁吗？就是如果临界区只有一个线程访问，这时会将锁对象的Mark Word中的偏向线程ID指向该线程，此后该线程进入临界区将省去锁获取-释放，毕竟锁获取-释放是有开销的。但是如果访问临界区的线程变多了，这时撤销偏向和重置偏向会有一定的开销，因而膨胀成轻量级锁，思路是会在线程的栈中存一份锁对象的Mark Word副本，称之为Displaced Mark Word，并该内存的指针存入锁对象的Mark Word。每个线程在获取锁的时候都需要CAS替换该指针，使其指向自己栈中的Displaced Mark Word。CAS替换失败则说明并发程度较高，膨胀成重量级锁，具有排他性。</p>
+<h4 id="在spring事务中使用synchronized应该注意的问题"><a href="#在spring事务中使用synchronized应该注意的问题" class="headerlink" title="在spring事务中使用synchronized应该注意的问题"></a>在spring事务中使用synchronized应该注意的问题</h4><p>@Transcational注解和synchronized一起使用了，加锁的范围没有包括到整个事务。所以我们可以这样做：</p>
+<p>新建一个名叫SynchronizedService类，让其去调用addEmployee()方法，整个代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmployeeController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> SynchronizedService synchronizedService ;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/add"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEmployee</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> Thread(() -&gt; synchronizedService.synchronizedAddEmployee()).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新建的Service类</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SynchronizedService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> EmployeeService employeeService ;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">// 同步</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">synchronizedAddEmployee</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        employeeService.addEmployee();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmployeeService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> EmployeeRepository employeeRepository;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEmployee</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 查出ID为8的记录，然后每次将年龄增加一</span></span><br><span class="line">        Employee employee = employeeRepository.getOne(<span class="number">8</span>);</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + employee);</span><br><span class="line">        Integer age = employee.getAge();</span><br><span class="line">        employee.setAge(age + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        employeeRepository.save(employee);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h3><h4 id="什么情况下使用ReenTrantLock："><a href="#什么情况下使用ReenTrantLock：" class="headerlink" title="什么情况下使用ReenTrantLock："></a>什么情况下使用ReenTrantLock：</h4><p>需要实现ReenTrantLock的三个独有功能时。</p>
+<h4 id="ReenTrantLock独有的能力："><a href="#ReenTrantLock独有的能力：" class="headerlink" title="ReenTrantLock独有的能力："></a>ReenTrantLock独有的能力：</h4><ol>
+<li>ReenTrantLock可以指定是公平锁还是非公平锁。而synchronized只能是非公平锁。所谓的公平锁就是先等待的线程先获得锁。</li>
+<li>ReenTrantLock提供了一个Condition（条件）类，用来实现分组唤醒需要唤醒的线程们，而不是像synchronized要么随机唤醒一个线程要么唤醒全部线程。</li>
+<li>ReenTrantLock提供了一种能够中断等待锁的线程的机制，通过lock.lockInterruptibly()来实现这个机制。</li>
+</ol>
+<h4 id="ReenTrantLock实现的原理："><a href="#ReenTrantLock实现的原理：" class="headerlink" title="ReenTrantLock实现的原理："></a>ReenTrantLock实现的原理：</h4><p>在网上看到相关的源码分析，本来这块应该是本文的核心，但是感觉比较复杂就不一一详解了，简单来说，ReenTrantLock的实现是一种自旋锁，通过循环调用CAS操作来实现加锁。它的性能比较好也是因为避免了使线程进入内核态的阻塞状态。想尽办法避免线程进入内核的阻塞状态是我们去分析和理解锁设计的关键钥匙。</p>
+<h4 id="synchronized-和-ReentrantLock-有什么不同"><a href="#synchronized-和-ReentrantLock-有什么不同" class="headerlink" title="synchronized 和 ReentrantLock 有什么不同"></a>synchronized 和 ReentrantLock 有什么不同</h4><ul>
+<li>能否可重入<br>他们两个都是可重入的，（可重入指的是同一个线程每进入一次，锁的计数器都自增1，所以要等到锁的计数器下降为0时才能释放锁。）平常开发中大多数还是用的synchronized,比较高级的才用后者，</li>
+<li>能否造成死锁<br>Synchronized不会造成死锁，因为jvm会自动释放，别的锁有可能会造成死锁。</li>
+<li>锁的实现<br>Synchronized是依赖于JVM实现的，而ReenTrantLock是JDK实现的，有什么区别，说白了就类似于操作系统来控制实现和用户自己敲代码实现的区别。前者的实现是比较难见到的，后者有直接的源码可供阅读。</li>
+<li>性能的区别<br>在Synchronized优化以前，synchronized的性能是比ReenTrantLock差很多的，但是自从Synchronized引入了偏向锁，轻量级锁（自旋锁）后，两者的性能就差不多了，在两种方法都可用的情况下，官方甚至建议使用synchronized，其实synchronized的优化我感觉就借鉴了ReenTrantLock中的CAS技术。都是试图在用户态就把加锁问题解决，避免进入内核态的线程阻塞。</li>
+<li>功能区别<br>便利性：很明显Synchronized的使用比较方便简洁，并且由编译器去保证锁的加锁和释放，而ReenTrantLock需要手工声明来加锁和释放锁，为了避免忘记手工释放锁造成死锁，所以最好在finally中声明释放锁。<br>锁的细粒度和灵活度：很明显ReenTrantLock优于Synchronized</li>
+</ul>
+<h3 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h3><p>读写锁。分为读锁和写锁，多个读锁不互斥，读锁与写锁互斥，由Java虚拟机控制。如果代码允许很多线程同时读，但不能同时写，就上读锁；如果代码不允许同时读，并且只能有一个线程在写，就上写锁。</p>
+<p>读写锁的接口是ReadWriteLock，具体实现类是 ReentrantReadWriteLock。synchronized属于互斥锁，任何时候只允许一个线程的读写操作，其他线程必须等待；而ReadWriteLock允许多个线程获得读锁，但只允许一个线程获得写锁，效率相对较高一些。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">使用枚举创建一个读写锁的单例</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Locker &#123;</span><br><span class="line"></span><br><span class="line">	INSTANCE;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ReadWriteLock lock = <span class="keyword">new</span> ReentrantReadWriteLock();</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Lock <span class="title">writeLock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> lock.writeLock();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">再在addCount()方法中对count++;上锁。示例如下。</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">addCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 上锁</span></span><br><span class="line">	Lock writeLock = Locker.INSTANCE.writeLock();</span><br><span class="line">	writeLock.lock();</span><br><span class="line">	count++;</span><br><span class="line">	<span class="comment">// 释放锁</span></span><br><span class="line">	writeLock.unlock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="自旋锁，"><a href="#自旋锁，" class="headerlink" title="自旋锁，"></a>自旋锁，</h3><h3 id="偏向锁，轻量级锁，"><a href="#偏向锁，轻量级锁，" class="headerlink" title="偏向锁，轻量级锁，"></a>偏向锁，轻量级锁，</h3><p>偏向锁和轻量级锁就是为了避免阻塞，避免操作系统的介入<br>偏向锁：通常只有一个线程在临界区执行<br>轻量级锁：可以用多个线程交替进入临界区，在竞争不激烈的时候，稍微自旋等待一会就能获得锁<br>重量级锁：出现了激烈的竞争，只好阻塞</p>
+<h3 id="可重入锁，"><a href="#可重入锁，" class="headerlink" title="可重入锁，"></a>可重入锁，</h3><h4 id="什么时候应该使用可重入锁"><a href="#什么时候应该使用可重入锁" class="headerlink" title="什么时候应该使用可重入锁"></a>什么时候应该使用可重入锁</h4><h3 id="公平锁，非公平锁，"><a href="#公平锁，非公平锁，" class="headerlink" title="公平锁，非公平锁，"></a>公平锁，非公平锁，</h3><p>（先申请先得到）多个线程在等待同一个锁时，必须按照申请锁的时间顺序 来依次获取，而非公平锁则不保证这一点。Synchronized 不是公平锁，reetrantlock 默认下也 是非公平的，但是在构造函数中，可以设置为公平的。</p>
+<h3 id="乐观锁，悲观锁"><a href="#乐观锁，悲观锁" class="headerlink" title="乐观锁，悲观锁"></a>乐观锁，悲观锁</h3><h4 id="什么是乐观锁悲观锁"><a href="#什么是乐观锁悲观锁" class="headerlink" title="什么是乐观锁悲观锁"></a>什么是乐观锁悲观锁</h4><p>悲观锁：就是很悲观，每次去拿数据的时候都认为别人会修改， 所以每次在拿数据的时候都会上锁。这样别人想拿这个数据就会 block 直到它拿到锁。传统 的关系型数据库就用到了很多这种机制，比如行锁，写锁等，都是在操作之前上锁。2）乐 观锁：就是很乐观，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新 的时候会判断一下在此期间别人有没有去更新这个数据。适用于多读，比如 write_condition. 两种锁各有优缺点，不能认为一种比一种好。</p>
+<h4 id="CAS如何解决ABA问题"><a href="#CAS如何解决ABA问题" class="headerlink" title="CAS如何解决ABA问题"></a>CAS如何解决ABA问题</h4><p>CAS操作需要输入两个数值，一个旧值（原值）和一个新值，在操作期间先比较旧值有没有发生变化，如果没有发生变化，才交换成新值，发生了变化则不交换。<br>如何解决ABA问题，简单来说就是CAS只是比较值是否一样，但有可能值一样，但已经不是原来的东西了，所以通过引入版本号来解决该ABA问题，引入版本号之后，变量的修改操作就变成了1A—2B—3A。</p>
+<h3 id="死锁与活锁的区别，死锁与饥饿的区别"><a href="#死锁与活锁的区别，死锁与饥饿的区别" class="headerlink" title="死锁与活锁的区别，死锁与饥饿的区别"></a>死锁与活锁的区别，死锁与饥饿的区别</h3><p>虽然trylock（）方案避免了无尽的死锁，但是不能避免死锁，这样可能发生活锁现象，活锁就是如果所有死锁线程同时超时，他们极有可能再次陷入死锁，虽然死锁没有永远持续下去，但是对资源的争夺状况却没有改善<br>有一种方法可以减少活锁的几率，比如为每个线程设置不同的超时时间</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.cnblogs.com/wpf-7/p/9639671.html" target="_blank" rel="noopener">https://www.cnblogs.com/wpf-7/p/9639671.html</a><br><a href="http://www.zhenganwen.top/posts/5c6e8cdf/" target="_blank" rel="noopener">http://www.zhenganwen.top/posts/5c6e8cdf/</a><br><a href="http://zhenganwen.top/posts/ca0f0d75/" target="_blank" rel="noopener">http://zhenganwen.top/posts/ca0f0d75/</a><br><a href="https://blog.csdn.net/wufaliang003/article/details/78797203" target="_blank" rel="noopener">https://blog.csdn.net/wufaliang003/article/details/78797203</a></p>
 
       
     </div>
@@ -497,7 +541,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/03/29/python多线程/" title="python多线程">http://yoursite.com/2018/03/29/python多线程/</a>
+    <a href="http://yoursite.com/2019/03/23/Java之锁/" title="Java之锁">http://yoursite.com/2019/03/23/Java之锁/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -512,7 +556,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -537,8 +581,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/28/僵尸进程/" rel="next" title="僵尸进程">
-                <i class="fa fa-chevron-left"></i> 僵尸进程
+              <a href="/2019/03/23/Linux之iptables/" rel="next" title="Linux之iptables">
+                <i class="fa fa-chevron-left"></i> Linux之iptables
               </a>
             
           </div>
@@ -546,10 +590,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/29/python中的eval函数/" rel="prev" title="python中的eval函数">
-                python中的eval函数 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
