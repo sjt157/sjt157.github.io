@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-23T05:34:50.555Z</updated>
+  <updated>2019-03-23T05:51:54.649Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java之堆外内存</title>
+    <link href="http://yoursite.com/2019/03/23/Java%E4%B9%8B%E5%A0%86%E5%A4%96%E5%86%85%E5%AD%98/"/>
+    <id>http://yoursite.com/2019/03/23/Java之堆外内存/</id>
+    <published>2019-03-23T05:51:21.000Z</published>
+    <updated>2019-03-23T05:51:54.649Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;堆外内存&quot;&gt;&lt;a href=&quot;#堆外内存&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Java之锁</title>
@@ -508,32 +534,6 @@
     
     
       <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>docker-compose的问题</title>
-    <link href="http://yoursite.com/2019/02/22/docker-compose%E7%9A%84%E9%97%AE%E9%A2%98/"/>
-    <id>http://yoursite.com/2019/02/22/docker-compose的问题/</id>
-    <published>2019-02-22T09:44:45.000Z</published>
-    <updated>2019-02-22T09:45:27.149Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;今天我启动docker-compose的时候，出现了如下问题&lt;br&gt;&lt;img src=&quot;https://github.com/sjt157/MarkDownPhotos/raw/master/WhiteList/1.png&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Docker" scheme="http://yoursite.com/categories/Docker/"/>
-    
-    
-      <category term="Docker" scheme="http://yoursite.com/tags/Docker/"/>
     
   </entry>
   

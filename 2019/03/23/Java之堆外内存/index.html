@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Mysql," />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="分片什么是分片在分布式存储系统中，数据需要分散存储在多台设备上，数据分片（Sharding）就是用来确定数据在多台存储设备上分布的技术。数据分片要达到三个目的：  分布均匀，即每台设备上的数据量要尽可能相近； 负载均衡，即每台设备上的请求量要尽可能相近； 扩缩容时产生的数据迁移尽可能少。分片相关概念 逻辑库(schema)   通常对实际应用来说，并不需要知道中间件的存在，业务开发人员只需要知道数">
-<meta name="keywords" content="Mysql">
+<meta name="description" content="堆外内存有个小问题：堆内内存包括永久代码？ 和堆内内存相对应，堆外内存就是把内存对象分配在Java虚拟机的堆以外的内存，这些内存直接受操作系统管理（而不是虚拟机），这样做的结果就是能够在一定程度上减少垃圾回收对应用程序造成的影响。 作为JAVA开发者我们经常用java.nio.DirectByteBuffer对象进行堆外内存的管理和使用，它会在对象创建的时候就分配堆外内存。 DirectByteB">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据库分片、分区、分表、分库傻傻分不清楚">
-<meta property="og:url" content="http://yoursite.com/2019/01/18/数据库分片、分区、分表、分库傻傻分不清楚/index.html">
+<meta property="og:title" content="Java之堆外内存">
+<meta property="og:url" content="http://yoursite.com/2019/03/23/Java之堆外内存/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="分片什么是分片在分布式存储系统中，数据需要分散存储在多台设备上，数据分片（Sharding）就是用来确定数据在多台存储设备上分布的技术。数据分片要达到三个目的：  分布均匀，即每台设备上的数据量要尽可能相近； 负载均衡，即每台设备上的请求量要尽可能相近； 扩缩容时产生的数据迁移尽可能少。分片相关概念 逻辑库(schema)   通常对实际应用来说，并不需要知道中间件的存在，业务开发人员只需要知道数">
+<meta property="og:description" content="堆外内存有个小问题：堆内内存包括永久代码？ 和堆内内存相对应，堆外内存就是把内存对象分配在Java虚拟机的堆以外的内存，这些内存直接受操作系统管理（而不是虚拟机），这样做的结果就是能够在一定程度上减少垃圾回收对应用程序造成的影响。 作为JAVA开发者我们经常用java.nio.DirectByteBuffer对象进行堆外内存的管理和使用，它会在对象创建的时候就分配堆外内存。 DirectByteB">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-18T03:10:39.204Z">
+<meta property="og:updated_time" content="2019-03-23T05:51:54.649Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据库分片、分区、分表、分库傻傻分不清楚">
-<meta name="twitter:description" content="分片什么是分片在分布式存储系统中，数据需要分散存储在多台设备上，数据分片（Sharding）就是用来确定数据在多台存储设备上分布的技术。数据分片要达到三个目的：  分布均匀，即每台设备上的数据量要尽可能相近； 负载均衡，即每台设备上的请求量要尽可能相近； 扩缩容时产生的数据迁移尽可能少。分片相关概念 逻辑库(schema)   通常对实际应用来说，并不需要知道中间件的存在，业务开发人员只需要知道数">
+<meta name="twitter:title" content="Java之堆外内存">
+<meta name="twitter:description" content="堆外内存有个小问题：堆内内存包括永久代码？ 和堆内内存相对应，堆外内存就是把内存对象分配在Java虚拟机的堆以外的内存，这些内存直接受操作系统管理（而不是虚拟机），这样做的结果就是能够在一定程度上减少垃圾回收对应用程序造成的影响。 作为JAVA开发者我们经常用java.nio.DirectByteBuffer对象进行堆外内存的管理和使用，它会在对象创建的时候就分配堆外内存。 DirectByteB">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/18/数据库分片、分区、分表、分库傻傻分不清楚/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/23/Java之堆外内存/"/>
 
 
 
 
 
-  <title>数据库分片、分区、分表、分库傻傻分不清楚 | 诗与远方</title>
+  <title>Java之堆外内存 | 诗与远方</title>
   
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/18/数据库分片、分区、分表、分库傻傻分不清楚/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/23/Java之堆外内存/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songjiantao">
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">数据库分片、分区、分表、分库傻傻分不清楚</h1>
+          <h1 class="post-title" itemprop="name headline">Java之堆外内存</h1>
         
 
         <div class="post-meta">
@@ -338,8 +338,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-18T11:09:39+08:00">
-                2019-01-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-23T13:51:21+08:00">
+                2019-03-23
               </time>
             
 
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-18T11:10:39+08:00">
-                2019-01-18
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-23T13:51:54+08:00">
+                2019-03-23
               </time>
             
           </span>
@@ -373,8 +373,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">Mysql</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -391,8 +391,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/18/数据库分片、分区、分表、分库傻傻分不清楚/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/18/数据库分片、分区、分表、分库傻傻分不清楚/" itemprop="commentCount"></span>
+                <a href="/2019/03/23/Java之堆外内存/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/23/Java之堆外内存/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -400,7 +400,7 @@
 
           
           
-             <span id="/2019/01/18/数据库分片、分区、分表、分库傻傻分不清楚/" class="leancloud_visitors" data-flag-title="数据库分片、分区、分表、分库傻傻分不清楚">
+             <span id="/2019/03/23/Java之堆外内存/" class="leancloud_visitors" data-flag-title="Java之堆外内存">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -432,148 +432,48 @@
       
 
       
-        <h2 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h2><h3 id="什么是分片"><a href="#什么是分片" class="headerlink" title="什么是分片"></a>什么是分片</h3><p>在分布式存储系统中，数据需要分散存储在多台设备上，数据分片（Sharding）就是用来确定数据在多台存储设备上分布的技术。数据分片要达到三个目的：</p>
+        <h3 id="堆外内存"><a href="#堆外内存" class="headerlink" title="堆外内存"></a>堆外内存</h3><p>有个小问题：堆内内存包括永久代码？</p>
+<p>和堆内内存相对应，堆外内存就是把内存对象分配在Java虚拟机的堆以外的内存，这些内存直接受操作系统管理（而不是虚拟机），这样做的结果就是能够在一定程度上减少垃圾回收对应用程序造成的影响。</p>
+<p>作为JAVA开发者我们经常用java.nio.DirectByteBuffer对象进行堆外内存的管理和使用，它会在对象创建的时候就分配堆外内存。</p>
+<p>DirectByteBuffer类是在Java Heap外分配内存，对堆外内存的申请主要是通过成员变量unsafe来操作，下面介绍构造方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">DirectByteBuffer(<span class="keyword">int</span> cap) &#123;                 </span><br><span class="line"> </span><br><span class="line">        <span class="keyword">super</span>(-<span class="number">1</span>, <span class="number">0</span>, cap, cap);</span><br><span class="line">        <span class="comment">//内存是否按页分配对齐</span></span><br><span class="line">        <span class="keyword">boolean</span> pa = VM.isDirectMemoryPageAligned();</span><br><span class="line">        <span class="comment">//获取每页内存大小</span></span><br><span class="line">        <span class="keyword">int</span> ps = Bits.pageSize();</span><br><span class="line">        <span class="comment">//分配内存的大小，如果是按页对齐方式，需要再加一页内存的容量</span></span><br><span class="line">        <span class="keyword">long</span> size = Math.max(<span class="number">1L</span>, (<span class="keyword">long</span>)cap + (pa ? ps : <span class="number">0</span>));</span><br><span class="line">        <span class="comment">//用Bits类保存总分配内存(按页分配)的大小和实际内存的大小</span></span><br><span class="line">        Bits.reserveMemory(size, cap);</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">long</span> base = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">           <span class="comment">//在堆外内存的基地址，指定内存大小</span></span><br><span class="line">            base = unsafe.allocateMemory(size);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (OutOfMemoryError x) &#123;</span><br><span class="line">            Bits.unreserveMemory(size, cap);</span><br><span class="line">            <span class="keyword">throw</span> x;</span><br><span class="line">        &#125;</span><br><span class="line">        unsafe.setMemory(base, size, (<span class="keyword">byte</span>) <span class="number">0</span>);</span><br><span class="line">        <span class="comment">//计算堆外内存的基地址</span></span><br><span class="line">        <span class="keyword">if</span> (pa &amp;&amp; (base % ps != <span class="number">0</span>)) &#123;</span><br><span class="line">            <span class="comment">// Round up to page boundary</span></span><br><span class="line">            address = base + ps - (base &amp; (ps - <span class="number">1</span>));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            address = base;</span><br><span class="line">        &#125;</span><br><span class="line">        cleaner = Cleaner.create(<span class="keyword">this</span>, <span class="keyword">new</span> Deallocator(base, size, cap));</span><br><span class="line">        att = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>在Cleaner 内部中通过一个列表，维护了一个针对每一个 directBuffer 的一个回收堆外内存的 线程对象(Runnable)，回收操作是发生在 Cleaner 的 clean() 方法中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Deallocator</span> <span class="keyword">implements</span> <span class="title">Runnable</span>  </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Unsafe unsafe = Unsafe.getUnsafe();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> address;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> size;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> capacity;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Deallocator</span><span class="params">(<span class="keyword">long</span> address, <span class="keyword">long</span> size, <span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">assert</span> (address != <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">this</span>.address = address;</span><br><span class="line">        <span class="keyword">this</span>.size = size;</span><br><span class="line">        <span class="keyword">this</span>.capacity = capacity;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (address == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// Paranoia</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        unsafe.freeMemory(address);</span><br><span class="line">        address = <span class="number">0</span>;</span><br><span class="line">        Bits.unreserveMemory(size, capacity);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用堆外内存的优点"><a href="#使用堆外内存的优点" class="headerlink" title="使用堆外内存的优点"></a>使用堆外内存的优点</h3><ol>
+<li><p>减少了垃圾回收<br>因为垃圾回收会暂停其他的工作。</p>
+</li>
+<li><p>加快了复制的速度<br>堆内在flush到远程时，会先复制到直接内存（非堆内存），然后在发送；而堆外内存相当于省略掉了这个工作。</p>
+</li>
+</ol>
+<p>同样任何一个事物使用起来有优点就会有缺点，堆外内存的缺点就是内存难以控制，使用了堆外内存就间接失去了JVM管理内存的可行性，改由自己来管理，当发生内存溢出时排查起来非常困难。</p>
+<h3 id="使用DirectByteBuffer的注意事项"><a href="#使用DirectByteBuffer的注意事项" class="headerlink" title="使用DirectByteBuffer的注意事项"></a>使用DirectByteBuffer的注意事项</h3><ul>
+<li><p>java.nio.DirectByteBuffer对象在创建过程中会先通过Unsafe接口直接通过os::malloc来分配内存，然后将内存的起始地址和大小存到java.nio.DirectByteBuffer对象里，这样就可以直接操作这些内存。这些内存只有在DirectByteBuffer回收掉之后才有机会被回收，因此如果这些对象大部分都移到了old，但是一直没有触发CMS GC或者Full GC，那么悲剧将会发生，因为你的物理内存被他们耗尽了，因此为了避免这种悲剧的发生，通过-XX:MaxDirectMemorySize来指定最大的堆外内存大小，当使用达到了阈值的时候将调用System.gc来做一次full gc，以此来回收掉没有被使用的堆外内存。</p>
+</li>
+<li><p>使用 HeapByteBuffer 还需要经过一次 DirectByteBuffer 的拷贝，在追求极致性能的场景下是可以通过直接复用堆外内存来避免的。</p>
+</li>
+<li><p>多线程下使用 HeapByteBuffer 进行文件读写，要注意 ThreadLocal&lt;Util.BufferCache&gt; bufferCache 导致的堆外内存膨胀的问题。</p>
+</li>
+</ul>
+<h3 id="监控堆外内存"><a href="#监控堆外内存" class="headerlink" title="监控堆外内存"></a>监控堆外内存</h3><p>在Java VisualVM里安装插件，Buffer Pools 插件可以监控堆外内存（包含 DirectByteBuffer 和 MappedByteBuffer）</p>
+<h3 id="堆外内存如何回收？"><a href="#堆外内存如何回收？" class="headerlink" title="堆外内存如何回收？"></a>堆外内存如何回收？</h3><ul>
+<li><p>通过System.gc</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class WriteByDirectByteBufferTest &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException, InterruptedException &#123;</span><br><span class="line">        ByteBuffer buffer = ByteBuffer.allocateDirect(1024 * 1024 * 1024);</span><br><span class="line">        System.in.read();</span><br><span class="line">        buffer = null;</span><br><span class="line">        System.gc(); //GC 时会触发堆外空闲内存的回收。</span><br><span class="line">        new CountDownLatch(1).await();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>手动回收可以立刻释放堆外内存，不需要等待到 GC 的发生。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WriteByDirectByteBufferTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">        ByteBuffer buffer = ByteBuffer.allocateDirect(<span class="number">1024</span> * <span class="number">1024</span> * <span class="number">1024</span>);</span><br><span class="line">        System.in.read();</span><br><span class="line">        ((DirectBuffer) buffer).cleaner().clean();</span><br><span class="line">        <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>).await();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="开源堆外缓存框架"><a href="#开源堆外缓存框架" class="headerlink" title="开源堆外缓存框架"></a>开源堆外缓存框架</h3><p>关于堆外缓存的开源实现。查询了一些资料后了解到的主要有：</p>
 <ul>
-<li>分布均匀，即每台设备上的数据量要尽可能相近；</li>
-<li>负载均衡，即每台设备上的请求量要尽可能相近；</li>
-<li>扩缩容时产生的数据迁移尽可能少。<h3 id="分片相关概念"><a href="#分片相关概念" class="headerlink" title="分片相关概念"></a>分片相关概念</h3></li>
-<li>逻辑库(schema) </li>
+<li>Ehcache 3.0：3.0基于其商业公司一个非开源的堆外组件的实现。</li>
+<li>Chronical Map：OpenHFT包括很多类库，使用这些类库很少产生垃圾，并且应用程序使用这些类库后也很少发生Minor GC。类库主要包括：Chronicle Map，Chronicle Queue等等。</li>
+<li>OHC：来源于Cassandra 3.0， Apache v2。</li>
+<li>Ignite: 一个规模宏大的内存计算框架，属于Apache项目。</li>
 </ul>
-<p>通常对实际应用来说，并不需要知道中间件的存在，业务开发人员只需要知道数据库的概念，所以数据库中间件可以被看做是一个或多个数据库集群构成的逻辑库。</p>
-<ul>
-<li>逻辑表（table）</li>
-</ul>
-<p>既然有逻辑库，那么就会有逻辑表，分布式数据库中，对应用来说，读写数据的表就是逻辑表。逻辑表，可以是数据切分后，分布在一个或多个分片库中，也可以不做数据切分，不分片，只有一个表构成。</p>
-<ul>
-<li>分片表</li>
-</ul>
-<p>是指那些原有的很大数据的表，需要切分到多个数据库的表，这样，每个分片都有一部分数据，所有分片构成了完整的数据。 总而言之就是需要进行分片的表。</p>
-<ul>
-<li>非分片表</li>
-</ul>
-<p>一个数据库中并不是所有的表都很大，某些表是可以不用进行切分的，非分片是相对分片表来说的，就是那些不需要进行数据切分的表。</p>
-<ul>
-<li>分片节点(dataNode)</li>
-</ul>
-<p>数据切分后，一个大表被分到不同的分片数据库上面，每个表分片所在的数据库就是分片节点（dataNode）。</p>
-<ul>
-<li>节点主机(dataHost)</li>
-</ul>
-<p>数据切分后，每个分片节点（dataNode）不一定都会独占一台机器，同一机器上面可以有多个分片数据库，这样一个或多个分片节点（dataNode）所在的机器就是节点主机（dataHost）,为了规避单节点主机并发数限制，尽量将读写压力高的分片节点（dataNode）均衡的放在不同的节点主机（dataHost）。</p>
-<ul>
-<li>分片规则(rule)</li>
-</ul>
-<p>前面讲了数据切分，一个大表被分成若干个分片表，就需要一定的规则，这样按照某种业务规则把数据分到某个分片的规则就是分片规则，数据切分选择合适的分片规则非常重要，将极大的避免后续数据处理的难度。</p>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>任何技术都是在合适的场合下能发挥应有的作用。 Sharding 也一样。联机游戏、IM、BSP 都是比较适合 Sharding 的应用场景。其共性是抽象出来的数据对象之间的关联数据很小。比如IM ，每个用户如果抽象成一个数据对象，完全可以独立存储在任何一个地方，数据对象是 Share Nothing 的；再比如 Blog 服务提供商的站点内容，基本为用户生成内容(UGC)，完全可以把不同的用户隔离到不同的存储集合，而对用户来说是透明的。</p>
-<p>这个”Share Nothing” 是从数据库集群中借用的概念，举例来说，有些类型的数据粒度之间就不是 “Share Nothing” 的，比如类似交易记录的历史表信息，如果一条记录中既包含卖家信息与买家信息，如果随着时间推移，买、卖家会分别与其它用户继续进行交易，这样不可避免的两个买卖家的信息会分布到不同的 Sharding DB 上，而这时如果针对买卖家查询，就会跨越更多的 Sharding ，开销就会比较大。</p>
-<p>Sharding 并不是数据库扩展方案的银弹，也有其不适合的场景，比如处理事务型的应用就会非常复杂。对于跨不同DB的事务，很难保证完整性，得不偿失。所以，采用什么样的 Sharding 形式，不是生搬硬套的。<br>我们知道每台机器无论配置多么好它都有自身的物理上限，所以当我们应用已经能触及或远远超出单台机器的某个上限的时候，我们惟有寻找别的机器的帮助或者继续升级的我们的硬件，但常见的方案还是横向扩展, 通过添加更多的机器来共同承担压力。我们还得考虑当我们的业务逻辑不断增长，我们的机器能不能通过线性增长就能满足需求？Sharding可以轻松的将计算，存储，I/O并行分发到多台机器上，这样可以充分利用多台机器各种处理能力，同时可以避免单点失败，提供系统的可用性，进行很好的错误隔离。 </p>
-<h3 id="分片的种类"><a href="#分片的种类" class="headerlink" title="分片的种类"></a>分片的种类</h3><p>数据的切分（Sharding）根据其切分规则的类型，可以分为两种切分模式。</p>
-<p>（1）一种是按照不同的表（或者Schema）来切分到不同的数据库（主机）之上，这种切分可以称之为数据的垂直（纵向）切分 </p>
-<p>（2）另外一种则是根据表中的数据的逻辑关系，将同一个表中的数据按照某种条件拆分到多台数据库（主机）上面，这种切分称之为数据的水平（横向）切分。</p>
-<h3 id="分片的方法"><a href="#分片的方法" class="headerlink" title="分片的方法"></a>分片的方法</h3><p>数据分片一般都是使用Key或Key的哈希值来计算Key的分布，常见的几种数据分片的方法如下：</p>
-<ul>
-<li><p>划分号段。这种一般适用于Key为整型的情况，每台设备上存放相同大小的号段区间，如把Key为[1, 10000]的数据放在第一台设备上，把Key为[10001, 20000]的数据放在第二台设备上，依次类推。这种方法实现很简单，扩容也比较方便，成倍增加设备即可，如原来有N台设备，再新增N台设备来扩容，把每台老设备上一半的数据迁移到新设备上，原来号段为[1, 10000]的设备，扩容后只保留号段[1, 5000]的数据，把号段为[5001, 10000]的数据迁移到一台新增的设备上。此方法的缺点是数据可能分布不均匀，如小号段数据量可能比大号段的数据量要大，同样的各个号段的热度也可能不一样，导致各个设备的负载不均衡；并且扩容也不够灵活，只能成倍地增加设备。</p>
-</li>
-<li><p>取模。这种方法先计算Key的哈希值，再对设备数量取模（整型的Key也可直接用Key取模），假设有N台设备，编号为0~N-1，通过Hash(Key)%N就可以确定数据所在的设备编号。这种方法实现也非常简单，数据分布和负载也会比较均匀，可以新增任何数量的设备来扩容。主要的问题是扩容的时候，会产生大量的数据迁移，比如从N台设备扩容到N+1台，绝大部分的数据都要在设备间进行迁移。</p>
-</li>
-<li><p>检索表。在检索表中存储Key和设备的映射关系，通过查找检索表就可以确定数据分布，这里的检索表也可以比较灵活，可以对每个Key都存储映射关系，也可结合号段划分等方法来减小检索表的容量。这样可以做到数据均匀分布、负载均衡和扩缩容数据迁移量少。缺点是需要存储检索表的空间可能比较大，并且为了保证扩缩容引起的数据迁移量比较少，确定映射关系的算法也比较复杂。</p>
-</li>
-<li><p>一致性哈希。一致性哈希算法（Consistent Hashing）在1997年由麻省理工学院提出的一种分布式哈希（DHT）实现算法，设计目标是为了解决因特网中的热点(Hot Spot)问题，该方法的详细介绍参考此处<a href="http://blog.csdn.net/sparkliang/article/details/5279393。一致性哈希的算法简单而巧妙，很容易做到数据均分布，其单调性也保证了扩缩容的数据迁移是比较少的。" target="_blank" rel="noopener">http://blog.csdn.net/sparkliang/article/details/5279393。一致性哈希的算法简单而巧妙，很容易做到数据均分布，其单调性也保证了扩缩容的数据迁移是比较少的。</a></p>
-</li>
-</ul>
-<p>通过上面的对比，在这个系统选择一致性哈希的方法来进行数据分片。</p>
-<hr>
-<h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><h3 id="什么是分区"><a href="#什么是分区" class="headerlink" title="什么是分区"></a>什么是分区</h3><p> 数据分区是一种物理数据库的设计技术，它的目的是为了在特定的SQL操作中减少数据读写的总量以缩减响应时间。分区并不是生成新的数据表，而是将表的数据均衡分摊到不同的硬盘，系统或是不同服务器存储介子中，实际上还是一张表。另外，分区可以做到将表的数据均衡到不同的地方，提高数据检索的效率，降低数据库的频繁IO压力值<br> 包括水平分区和垂直分区</p>
-<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
-<li><p>相对于单个文件系统或是硬盘，分区可以存储更多的数据；</p>
-</li>
-<li><p>数据管理比较方便，比如要清理或废弃某年的数据，就可以直接删除该日期的分区数据即可；</p>
-</li>
-<li><p>精准定位分区查询数据，不需要全表扫描查询，大大提高数据检索效率；</p>
-</li>
-<li><p>可跨多个分区磁盘查询，来提高查询的吞吐量；</p>
-</li>
-<li><p>在涉及聚合函数查询时，可以很容易进行数据的合并；</p>
-<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><h3 id="什么时候分区"><a href="#什么时候分区" class="headerlink" title="什么时候分区"></a>什么时候分区</h3></li>
-<li><p>一张表的查询速度已经慢到影响使用的时候。</p>
-</li>
-<li><p>sql经过优化</p>
-</li>
-<li><p>数据量大</p>
-</li>
-<li><p>表中的数据是分段的</p>
-</li>
-<li><p>对数据的操作往往只涉及一部分数据，而不是所有的数据</p>
-</li>
-</ul>
-<h3 id="分片和分区的区别与联系"><a href="#分片和分区的区别与联系" class="headerlink" title="分片和分区的区别与联系"></a>分片和分区的区别与联系</h3><p>有的时候，Sharding 也被近似等同于水平分区(Horizontal Partitioning)，网上很多地方也用水平分区来指代 Sharding，但我个人认为二者之间实际上还是有区别的。的确，Sharding 的思想是从分区的思想而来，但数据库分区基本上是数据对象级别的处理，比如表和索引的分区，每个子数据集上能够有不同的物理存储属性，还是单个数据库范围内的操作，而 Sharding 是能够跨数据库，甚至跨越物理机器的。</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Sharding</th>
-<th>分区</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>存储依赖</td>
-<td>可跨越DB、物理机器</td>
-<td>可跨越表空间，不同的物理属性，不能跨DB存储</td>
-</tr>
-<tr>
-<td>数据划分</td>
-<td>时间、范围、面向服务等</td>
-<td>范围、Hash、列表、混合分区等</td>
-</tr>
-<tr>
-<td>存储方式</td>
-<td>分布式</td>
-<td>集中式</td>
-</tr>
-<tr>
-<td>扩展性</td>
-<td>Scale Out</td>
-<td>Scale Up</td>
-</tr>
-<tr>
-<td>可用性</td>
-<td>无单点</td>
-<td>存在单点（DB本身）</td>
-</tr>
-<tr>
-<td>价格</td>
-<td>低廉</td>
-<td>适中（DAS）甚至昂贵（SAN）</td>
-</tr>
-<tr>
-<td>应用场景</td>
-<td>常见于WEB2.0网站</td>
-<td>多数传统应用</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="分表"><a href="#分表" class="headerlink" title="分表"></a>分表</h2><h3 id="什么是分表"><a href="#什么是分表" class="headerlink" title="什么是分表"></a>什么是分表</h3><p>就是把一张表按一定的规则分解成N个具有独立存储空间的实体表。系统读写时需要根据定义好的规则得到对应的字表明，然后操作它。</p>
-<h3 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h3><h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h3><h3 id="什么时候分表"><a href="#什么时候分表" class="headerlink" title="什么时候分表"></a>什么时候分表</h3><p>一张表的查询速度已经慢到影响使用的时候。</p>
-<p>sql经过优化</p>
-<p>数据量大<br>当频繁插入或者联合查询时，速度变慢</p>
-<h3 id="分区和分表的区别与联系"><a href="#分区和分表的区别与联系" class="headerlink" title="分区和分表的区别与联系"></a>分区和分表的区别与联系</h3><p>分区从逻辑上来讲只有一张表，而分表则是将一张表分解成多张表。</p>
-<p>分区和分表的目的都是减少数据库的负担，提高表的增删改查效率。</p>
-<p>分区只是一张表中的数据的存储位置发生改变，分表是将一张表分成多张表。</p>
-<p>当访问量大，且表数据比较大时，两种方式可以互相配合使用。</p>
-<p>当访问量不大，但表数据比较多时，可以只进行分区。</p>
-<hr>
-<h2 id="分库"><a href="#分库" class="headerlink" title="分库"></a>分库</h2><h3 id="什么是分库"><a href="#什么是分库" class="headerlink" title="什么是分库"></a>什么是分库</h3><p>一旦分表，一个库中的表会越来越多</p>
-<h3 id="优点-3"><a href="#优点-3" class="headerlink" title="优点"></a>优点</h3><h3 id="缺点-3"><a href="#缺点-3" class="headerlink" title="缺点"></a>缺点</h3><h3 id="什么时候分库"><a href="#什么时候分库" class="headerlink" title="什么时候分库"></a>什么时候分库</h3><p>单台DB的存储空间不够</p>
-<p>随着查询量的增加单台数据库服务器已经没办法支撑</p>
-<h3 id="一般优化思路"><a href="#一般优化思路" class="headerlink" title="一般优化思路"></a>一般优化思路</h3><p>垂直分库–&gt;水平分库–&gt;读写分离</p>
-<h3 id="分库之后的问题"><a href="#分库之后的问题" class="headerlink" title="分库之后的问题"></a>分库之后的问题</h3><p>事务的支持，分库分表，就变成了分布式事务</p>
-<p>join时跨库，跨表的问题</p>
-<p>分库分表，读写分离使用了分布式，分布式为了保证强一致性，必然带来延迟，导致性能降低，系统的复杂度变高。</p>
-<h3 id="问题解决方案"><a href="#问题解决方案" class="headerlink" title="问题解决方案"></a>问题解决方案</h3><p>对于不同的方式之间没有严格的界限，特点不同，侧重点不同。需要根据实际情况，结合每种方式的特点来进行处理。</p>
-<p>选用第三方的数据库中间件（Atlas，Mycat，TDDL，DRDS），同时业务系统需要配合数据存储的升级。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/qq_28289405/article/details/80576614" target="_blank" rel="noopener">https://blog.csdn.net/qq_28289405/article/details/80576614</a><br><a href="https://blog.csdn.net/weixin_38074050/article/details/78640004" target="_blank" rel="noopener">https://blog.csdn.net/weixin_38074050/article/details/78640004</a><br><a href="http://blog.sina.com.cn/s/blog_72ef7bea0101cjtb.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_72ef7bea0101cjtb.html</a></p>
+<h3 id="MappedBytebuffer"><a href="#MappedBytebuffer" class="headerlink" title="MappedBytebuffer"></a>MappedBytebuffer</h3><p>MappedByteBuffer 映射出一片文件内容之后，不会全部加载到内存中，而是会进行一部分的预读（体现在占用的那 100M 上），MappedByteBuffer 不是文件读写的银弹，它仍然依赖于 PageCache 异步刷盘的机制。通过 Java VisualVM 可以监控到 mmap 总映射的大小，但并不是实际占用的内存量。</p>
+<h3 id="如何回收MappedBytebuffer"><a href="#如何回收MappedBytebuffer" class="headerlink" title="如何回收MappedBytebuffer"></a>如何回收MappedBytebuffer</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MmapUtil</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">clean</span><span class="params">(MappedByteBuffer mappedByteBuffer)</span> </span>&#123;</span><br><span class="line">        ByteBuffer buffer = mappedByteBuffer;</span><br><span class="line">        <span class="keyword">if</span> (buffer == <span class="keyword">null</span> || !buffer.isDirect() || buffer.capacity() == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        invoke(invoke(viewed(buffer), <span class="string">"cleaner"</span>), <span class="string">"clean"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Object <span class="title">invoke</span><span class="params">(<span class="keyword">final</span> Object target, <span class="keyword">final</span> String methodName, <span class="keyword">final</span> Class&lt;?&gt;... args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> AccessController.doPrivileged(<span class="keyword">new</span> PrivilegedAction&lt;Object&gt;() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> Object <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Method method = method(target, methodName, args);</span><br><span class="line">                    method.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">                    <span class="keyword">return</span> method.invoke(target);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(e);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Method <span class="title">method</span><span class="params">(Object target, String methodName, Class&lt;?&gt;[] args)</span></span></span><br><span class="line"><span class="function">            <span class="keyword">throws</span> NoSuchMethodException </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> target.getClass().getMethod(methodName, args);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">            <span class="keyword">return</span> target.getClass().getDeclaredMethod(methodName, args);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> ByteBuffer <span class="title">viewed</span><span class="params">(ByteBuffer buffer)</span> </span>&#123;</span><br><span class="line">        String methodName = <span class="string">"viewedBuffer"</span>;</span><br><span class="line">        Method[] methods = buffer.getClass().getMethods();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; methods.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (methods[i].getName().equals(<span class="string">"attachment"</span>)) &#123;</span><br><span class="line">                methodName = <span class="string">"attachment"</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ByteBuffer viewedBuffer = (ByteBuffer) invoke(buffer, methodName);</span><br><span class="line">        <span class="keyword">if</span> (viewedBuffer == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> buffer;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> viewed(viewedBuffer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试类:通过一顿复杂的反射操作，成功地手动回收了 Mmap 的内存映射。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WriteByMappedByteBufferTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">        File data = <span class="keyword">new</span> File(<span class="string">"/tmp/data.txt"</span>);</span><br><span class="line">        data.createNewFile();</span><br><span class="line">        FileChannel fileChannel = <span class="keyword">new</span> RandomAccessFile(data, <span class="string">"rw"</span>).getChannel();</span><br><span class="line">        MappedByteBuffer map = fileChannel.map(FileChannel.MapMode.READ_WRITE, <span class="number">0</span>, <span class="number">1024L</span> * <span class="number">1024</span> * <span class="number">1024</span>);</span><br><span class="line">        System.in.read();</span><br><span class="line">        MmapUtil.clean(map);</span><br><span class="line">        <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>).await();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/ZYC88888/article/details/80228531" target="_blank" rel="noopener">https://blog.csdn.net/ZYC88888/article/details/80228531</a><br><a href="https://juejin.im/post/5c8de9f5e51d453651442c6a" target="_blank" rel="noopener">https://juejin.im/post/5c8de9f5e51d453651442c6a</a></p>
 
       
     </div>
@@ -628,7 +528,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2019/01/18/数据库分片、分区、分表、分库傻傻分不清楚/" title="数据库分片、分区、分表、分库傻傻分不清楚">http://yoursite.com/2019/01/18/数据库分片、分区、分表、分库傻傻分不清楚/</a>
+    <a href="http://yoursite.com/2019/03/23/Java之堆外内存/" title="Java之堆外内存">http://yoursite.com/2019/03/23/Java之堆外内存/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -643,7 +543,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Mysql/" rel="tag"># Mysql</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -668,8 +568,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/17/读《码出高效》笔记/" rel="next" title="读《码出高效》笔记">
-                <i class="fa fa-chevron-left"></i> 读《码出高效》笔记
+              <a href="/2019/03/23/Java之锁/" rel="next" title="Java之锁">
+                <i class="fa fa-chevron-left"></i> Java之锁
               </a>
             
           </div>
@@ -677,10 +577,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/18/Mysql之s-profiling/" rel="prev" title="Mysql之s_profiling">
-                Mysql之s_profiling <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
