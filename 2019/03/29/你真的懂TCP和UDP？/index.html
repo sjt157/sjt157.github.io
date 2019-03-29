@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="TCP/IP," />
 
 
 
@@ -81,16 +81,18 @@
 
 
 
-<meta name="description" content="生活不应当只有眼前的苟且，还有诗和远方，与其用泪水忏悔昨天，不如用汗水拼搏明天．">
-<meta property="og:type" content="website">
-<meta property="og:title" content="诗与远方">
-<meta property="og:url" content="http://yoursite.com/archives/2019/01/page/2/index.html">
+<meta name="description" content="UDP协议疑难杂症全景解析https://blog.csdn.net/dog250/article/details/6896949 TCP协议疑难杂症全景解析https://blog.csdn.net/dog250/article/details/6612496 为什么QQ用的是UDP协议而不是TCP协议？说法1登陆采用TCP协议和HTTP协议，你和好友之间发送消息，主要采用UDP协议，内网传文件">
+<meta name="keywords" content="TCP&#x2F;IP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="你真的懂TCP和UDP？">
+<meta property="og:url" content="http://yoursite.com/2019/03/29/你真的懂TCP和UDP？/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="生活不应当只有眼前的苟且，还有诗和远方，与其用泪水忏悔昨天，不如用汗水拼搏明天．">
+<meta property="og:description" content="UDP协议疑难杂症全景解析https://blog.csdn.net/dog250/article/details/6896949 TCP协议疑难杂症全景解析https://blog.csdn.net/dog250/article/details/6612496 为什么QQ用的是UDP协议而不是TCP协议？说法1登陆采用TCP协议和HTTP协议，你和好友之间发送消息，主要采用UDP协议，内网传文件">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-29T12:20:44.406Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="诗与远方">
-<meta name="twitter:description" content="生活不应当只有眼前的苟且，还有诗和远方，与其用泪水忏悔昨天，不如用汗水拼搏明天．">
+<meta name="twitter:title" content="你真的懂TCP和UDP？">
+<meta name="twitter:description" content="UDP协议疑难杂症全景解析https://blog.csdn.net/dog250/article/details/6896949 TCP协议疑难杂症全景解析https://blog.csdn.net/dog250/article/details/6612496 为什么QQ用的是UDP协议而不是TCP协议？说法1登陆采用TCP协议和HTTP协议，你和好友之间发送消息，主要采用UDP协议，内网传文件">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2019/01/page/2/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/29/你真的懂TCP和UDP？/"/>
 
 
 
 
 
-  <title>归档 | 诗与远方</title>
+  <title>你真的懂TCP和UDP？ | 诗与远方</title>
   
 
 
@@ -145,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -293,262 +295,292 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/你真的懂TCP和UDP？/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songjiantao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/15856742?s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗与远方">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
-         
+          <h1 class="post-title" itemprop="name headline">你真的懂TCP和UDP？</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-29T20:20:10+08:00">
+                2019-03-29
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-29T20:20:44+08:00">
+                2019-03-29
+              </time>
+            
+          </span>
+
           
-        好! 目前共计 80 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TCP-IP/" itemprop="url" rel="index">
+                    <span itemprop="name">TCP/IP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/29/你真的懂TCP和UDP？/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/29/你真的懂TCP和UDP？/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/03/29/你真的懂TCP和UDP？/" class="leancloud_visitors" data-flag-title="你真的懂TCP和UDP？">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+	         <span> ℃ </span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
-        
-        
-        
+      
+        <h3 id="UDP协议疑难杂症全景解析"><a href="#UDP协议疑难杂症全景解析" class="headerlink" title="UDP协议疑难杂症全景解析"></a>UDP协议疑难杂症全景解析</h3><p><a href="https://blog.csdn.net/dog250/article/details/6896949" target="_blank" rel="noopener">https://blog.csdn.net/dog250/article/details/6896949</a></p>
+<h3 id="TCP协议疑难杂症全景解析"><a href="#TCP协议疑难杂症全景解析" class="headerlink" title="TCP协议疑难杂症全景解析"></a>TCP协议疑难杂症全景解析</h3><p><a href="https://blog.csdn.net/dog250/article/details/6612496" target="_blank" rel="noopener">https://blog.csdn.net/dog250/article/details/6612496</a></p>
+<h3 id="为什么QQ用的是UDP协议而不是TCP协议？"><a href="#为什么QQ用的是UDP协议而不是TCP协议？" class="headerlink" title="为什么QQ用的是UDP协议而不是TCP协议？"></a>为什么QQ用的是UDP协议而不是TCP协议？</h3><h4 id="说法1"><a href="#说法1" class="headerlink" title="说法1"></a>说法1</h4><p>登陆采用TCP协议和HTTP协议，你和好友之间发送消息，主要采用UDP协议，内网传文件采用了P2P技术。总来的说：<br>1.登陆过程，客户端client 采用TCP协议向服务器server发送信息，HTTP协议下载信息。登陆之后，会有一个TCP连接来保持在线状态。<br>2.和好友发消息，客户端client采用UDP协议，但是需要通过服务器转发。腾讯为了确保传输消息的可靠，采用上层协议来保证可靠传输。如果消息发送失败，客户端会提示消息发送失败，并可重新发送。<br>3.如果是在内网里面的两个客户端传文件，QQ采用的是P2P技术，不需要服务器中转。</p>
+<h4 id="说法2"><a href="#说法2" class="headerlink" title="说法2"></a>说法2</h4><p>QQ既有UDP也有TCP！<br>不管UDP还是TCP，最终登陆成功之后，QQ都会有一个TCP连接来保持在线状态。这个TCP连接的远程端口一般是80，采用UDP方式登陆的时候，端口是8000。</p>
+<p>UDP协议是无连接方式的协议，它的效率高，速度快，占资源少，但是其传输机制为不可靠传送，必须依靠辅助的算法来完成传输控制。QQ采用的通信协议以UDP为主，辅以TCP协议。由于QQ的服务器设计容量是海量级的应用，一台服务器要同时容纳十几万的并发连接，因此服务器端只有采用UDP协议与客户端进行通讯才能保证这种超大规模的服务。</p>
+<p>QQ客户端之间的消息传送也采用了UDP模式，因为国内的网络环境非常复杂，而且很多用户采用的方式是通过代理服务器共享一条线路上网的方式，在这些复杂的情况下，客户端之间能彼此建立起来TCP连接的概率较小，严重影响传送信息的效率。而UDP包能够穿透大部分的代理服务器，因此QQ选择了UDP作为客户之间的主要通信协议。</p>
+<p>采用UDP协议，通过服务器中转方式。因此，现在的IP侦探在你仅仅跟对方发送聊天消息的时候是无法获取到IP的。大家都知道，UDP 协议是不可靠协议，它只管发送，不管对方是否收到的，但它的传输很高效。但是，作为聊天软件，怎么可以采用这样的不可靠方式来传输消息呢？于是，腾讯采用了上层协议来保证可靠传输：如果客户端使用UDP协议发出消息后，服务器收到该包，需要使用UDP协议发回一个应答包。如此来保证消息可以无遗漏传输。之所以会发生在客户端明明看到“消息发送失败”但对方又收到了这个消息的情况，就是因为客户端发出的消息服务器已经收到并转发成功，但客户端由于网络原因没有收到服务器的应答包引起的。</p>
+<p><a href="http://www.52im.net/thread-279-1-1.html" target="_blank" rel="noopener">http://www.52im.net/thread-279-1-1.html</a></p>
+<h4 id="现在"><a href="#现在" class="headerlink" title="现在"></a>现在</h4><p>早期的腾讯QQ也同样面临C10K问题，只不过他们是用了UDP这种原始的包交换协议来实现的，绕开了这个难题，当然过程肯定是痛苦的。如果当时有epoll技术，他们肯定会用TCP。众所周之，后来的手机QQ、微信都采用TCP协议。</p>
+<h3 id="QQ通信原理"><a href="#QQ通信原理" class="headerlink" title="QQ通信原理"></a>QQ通信原理</h3><p>聊天消息通信。采用UDP协议，通过服务器中转方式。因此，现在的IP侦探在你仅仅跟对方发送聊天消息的时候是无法获取到IP的。大家都知道，UDP协议是不可靠协议，它只管发送，不管对方是否收到的，但它的传输很高效。但是，作为聊天软件，怎么可以采用这样的不可靠方式来传输消息呢？于是，腾讯采用了上层协议来保证可靠传输：如果客户端使用UDP协议发出消息后，服务器收到该包，需要使用UDP协议发回一个应答包。如此来保证消息可以无遗漏传输。之所以会发生在客户端明明看到“消息发送失败”但对方又收到了这个消息 的情况，就是因为客户端发出的消息服务器已经收到并转发成功，但客户端由于网络原因没有收到服务器的应答包引起的。 </p>
+<p>发送消息的时候是UDP打洞,登陆的时候使用HTTP<br><a href="https://blog.csdn.net/gcc_sky/article/details/18663069" target="_blank" rel="noopener">https://blog.csdn.net/gcc_sky/article/details/18663069</a><br>用UDP协议通讯时怎样得知目标机是否获得了数据包？<br>大家都知道，UDP协议通信必须在同一个局域网内<br>UDP包中包括一个TimeStamp,如果接收者收到,将TimeStamp返回.<br>在UDP之上自定义一个通讯协议：每个数据包中包含一个唯一标识，可以用编号也可以用时间；接收端收到数据包后回发一个数据包，包含收到的这个唯一标识；发送端在预定时间内没有收到回执则自动重发，重发一定次数后仍未收到回执则认为发送失败。</p>
+<h3 id="迅雷是UDP-UDP打洞和TCP打洞？"><a href="#迅雷是UDP-UDP打洞和TCP打洞？" class="headerlink" title="迅雷是UDP? UDP打洞和TCP打洞？"></a>迅雷是UDP? UDP打洞和TCP打洞？</h3><p>就是udp的，视频传输数量大，速度要求高，所以用udp，tcp如果出现错误要重传，这是不符合效率要求的，你说的tcp连接的是ftp服务<br><a href="http://www.cnblogs.com/LeoWong/archive/2009/09/25/1574265.html" target="_blank" rel="noopener">http://www.cnblogs.com/LeoWong/archive/2009/09/25/1574265.html</a></p>
+<h3 id="server最大tcp连接数："><a href="#server最大tcp连接数：" class="headerlink" title="server最大tcp连接数："></a>server最大tcp连接数：</h3><p>server通常固定在某个本地端口上监听，等待client的连接请求。不考虑地址重用（unix的SO_REUSEADDR选项）的情况下，即使server端有多个ip，本地监听端口也是独占的，因此server端tcp连接4元组中只有remote ip（也就是client ip）和remote port（客户端port）是可变的，因此最大tcp连接为客户端ip数×客户端port数，对IPV4，不考虑ip地址分类等因素，最大tcp连接数约为2的32次方（ip数）×2的16次方（port数），也就是server端单机最大tcp连接数约为2的48次方。</p>
+<h3 id="C10m的问题"><a href="#C10m的问题" class="headerlink" title="C10m的问题"></a>C10m的问题</h3><p>Robert Graham的结论是：OS的内核不是解决C10M问题的办法，恰恰相反OS的内核正是导致C10M问题的关键所在。这也就意味着： </p>
+<p>不要让OS内核执行所有繁重的任务：将数据包处理、内存管理、处理器调度等任务从内核转移到应用程序高效地完成，让诸如Linux这样的OS只处理控制层，数据层完全交给应用程序来处理。</p>
+<p>最终就是要设计这样一个系统，该系统可以处理千万级别的并发连接，它在200个时钟周期内处理数据包，在14万个时钟周期内处理应用程序逻辑。由于一次主存储器访问就要花费300个时钟周期，所以这是最大限度的减少代码和缓存丢失的关键。 </p>
+<p>面向数据层的系统可以每秒处理1千万个数据包，面向控制层的系统，每秒只能处理1百万个数据包。这似乎很极端，请记住一句老话：可扩展性是专业化的，为了做好一些事情，你不能把性能问题外包给操作系统来解决，你必须自己做。<br><a href="http://www.52im.net/thread-568-1-1.html" target="_blank" rel="noopener">http://www.52im.net/thread-568-1-1.html</a></p>
+<h4 id="解决C10M问题的思路总结"><a href="#解决C10M问题的思路总结" class="headerlink" title="解决C10M问题的思路总结"></a>解决C10M问题的思路总结</h4><p>综上所述，解决C10M问题的关键主要是从下面几个方面入手：</p>
+<p>网卡问题：通过内核工作效率不高<br>解决方案：使用自己的驱动程序并管理它们，使适配器远离操作系统。</p>
+<p>CPU问题：使用传统的内核方法来协调你的应用程序是行不通的。<br>解决方案：Linux管理前两个CPU，你的应用程序管理其余的CPU，中断只发生在你允许的CPU上。</p>
+<p>内存问题：内存需要特别关注，以求高效。<br>解决方案：在系统启动时就分配大部分内存给你管理的大内存页。</p>
+<p>以Linux为例，解决的思咯就是将控制层交给Linux，应用程序管理数据。应用程序与内核之间没有交互、没有线程调度、没有系统调用、没有中断，什么都没有。 然而，你有的是在Linux上运行的代码，你可以正常调试，这不是某种怪异的硬件系统，需要特定的工程师。你需要定制的硬件在数据层提升性能，但是必须是在你熟悉的编程和开发环境上进行。 </p>
+<h4 id="从C10K到C10M高性能网络应用的理论探索"><a href="#从C10K到C10M高性能网络应用的理论探索" class="headerlink" title="从C10K到C10M高性能网络应用的理论探索"></a>从C10K到C10M高性能网络应用的理论探索</h4><p><a href="http://www.52im.net/thread-578-1-1.html" target="_blank" rel="noopener">http://www.52im.net/thread-578-1-1.html</a></p>
+<h4 id="IO模型"><a href="#IO模型" class="headerlink" title="IO模型"></a>IO模型</h4><p><a href="http://www.52im.net/thread-1935-1-1.html" target="_blank" rel="noopener">http://www.52im.net/thread-1935-1-1.html</a></p>
+<h4 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h4><p><a href="http://www.52im.net/thread-1939-1-1.html" target="_blank" rel="noopener">http://www.52im.net/thread-1939-1-1.html</a></p>
 
+      
+    </div>
+    
+    
+    
+
+    
+    <div>
         
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+     
+    </div>
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="songjiantao 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    songjiantao
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/03/29/你真的懂TCP和UDP？/" title="你真的懂TCP和UDP？">http://yoursite.com/2019/03/29/你真的懂TCP和UDP？/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
+            <a href="/tags/TCP-IP/" rel="tag"># TCP/IP</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
           </div>
         
-        
 
         
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
         
-            <a class="post-title-link" href="/2019/01/18/数据库分片、分区、分表、分库傻傻分不清楚/" itemprop="url">
-              
-                <span itemprop="name">数据库分片、分区、分表、分库傻傻分不清楚</span>
-              
-            </a>
-        
-      </h2>
+        </div>
+      
+      
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-01-18T11:09:39+08:00"
-              content="2019-01-18" >
-          01-18
-        </time>
-      </div>
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/23/Docker容器可视化监控中心搭建/" rel="next" title="Docker容器可视化监控中心搭建">
+                <i class="fa fa-chevron-left"></i> Docker容器可视化监控中心搭建
+              </a>
+            
+          </div>
 
-    </header>
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+   
+  
+  
+  
   </article>
 
 
 
+    <div class="post-spread">
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/17/读《码出高效》笔记/" itemprop="url">
-              
-                <span itemprop="name">读《码出高效》笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-01-17T11:26:31+08:00"
-              content="2019-01-17" >
-          01-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/17/为什么不应该使用ZooKeeper做服务发现/" itemprop="url">
-              
-                <span itemprop="name">为什么不应该使用ZooKeeper做服务发现</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-01-17T11:15:34+08:00"
-              content="2019-01-17" >
-          01-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/17/你了解Node-js吗？/" itemprop="url">
-              
-                <span itemprop="name">你了解Node.js吗？</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-01-17T10:57:46+08:00"
-              content="2019-01-17" >
-          01-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/17/你了解响应式编程吗？/" itemprop="url">
-              
-                <span itemprop="name">你了解响应式编程吗？</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-01-17T10:47:27+08:00"
-              content="2019-01-17" >
-          01-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/17/文件锁/" itemprop="url">
-              
-                <span itemprop="name">文件锁</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-01-17T09:48:43+08:00"
-              content="2019-01-17" >
-          01-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
   </div>
-  
-  
-  
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2019/01/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2019/01/">1</a><span class="page-number current">2</span>
-  </nav>
-
-
 
 
           </div>
@@ -556,6 +588,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -829,6 +868,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1355,6 +1398,23 @@
   </script>
 
   
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 10113,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
 
   
   

@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="僵尸进程 怎样产生僵尸进程的： 一个进程在调用exit命令结束自己的生命的时候，其实它并没有真正的被销毁，而是留下一个称为僵尸进程（Zombie）的数据结构（系统调用exit，它的作用是使进程退出，但也仅仅限于将一个正常的进程变成一个僵尸进程，并不能将其完全销毁）。在Linux进程的状态中，僵尸进程是非常特殊的一种，它已经放弃了几乎所有内存空间，没有任何可执行代码，也不能被调度，仅仅在进程列表中保">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-17T02:56:57.096Z">
+<meta property="og:updated_time" content="2019-03-29T12:12:31.425Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="僵尸进程">
 <meta name="twitter:description" content="僵尸进程 怎样产生僵尸进程的： 一个进程在调用exit命令结束自己的生命的时候，其实它并没有真正的被销毁，而是留下一个称为僵尸进程（Zombie）的数据结构（系统调用exit，它的作用是使进程退出，但也仅仅限于将一个正常的进程变成一个僵尸进程，并不能将其完全销毁）。在Linux进程的状态中，僵尸进程是非常特殊的一种，它已经放弃了几乎所有内存空间，没有任何可执行代码，也不能被调度，仅仅在进程列表中保">
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-17T10:56:57+08:00">
-                2019-03-17
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-29T20:12:31+08:00">
+                2019-03-29
               </time>
             
           </span>
@@ -444,6 +444,16 @@
 </li>
 </ol>
 <p>这是不是我起了kafka的docker容器之后才出现的，出现原因我现在还不知道，待补充,pid竟然还会变？？</p>
+<p>我试了下，既然处理僵尸进程的方法是把父进程关掉，就行了，我一看这三个僵尸进程的父进程就是三个kafka容器，那么我docker-compose down关掉就ok了，试了试，果然这三个僵尸进程没有了，重启之后，发现还是有这三个僵尸进程。。</p>
+<h4 id="那么这样又引来另外一个问题，如果不能关闭父进程怎么办？"><a href="#那么这样又引来另外一个问题，如果不能关闭父进程怎么办？" class="headerlink" title="那么这样又引来另外一个问题，如果不能关闭父进程怎么办？"></a>那么这样又引来另外一个问题，如果不能关闭父进程怎么办？</h4><ul>
+<li>实现一个内核线程，专门实现模块init函数的逻辑，需要干掉的僵尸进程号通过procfs传入内核，然后在write例程中唤醒回收僵尸进程的内核线程；</li>
+<li>实现一个用户态进程U，挂载一个信号A的处理函数，内部实现waitpid，通过procfs传入或者通过netlink传入内核的僵尸进程号代表的进程过继给用户态进程U，然后向U发送信号A；</li>
+<li><p>/dev/mem的机器码编程或者直接释放僵尸进程的task_t。</p>
+</li>
+<li><p>在/proc/<pid>/目录中加入kill-if-jiangshi文件，写入1如果该进程是僵尸，那么就调用上述模块的逻辑杀死它</pid></p>
+</li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/dog250/article/details/6451989" target="_blank" rel="noopener">https://blog.csdn.net/dog250/article/details/6451989</a></p>
 
       
     </div>
@@ -626,7 +636,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-count">80</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
