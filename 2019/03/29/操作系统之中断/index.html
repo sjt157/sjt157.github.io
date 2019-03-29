@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="OS," />
 
 
 
@@ -81,17 +81,18 @@
 
 
 
-<meta name="description" content="姓名 XXX职位 Python后端工程师  联系方式  手机：18801494086 Email：15733105590@163.com QQ： 1872963677    个人信息  XXX/男/1994  硕士/北京工业大学   政治面貌：中共党员 技术博客：https://sjt157.github.io  Github：http://github.com/sjt157  期望城市：北京">
-<meta property="og:type" content="website">
-<meta property="og:title" content="诗与远方">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="什么是中断中断是一种当今很重要的硬件与cpu通信的方式，主板上集成很多硬件，那么就可以认为会有很多中断，但是cpu的数目往往要少得多，那么肯定会有多个硬件中断竞争一个cpu的情况，任何系统（包括自然界）都不能乱套，肯定会有一定的机制防止事情变得不可控制，这种机制的结果就是使一切变得有序化，出现多竞争一的情况时，最常用的方法就是排队，而排队有很多策略，比如先来先服务，优先级队列，加权优先级队列，多级">
+<meta name="keywords" content="OS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统之中断">
+<meta property="og:url" content="http://yoursite.com/2019/03/29/操作系统之中断/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="姓名 XXX职位 Python后端工程师  联系方式  手机：18801494086 Email：15733105590@163.com QQ： 1872963677    个人信息  XXX/男/1994  硕士/北京工业大学   政治面貌：中共党员 技术博客：https://sjt157.github.io  Github：http://github.com/sjt157  期望城市：北京">
+<meta property="og:description" content="什么是中断中断是一种当今很重要的硬件与cpu通信的方式，主板上集成很多硬件，那么就可以认为会有很多中断，但是cpu的数目往往要少得多，那么肯定会有多个硬件中断竞争一个cpu的情况，任何系统（包括自然界）都不能乱套，肯定会有一定的机制防止事情变得不可控制，这种机制的结果就是使一切变得有序化，出现多竞争一的情况时，最常用的方法就是排队，而排队有很多策略，比如先来先服务，优先级队列，加权优先级队列，多级">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-18T06:05:16.734Z">
+<meta property="og:updated_time" content="2019-03-29T13:03:05.144Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="诗与远方">
-<meta name="twitter:description" content="姓名 XXX职位 Python后端工程师  联系方式  手机：18801494086 Email：15733105590@163.com QQ： 1872963677    个人信息  XXX/男/1994  硕士/北京工业大学   政治面貌：中共党员 技术博客：https://sjt157.github.io  Github：http://github.com/sjt157  期望城市：北京">
+<meta name="twitter:title" content="操作系统之中断">
+<meta name="twitter:description" content="什么是中断中断是一种当今很重要的硬件与cpu通信的方式，主板上集成很多硬件，那么就可以认为会有很多中断，但是cpu的数目往往要少得多，那么肯定会有多个硬件中断竞争一个cpu的情况，任何系统（包括自然界）都不能乱套，肯定会有一定的机制防止事情变得不可控制，这种机制的结果就是使一切变得有序化，出现多竞争一的情况时，最常用的方法就是排队，而排队有很多策略，比如先来先服务，优先级队列，加权优先级队列，多级">
 
 
 
@@ -121,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/29/操作系统之中断/"/>
 
 
 
 
 
-  <title> | 诗与远方</title>
+  <title>操作系统之中断 | 诗与远方</title>
   
 
 
@@ -296,88 +297,293 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/操作系统之中断/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songjiantao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/15856742?s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗与远方">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline"></h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h1 id="姓名-XXX"><a href="#姓名-XXX" class="headerlink" title="姓名 XXX"></a>姓名 XXX</h1><h2 id="职位-Python后端工程师"><a href="#职位-Python后端工程师" class="headerlink" title="职位 Python后端工程师"></a>职位 Python后端工程师</h2><hr>
-<blockquote>
-<h3 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h3></blockquote>
-<ul>
-<li>手机：18801494086</li>
-<li>Email：<a href="mailto:15733105590@163.com" target="_blank" rel="noopener">15733105590@163.com</a></li>
-<li>QQ： 1872963677</li>
-</ul>
-<hr>
-<blockquote>
-<h3 id="个人信息"><a href="#个人信息" class="headerlink" title="个人信息"></a>个人信息</h3></blockquote>
-<ul>
-<li>XXX/男/1994 </li>
-<li>硕士/北京工业大学  </li>
-<li>政治面貌：中共党员</li>
-<li>技术博客：<a href="https://sjt157.github.io" target="_blank" rel="noopener">https://sjt157.github.io</a> </li>
-<li>Github：<a href="http://github.com/sjt157" target="_blank" rel="noopener">http://github.com/sjt157</a> </li>
-<li>期望城市：北京</li>
-</ul>
-<hr>
-<blockquote>
-<h3 id="工作经历-个人技能"><a href="#工作经历-个人技能" class="headerlink" title="工作经历/个人技能"></a>工作经历/个人技能</h3></blockquote>
-<ul>
-<li>熟练使用C/C++进行项目开发，具有独立开发项目经验及团队开发经验。</li>
-<li>了解Python、Shell等脚本编程语言。</li>
-<li>熟练使用Linux操作系统，了解Linux操作系统内核。</li>
-<li>熟悉Linux环境下编程及进程间通信，多线程编程。</li>
-<li>熟悉进程池、线程池等原理及代码实现，熟悉epoll工作机制。</li>
-<li>阅读过Ngix源码，了解服务器基本维护和开发。</li>
-<li>具有网络基础知识，熟悉TCP/IP协议，熟悉Linux网络相关指令使用及Socket网络编程。</li>
-<li>熟练掌握基本数据结构和算法。</li>
-</ul>
-<hr>
-<blockquote>
-<h3 id="技术经历-项目经验"><a href="#技术经历-项目经验" class="headerlink" title="技术经历/项目经验"></a>技术经历/项目经验</h3></blockquote>
-<ul>
-<li>Web服务器搭建<br> 项目描述： 搭建http协议服务器，用于校园网用户访问，可以实现多用户同时访问网页。项目所需技术：C/S模式Tcp连接实现，C编程，http协议，epoll机制，线程锁机制，html项目开发耗时：两周</li>
-</ul>
-<hr>
-<blockquote>
-<h3 id="优势和特点"><a href="#优势和特点" class="headerlink" title="优势和特点"></a>优势和特点</h3></blockquote>
-<ul>
-<li>具备良好的自学和独立解决问题能力。</li>
-<li>具有良好的团队协作能力和服务意识。</li>
-<li>乐于与人交流，喜欢和人交流问题。</li>
-<li>热爱互联网，对互联网相关业务或技术充满好奇及热情，胆大心细。</li>
-</ul>
-<hr>
-<blockquote>
-<h3 id="技术文章"><a href="#技术文章" class="headerlink" title="技术文章"></a>技术文章</h3></blockquote>
-<ul>
-<li><a href="http://get.jobdeer.com/706.get" target="_blank" rel="noopener">一个产品经理眼中的云计算：前生今世和未来</a></li>
-<li><a href="http://get.jobdeer.com/343.get" target="_blank" rel="noopener">来自HeroKu的HTTP API 设计指南(翻译文章)</a> </li>
-</ul>
-<h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>感谢您花时间阅读我的简历，期待能有机会和您共事。</p>
-
+          <h1 class="post-title" itemprop="name headline">操作系统之中断</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-29T21:02:34+08:00">
+                2019-03-29
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-29T21:03:05+08:00">
+                2019-03-29
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OS/" itemprop="url" rel="index">
+                    <span itemprop="name">OS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/29/操作系统之中断/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/29/操作系统之中断/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/03/29/操作系统之中断/" class="leancloud_visitors" data-flag-title="操作系统之中断">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+	         <span> ℃ </span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h3 id="什么是中断"><a href="#什么是中断" class="headerlink" title="什么是中断"></a>什么是中断</h3><p>中断是一种当今很重要的硬件与cpu通信的方式，主板上集成很多硬件，那么就可以认为会有很多中断，但是cpu的数目往往要少得多，那么肯定会有多个硬件中断竞争一个cpu的情况，任何系统（包括自然界）都不能乱套，肯定会有一定的机制防止事情变得不可控制，这种机制的结果就是使一切变得有序化，出现多竞争一的情况时，最常用的方法就是排队，而排队有很多策略，比如先来先服务，优先级队列，加权优先级队列，多级队列等等。这是硬件方面的情况，那么cpu方 面呢，cpu的中断引脚往往只有一个，这就是说，排队必须在中断到达cpu前进行，所以中断控制器的作用就体现出来了，有了中断控制器，我们就可以把控制 器后面的硬件当成黑盒子了，只要管控制器里面会接受很多中断并且仲裁它们就可以了。 </p>
+<h3 id="中断优先级和中断线程优先级"><a href="#中断优先级和中断线程优先级" class="headerlink" title="中断优先级和中断线程优先级"></a>中断优先级和中断线程优先级</h3><p><a href="https://blog.csdn.net/dog250/article/details/5302745" target="_blank" rel="noopener">https://blog.csdn.net/dog250/article/details/5302745</a></p>
+<h3 id="进程上下文-amp-中断上下文"><a href="#进程上下文-amp-中断上下文" class="headerlink" title="进程上下文 &amp; 中断上下文"></a>进程上下文 &amp; 中断上下文</h3><ol>
+<li><p>进程上下文一般在进程切换中提到，进程控制块PCB,保存着进程的诸多详细信息，当进程要切换时当前进程的寄存器内容以及内存页表的详细信息等等内容，也就是关于描述进程的信息。</p>
+</li>
+<li><p>当一个进程在执行时,CPU的所有寄存器中的值、进程的状态以及堆栈中的内容被称为该进程的上下文。当内核需要切换到另一个进程时，它需要保存当前进程的所有状态，即保存当前进程的上下文，以便在再次执行该进程时，能够得到切换时的状态执行下去。在LINUX中，当前进程上下文均保存在进程的任务数据结构中。在发生中断时,内核就在被中断进程的上下文中，在内核态下执行中断服务例程。但同时会保留所有需要用到的资源，以便中继服务结束时能恢复被中断进程的执行。</p>
+</li>
+<li><p>当一个进程运行时 ，产生了一个中断，CPU转而执行中断处理程序 ，虽然CPU当时保存了被中断进程的上下文， 但这和中断处理丝毫没有关系 ， 也就是说，中断处理程序没有进程上下文，但是你却可以得到current的值！</p>
+</li>
+<li><p>进程上下文就是表示进程信息的一系列东西，包括各种变量、寄存器以及进程的运行的环境。这样，当进程被切换后，下次再切换回来继续执行，能够知道原来的状态。<br>同理，中断上下文就是中断发生时，原来的进程执行被打断，那么就要把原来的那些变量保存下来，以便中断完成后再恢复。</p>
+</li>
+<li><p>处理器总处于以下状态中的一种：</p>
+</li>
+</ol>
+<ul>
+<li>内核态，运行于进程上下文，内核代表进程运行于内核空间；</li>
+<li>内核态，运行于中断上下文，内核代表硬件运行于内核空间；</li>
+<li>用户态，运行于用户空间。</li>
+</ul>
+<h4 id="进程上下文："><a href="#进程上下文：" class="headerlink" title="进程上下文："></a>进程上下文：</h4><p>在Linux中，用户程序装入系统形成一个进程的实质是系统为用户程序提供一个完整的运行环境。进程的运行环境是由它的程序代码和程序运行所需要的数据结构以及硬件环境组成的。进程的运行环境主要包括：<br>1.进程空间中的代码和数据、各种数据结构、进程堆栈和共享内存区等。<br>2.环境变量：提供进程运行所需的环境信息。<br>3.系统数据：进程空间中的对进程进行管理和控制所需的信息，包括进程任务结构体以及内核堆栈等。<br>4.进程访问设备或者文件时的权限。<br>5.各种硬件寄存器。<br>6.地址转换信息。</p>
+<p>从以上组成情况可以看到，进程的运行环境是动态变化的，尤其是硬件寄存器的值以及进程控制信息是随着进程的运行而不断变化的。在Linux中把系统提供给进程的的处于动态变化的运行环境总和称为进程上下文。</p>
+<p>系统中的每一个进程都有自己的上下文。一个正在使用处理器运行的进程称为当前进程(current)。当前进程因时间片用完或者因等待某个事件而阻塞时，进程调度需要把处理器的使用权从当前进程交给另一个进程，这个过程叫做进程切换。此时，被调用进程成为当前进程。在进程切换时系统要把当前进程的上下文保存在指定的内存区域（该进程的任务状态段TSS中），然后把下一个使用处理器运行的进程的上下文设置成当前进程的上下文。当一个进程经过调度再次使用CPU运行时，系统要恢复该进程保存的上下文。所以，进程的切换也就是上下文切换。</p>
+<p>在系统内核为用户进程服务时，通常是进程通过系统调用执行内核代码，这时进程的执行状态由用户态转换为内核态。但是，此时内核的运行是为用户进程服务，也可以说内核在代替当前进程执行某种服务功能。在这种情况下，内核的运行仍是进程运行的一部分，所以说这时内核是运行在进程上下文中。内核运行在进程上下文中时可以访问和修改进程的系统数据。此外，若内核运行在进程上下文中需要等待资源和设备时，系统可以阻塞当前进程</p>
+<h4 id="中断上下文："><a href="#中断上下文：" class="headerlink" title="中断上下文："></a>中断上下文：</h4><p>硬件通过触发信号，导致内核调用中断处理程序，进入内核空间。这个过程中，硬件的一些变量和参数也要传递给内核，内核通过这些参数进行中断处理。所谓的“中断上下文”，其实也可以看作就是硬件传递过来的这些参数和内核需要保存的一些其他环境（主要是当前被打断执行的进程环境）。中断时，内核不代表任何进程运行，它一般只访问系统空间，而不会访问进程空间，内核在中断上下文中执行时一般不会阻塞。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/dog250/article/details/5302745" target="_blank" rel="noopener">https://blog.csdn.net/dog250/article/details/5302745</a></p>
+
       
     </div>
     
     
     
+
+    
+    <div>
+        
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+     
+    </div>
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="songjiantao 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    songjiantao
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/03/29/操作系统之中断/" title="操作系统之中断">http://yoursite.com/2019/03/29/操作系统之中断/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OS/" rel="tag"># OS</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/29/一个诡异的shell脚本问题/" rel="next" title="一个诡异的shell脚本问题">
+                <i class="fa fa-chevron-left"></i> 一个诡异的shell脚本问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/29/文件句柄和文件描述符傻傻分不清楚/" rel="prev" title="文件句柄和文件描述符傻傻分不清楚">
+                文件句柄和文件描述符傻傻分不清楚 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+   
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -1196,6 +1402,23 @@
   </script>
 
   
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 10113,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
 
   
   
