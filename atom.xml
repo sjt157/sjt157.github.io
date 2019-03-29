@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-29T12:20:44.406Z</updated>
+  <updated>2019-03-29T12:52:30.152Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一个诡异的shell脚本问题</title>
+    <link href="http://yoursite.com/2019/03/29/%E4%B8%80%E4%B8%AA%E8%AF%A1%E5%BC%82%E7%9A%84shell%E8%84%9A%E6%9C%AC%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2019/03/29/一个诡异的shell脚本问题/</id>
+    <published>2019-03-29T12:52:04.000Z</published>
+    <updated>2019-03-29T12:52:30.152Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h3&gt;&lt;p&gt;在论坛上看见有人问了一个问题，&lt;a href=&quot;https://javaweb.io/post/394/reply/1246&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Shell" scheme="http://yoursite.com/categories/Shell/"/>
+    
+    
+      <category term="Shell" scheme="http://yoursite.com/tags/Shell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>为什么Netty使用NIO而不是AIO？</title>
+    <link href="http://yoursite.com/2019/03/29/%E4%B8%BA%E4%BB%80%E4%B9%88Netty%E4%BD%BF%E7%94%A8NIO%E8%80%8C%E4%B8%8D%E6%98%AFAIO%EF%BC%9F/"/>
+    <id>http://yoursite.com/2019/03/29/为什么Netty使用NIO而不是AIO？/</id>
+    <published>2019-03-29T12:33:53.000Z</published>
+    <updated>2019-03-29T12:36:55.504Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;先了解下BIO-NIO-AIO&quot;&gt;&lt;a href=&quot;#先了解下BIO-NIO-AIO&quot; class=&quot;headerlink&quot; title=&quot;先了解下BIO NIO AIO&quot;&gt;&lt;/a&gt;先了解下BIO NIO
+        
+      
+    
+    </summary>
+    
+      <category term="Netty" scheme="http://yoursite.com/categories/Netty/"/>
+    
+    
+      <category term="Netty" scheme="http://yoursite.com/tags/Netty/"/>
+    
+  </entry>
   
   <entry>
     <title>你真的懂TCP和UDP？</title>
@@ -100,7 +152,7 @@
     <link href="http://yoursite.com/2019/03/23/Java%E4%B9%8B%E5%A0%86%E5%A4%96%E5%86%85%E5%AD%98/"/>
     <id>http://yoursite.com/2019/03/23/Java之堆外内存/</id>
     <published>2019-03-23T05:51:21.000Z</published>
-    <updated>2019-03-23T05:51:54.649Z</updated>
+    <updated>2019-03-29T12:31:28.563Z</updated>
     
     <summary type="html">
     
@@ -108,7 +160,7 @@
       
         
         
-          &lt;h3 id=&quot;堆外内存&quot;&gt;&lt;a href=&quot;#堆外内存&quot; class=&quot;headerlink&quot;
+          &lt;h3 id=&quot;堆外内存&quot;&gt;&lt;a href=&quot;#堆外内存&quot; class=&quot;headerlink&quot; title=&quot;堆外内存&quot;&gt;&lt;/a&gt;堆外内存&lt;/h3&gt;&lt;p&gt;Netty的ByteBuffer采用DIRECT
         
       
     
@@ -483,58 +535,6 @@
     
     
       <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java之ThreadLocal</title>
-    <link href="http://yoursite.com/2019/03/11/Java%E4%B9%8BThreadLocal/"/>
-    <id>http://yoursite.com/2019/03/11/Java之ThreadLocal/</id>
-    <published>2019-03-11T06:58:14.000Z</published>
-    <updated>2019-03-11T07:23:33.321Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;什么是ThreadLocal&quot;&gt;&lt;a href=&quot;#什么是ThreadLocal&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker之seccomp</title>
-    <link href="http://yoursite.com/2019/03/11/Docker%E4%B9%8Bseccomp/"/>
-    <id>http://yoursite.com/2019/03/11/Docker之seccomp/</id>
-    <published>2019-03-11T04:56:57.000Z</published>
-    <updated>2019-03-11T05:00:04.098Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;什么是seccomp&quot;&gt;&lt;a href=&quot;#什么是seccomp&quot; class=&quot;headerlink&quot; title=&quot;什么是seccomp&quot;&gt;&lt;/a&gt;什么是seccomp&lt;/h3&gt;&lt;p&gt;seccomp（全称securecomputing mode）是linux
-        
-      
-    
-    </summary>
-    
-      <category term="Docker" scheme="http://yoursite.com/categories/Docker/"/>
-    
-    
-      <category term="Docker" scheme="http://yoursite.com/tags/Docker/"/>
     
   </entry>
   

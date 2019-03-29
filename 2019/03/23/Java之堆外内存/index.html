@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="堆外内存有个小问题：堆内内存包括永久代码？ 和堆内内存相对应，堆外内存就是把内存对象分配在Java虚拟机的堆以外的内存，这些内存直接受操作系统管理（而不是虚拟机），这样做的结果就是能够在一定程度上减少垃圾回收对应用程序造成的影响。 作为JAVA开发者我们经常用java.nio.DirectByteBuffer对象进行堆外内存的管理和使用，它会在对象创建的时候就分配堆外内存。 DirectByteB">
+<meta name="description" content="堆外内存Netty的ByteBuffer采用DIRECT BUFFERS，使用堆外直接内存进行Socket读写，不需要进行字节缓冲区的二次拷贝。如果大家自己动手写过NIO和AIO的程序，就会知道我们接触的网络传输数据是直接和ByteBuffer打交道的。在JAVA的API中，一个ByteBuffer读完数据后要flip一下，将当前操作位置设置为0.里详细介绍了Netty的ByteBuf怎样将这个缓">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java之堆外内存">
 <meta property="og:url" content="http://yoursite.com/2019/03/23/Java之堆外内存/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="堆外内存有个小问题：堆内内存包括永久代码？ 和堆内内存相对应，堆外内存就是把内存对象分配在Java虚拟机的堆以外的内存，这些内存直接受操作系统管理（而不是虚拟机），这样做的结果就是能够在一定程度上减少垃圾回收对应用程序造成的影响。 作为JAVA开发者我们经常用java.nio.DirectByteBuffer对象进行堆外内存的管理和使用，它会在对象创建的时候就分配堆外内存。 DirectByteB">
+<meta property="og:description" content="堆外内存Netty的ByteBuffer采用DIRECT BUFFERS，使用堆外直接内存进行Socket读写，不需要进行字节缓冲区的二次拷贝。如果大家自己动手写过NIO和AIO的程序，就会知道我们接触的网络传输数据是直接和ByteBuffer打交道的。在JAVA的API中，一个ByteBuffer读完数据后要flip一下，将当前操作位置设置为0.里详细介绍了Netty的ByteBuf怎样将这个缓">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-23T05:51:54.649Z">
+<meta property="og:updated_time" content="2019-03-29T12:31:28.563Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java之堆外内存">
-<meta name="twitter:description" content="堆外内存有个小问题：堆内内存包括永久代码？ 和堆内内存相对应，堆外内存就是把内存对象分配在Java虚拟机的堆以外的内存，这些内存直接受操作系统管理（而不是虚拟机），这样做的结果就是能够在一定程度上减少垃圾回收对应用程序造成的影响。 作为JAVA开发者我们经常用java.nio.DirectByteBuffer对象进行堆外内存的管理和使用，它会在对象创建的时候就分配堆外内存。 DirectByteB">
+<meta name="twitter:description" content="堆外内存Netty的ByteBuffer采用DIRECT BUFFERS，使用堆外直接内存进行Socket读写，不需要进行字节缓冲区的二次拷贝。如果大家自己动手写过NIO和AIO的程序，就会知道我们接触的网络传输数据是直接和ByteBuffer打交道的。在JAVA的API中，一个ByteBuffer读完数据后要flip一下，将当前操作位置设置为0.里详细介绍了Netty的ByteBuf怎样将这个缓">
 
 
 
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-23T13:51:54+08:00">
-                2019-03-23
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-29T20:31:28+08:00">
+                2019-03-29
               </time>
             
           </span>
@@ -432,7 +432,8 @@
       
 
       
-        <h3 id="堆外内存"><a href="#堆外内存" class="headerlink" title="堆外内存"></a>堆外内存</h3><p>有个小问题：堆内内存包括永久代码？</p>
+        <h3 id="堆外内存"><a href="#堆外内存" class="headerlink" title="堆外内存"></a>堆外内存</h3><p>Netty的ByteBuffer采用DIRECT BUFFERS，使用堆外直接内存进行Socket读写，不需要进行字节缓冲区的二次拷贝。如果大家自己动手写过NIO和AIO的程序，就会知道我们接触的网络传输数据是直接和ByteBuffer打交道的。在JAVA的API中，一个ByteBuffer读完数据后要flip一下，将当前操作位置设置为0.<netty in="" action="">里详细介绍了Netty的ByteBuf怎样将这个缓冲区分成一段一段的，还可以压缩，将读的数据滑向一侧。而堆外内存的零拷贝，如果有JVM基础也很好理解。Java内存模型里提到每个线程都有自己的高速工作内存空间，而不是直接访问主内存。想不用工作内存，直接主内存可见，就要用volatile关键字修饰。所以堆内内存，走JVM就存在这个拷贝开销。<br><a href="https://www.cnblogs.com/xiexj/p/6874654.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiexj/p/6874654.html</a></netty></p>
+<p>有个小问题：堆内内存包括永久代码？</p>
 <p>和堆内内存相对应，堆外内存就是把内存对象分配在Java虚拟机的堆以外的内存，这些内存直接受操作系统管理（而不是虚拟机），这样做的结果就是能够在一定程度上减少垃圾回收对应用程序造成的影响。</p>
 <p>作为JAVA开发者我们经常用java.nio.DirectByteBuffer对象进行堆外内存的管理和使用，它会在对象创建的时候就分配堆外内存。</p>
 <p>DirectByteBuffer类是在Java Heap外分配内存，对堆外内存的申请主要是通过成员变量unsafe来操作，下面介绍构造方法</p>
@@ -656,7 +657,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-count">82</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
