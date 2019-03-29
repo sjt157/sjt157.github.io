@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="起因在论坛上看见有人问了一个问题，https://javaweb.io/post/394/reply/1246,其实这个shell脚本很简单，就是根据进程名字得到进程号，但是很诡异的出来了异常结果。 我也自己尝试了一下，直接执行命令确实是返回一个pid，但是在shell脚本里，却是3个pid号。这是为什么呢？ 峰回路转看见了这个https://akaedu.github.io/book/ch31s">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-29T12:52:30.152Z">
+<meta property="og:updated_time" content="2019-03-29T12:55:23.086Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个诡异的shell脚本问题">
 <meta name="twitter:description" content="起因在论坛上看见有人问了一个问题，https://javaweb.io/post/394/reply/1246,其实这个shell脚本很简单，就是根据进程名字得到进程号，但是很诡异的出来了异常结果。 我也自己尝试了一下，直接执行命令确实是返回一个pid，但是在shell脚本里，却是3个pid号。这是为什么呢？ 峰回路转看见了这个https://akaedu.github.io/book/ch31s">
@@ -354,7 +354,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-29T20:52:30+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-29T20:55:23+08:00">
                 2019-03-29
               </time>
             
@@ -460,11 +460,7 @@
 <p>pkill -f name</p>
 <p>如果是可执行程序的话，可以直接使用 pidof</p>
 <p>pidof name</p>
-<h4 id="获取-Shell-脚本自身进程-pid"><a href="#获取-Shell-脚本自身进程-pid" class="headerlink" title="获取 Shell 脚本自身进程 pid"></a>获取 Shell 脚本自身进程 pid</h4><p>这里涉及两个指令： </p>
-<ol>
-<li>$$ ：当前 Shell 进程的 pid </li>
-<li>$! ：上一个后台进程的 pid 可以使用这两个指令来获取相应的进程 pid。例如，如果需要获取某个正在执行的进程的 pid（并写入指定的文件）：<br>myCommand &amp;&amp; pid=$!<br>myCommand &amp; echo $! &gt;/path/to/pid.file<br>注意，在脚本中执行 $! 只会显示子 Shell 的后台进程 pid，如果子 Shell 先前没有启动后台进程，则没有输出。</li>
-</ol>
+<h4 id="获取-Shell-脚本自身进程-pid"><a href="#获取-Shell-脚本自身进程-pid" class="headerlink" title="获取 Shell 脚本自身进程 pid"></a>获取 Shell 脚本自身进程 pid</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">这里涉及两个指令： </span><br><span class="line">1. $$ ：当前 Shell 进程的 pid </span><br><span class="line">2. $! ：上一个后台进程的 pid 可以使用这两个指令来获取相应的进程 pid。例如，如果需要获取某个正在执行的进程的 pid（并写入指定的文件）：</span><br><span class="line">myCommand &amp;&amp; pid=$!</span><br><span class="line">myCommand &amp; echo $! &gt;/path/to/pid.file</span><br><span class="line">注意，在脚本中执行 $! 只会显示子 Shell 的后台进程 pid，如果子 Shell 先前没有启动后台进程，则没有输出。</span><br></pre></td></tr></table></figure>
 <h4 id="查看指定进程是否存在"><a href="#查看指定进程是否存在" class="headerlink" title="查看指定进程是否存在"></a>查看指定进程是否存在</h4><p>在获取到 pid 之后，还可以根据 pid 查看对应的进程是否存在（运行），这个方法也可以用于 kill 指定的进程。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if ps -p $PID &gt; /dev/null</span><br><span class="line">then</span><br><span class="line">   echo "$PID is running"</span><br><span class="line"><span class="meta">   #</span> Do something knowing the pid exists, i.e. the process with $PID is running</span><br><span class="line">fi</span><br></pre></td></tr></table></figure></p>
 <h4 id="使用-Shell-对进程资源进行监控"><a href="#使用-Shell-对进程资源进行监控" class="headerlink" title="使用 Shell 对进程资源进行监控"></a>使用 Shell 对进程资源进行监控</h4><p><a href="https://www.ibm.com/developerworks/cn/linux/l-cn-shell-monitoring/index.html" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/linux/l-cn-shell-monitoring/index.html</a></p>
 <h4 id="父子进程-pid相差1"><a href="#父子进程-pid相差1" class="headerlink" title="父子进程(pid相差1)"></a>父子进程(pid相差1)</h4><p><a href="https://www.cnblogs.com/jian-99/p/7719085.html" target="_blank" rel="noopener">https://www.cnblogs.com/jian-99/p/7719085.html</a></p>
