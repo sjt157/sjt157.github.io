@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-25T10:20:43.955Z</updated>
+  <updated>2019-05-25T11:15:30.817Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>zabbix之疑</title>
+    <link href="http://yoursite.com/2019/05/25/zabbix%E4%B9%8B%E7%96%91/"/>
+    <id>http://yoursite.com/2019/05/25/zabbix之疑/</id>
+    <published>2019-05-25T11:13:50.000Z</published>
+    <updated>2019-05-25T11:15:30.817Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;我们的云平台CC节点上zabbix_server进程非常多啊，多达129个，我咋觉得有点不正常呢。&lt;br&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+      <category term="zabbix" scheme="http://yoursite.com/categories/zabbix/"/>
+    
+    
+      <category term="zabbix" scheme="http://yoursite.com/tags/zabbix/"/>
+    
+  </entry>
   
   <entry>
     <title>Epoll惊群问题</title>
@@ -510,32 +536,6 @@
     
     
       <category term="Spring" scheme="http://yoursite.com/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java之注解</title>
-    <link href="http://yoursite.com/2019/03/17/Java%E4%B9%8B%E6%B3%A8%E8%A7%A3/"/>
-    <id>http://yoursite.com/2019/03/17/Java之注解/</id>
-    <published>2019-03-17T01:44:01.000Z</published>
-    <updated>2019-03-17T01:44:49.517Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;什么是注解？&quot;&gt;&lt;a href=&quot;#什么是注解？&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
     
   </entry>
   
