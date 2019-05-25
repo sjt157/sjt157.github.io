@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="我们的云平台CC节点上zabbix_server进程非常多啊，多达129个，我咋觉得有点不正常呢。12[root@cc /]# ps -ef | grep zabbix_server | wc -l129 这么多进程需要占用多少内存啊得， for pid in `ps -C zabbix_server -o pid –no-heading; do grep Pss /proc/$pid/smaps">
+<meta name="description" content="我们的云平台CC节点上zabbix_server进程非常多啊，多达129个，我咋觉得有点不正常呢。12[root@cc /]# ps -ef | grep zabbix_server | wc -l129 这么多进程需要占用多少内存啊得，1for pid in `ps -C zabbix_server -o pid --no-heading`; do grep Pss /proc/$pid/sma">
 <meta name="keywords" content="zabbix">
 <meta property="og:type" content="article">
 <meta property="og:title" content="zabbix之疑">
 <meta property="og:url" content="http://yoursite.com/2019/05/25/zabbix之疑/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="我们的云平台CC节点上zabbix_server进程非常多啊，多达129个，我咋觉得有点不正常呢。12[root@cc /]# ps -ef | grep zabbix_server | wc -l129 这么多进程需要占用多少内存啊得， for pid in `ps -C zabbix_server -o pid –no-heading; do grep Pss /proc/$pid/smaps">
+<meta property="og:description" content="我们的云平台CC节点上zabbix_server进程非常多啊，多达129个，我咋觉得有点不正常呢。12[root@cc /]# ps -ef | grep zabbix_server | wc -l129 这么多进程需要占用多少内存啊得，1for pid in `ps -C zabbix_server -o pid --no-heading`; do grep Pss /proc/$pid/sma">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-25T11:15:30.817Z">
+<meta property="og:updated_time" content="2019-05-25T11:20:00.130Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="zabbix之疑">
-<meta name="twitter:description" content="我们的云平台CC节点上zabbix_server进程非常多啊，多达129个，我咋觉得有点不正常呢。12[root@cc /]# ps -ef | grep zabbix_server | wc -l129 这么多进程需要占用多少内存啊得， for pid in `ps -C zabbix_server -o pid –no-heading; do grep Pss /proc/$pid/smaps">
+<meta name="twitter:description" content="我们的云平台CC节点上zabbix_server进程非常多啊，多达129个，我咋觉得有点不正常呢。12[root@cc /]# ps -ef | grep zabbix_server | wc -l129 这么多进程需要占用多少内存啊得，1for pid in `ps -C zabbix_server -o pid --no-heading`; do grep Pss /proc/$pid/sma">
 
 
 
@@ -354,7 +354,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-25T19:15:30+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-25T19:20:00+08:00">
                 2019-05-25
               </time>
             
@@ -433,8 +433,7 @@
 
       
         <p>我们的云平台CC节点上zabbix_server进程非常多啊，多达129个，我咋觉得有点不正常呢。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@cc /]# ps -ef | grep zabbix_server | wc -l</span><br><span class="line">129</span><br></pre></td></tr></table></figure></p>
-<p>这么多进程需要占用多少内存啊得，</p>
-<p><code>for pid in `</code>ps -C zabbix_server -o pid –no-heading<code></code>; do grep Pss /proc/$pid/smaps;done|awk ‘{sum+=$2};END{print sum/1024/1024”G”}’`</p>
+<p>这么多进程需要占用多少内存啊得，<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for pid in `ps -C zabbix_server -o pid --no-heading`; do grep Pss /proc/$pid/smaps;done|awk '&#123;sum+=$2&#125;;END&#123;print sum/1024/1024"G"&#125;'</span><br></pre></td></tr></table></figure></p>
 <p>一看，还行啊，才用了0.103609G。也就是103m。这么多进程才用了这么点内存，emmmm。。。。。</p>
 <h3 id="统计内存要用Pss，不要用Rss"><a href="#统计内存要用Pss，不要用Rss" class="headerlink" title="统计内存要用Pss，不要用Rss"></a>统计内存要用Pss，不要用Rss</h3><p>用ps命令统计所有zabbix_server进程的rss值进行累加得出占用总内存，此种方法不对，会导致结果偏大。很多人通过累加 “ps  aux” 命令显示的 RSS 列来统计全部进程总共占用的物理内存大小，这是不对的。RSS(resident set size)表示常驻内存的大小，但是由于不同的进程之间会共享内存，所以把所有进程RSS进行累加的方法会重复计算共享内存，得到的结果是偏大的。</p>
 <p>正确的方法是累加 /proc/[1-9]*/smaps 中的 Pss 。/proc/<pid>/smaps 包含了进程的每一个内存映射的统计值，详见proc(5)的手册页。Pss(Proportional Set Size)把共享内存的Rss进行了平均分摊，比如某一块100MB的内存被10个进程共享，那么每个进程就摊到10MB。这样，累加Pss就不会导致共享内存被重复计算了。</pid></p>
