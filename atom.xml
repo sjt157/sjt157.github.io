@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-25T11:20:00.130Z</updated>
+  <updated>2019-05-25T12:55:37.858Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一直卡死的实验</title>
+    <link href="http://yoursite.com/2019/05/25/%E4%B8%80%E7%9B%B4%E5%8D%A1%E6%AD%BB%E7%9A%84%E5%AE%9E%E9%AA%8C/"/>
+    <id>http://yoursite.com/2019/05/25/一直卡死的实验/</id>
+    <published>2019-05-25T12:54:30.000Z</published>
+    <updated>2019-05-25T12:55:37.858Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;今天我做了个实验报错了,是把数据从一方传到远程的kafka里。发送方启动server.jar,kafka的接收方也启动server.jar。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;java -jar server-v1.0.jar -d
+        
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>zabbix之疑</title>
@@ -510,32 +537,6 @@
     
     
       <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring之InitializingBean接口</title>
-    <link href="http://yoursite.com/2019/03/17/Spring%E4%B9%8BInitializingBean%E6%8E%A5%E5%8F%A3/"/>
-    <id>http://yoursite.com/2019/03/17/Spring之InitializingBean接口/</id>
-    <published>2019-03-17T01:51:41.000Z</published>
-    <updated>2019-03-17T01:52:57.572Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;什么时候使用&quot;&gt;&lt;a href=&quot;#什么时候使用&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Spring" scheme="http://yoursite.com/categories/Spring/"/>
-    
-    
-      <category term="Spring" scheme="http://yoursite.com/tags/Spring/"/>
     
   </entry>
   
