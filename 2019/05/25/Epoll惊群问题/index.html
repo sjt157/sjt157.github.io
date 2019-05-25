@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Linux," />
 
 
 
@@ -81,16 +81,18 @@
 
 
 
-<meta name="description" content="生活不应当只有眼前的苟且，还有诗和远方，与其用泪水忏悔昨天，不如用汗水拼搏明天．">
-<meta property="og:type" content="website">
-<meta property="og:title" content="诗与远方">
-<meta property="og:url" content="http://yoursite.com/categories/Dubbo/index.html">
+<meta name="description" content="strace命令strace是个功能强大的Linux调试分析诊断工具，可用于跟踪程序执行时进程系统调用(system call)和所接收的信号，尤其是针对源码不可读或源码无法再编译的程序。 在Linux系统中，用户程序运行在一个沙箱(sandbox)里，用户进程不能直接访问计算机硬件设备。当进程需要访问硬件设备(如读取磁盘文件或接收网络数据等)时，必须由用户态模式切换至内核态模式，通过系统调用访问">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Epoll惊群问题">
+<meta property="og:url" content="http://yoursite.com/2019/05/25/Epoll惊群问题/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="生活不应当只有眼前的苟且，还有诗和远方，与其用泪水忏悔昨天，不如用汗水拼搏明天．">
+<meta property="og:description" content="strace命令strace是个功能强大的Linux调试分析诊断工具，可用于跟踪程序执行时进程系统调用(system call)和所接收的信号，尤其是针对源码不可读或源码无法再编译的程序。 在Linux系统中，用户程序运行在一个沙箱(sandbox)里，用户进程不能直接访问计算机硬件设备。当进程需要访问硬件设备(如读取磁盘文件或接收网络数据等)时，必须由用户态模式切换至内核态模式，通过系统调用访问">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-25T10:20:43.955Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="诗与远方">
-<meta name="twitter:description" content="生活不应当只有眼前的苟且，还有诗和远方，与其用泪水忏悔昨天，不如用汗水拼搏明天．">
+<meta name="twitter:title" content="Epoll惊群问题">
+<meta name="twitter:description" content="strace命令strace是个功能强大的Linux调试分析诊断工具，可用于跟踪程序执行时进程系统调用(system call)和所接收的信号，尤其是针对源码不可读或源码无法再编译的程序。 在Linux系统中，用户程序运行在一个沙箱(sandbox)里，用户进程不能直接访问计算机硬件设备。当进程需要访问硬件设备(如读取磁盘文件或接收网络数据等)时，必须由用户态模式切换至内核态模式，通过系统调用访问">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/Dubbo/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/05/25/Epoll惊群问题/"/>
 
 
 
 
 
-  <title>分类: Dubbo | 诗与远方</title>
+  <title>Epoll惊群问题 | 诗与远方</title>
   
 
 
@@ -145,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-right ">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -293,55 +295,281 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Dubbo<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/25/Epoll惊群问题/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songjiantao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/15856742?s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗与远方">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/03/11/Dubbo如何支持异步调用？/" itemprop="url">
-              
-                <span itemprop="name">Dubbo如何支持异步调用？</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Epoll惊群问题</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-03-11T19:12:49+08:00"
-              content="2019-03-11" >
-          03-11
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-25T18:19:48+08:00">
+                2019-05-25
+              </time>
+            
 
-    </header>
-  </article>
+            
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-25T18:20:43+08:00">
+                2019-05-25
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/25/Epoll惊群问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/25/Epoll惊群问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/05/25/Epoll惊群问题/" class="leancloud_visitors" data-flag-title="Epoll惊群问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+	         <span> ℃ </span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="strace命令"><a href="#strace命令" class="headerlink" title="strace命令"></a>strace命令</h3><p>strace是个功能强大的Linux调试分析诊断工具，可用于跟踪程序执行时进程系统调用(system call)和所接收的信号，尤其是针对源码不可读或源码无法再编译的程序。</p>
+<p>在Linux系统中，用户程序运行在一个沙箱(sandbox)里，用户进程不能直接访问计算机硬件设备。当进程需要访问硬件设备(如读取磁盘文件或接收网络数据等)时，必须由用户态模式切换至内核态模式，通过系统调用访问硬件设备。strace可跟踪进程产生的系统调用，包括参数、返回值和执行所消耗的时间。若strace没有任何输出，并不代表此时进程发生阻塞；也可能程序进程正在自己的沙箱里执行某些不需要与系统其它部分发生通信的事情。strace从内核接收信息，且无需以任何特殊方式来构建内核。</p>
+<ul>
+<li>strace命令格式如下：</li>
+</ul>
+<p><code>strace [-dffhiqrtttTvVxx] [-a column] [-e expr] [-o file] [-p pid] [-s strsize] [-u username] [-E var=val] [command [arg ...]]</code> 或</p>
+<p><code>strace -c [-e expr] [-O overhead] [-S sortby] [-E var=val] [command [arg ...]]</code></p>
+<p>通过不同的选项开关，strace提供非常丰富的跟踪功能。最简单的应用是，跟踪可执行程序运行时的整个生命周期，将所调用的系统调用的名称、参数和返回值输出到标准错误输出stderr(即屏幕)或-o选项所指定的文件。注意，命令(command)必须位于选项列表之后。</p>
+<h4 id="啥也没有"><a href="#啥也没有" class="headerlink" title="啥也没有"></a>啥也没有</h4><p>如果我们用 strace 跟踪一个进程，输出结果很少，是不是说明进程很空闲？其实试试 ltrace，可能会发现别有洞天。记住有内核态和用户态之分。</p>
+<p>我第一开始执行<code>strace -fF  -o b.txt -e trace=accpet  ./spider</code>啥也没有，以为是上边的原因，结果其实是因为你的代码里没有accept相关的调用，所以肯定没有了啊，那我不写的话就相当于记录所有的东西。</p>
+<h4 id="命令说明"><a href="#命令说明" class="headerlink" title="命令说明"></a>命令说明</h4><p><a href="https://www.cnblogs.com/clover-toeic/p/3738156.html" target="_blank" rel="noopener">https://www.cnblogs.com/clover-toeic/p/3738156.html</a></p>
+<h3 id="惊群问题"><a href="#惊群问题" class="headerlink" title="惊群问题"></a>惊群问题</h3><p><a href="https://blog.csdn.net/dog250/article/details/80837278" target="_blank" rel="noopener">https://blog.csdn.net/dog250/article/details/80837278</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;sys/types.h&gt;</span><br><span class="line">#include &lt;sys/socket.h&gt;</span><br><span class="line">#include &lt;sys/epoll.h&gt;</span><br><span class="line">#include &lt;netdb.h&gt;</span><br><span class="line">#include &lt;fcntl.h&gt;</span><br><span class="line">#include &lt;sys/wait.h&gt;</span><br><span class="line">#include &lt;time.h&gt;</span><br><span class="line">#include &lt;signal.h&gt;</span><br><span class="line"></span><br><span class="line">#define COUNT 1</span><br><span class="line"></span><br><span class="line">int mode = 0;</span><br><span class="line">int slp = 0;</span><br><span class="line"></span><br><span class="line">int pid[COUNT] = &#123;0&#125;;</span><br><span class="line">int count = 0;</span><br><span class="line"></span><br><span class="line">void server(int epfd) </span><br><span class="line">&#123;</span><br><span class="line">    struct epoll_event *events;</span><br><span class="line">    int num, i;</span><br><span class="line">        struct timespec ts;</span><br><span class="line"></span><br><span class="line">    events = calloc(64, sizeof(struct epoll_event));</span><br><span class="line"></span><br><span class="line">    while (1) &#123;</span><br><span class="line">        int sd, csd;</span><br><span class="line">        struct sockaddr in_addr;</span><br><span class="line"></span><br><span class="line">        num = epoll_wait(epfd, events, 64, -1);</span><br><span class="line">        if (num &lt;= 0) &#123;</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line">        /*</span><br><span class="line">        ts.tv_sec = 0;</span><br><span class="line">        ts.tv_nsec = 1;</span><br><span class="line">        if(nanosleep(&amp;ts, NULL) != 0) &#123;</span><br><span class="line">            perror(&quot;nanosleep&quot;);</span><br><span class="line">            exit(1);</span><br><span class="line">        &#125;</span><br><span class="line">        */</span><br><span class="line">        // 用于测试ET模式下丢事件的情况</span><br><span class="line">        if (slp) &#123;</span><br><span class="line">            sleep(slp);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        sd = events[0].data.fd;</span><br><span class="line">        socklen_t in_len = sizeof(in_addr);</span><br><span class="line"></span><br><span class="line">        csd = accept(sd, &amp;in_addr, &amp;in_len);</span><br><span class="line">        if (csd == -1) &#123;</span><br><span class="line">            // 打印这个说明中了epoll LT惊群的招了。</span><br><span class="line">            printf(&quot;shit xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:%d\n&quot;, getpid()); </span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line">        // 本进程一共成功处理了多少个请求。</span><br><span class="line">        count ++;</span><br><span class="line">        printf(&quot;get client:%d\n&quot;, getpid()); </span><br><span class="line">        close(csd);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static void siguser_handler(int sig)</span><br><span class="line">&#123;</span><br><span class="line">    // 在主进程被Ctrl-C退出的时候，每一个子进程均要打印自己处理了多少个请求。</span><br><span class="line">    printf(&quot;pid:%d  count:%d\n&quot;, getpid(), count);</span><br><span class="line">    exit(0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static void sigint_handler(int sig)</span><br><span class="line">&#123;</span><br><span class="line">    int i = 0;</span><br><span class="line">    // 给每一个子进程发信号，要求其打印自己处理了多少个请求。</span><br><span class="line">    for (i = 0; i &lt; COUNT; i++) &#123;</span><br><span class="line">        kill(pid[i], SIGUSR1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main (int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    int ret = 0;</span><br><span class="line">        int listener;</span><br><span class="line">    int c = 0;</span><br><span class="line">    struct sockaddr_in saddr;</span><br><span class="line">    int port;</span><br><span class="line">    int status;</span><br><span class="line">        int flags;</span><br><span class="line">    int epfd;</span><br><span class="line">    struct epoll_event event;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    if (argc &lt; 4) &#123;</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 0为LT模式，1为ET模式</span><br><span class="line">    mode = atoi(argv[1]);</span><br><span class="line">    port = atoi(argv[2]);</span><br><span class="line">    // 是否在处理accept之前耽搁一会儿，这个参数更容易重现问题</span><br><span class="line">    slp = atoi(argv[3]);</span><br><span class="line"></span><br><span class="line">    signal(SIGINT, sigint_handler);</span><br><span class="line"></span><br><span class="line">    listener = socket(PF_INET, SOCK_STREAM, 0);</span><br><span class="line"></span><br><span class="line">    saddr.sin_family = AF_INET;</span><br><span class="line">    saddr.sin_port = htons(port);</span><br><span class="line">    saddr.sin_addr.s_addr = INADDR_ANY;</span><br><span class="line"></span><br><span class="line">    bind(listener, (struct sockaddr*)&amp;saddr, sizeof(saddr));</span><br><span class="line">    listen(listener, SOMAXCONN);</span><br><span class="line"></span><br><span class="line">    flags = fcntl (listener, F_GETFL, 0);</span><br><span class="line">    flags |= O_NONBLOCK;</span><br><span class="line">    fcntl (listener, F_SETFL, flags);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    epfd = epoll_create(64);</span><br><span class="line">    if (epfd == -1) &#123;</span><br><span class="line">        perror(&quot;epoll_create&quot;);</span><br><span class="line">        abort();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    event.data.fd = listener;</span><br><span class="line">    event.events = EPOLLIN;</span><br><span class="line">    if (mode == 1) &#123;</span><br><span class="line">        event.events |= EPOLLET;</span><br><span class="line">    &#125; else if (mode == 2) &#123;</span><br><span class="line">        event.events |= EPOLLONESHOT;</span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    ret = epoll_ctl(epfd, EPOLL_CTL_ADD, listener, &amp;event);</span><br><span class="line">    if (ret == -1) &#123;</span><br><span class="line">        perror(&quot;epoll_ctl&quot;);</span><br><span class="line">        abort();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    for(c = 0; c &lt; COUNT; c++) &#123;</span><br><span class="line">        int child;</span><br><span class="line">            child = fork();</span><br><span class="line">            if(child == 0) &#123;</span><br><span class="line">                    // 安装打印count值的信号处理函数</span><br><span class="line">                    signal(SIGUSR1, siguser_handler);</span><br><span class="line">                    server(epfd);</span><br><span class="line">            &#125;</span><br><span class="line">        pid[c] = child;</span><br><span class="line">        printf(&quot;server:%d  pid:%d\n&quot;, c+1, child);</span><br><span class="line">        &#125;</span><br><span class="line">    wait(&amp;status);</span><br><span class="line">    sleep(1000000);</span><br><span class="line">    close (listener);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.cnblogs.com/clover-toeic/p/3738156.html" target="_blank" rel="noopener">https://www.cnblogs.com/clover-toeic/p/3738156.html</a><br><a href="https://huoding.com/2015/10/16/474" target="_blank" rel="noopener">https://huoding.com/2015/10/16/474</a></p>
 
       
     </div>
+    
+    
+    
+
+    
+    <div>
+        
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+     
+    </div>
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="songjiantao 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
 
   </div>
-  
-  
-  
+</div>
 
-  
+      </div>
+    
 
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    songjiantao
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/05/25/Epoll惊群问题/" title="Epoll惊群问题">http://yoursite.com/2019/05/25/Epoll惊群问题/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/25/你知道Raft吗？/" rel="next" title="你知道Raft吗？">
+                <i class="fa fa-chevron-left"></i> 你知道Raft吗？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+   
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -349,6 +577,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -622,6 +857,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1148,6 +1387,23 @@
   </script>
 
   
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 10113,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
 
   
   
