@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="今天我做了个实验报错了,是把数据从一方传到远程的kafka里。发送方启动server.jar,kafka的接收方也启动server.jar。 java -jar server-v1.0.jar -d C:\Users\Administrator\Desktop\test\ -s 172.21.6.57 -t taxi 传输了不久之后，报错了。报错日志如下： 12345678910111213141">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-25T13:06:31.044Z">
+<meta property="og:updated_time" content="2019-05-26T14:25:47.632Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一直卡死的实验">
 <meta name="twitter:description" content="今天我做了个实验报错了,是把数据从一方传到远程的kafka里。发送方启动server.jar,kafka的接收方也启动server.jar。 java -jar server-v1.0.jar -d C:\Users\Administrator\Desktop\test\ -s 172.21.6.57 -t taxi 传输了不久之后，报错了。报错日志如下： 12345678910111213141">
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-25T21:06:31+08:00">
-                2019-05-25
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-26T22:25:47+08:00">
+                2019-05-26
               </time>
             
           </span>
@@ -448,12 +448,16 @@
 <h3 id="利用工具进行检查"><a href="#利用工具进行检查" class="headerlink" title="利用工具进行检查"></a>利用工具进行检查</h3><p>利用jconsole发现（直接在cmd里输入jconsole就能出来），老年代确实用满了，大概是1.6G的样子，名称 = ‘PS MarkSweep’, 收集 = 73, 总花费时间 = 5 分钟，可以发现光老年代的GC时间达到了5分钟，这不行啊。总共运行7分钟程序，光GC时间就5分钟。然后我调大了老年代大小，设置成了堆大小是4G，新生代是400m。但是运行了一段时间后，内存占用又上升到了3.2G左右，这个这么占内存吗？</p>
 <p>利用jvisualvm.exe 可以查看JVM参数，但是不知道为啥这个程序看不见。。。显示出来一个  - 就。通过java命令行加入 JVM参数后，就显示出来了。</p>
 <p>通过这个工具发现了有一些对象，年代数特别大，58.怎么回事呢？还有一个疑问，当类加载数直线上升时，代表了啥？（类加载数从1000到5000）</p>
+<h3 id="会不会和ByteBuffer有关"><a href="#会不会和ByteBuffer有关" class="headerlink" title="会不会和ByteBuffer有关"></a>会不会和ByteBuffer有关</h3><p>因为在代码中用到了ByteBuffer，所以怀疑是不是和这个有关。<br>代码中有一段是这样的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">randomAccessFile = <span class="keyword">new</span> RandomAccessFile(f, <span class="string">"r"</span>);</span><br><span class="line">FileChannel channel = randomAccessFile.getChannel();</span><br><span class="line">ByteBuffer buffer = ByteBuffer.allocate(<span class="number">1048576</span>);</span><br><span class="line"><span class="keyword">int</span> bytesRead = channel.read(buffer);</span><br><span class="line">ByteBuffer stringBuffer = ByteBuffer.allocate(<span class="number">1024</span>);</span><br></pre></td></tr></table></figure>
+<p>我们都知道写NIO程序经常使用ByteBuffer来读取或者写入数据，那么使用ByteBuffer.allocate(capability)还是使用ByteBuffer.allocteDirect(capability)来分配缓存了？第一种方式是分配JVM堆内存，属于GC管辖范围，由于需要拷贝所以速度相对较慢；第二种方式是分配OS本地内存，不属于GC管辖范围，由于不需要内存拷贝所以速度相对较快，但是内存分配起来比较慢，所以并非不论什么时候allocateDirect的操作效率都是最高的。但是当操作数据量非常小时，两种分配方式操作使用时间基本是同样的（大小是1024000之前都差不多），第一种方式有时可能会更快，可是当数据量非常大时，用ByteBuffer.allocteDirect(capability)这个就比较快了。</p>
+<h4 id="ByteBuffer操作介绍"><a href="#ByteBuffer操作介绍" class="headerlink" title="ByteBuffer操作介绍"></a>ByteBuffer操作介绍</h4><p><a href="https://www.cnblogs.com/jiduoduo/p/6397454.html" target="_blank" rel="noopener">https://www.cnblogs.com/jiduoduo/p/6397454.html</a></p>
 <h3 id="小插曲"><a href="#小插曲" class="headerlink" title="小插曲"></a>小插曲</h3><p>因为这个程序占用了CPU 几乎100%，造成了虚拟机抱了这些<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@rabbitmq _posts]# </span><br><span class="line">Message from syslogd@rabbitmq at May 25 20:39:18 ...</span><br><span class="line"> kernel:NMI watchdog: BUG: soft lockup - CPU#0 stuck for 33s! [rtkit-daemon:736]</span><br><span class="line"></span><br><span class="line">Message from syslogd@rabbitmq at May 25 20:39:39 ...</span><br><span class="line"> kernel:NMI watchdog: BUG: soft lockup - CPU#0 stuck for 35s! [scsi_eh_1:275]</span><br><span class="line"></span><br><span class="line">Message from syslogd@rabbitmq at May 25 20:39:39 ...</span><br><span class="line"> kernel:NMI watchdog: BUG: soft lockup - CPU#0 stuck for 21s! [pickup:4845]</span><br><span class="line"></span><br><span class="line">Message from syslogd@rabbitmq at May 25 20:39:39 ...</span><br><span class="line"> kernel:NMI watchdog: BUG: soft lockup - CPU#0 stuck for 22s! [dhclient:871]</span><br><span class="line"></span><br><span class="line">Message from syslogd@rabbitmq at May 25 20:39:39 ...</span><br><span class="line"> kernel:NMI watchdog: BUG: soft lockup - CPU#0 stuck for 22s! [master:2807]</span><br><span class="line"></span><br><span class="line">Message from syslogd@rabbitmq at May 25 20:39:39 ...</span><br><span class="line"> kernel:NMI watchdog: BUG: soft lockup - CPU#0 stuck for 29s! [abrt-hook-ccpp:5402]</span><br><span class="line"></span><br><span class="line">Message from syslogd@rabbitmq at May 25 20:39:58 ...</span><br><span class="line"> kernel:NMI watchdog: BUG: soft lockup - CPU#0 stuck for 21s! [abrt-hook-ccpp:5402]</span><br></pre></td></tr></table></figure></p>
 <p>原因是占用过多CPU，造成内核软死锁（soft lockup）。Soft lockup名称解释：所谓，soft lockup就是说，这个bug没有让系统彻底死机，但是若干个进程（或者kernel thread）被锁死在了某个状态（一般在内核区域），很多情况下这个是由于内核锁的使用的问题。</p>
 <h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><ul>
 <li>Code Cache (non-heap):HotSpot Java虚拟机包括一个用于编译和保存本地代码（native code）的内存，叫做“代码缓存区”（code cache） （这里大概是6、7M的大小）</li>
 </ul>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/jsqfengbao/article/details/44787267" target="_blank" rel="noopener">https://blog.csdn.net/jsqfengbao/article/details/44787267</a></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/jsqfengbao/article/details/44787267" target="_blank" rel="noopener">https://blog.csdn.net/jsqfengbao/article/details/44787267</a><br><a href="https://www.cnblogs.com/mengfanrong/p/3984841.html" target="_blank" rel="noopener">https://www.cnblogs.com/mengfanrong/p/3984841.html</a></p>
 
       
     </div>
