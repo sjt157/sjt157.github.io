@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[网络编程中的大小端字节序]]></title>
+    <url>%2F2019%2F05%2F27%2F%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E4%B8%AD%E7%9A%84%E5%A4%A7%E5%B0%8F%E7%AB%AF%E5%AD%97%E8%8A%82%E5%BA%8F%2F</url>
+    <content type="text"><![CDATA[什么是大小端字节序端模式：字节序分为大端字节序和小端字节序，也就是字节在内存中的顺序。举个栗子：12345678910111213141516171819小端字节序：低字节存放于内存低地址，高字节存放于内存高位地址。 如一个数据0x12345678 0x0029f458 0x78 0x0029f459 0x56 0x0029f45a 0x34 0x0029f45b 0x12 内存地址的大小顺序为0x0029f458&lt; 0x0029f459&lt;0x0029f45a&lt;0x0029f45b 数据的大小顺序为0x78&lt;0x56&lt;0x34&lt;0x12 小数据在小的内存地址中，所以为小端字节序。 大端字节序和以上就相反。 注意：网络字节序都是大端字节序。这是为什么呢？？？？？ 因为TCP、UDP、IP协议规定了，把接受到的第一个字节当做高位字节处理，但是对于发送方来说呢，发送的第一个字节在内存的低地址处，所以就相当于高位对应着地位，这样就是大端字节序了。如果发送方和接收方平台不一样，必须进行转换。 各自优缺点 大端模式优点： 符号位在所表示的数据的内存的第一个字节中，便于快速判断数据的正负和大小 小端模式优点： 内存的低地址处存放低字节，所以在强制转换数据时不需要调整字节的内容（注解：比如把int的4字节强制转换成short的2字节时，就直接把int数据存储的前两个字节给short就行，因为其前两个字节刚好就是最低的两个字节，符合转换逻辑）；CPU做数值运算时从内存中依顺序依次从低位到高位取数据进行运算，直到最后刷新最高位的符号位，这样的运算方式会更高效 如何判断当前平台是哪种？可以通过写程序的方式，通过取比如一个int的第一个字节来判断。123456789101112131415#include&lt;stdio.h&gt;int main()&#123; int a = 1;//这里为了方便，以1为例 char*p = (char*)(&amp;a); if (*p == 1) &#123; printf("little endian\n");//小端存储 &#125; else &#123; printf("big endian\n");//大端存储 &#125; return 0;&#125; 如何转换 在c语言中， 有htonl、ntohl、htons、ntohs等函数。h代表host，n代表net。一段调用hton的时候，在另一端接收到的时候，只要对应的调用ntoh。那就是不会有问题的。主机cpu的结构决定了自己本端是大端还是小端。如果自己本端本身本身就是大端字节序，那么就收到网络上的数据之后，就算执行ntoh函数，也是不做任何的处理。因为就是相当于大端转化为大端了。ntoh函数内部会判断主机本身是大端还是小端序。 参考https://blog.csdn.net/qq_22945931/article/details/79649008https://blog.csdn.net/melody_1016/article/details/81910873]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Spring-IOC-容器源码解析]]></title>
     <url>%2F2019%2F05%2F27%2FSpring-IOC-%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%2F</url>
     <content type="text"><![CDATA[今天读到了一篇写Spring源码的文章，非常长但也非常好，记录一下。以便后期查看。https://www.javadoop.com/post/spring-ioc]]></content>
