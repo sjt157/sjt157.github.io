@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="OS," />
+  <meta name="keywords" content="Spring," />
 
 
 
@@ -81,20 +81,18 @@
 
 
 
-<meta name="description" content="我的ubuntu16服务器上文件句柄使用量(第一个字段)为10688（文件句柄） 12root@ubuntu16-desktop:/proc# cat /proc/sys/fs/file-nr 10688	0	1597389 但是通过运维常用的lsof命令算了下是283753(文件描述符)，相差甚远。lsof -P -n | wc -l 然后我在云平台上也试了试,结果都是一样的。1234[root">
-<meta name="keywords" content="OS">
+<meta name="description" content="今天读到了一篇写Spring源码的文章，非常长但也非常好，记录一下。以便后期查看。https://www.javadoop.com/post/spring-ioc">
+<meta name="keywords" content="Spring">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文件句柄和文件描述符傻傻分不清楚">
-<meta property="og:url" content="http://yoursite.com/2019/03/29/文件句柄和文件描述符傻傻分不清楚/index.html">
+<meta property="og:title" content="Spring-IOC-容器源码解析">
+<meta property="og:url" content="http://yoursite.com/2019/05/27/Spring-IOC-容器源码解析/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="我的ubuntu16服务器上文件句柄使用量(第一个字段)为10688（文件句柄） 12root@ubuntu16-desktop:/proc# cat /proc/sys/fs/file-nr 10688	0	1597389 但是通过运维常用的lsof命令算了下是283753(文件描述符)，相差甚远。lsof -P -n | wc -l 然后我在云平台上也试了试,结果都是一样的。1234[root">
+<meta property="og:description" content="今天读到了一篇写Spring源码的文章，非常长但也非常好，记录一下。以便后期查看。https://www.javadoop.com/post/spring-ioc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/Others/1.png">
-<meta property="og:updated_time" content="2019-03-29T13:24:26.566Z">
+<meta property="og:updated_time" content="2019-05-27T07:43:36.491Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文件句柄和文件描述符傻傻分不清楚">
-<meta name="twitter:description" content="我的ubuntu16服务器上文件句柄使用量(第一个字段)为10688（文件句柄） 12root@ubuntu16-desktop:/proc# cat /proc/sys/fs/file-nr 10688	0	1597389 但是通过运维常用的lsof命令算了下是283753(文件描述符)，相差甚远。lsof -P -n | wc -l 然后我在云平台上也试了试,结果都是一样的。1234[root">
-<meta name="twitter:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/Others/1.png">
+<meta name="twitter:title" content="Spring-IOC-容器源码解析">
+<meta name="twitter:description" content="今天读到了一篇写Spring源码的文章，非常长但也非常好，记录一下。以便后期查看。https://www.javadoop.com/post/spring-ioc">
 
 
 
@@ -124,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/29/文件句柄和文件描述符傻傻分不清楚/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/05/27/Spring-IOC-容器源码解析/"/>
 
 
 
 
 
-  <title>文件句柄和文件描述符傻傻分不清楚 | 诗与远方</title>
+  <title>Spring-IOC-容器源码解析 | 诗与远方</title>
   
 
 
@@ -311,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/文件句柄和文件描述符傻傻分不清楚/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/27/Spring-IOC-容器源码解析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songjiantao">
@@ -328,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">文件句柄和文件描述符傻傻分不清楚</h1>
+          <h1 class="post-title" itemprop="name headline">Spring-IOC-容器源码解析</h1>
         
 
         <div class="post-meta">
@@ -340,8 +338,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-29T21:23:41+08:00">
-                2019-03-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-27T15:42:24+08:00">
+                2019-05-27
               </time>
             
 
@@ -356,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-29T21:24:26+08:00">
-                2019-03-29
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-27T15:43:36+08:00">
+                2019-05-27
               </time>
             
           </span>
@@ -375,8 +373,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OS/" itemprop="url" rel="index">
-                    <span itemprop="name">OS</span>
+                  <a href="/categories/Spring/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring</span>
                   </a>
                 </span>
 
@@ -393,8 +391,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/03/29/文件句柄和文件描述符傻傻分不清楚/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/29/文件句柄和文件描述符傻傻分不清楚/" itemprop="commentCount"></span>
+                <a href="/2019/05/27/Spring-IOC-容器源码解析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/27/Spring-IOC-容器源码解析/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -402,7 +400,7 @@
 
           
           
-             <span id="/2019/03/29/文件句柄和文件描述符傻傻分不清楚/" class="leancloud_visitors" data-flag-title="文件句柄和文件描述符傻傻分不清楚">
+             <span id="/2019/05/27/Spring-IOC-容器源码解析/" class="leancloud_visitors" data-flag-title="Spring-IOC-容器源码解析">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -434,92 +432,7 @@
       
 
       
-        <p>我的ubuntu16服务器上文件句柄使用量(第一个字段)为10688（文件句柄）</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu16-desktop:/proc# cat /proc/sys/fs/file-nr </span><br><span class="line">10688	0	1597389</span><br></pre></td></tr></table></figure>
-<p>但是通过运维常用的lsof命令算了下是283753(文件描述符)，相差甚远。<br><code>lsof -P -n | wc -l</code></p>
-<p>然后我在云平台上也试了试,结果都是一样的。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@cc ~]# cat /proc/sys/fs/file-nr</span><br><span class="line">5664	0	1300000</span><br><span class="line">[root@cc ~]# lsof -P -n | wc -l</span><br><span class="line">180019</span><br></pre></td></tr></table></figure></p>
-<p>为啥呢？？老师说，可能是使用者不一样，有的是操作系统用的，有的是进程调度用的，有的是特殊命令用的。。。但本质的作用是一样的，都是区分当前唯一的对象文件啥的。</p>
-<h3 id="什么地方会分配文件句柄"><a href="#什么地方会分配文件句柄" class="headerlink" title="什么地方会分配文件句柄"></a>什么地方会分配文件句柄</h3><ul>
-<li><p>open系统调用打开文件（path_openat内核函数)</p>
-</li>
-<li><p>打开一个目录（dentry_open函数)</p>
-</li>
-<li><p>共享内存attach （do_shmat函数）</p>
-</li>
-<li><p>socket套接字（sock_alloc_file函数）</p>
-</li>
-<li><p>管道（create_pipe_files函数）</p>
-</li>
-<li><p>epoll/inotify/signalfd等功能用到的匿名inode文件系统（anon_inode_getfile函数)</p>
-</li>
-</ul>
-<p>是不是可能部分共享内存段被attach了好多好多次<br>通过<code>ipcs -m</code>查看一下共享内存的情况,并没有什么问题啊。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu16-desktop:/proc# ipcs -m</span><br><span class="line"></span><br><span class="line">------ Shared Memory Segments --------</span><br><span class="line">key        shmid      owner      perms      bytes      nattch     status      </span><br><span class="line">0x00000000 294912     ubuntu16   600        524288     2          dest         </span><br><span class="line">0x00000000 589825     ubuntu16   600        16777216   2                       </span><br><span class="line">0x00000000 557058     ubuntu16   600        524288     2          dest         </span><br><span class="line">0x00000000 1343491    ubuntu16   600        524288     2          dest         </span><br><span class="line">0x00000000 753668     ubuntu16   600        524288     2          dest         </span><br><span class="line">0x00000000 917509     ubuntu16   600        524288     2          dest         </span><br><span class="line">0x00000000 1146886    ubuntu16   600        524288     2          dest         </span><br><span class="line">0x00000000 1048583    ubuntu16   600        67108864   2          dest         </span><br><span class="line">0x00000000 1245192    ubuntu16   600        524288     2          dest         </span><br><span class="line">0x00000000 1441801    ubuntu16   600        524288     2          dest         </span><br><span class="line">0x00000000 1540106    ubuntu16   600        524288     2          dest         </span><br><span class="line">0x00000000 1638411    ubuntu16   600        524288     2          dest         </span><br><span class="line">0x00000000 1671180    ubuntu16   600        4194304    2          dest         </span><br><span class="line">0x00000000 1802254    ubuntu16   600        524288     2          dest</span><br></pre></td></tr></table></figure>
-<h3 id="进一步了解文件描述符和文件句柄"><a href="#进一步了解文件描述符和文件句柄" class="headerlink" title="进一步了解文件描述符和文件句柄"></a>进一步了解文件描述符和文件句柄</h3><ul>
-<li><p>一个描述符上可以监控很多的事件，如果监控的是read，然而write事件到来的时候也会将该描述符唤醒</p>
-</li>
-<li><p>lsof在用户空间，主要还是从文件描述符的角度来看文件句柄。</p>
-</li>
-</ul>
-<p>简单来说，每个进程都有一个打开的文件表（fdtable)。表中的每一项是struct file类型，包含了打开文件的一些属性比如偏移量，读写访问模式等，这是真正意义上的文件句柄。</p>
-<p>文件描述符是一个整数。代表fdtable中的索引位置（下标），指向具体的struct file（文件句柄）。</p>
-<ul>
-<li><p>每一个文件描述符会与一个打开文件相对应，同时，不同的文件描述符也会指向同一个文件。相同的文件可以被不同的进程打开也可以在同一个进程中被多次打开。系统为每一个进程维护了一个文件描述符表，该表的值都是从0开始的，所以在不同的进程中你会看到相同的文件描述符，这种情况下相同文件描述符有可能指向同一个文件，也有可能指向不同的文件。具体情况要具体分析，要理解具体其概况如何，需要查看由内核维护的3个数据结构。</p>
-<ol>
-<li>进程级的文件描述符表</li>
-<li>系统级的打开文件描述符表</li>
-<li>文件系统的i-node表</li>
-</ol>
-</li>
-<li><p>进程级的描述符表的每一条目记录了单个文件描述符的相关信息。</p>
-<ol>
-<li>控制文件描述符操作的一组标志。（目前，此类标志仅定义了一个，即close-on-exec标志）</li>
-<li>对打开文件句柄的引用</li>
-</ol>
-</li>
-<li><p>内核对所有打开的文件的文件维护有一个系统级的描述符表格（open file description table）。有时，也称之为打开文件表（open file table），并将表格中各条目称为打开文件句柄（open file handle）。一个打开文件句柄存储了与一个打开文件相关的全部信息，如下所示：</p>
-<ol>
-<li>当前文件偏移量（调用read()和write()时更新，或使用lseek()直接修改）</li>
-<li>打开文件时所使用的状态标识（即，open()的flags参数）</li>
-<li>文件访问模式（如调用open()时所设置的只读模式、只写模式或读写模式）</li>
-<li>与信号驱动相关的设置</li>
-<li>对该文件i-node对象的引用</li>
-<li>文件类型（例如：常规文件、套接字或FIFO）和访问权限</li>
-<li>一个指针，指向该文件所持有的锁列表</li>
-<li>文件的各种属性，包括文件大小以及与不同类型操作相关的时间戳</li>
-</ol>
-</li>
-</ul>
-<p>下图展示了文件描述符、打开的文件句柄以及i-node之间的关系，图中，两个进程拥有诸多打开的文件描述符。</p>
-<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/Others/1.png" alt="image"></p>
-<p>在进程A中，文件描述符1和30都指向了同一个打开的文件句柄（标号23）。这可能是通过调用dup()、dup2()、fcntl()或者对同一个文件多次调用了open()函数而形成的。</p>
-<p>进程A的文件描述符2和进程B的文件描述符2都指向了同一个打开的文件句柄（标号73）。这种情形可能是在调用fork()后出现的（即，进程A、B是父子进程关系），或者当某进程通过UNIX域套接字将一个打开的文件描述符传递给另一个进程时，也会发生。再者是不同的进程独自去调用open函数打开了同一个文件，此时进程内部的描述符正好分配到与其他进程打开该文件的描述符一样。</p>
-<p>此外，进程A的描述符0和进程B的描述符3分别指向不同的打开文件句柄，但这些句柄均指向i-node表的相同条目（1976），换言之，指向同一个文件。发生这种情况是因为每个进程各自对同一个文件发起了open()调用。同一个进程两次打开同一个文件，也会发生类似情况。</p>
-<h3 id="有关文件描述符的一些命令"><a href="#有关文件描述符的一些命令" class="headerlink" title="有关文件描述符的一些命令"></a>有关文件描述符的一些命令</h3><h4 id="ulimit"><a href="#ulimit" class="headerlink" title="ulimit"></a>ulimit</h4><p>查看进程允许打开的最大文件句柄数：ulimit -n<br>设置进程能打开的最大文件句柄数：ulimit -n xxx</p>
-<p>ulimit在系统允许的情况下，提供对特定shell可利用的资源的控制。（Provides control over the resources avaliable to the shell and to processes started by it, on systems that allow such control）-H和-S选项设定指定资源的硬限制和软限制。硬限制设定之后不能再添加，而软限制则可以增加到硬限制规定的值。如果-H和-S选项都没有指定，则软限制和硬限制同时设定。限制值可以是指定资源的数值或者hard, soft, unlimited这些特殊值，其中hard代表当前硬限制, soft代表当前软件限制, unlimited代表不限制. 如果不指定限制值, 则打印指定资源的软限制值, 除非指定了-H选项.如果指定了不只一种资源, 则限制名和单位都会在限制值前显示出来.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu16-desktop:/proc# ulimit -Sn</span><br><span class="line">1024</span><br><span class="line">root@ubuntu16-desktop:/proc# ulimit -Hn</span><br><span class="line">1048576</span><br></pre></td></tr></table></figure>
-<h4 id="limits-conf"><a href="#limits-conf" class="headerlink" title="limits.conf"></a>limits.conf</h4><p>limits.conf这个文件实在/etc/security/目录下，因此这个文件是处于安全考虑的。limits.conf文件是用于提供对系统中的用户所使用的资源进行控制和限制，对所有用户的资源设定限制是非常重要的，这可以防止用户发起针对处理器和内存数量等的拒绝服务攻击。这些限制必须在用户登录时限制。</p>
-<p>limits.conf与ulimit的区别在于前者是针对所有用户的，而且在任何shell都是生效的，即与shell无关，而后者只是针对特定用户的当前shell的设定。在修改最大文件打开数时，最好使用limits.conf文件来修改，通过这个文件，可以定义用户，资源类型，软硬限制等。也可修改/etc/profile文件加上ulimit的设置语句来是的全局生效。</p>
-<p>当达到上限时，会报错：too many open files或者遇上Socket/File: Cannot open so many files等。</p>
-<h4 id="file-max-amp-file-nr"><a href="#file-max-amp-file-nr" class="headerlink" title="file-max &amp; file-nr"></a>file-max &amp; file-nr</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu16-desktop:/proc# cat /proc/sys/fs/file-max</span><br><span class="line">1597389</span><br><span class="line">root@ubuntu16-desktop:/proc# cat /proc/sys/fs/file-nr </span><br><span class="line">10720	0	1597389</span><br></pre></td></tr></table></figure>
-<p>该文件指定了可以分配的文件句柄的最大数目（系统全局的可用句柄数目. The value in file-max denotes the maximum number of file handles that the Linux kernel will allocate）。如果用户得到的错误消息审批由于打开文件数已经达到了最大值，从而他们不能打开更多文件，则可能需要增加改之。可将这个值设置成任意多个文件，并且能通过将一个新数字值写入该文件来更改该值。这个参数的默认值和内存大小有关系，可以使用公式：file-max ≈ 内存大小/ 10k.</p>
-<h4 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h4><p>lsof是列出系统所占用的资源（list open files），但是这些资源不一定会占用句柄。比如共享内存、信号量、消息队列、内存映射等，虽然占用了这些资源，但不占用句柄。</p>
-<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><p>确认系统设置的最大文件句柄数<br><code>ulimit -a</code></p>
-<p>统计系统中当前打开的总文件句柄数<br><code>lsof -w | awk &#39;{print $2}&#39; | wc -l</code><br>-w参数为忽略错误，因为不加这个-w，会显示出很多lsof: no pwd entry for UID 472</p>
-<p>根据打开文件的数量降序排列，其中第二列为进程ID： </p>
-<p><code>lsof -w | awk &#39;{print $2}&#39; | sort | uniq -c | sort -nr | more</code></p>
-<p>查看当前进程打开了多少文件<br><code>lsof -w -n|awk &#39;{print $2}&#39;|sort|uniq -c|sort -nr|more | grep 22312</code></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
-<li>由于进程级文件描述符表的存在，不同的进程中会出现相同的文件描述符，它们可能指向同一个文件，也可能指向不同的文件</li>
-<li>两个不同的文件描述符，若指向同一个打开文件句柄，将共享同一文件偏移量。因此，如果通过其中一个文件描述符来修改文件偏移量（由调用read()、write()或lseek()所致），那么从另一个描述符中也会观察到变化，无论这两个文件描述符是否属于不同进程，还是同一个进程，情况都是如此。</li>
-<li>要获取和修改打开的文件标志（例如：O_APPEND、O_NONBLOCK和O_ASYNC），可执行fcntl()的F_GETFL和F_SETFL操作，其对作用域的约束与上一条颇为类似。</li>
-<li>文件描述符标志（即，close-on-exec）为进程和文件描述符所私有。对这一标志的修改将不会影响同一进程或不同进程中的其他文件描述符</li>
-</ol>
-<h3 id="从句柄的概念再看分层设计"><a href="#从句柄的概念再看分层设计" class="headerlink" title="从句柄的概念再看分层设计"></a>从句柄的概念再看分层设计</h3><p>几个层次问题，首先物理内存和虚拟内存，操作系统管理物理内存，而用户进程使用虚拟内存，操作系统呈现给用户进程的是连续的虚拟内存但是不一定连续的物理内存，物理内存随时在变化，但是对于用户进程来说其虚拟内存地址是不变的；其次是指针和句柄，操作系统为了向用户空间提供若干台虚拟机并且又要管理一些所有进程需要的系统服务，必然不能将内核数据结构呈现给进程，但是进程确实可以使用这种数据，因此句柄就出现了，句柄其实是指针的指针，虽然它不是真正意义上的指针，由于操作系统管理的数据结构易变，并且处于高特权级，所以操作系统不能将之开放给用户空间，用户空间只能通过句柄来调用系统服务，进入内核之后，内核会根据句柄找到真正的内核数据结构，很多实现中句柄就是内核中进程块中一个表的索引字段，因为虚拟机是基于进程的，比如linux的task_struct中的打开文件表，在windows中的做法更是深刻，一切都是对象，因此每个对象都有句柄，进程，线程本身，文件，设备，窗口，…都有句柄，其进程块中有一个句柄表，每一个元素代表一个对象。正是因为windows的一切皆对象特性，其可以操作远程进程，因为进程是一个对象，而对象有句柄，有了句柄就可以操作，win32API中很多接口都是基于句柄的对象操作接口，在linux中似乎只有文件体现为句柄，也只有文件是进程可以共享的，由于没有别的句柄，因此也就不能随意操作别的对象。</p>
-<p>句柄隐藏了内核的管理细节，呈现给进程一个平滑的结构，实际上句柄指向的真正的结构的地址是可以变化的，正如一个指针不变的情况下，其指向的数据可以变化，句柄的作用有二：第一，隐藏不必要的操作，作为唯一接口由API只开放可用的安全操作；第二，类似物理内存和虚拟内存的关系，向用户空间提供一个稳定的结构操作把手，将抽象从操作系统提升到进程。在操作系统中，抽象是基于文件，设备的，但是到了进程就统一都成了句柄，体现了在句柄指向的数据结构上的多路复用，按照分层原则，上层可以在下层提供的一个地址格式上多路复用，按照抽象的原则，越往上抽象程度越高，正如TCP和UDP可以复用一个IP地址一样，多个进程的多个句柄可以指向同一个内核数据结构。</p>
-<p>句柄是一个层次间通信的通道，每一个进程虚拟机都通过句柄来使用共享的操作系统内核服务，但是这只是一类服务，进程虚拟机并不是靠句柄来使用操作系统的一切服务的，还有一类服务和操作系统一样可以直接使用更底层的硬件机制，比如MMU。前面的一篇文章说过，操作系统给进程虚拟机抽象两类指令，一类是安全的指令，这类指令直接并且始终在cpu-内存之间运行，运行这类指令不需要经过操作系统层，还有一类指令不是仅仅在cpu运行，而是牵扯到了没有提供多道程序环境的IO外设，对于这些资源的访问，进程必须使用操作系统的服务而不能直接使用硬件机制了。对于MMU而言，其实也是一种和句柄类似的抽象，多cpu上同时运行的不同进程可以同时访问相同的虚拟地址(非共享内存)，但是通过MMU转换后的物理地址却不同，这就是多路复用概念的引申。本质上讲，MMU和操作系统内核是属于同一层次的，只不过MMU是硬件固有的机制，而操作系统内核提供一些管理策略，对于句柄而言，不同进程可以使用相同的句柄，但是指向的实际内核数据结构却不一定相同，因为句柄和虚拟内存一样，只在进程内部有意义，句柄是进程中内核数据结构的索引，是为了用户进程访问内核数据结构而设计的，这种设计非常好，规定了用户访问内核数据结构只能在规则下进行，而规则就是以句柄而参数的API的实现，其实就是系统调用的实现。</p>
-<p>开放的句柄越多，对操作系统设计的安全要求就越高，只要有句柄，在得到句柄表的情况下就很容易得到实际的数据，在windows上，系统漏洞很多由此而发，而linux上仅仅开放了打开文件这个句柄，类似的漏洞也就很少了。为什么？句柄其实就是指针的指针，只不过这里的指针的含义更加抽象了，不是一般意义上的指针</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/dog250/article/details/5302879" target="_blank" rel="noopener">https://blog.csdn.net/dog250/article/details/5302879</a><br><a href="http://blog.csdn.net/cywosp/article/details/38965239" target="_blank" rel="noopener">http://blog.csdn.net/cywosp/article/details/38965239</a></p>
+        <p>今天读到了一篇写Spring源码的文章，非常长但也非常好，记录一下。以便后期查看。<br><a href="https://www.javadoop.com/post/spring-ioc" target="_blank" rel="noopener">https://www.javadoop.com/post/spring-ioc</a></p>
 
       
     </div>
@@ -574,7 +487,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2019/03/29/文件句柄和文件描述符傻傻分不清楚/" title="文件句柄和文件描述符傻傻分不清楚">http://yoursite.com/2019/03/29/文件句柄和文件描述符傻傻分不清楚/</a>
+    <a href="http://yoursite.com/2019/05/27/Spring-IOC-容器源码解析/" title="Spring-IOC-容器源码解析">http://yoursite.com/2019/05/27/Spring-IOC-容器源码解析/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -589,7 +502,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/OS/" rel="tag"># OS</a>
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
           
         </div>
       
@@ -614,8 +527,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/29/操作系统之中断/" rel="next" title="操作系统之中断">
-                <i class="fa fa-chevron-left"></i> 操作系统之中断
+              <a href="/2019/05/26/参加dubbo开发者日/" rel="next" title="参加dubbo开发者日">
+                <i class="fa fa-chevron-left"></i> 参加dubbo开发者日
               </a>
             
           </div>
@@ -623,10 +536,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/25/你知道Raft吗？/" rel="prev" title="你知道Raft吗？">
-                你知道Raft吗？ <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
