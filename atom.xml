@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-31T12:58:07.787Z</updated>
+  <updated>2019-05-31T13:07:53.074Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>压测jmeter我的秒杀</title>
+    <link href="http://yoursite.com/2019/05/31/%E5%8E%8B%E6%B5%8Bjmeter%E6%88%91%E7%9A%84%E7%A7%92%E6%9D%80/"/>
+    <id>http://yoursite.com/2019/05/31/压测jmeter我的秒杀/</id>
+    <published>2019-05-31T13:07:16.000Z</published>
+    <updated>2019-05-31T13:07:53.074Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;jmeter步骤&quot;&gt;&lt;a href=&quot;#jmeter步骤&quot; class=&quot;headerlink&quot; title=&quot;jmeter步骤&quot;&gt;&lt;/a&gt;jmeter步骤&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;启动bin目录下的jmeter.bat&lt;/li&gt;
+&lt;li&gt;添加一个thread
+        
+      
+    
+    </summary>
+    
+      <category term="SpringBoot" scheme="http://yoursite.com/categories/SpringBoot/"/>
+    
+    
+      <category term="SpringBoot" scheme="http://yoursite.com/tags/SpringBoot/"/>
+    
+  </entry>
   
   <entry>
     <title>我向github提的第一个issue</title>
@@ -511,32 +539,6 @@
     
     
       <category term="OS" scheme="http://yoursite.com/tags/OS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker之为何不能停止容器</title>
-    <link href="http://yoursite.com/2019/03/22/Docker%E4%B9%8B%E4%B8%BA%E4%BD%95%E4%B8%8D%E8%83%BD%E5%81%9C%E6%AD%A2%E5%AE%B9%E5%99%A8/"/>
-    <id>http://yoursite.com/2019/03/22/Docker之为何不能停止容器/</id>
-    <published>2019-03-22T14:50:20.000Z</published>
-    <updated>2019-03-22T14:50:58.910Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;我做了个实验，在ubuntu服务器上加载了os_sec模块后，用docker run
-        
-      
-    
-    </summary>
-    
-      <category term="Docker" scheme="http://yoursite.com/categories/Docker/"/>
-    
-    
-      <category term="Docker" scheme="http://yoursite.com/tags/Docker/"/>
     
   </entry>
   
