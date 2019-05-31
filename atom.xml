@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-27T12:41:12.029Z</updated>
+  <updated>2019-05-31T12:58:07.787Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我向github提的第一个issue</title>
+    <link href="http://yoursite.com/2019/05/31/%E6%88%91%E5%90%91github%E6%8F%90%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AAissue/"/>
+    <id>http://yoursite.com/2019/05/31/我向github提的第一个issue/</id>
+    <published>2019-05-31T12:57:39.000Z</published>
+    <updated>2019-05-31T12:58:07.787Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;缘起&quot;&gt;&lt;a href=&quot;#缘起&quot; class=&quot;headerlink&quot; title=&quot;缘起&quot;&gt;&lt;/a&gt;缘起&lt;/h3&gt;&lt;p&gt;平常经常看到github上有人提issue，今天我也提了一个。是一个kafka镜像起来之后存在僵尸进程的问题。&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="Docker" scheme="http://yoursite.com/categories/Docker/"/>
+    
+    
+      <category term="Docker" scheme="http://yoursite.com/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>网络编程中的大小端字节序</title>
@@ -511,32 +537,6 @@
     
     
       <category term="Docker" scheme="http://yoursite.com/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux下的一些小工具</title>
-    <link href="http://yoursite.com/2019/03/17/Linux%E4%B8%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E5%B7%A5%E5%85%B7/"/>
-    <id>http://yoursite.com/2019/03/17/Linux下的一些小工具/</id>
-    <published>2019-03-17T02:48:26.000Z</published>
-    <updated>2019-03-23T07:30:57.835Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;扫描端口占用情况&quot;&gt;&lt;a href=&quot;#扫描端口占用情况&quot; class=&quot;headerlink&quot; title=&quot;扫描端口占用情况&quot;&gt;&lt;/a&gt;扫描端口占用情况&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
-        
-      
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
     
   </entry>
   
