@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-06-01T09:33:26.156Z</updated>
+  <updated>2019-06-02T01:52:22.430Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>读《实战Java高并发程序设计》笔记</title>
+    <link href="http://yoursite.com/2019/06/02/%E8%AF%BB%E3%80%8A%E5%AE%9E%E6%88%98Java%E9%AB%98%E5%B9%B6%E5%8F%91%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2019/06/02/读《实战Java高并发程序设计》笔记/</id>
+    <published>2019-06-02T01:51:30.000Z</published>
+    <updated>2019-06-02T01:52:22.430Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ul&gt;
+&lt;li&gt;一句说解释活锁&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;两个线程都主动释放资源给对方，就会导致这个资源在两个线程间来回跳动，谁也拿不到资源执行，就类似于两个人互相谦让。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;并发级别&lt;br&gt;阻塞（synchroized、lock）、无饥饿（公平锁
+        
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Java之同步队列SynchronousQueue</title>
@@ -512,33 +543,6 @@
     
     
       <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux之iptables</title>
-    <link href="http://yoursite.com/2019/03/23/Linux%E4%B9%8Biptables/"/>
-    <id>http://yoursite.com/2019/03/23/Linux之iptables/</id>
-    <published>2019-03-23T03:20:53.000Z</published>
-    <updated>2019-03-23T03:21:24.099Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;昨天读了一篇文章说，服务器不能把防火墙关闭。那么我在unbuntu上通过ufw enable开启了防火墙，然后我执行了以下命令，懵逼了，这都是啥啊。&lt;/p&gt;
-&lt;h3 id=&quot;Filter表&quot;&gt;&lt;a href=&quot;#Filter表&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
     
   </entry>
   

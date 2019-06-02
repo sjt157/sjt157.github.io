@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="InterView," />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="快速排序的基本思想快速排序（Quicksort）是对冒泡排序的一种改进。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。  快速排序的三个步骤1.选择基准：在待排序列中，按照某种方式挑出一个元素，作为 “基准”（pivot）；2.">
-<meta name="keywords" content="InterView">
+<meta name="description" content="一句说解释活锁  两个线程都主动释放资源给对方，就会导致这个资源在两个线程间来回跳动，谁也拿不到资源执行，就类似于两个人互相谦让。  并发级别阻塞（synchroized、lock）、无饥饿（公平锁与非公平锁）、无障碍（直接去操作，发生冲突回滚，类似，类似乐观锁）、无锁（CAS）、无等待（RCU Read Copy Update 读不限制，修改副本）  指令重排   指令重排是为了减少中断，CP">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="快速排序">
-<meta property="og:url" content="http://yoursite.com/2018/04/27/快速排序/index.html">
+<meta property="og:title" content="读《实战Java高并发程序设计》笔记">
+<meta property="og:url" content="http://yoursite.com/2019/06/02/读《实战Java高并发程序设计》笔记/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="快速排序的基本思想快速排序（Quicksort）是对冒泡排序的一种改进。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。  快速排序的三个步骤1.选择基准：在待排序列中，按照某种方式挑出一个元素，作为 “基准”（pivot）；2.">
+<meta property="og:description" content="一句说解释活锁  两个线程都主动释放资源给对方，就会导致这个资源在两个线程间来回跳动，谁也拿不到资源执行，就类似于两个人互相谦让。  并发级别阻塞（synchroized、lock）、无饥饿（公平锁与非公平锁）、无障碍（直接去操作，发生冲突回滚，类似，类似乐观锁）、无锁（CAS）、无等待（RCU Read Copy Update 读不限制，修改副本）  指令重排   指令重排是为了减少中断，CP">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-27T07:09:54.638Z">
+<meta property="og:updated_time" content="2019-06-02T01:52:22.430Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="快速排序">
-<meta name="twitter:description" content="快速排序的基本思想快速排序（Quicksort）是对冒泡排序的一种改进。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。  快速排序的三个步骤1.选择基准：在待排序列中，按照某种方式挑出一个元素，作为 “基准”（pivot）；2.">
+<meta name="twitter:title" content="读《实战Java高并发程序设计》笔记">
+<meta name="twitter:description" content="一句说解释活锁  两个线程都主动释放资源给对方，就会导致这个资源在两个线程间来回跳动，谁也拿不到资源执行，就类似于两个人互相谦让。  并发级别阻塞（synchroized、lock）、无饥饿（公平锁与非公平锁）、无障碍（直接去操作，发生冲突回滚，类似，类似乐观锁）、无锁（CAS）、无等待（RCU Read Copy Update 读不限制，修改副本）  指令重排   指令重排是为了减少中断，CP">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/27/快速排序/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/06/02/读《实战Java高并发程序设计》笔记/"/>
 
 
 
 
 
-  <title>快速排序 | 诗与远方</title>
+  <title>读《实战Java高并发程序设计》笔记 | 诗与远方</title>
   
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/27/快速排序/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/02/读《实战Java高并发程序设计》笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songjiantao">
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">快速排序</h1>
+          <h1 class="post-title" itemprop="name headline">读《实战Java高并发程序设计》笔记</h1>
         
 
         <div class="post-meta">
@@ -338,8 +338,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-27T15:07:48+08:00">
-                2018-04-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-02T09:51:30+08:00">
+                2019-06-02
               </time>
             
 
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-27T15:09:54+08:00">
-                2018-04-27
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-02T09:52:22+08:00">
+                2019-06-02
               </time>
             
           </span>
@@ -373,8 +373,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Interview/" itemprop="url" rel="index">
-                    <span itemprop="name">Interview</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -391,8 +391,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/04/27/快速排序/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/04/27/快速排序/" itemprop="commentCount"></span>
+                <a href="/2019/06/02/读《实战Java高并发程序设计》笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/06/02/读《实战Java高并发程序设计》笔记/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -400,7 +400,7 @@
 
           
           
-             <span id="/2018/04/27/快速排序/" class="leancloud_visitors" data-flag-title="快速排序">
+             <span id="/2019/06/02/读《实战Java高并发程序设计》笔记/" class="leancloud_visitors" data-flag-title="读《实战Java高并发程序设计》笔记">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -433,22 +433,69 @@
 
       
         <ul>
-<li><p>快速排序的基本思想<br>快速排序（Quicksort）是对冒泡排序的一种改进。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。</p>
-</li>
-<li><p>快速排序的三个步骤<br>1.选择基准：在待排序列中，按照某种方式挑出一个元素，作为 “基准”（pivot）；<br>2.分割操作：以该基准在序列中的实际位置，把序列分成两个子序列。此时，在基准左边的元素都比该基准小，在基准右边的元素都比基准大；<br>3.递归地对两个序列进行快速排序，直到序列为空或者只有一个元素；</p>
-</li>
-<li><p>选择基准元的方式<br>对于分治算法，当每次划分时，算法若都能分成两个等长的子序列时，那么分治算法效率会达到最大。也就是说，基准的选择是很重要的。选择基准的方式决定了两个分割后两个子序列的长度，进而对整个算法的效率产生决定性影响。最理想的方法是，选择的基准恰好能把待排序序列分成两个等长的子序列。<br>1.固定基准元：如果输入序列是随机的，处理时间是可以接受的。如果数组已经有序时，此时的分割就是一个非常不好的分割。因为每次划分只能使待排序序列减一，此时为最坏情况，快速排序沦为冒泡排序，时间复杂度为Θ(n^2)。而且，输入的数据是有序或部分有序的情况是相当常见的。因此，使用第一个元素作为基准元是非常糟糕的，应该立即放弃这种想法。<br>2.随机基准元：这是一种相对安全的策略。由于基准元的位置是随机的，那么产生的分割也不会总是会出现劣质的分割。在整个数组数字全相等时，仍然是最坏情况，时间复杂度是O(n^2）。实际上，随机化快速排序得到理论最坏情况的可能性仅为1/(2^n）。所以随机化快速排序可以对于绝大多数输入数据达到O(nlogn）的期望时间复杂度。<br>3.三数取中:引入的原因：虽然随机选取基准时，减少出现不好分割的几率，但是还是最坏情况下还是O(n^2），要缓解这种情况，就引入了三数取中选取基准。<br>分析：最佳的划分是将待排序的序列分成等长的子序列，最佳的状态我们可以使用序列的中间的值，也就是第N/2个数。可是，这很难算出来，并且会明显减慢快速排序的速度。这样的中值的估计可以通过随机选取三个元素并用它们的中值作为基准元而得到。事实上，随机性并没有多大的帮助，因此一般的做法是使用左端、右端和中心位置上的三个元素的中值作为基准元。显然使用三数中值分割法消除了预排序输入的不好情形，并且减少快排大约5%的比较次数。</p>
-</li>
+<li>一句说解释活锁</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//交换子表的记录，使枢轴记录到位，并返回枢轴所在的位置  </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Partition</span><span class="params">(<span class="keyword">int</span> <span class="built_in">array</span>[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">/*三数中值分割法*/</span>  </span><br><span class="line">    <span class="keyword">int</span> m = low + (high - low) / <span class="number">2</span>;<span class="comment">//数组中间元素的下标  </span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">array</span>[low]&gt;<span class="built_in">array</span>[high])   <span class="comment">//保证左端较小  </span></span><br><span class="line">        swap(<span class="built_in">array</span>, low, high);  </span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">array</span>[m] &gt; <span class="built_in">array</span>[high])   <span class="comment">//保证中间较小  </span></span><br><span class="line">        swap(<span class="built_in">array</span>, high, m);  </span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">array</span>[m] &gt; <span class="built_in">array</span>[low])  </span><br><span class="line">        swap(<span class="built_in">array</span>, m, low);      <span class="comment">//保证左端最小  </span></span><br><span class="line">    <span class="comment">//此时array[low]已经为整个序列左中右三个关键字的中间值  </span></span><br><span class="line">    <span class="keyword">int</span> pivotkey = <span class="built_in">array</span>[low];  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">/*固定基准元 </span></span><br><span class="line"><span class="comment">     int pivotkey = array[low]; </span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">/*随机基准元 </span></span><br><span class="line"><span class="comment">    int randomIndex = rand() % (high - low) + low;//取数组中随机下标 </span></span><br><span class="line"><span class="comment">    swap(array, randomIndex, low);                //与第一个数交换 </span></span><br><span class="line"><span class="comment">    int pivotkey = array[low]; </span></span><br><span class="line"><span class="comment">    */</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">int</span> i = low, j = high;  </span><br><span class="line">    <span class="keyword">while</span>(i&lt;j) <span class="comment">//从表的两端交替向中间扫描,当没有相遇  </span></span><br><span class="line">    &#123;  </span><br><span class="line">        <span class="keyword">while</span> (<span class="built_in">array</span>[j] &gt;= pivotkey&amp;&amp;i&lt;j)&#123;  </span><br><span class="line">            j--;  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">while</span> (<span class="built_in">array</span>[i] &lt;= pivotkey&amp;&amp;i&lt;j)&#123;  </span><br><span class="line">            i++;  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">if</span> (i&lt;j)  </span><br><span class="line">        &#123;  </span><br><span class="line">            swap(<span class="built_in">array</span>, i, j);  </span><br><span class="line">        &#125;     </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">//最终将基准数归位  </span></span><br><span class="line">    swap(<span class="built_in">array</span>, low, i);  </span><br><span class="line">    <span class="keyword">return</span> i;              <span class="comment">//返回枢轴所在的位置  </span></span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QSort</span><span class="params">(<span class="keyword">int</span> <span class="built_in">array</span>[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">int</span> pivot;  </span><br><span class="line">    <span class="keyword">if</span> (low&lt;high)  </span><br><span class="line">    &#123;  </span><br><span class="line">        pivot = Partition(<span class="built_in">array</span>, low, high);<span class="comment">//算出枢轴值  </span></span><br><span class="line">        QSort(<span class="built_in">array</span>, low, pivot - <span class="number">1</span>);       <span class="comment">//对低子表递归排序  </span></span><br><span class="line">        QSort(<span class="built_in">array</span>, pivot + <span class="number">1</span>, high);      <span class="comment">//对高子表递归排序  </span></span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> <span class="built_in">array</span>[], <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//0∧0=0,0∧1=1,1∧1=0</span></span><br><span class="line">    <span class="comment">//i,j为需要交换数值的数组下标</span></span><br><span class="line">    <span class="keyword">if</span>(i == j)</span><br><span class="line">     <span class="keyword">return</span>;<span class="comment">//下标相同直接返回</span></span><br><span class="line">    <span class="built_in">array</span>[i] = <span class="built_in">array</span>[i]^<span class="built_in">array</span>[j];</span><br><span class="line">    <span class="built_in">array</span>[j] = <span class="built_in">array</span>[i]^<span class="built_in">array</span>[j];</span><br><span class="line">    <span class="built_in">array</span>[i] = <span class="built_in">array</span>[i]^<span class="built_in">array</span>[j];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//对array做快速排序  </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123; </span><br><span class="line">	<span class="keyword">int</span> <span class="built_in">array</span>[] = &#123;<span class="number">9</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">6</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> i; </span><br><span class="line">	<span class="keyword">int</span> n = <span class="keyword">sizeof</span>(<span class="built_in">array</span>)/<span class="keyword">sizeof</span>(<span class="keyword">int</span>);</span><br><span class="line">    QSort(<span class="built_in">array</span>, <span class="number">0</span>, n - <span class="number">1</span>); </span><br><span class="line">	<span class="keyword">for</span>( i = <span class="number">0</span>; i &lt; n; i++) </span><br><span class="line">       <span class="built_in">printf</span>(<span class="string">"%d"</span>, <span class="built_in">array</span>[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>两个线程都主动释放资源给对方，就会导致这个资源在两个线程间来回跳动，谁也拿不到资源执行，就类似于两个人互相谦让。</p>
 <ul>
-<li>快速排序的优化<br>对于很小的数组（N&lt;=20）,快速排序不如插入排序好。不仅如此，因为快速排序是递归的，所以这样的情况经常发生。通常的解决办法是对于小的数组不递归的使用快速排序，而代之以诸如插入排序这样的对小数组有效的排序算法。使用这种策略实际上可以节省大约15%的（相对于自始至终使用快速排序时）的运行时间。一种好的截止范围是N=10，虽然在5到20之间任一截止范围都有可能产生类似的结果。<br>下面是代码：</li>
+<li><p>并发级别<br>阻塞（synchroized、lock）、无饥饿（公平锁与非公平锁）、无障碍（直接去操作，发生冲突回滚，类似，类似乐观锁）、无锁（CAS）、无等待（RCU Read Copy Update 读不限制，修改副本）</p>
+</li>
+<li><p>指令重排</p>
+</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">QSort</span><span class="params">(<span class="keyword">int</span> <span class="built_in">array</span>[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> pivot;</span><br><span class="line">	<span class="keyword">if</span> (high-low+<span class="number">1</span>&gt;=<span class="number">10</span>)</span><br><span class="line">	&#123;	</span><br><span class="line">		pivot = Partition(<span class="built_in">array</span>, low, high);<span class="comment">//算出枢轴值</span></span><br><span class="line">		QSort(<span class="built_in">array</span>, low, pivot - <span class="number">1</span>);       <span class="comment">//对低子表递归排序</span></span><br><span class="line">		QSort(<span class="built_in">array</span>, pivot + <span class="number">1</span>, high);      <span class="comment">//对高子表递归排序</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		InsertSort(<span class="built_in">array</span>+low, high-low+<span class="number">1</span>); <span class="comment">//插入排序</span></span><br><span class="line">	&#125;		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>指令重排是为了减少中断，CPU是流水线模型。<br>哪些指令不能重排：Happens before规则</p>
 <ul>
-<li>插入排序代码：</li>
+<li><p>线程状态<br>线程的等待在等什么？wait的等待线程在等notify，join的等待线程在等目标线程的终止。</p>
+</li>
+<li><p>启动线程<br>要用start(),start创建一个新的线程并运行run方法。如果只用run（），代表在当前线程执行，只是一个普通的方法。</p>
+</li>
+<li><p>线程等待<br>Object.wait和Thread.sleep(),都可以让线程等待。wait可以被唤醒，wait释放锁。sleep不释放锁。</p>
+</li>
+<li><p>守护线程<br>设置守护线程，必须在start()方法前设置，否则线程永远不会停下来。</p>
+</li>
+<li><p>HashMap的死循环问题在jdk8不会出现</p>
+</li>
+<li><p>可重入锁<br>重入锁可以提供中断处理的能力。比如一个等待的线程，他在等待锁，他可以收到一个通知，被告知无需等待了。也就是在等待锁的过程中，可以响应等中断。而对于synchroized来讲，就是要么有锁执行，要么无锁等待。<br>重入锁可以是公平的。</p>
+</li>
+<li><p>Condition<br>Condition与重入锁配合，Synchronized与wait和notify配合</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.locks.Condition;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.locks.ReentrantLock;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* <span class="doctag">@author</span> 宋建涛 E-mail:1872963677@qq.com</span></span><br><span class="line"><span class="comment">* <span class="doctag">@version</span> 创建时间：2019年6月1日 下午7:47:12</span></span><br><span class="line"><span class="comment">* 类说明</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReenterLockCondition</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> ReentrantLock lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> Condition condition = lock.newCondition();</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			lock.lock();</span><br><span class="line">			condition.await();<span class="comment">//在condition上等待</span></span><br><span class="line">			System.out.println(<span class="string">"Thread is going on"</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">			lock.unlock();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">		ReenterLockCondition t1 = <span class="keyword">new</span> ReenterLockCondition();</span><br><span class="line">		Thread t= <span class="keyword">new</span> Thread(t1);</span><br><span class="line">		t.start();</span><br><span class="line">		Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">		<span class="comment">//通知线程t继续执行</span></span><br><span class="line">		lock.lock(); <span class="comment">//先获取相关的锁</span></span><br><span class="line">		condition.signal(); <span class="comment">//告诉等待在condotion上的线程可以继续执行了</span></span><br><span class="line">		lock.unlock();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>信号量</p>
+</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(<span class="keyword">int</span> <span class="built_in">array</span>[], <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line"><span class="keyword">int</span> j;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n;++i)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> key = <span class="built_in">array</span>[i];</span><br><span class="line">	<span class="keyword">for</span> (j = i; j&gt;<span class="number">0</span> &amp;&amp; <span class="built_in">array</span>[j - <span class="number">1</span>] &gt; key;j--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">array</span>[j] = <span class="built_in">array</span>[j - <span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">array</span>[j] = key;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>锁一次只能要求一个线程操控共享资源，而信号量可以允许多个。比如你要让5个线程5个线程的执行，可以设置一个信号量为5.</p>
+<ul>
+<li><p>线程阻塞工具类<br>LockSupport，可以在线程内任意位置让线程阻塞。与Object.wait（）相比，他不需要先获得某个对象的锁。使用park函数时，可以为当前线程设置一个阻塞对象，这个阻塞对象会出现在线程Dump中，更加容易分析问题。</p>
+</li>
+<li><p>线程池的队列<br>如果使用无界队列来存储任务，要注意如果任务创建和处理的速度相差很大，可能会造成OOM。</p>
+</li>
+</ul>
+<ul>
+<li><p>ForkJoin</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ForkJoinPool;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ForkJoinTask;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.RecursiveTask;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* <span class="doctag">@author</span> 宋建涛 E-mail:1872963677@qq.com</span></span><br><span class="line"><span class="comment">* <span class="doctag">@version</span> 创建时间：2019年6月1日 下午8:32:32</span></span><br><span class="line"><span class="comment">* 类说明</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">//继承RecursiveTask，可以携带返回值</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountTask</span> <span class="keyword">extends</span> <span class="title">RecursiveTask</span>&lt;<span class="title">Long</span>&gt; </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> THRESHOLD = <span class="number">10000</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">long</span> start;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">long</span> end;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">CountTask</span><span class="params">(<span class="keyword">long</span> start, <span class="keyword">long</span> end)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.start = start;</span><br><span class="line">		<span class="keyword">this</span>.end = end;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Long <span class="title">compute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">long</span> sum = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">boolean</span> canCompute = (end-start)&lt;THRESHOLD;</span><br><span class="line">		<span class="keyword">if</span>(canCompute) &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">long</span> i=start;i&lt;=end;i++) &#123;</span><br><span class="line">				sum +=i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">long</span> step = (start+end)/<span class="number">100</span>;</span><br><span class="line">			ArrayList&lt;CountTask&gt; subTasks =  <span class="keyword">new</span> ArrayList&lt;CountTask&gt;();</span><br><span class="line">			<span class="keyword">long</span> pos = start;</span><br><span class="line">			<span class="comment">//划分成100个小任务</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++) &#123;</span><br><span class="line">				<span class="keyword">long</span> lastOne = pos+step;</span><br><span class="line">				<span class="keyword">if</span>(lastOne&gt;end) lastOne=end;</span><br><span class="line">				CountTask subTask = <span class="keyword">new</span> CountTask(pos, lastOne);</span><br><span class="line">				pos+=step+<span class="number">1</span>;</span><br><span class="line">				subTasks.add(subTask);</span><br><span class="line">				<span class="comment">//提交任务</span></span><br><span class="line">				subTask.fork();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span>(CountTask t :subTasks) &#123;</span><br><span class="line">				sum+=t.join();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> sum;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		 ForkJoinPool forkJoinPool = <span class="keyword">new</span> ForkJoinPool();</span><br><span class="line">		 CountTask task = <span class="keyword">new</span> CountTask(<span class="number">0</span>, <span class="number">200000L</span>);</span><br><span class="line">		 ForkJoinTask&lt;Long&gt; result = forkJoinPool.submit(task);</span><br><span class="line">		 <span class="keyword">try</span> &#123;</span><br><span class="line">			 <span class="keyword">long</span> res = result.get();</span><br><span class="line">			 System.out.println(res);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			<span class="comment">// <span class="doctag">TODO:</span> handle exception</span></span><br><span class="line">		&#125;</span><br><span class="line">		 </span><br><span class="line">	 &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>逃逸分析<br>锁消除的一项关键技术就是逃逸分析，就是观察一个变量是否会逃出每一个作用域。逃逸分析必须在server模式下进行，可以使用-XX：+DoEscapeAnalysis参数进行逃逸分析。使用-XX：+EliminateLocks参数打开锁消除。</p>
+</li>
+<li><p>避免死锁<br>使用无锁或可重入锁，通过可重入锁的中断或限时等待。</p>
+</li>
+<li><p>创建单例不要使用双重检验方式，太垃圾了</p>
+</li>
+<li><p>不变模式通过回避问题而不是解决问题的态度解决多线程并发访问控制，不变对象是不需要进行同步的。不变模式可以提高系统的并发性能和并发量。</p>
+</li>
+<li><p>ConcurrentLinkedQueue队列性能很高，因为使用了CAS。但是使用CAS编程很难，但是我们可以利用Disruptor框架。</p>
+</li>
+<li><p>CPU cache的优化：解决伪共享问题。CPU有个高速缓存，高速缓存读写数据最小的单位是缓存行。如果两个变量放在一个缓存行中，在多线程访问中，可能会让缓存行失效导致效率低下，所以可以通过填充padding的方式来不让这两个变量在同一个缓存行。</p>
+</li>
+<li><p>冒泡排序、希尔排序都可以并行化</p>
+</li>
+<li><p>虽然NIO在网络操作中提供了非阻塞的方法，但是IO行为还是同步的，在IO操作准备好时就通知你，但是AIO是IO完成后才通知你。通过回调函数。</p>
+</li>
+<li><p>读写锁的改进：StampedLock。读写锁用的悲观锁策略，StampedLock用的乐观锁策略。</p>
+</li>
+<li><p>如何调试并行程序。</p>
+</li>
+<li><p>Jetty核心代码示例</p>
+</li>
+</ul>
 
       
     </div>
@@ -503,7 +550,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/04/27/快速排序/" title="快速排序">http://yoursite.com/2018/04/27/快速排序/</a>
+    <a href="http://yoursite.com/2019/06/02/读《实战Java高并发程序设计》笔记/" title="读《实战Java高并发程序设计》笔记">http://yoursite.com/2019/06/02/读《实战Java高并发程序设计》笔记/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -518,7 +565,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/InterView/" rel="tag"># InterView</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -543,8 +590,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/21/进程/" rel="next" title="守护进程">
-                <i class="fa fa-chevron-left"></i> 守护进程
+              <a href="/2019/06/01/Java之同步队列SynchronousQueue/" rel="next" title="Java之同步队列SynchronousQueue">
+                <i class="fa fa-chevron-left"></i> Java之同步队列SynchronousQueue
               </a>
             
           </div>
@@ -552,10 +599,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/11/服务器不能上网之谜/" rel="prev" title="服务器不能上网之谜">
-                服务器不能上网之谜 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
