@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="select VS epoll相比于select，epoll最大的好处在于它不会随着监听fd数目的增长而降低效率。因为在内核中的select实现中，它是采用轮询来处理的，轮询的fd数目越多，自然耗时越多。并且，在linux/posix_types.h头文件有这样的声明：#define __FD_SETSIZE 1024表示select最多同时监听1024个fd，当然，可以通过修改头文件再重编译内核">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-22T14:37:06.269Z">
+<meta property="og:updated_time" content="2019-06-03T12:16:41.068Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Epoll模型">
 <meta name="twitter:description" content="select VS epoll相比于select，epoll最大的好处在于它不会随着监听fd数目的增长而降低效率。因为在内核中的select实现中，它是采用轮询来处理的，轮询的fd数目越多，自然耗时越多。并且，在linux/posix_types.h头文件有这样的声明：#define __FD_SETSIZE 1024表示select最多同时监听1024个fd，当然，可以通过修改头文件再重编译内核">
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-22T22:37:06+08:00">
-                2019-03-22
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-03T20:16:41+08:00">
+                2019-06-03
               </time>
             
           </span>
@@ -495,6 +495,8 @@
 <p>Accept失败的子进程是不应该被内核唤醒的，因为它们被唤醒的操作是多余的，占用本不应该被占用的系统资源，引起不必要的进程上下文切换，增加了系统开销，同时也影响了客户端连接的时延。</p>
 <p>“惊群”问题是多个子进程同时监听同一个端口引起的，因此解决的方法是同一时刻只让一个子进程监听服务器端口，这样新连接事件只会唤醒唯一正在监听端口的子进程。</p>
 <p>因此“惊群”问题通过非阻塞的accept锁来实现进程互斥accept()，其原理是：在worker进程主循环中非阻塞trylock获取accept锁，如果trylock成功，则此进程把监听端口对应的fd通过epoll_ctl()加入到本进程自由的epoll事件集；如果trylock失败，则把监听fd从本进程对应的epoll事件集中清除。</p>
+<h3 id="Epoll不能提高并发"><a href="#Epoll不能提高并发" class="headerlink" title="Epoll不能提高并发"></a>Epoll不能提高并发</h3><pre><code>确实有很多地方说select/poll/epoll并发， 这是多么扯淡啊， 它们不过是多路复用， 而已。 很多网上程序给出的epoll代码实现的服务器， 其实是没有并发能力的， 也仅仅是迭代服务器。 select/poll/epoll的作用是IO复用， 要实现并发， 还是需要交个其他线程/进程去处理。 业界很多成熟的服务组件， 就是这么玩的, 如nginx.
+</code></pre><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>&lt;<a href="https://blog.csdn.net/stpeace/article/details/80951371" target="_blank" rel="noopener">https://blog.csdn.net/stpeace/article/details/80951371</a> &gt;</p>
 
       
     </div>
