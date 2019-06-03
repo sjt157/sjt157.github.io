@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="什么场景下会使用分布式锁？单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。 实现一个分布式锁应该具备的特性： 高可用、高性能的获取锁与释放锁 在">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-11T03:38:42.357Z">
+<meta property="og:updated_time" content="2019-06-03T12:28:29.488Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式锁">
 <meta name="twitter:description" content="什么场景下会使用分布式锁？单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。 实现一个分布式锁应该具备的特性： 高可用、高性能的获取锁与释放锁 在">
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-11T11:38:42+08:00">
-                2019-03-11
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-03T20:28:29+08:00">
+                2019-06-03
               </time>
             
           </span>
@@ -466,7 +466,11 @@
 <p>这里我们开启5个线程，每个线程获取锁的最大等待时间为5秒，为了模拟具体业务场景，方法中设置4秒等待时间。开始执行main方法，通过ZooInspector监控/curator/lock下的节点如下图：</p>
 <p>对，没错，设置4秒的业务处理时长就是为了观察生成了几个顺序节点。果然如案例中所述，每个线程都会生成一个节点并且还是有序的。<br>观察控制台，我们会发现只有两个线程获取锁成功，另外三个线程超时获取锁失败会自动删除节点。线程执行完毕我们刷新一下/curator/lock节点，发现刚才创建的五个子节点已经不存在了。</p>
 <hr>
-<h3 id="基于数据库的分布式锁"><a href="#基于数据库的分布式锁" class="headerlink" title="基于数据库的分布式锁"></a>基于数据库的分布式锁</h3><h4 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h4><p>数据库的乐观锁(通过版本号)或者悲观锁(通过for update)</p>
+<h3 id="基于数据库的分布式锁"><a href="#基于数据库的分布式锁" class="headerlink" title="基于数据库的分布式锁"></a>基于数据库的分布式锁</h3><h4 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h4><p>数据库的乐观锁(通过版本号)或者悲观锁(通过for update)<br>还可以通过mysql的unique key来实现分布式锁，在mysql中插入一条记录，表明获取锁。删除一条记录，表明释放锁。 且在mysql表中设置一个unique key字段， 当有一台机器获得锁后， 其他机器无法获取。<br> 这个有几个问题：</p>
+<pre><code>1.  如果一台机器获得锁，在释放锁之前进程挂了， 那么其他机器无法获取到锁。 可以引入锁有效时间的概念，超时后，删除记录，释放锁。
+
+2.  万一获取锁的操作失败了，就直接做错误处理， 也不太好。 可以引入循环重试的方式来解决，控制重试次数。
+</code></pre><p>参考<a href="https://blog.csdn.net/stpeace/article/details/84679324" target="_blank" rel="noopener">https://blog.csdn.net/stpeace/article/details/84679324</a></p>
 <h4 id="基于数据库分布式锁注意的地方"><a href="#基于数据库分布式锁注意的地方" class="headerlink" title="基于数据库分布式锁注意的地方"></a>基于数据库分布式锁注意的地方</h4><ul>
 <li>基于数据库表的方式需要集群中多个节点的服务器时钟同步。</li>
 <li>基于mysql数据库时需要在JDBC连接地址中增加时区配置，serverTimezone=GMT%2b8。<br>关于脑裂问题：</li>
