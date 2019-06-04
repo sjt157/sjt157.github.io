@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="Python," />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -91,18 +91,18 @@
 
 
 
-<meta name="description" content="Generator 其中一个特性就是不是一次性生成数据，而是生成一个可迭代的对象，在迭代时，根据我们所写的逻辑来控制其启动时机。 Generator 另一个很大作用可以说就是当做协程使用。协程就是你可以暂停执行的函数。简而言之，协程是比线程更为轻量的一种模型，我们可以自行控制启动与停止的时机。知乎上说的，最易懂的解释：你行你就上，不行旁边等着让别人上，啥时候行了你再上。在 Python 中其实没">
-<meta name="keywords" content="Python">
+<meta name="description" content="第一次买了一本掘金小册，花了19.9元，记录下收获。   用xxd 命令以 16 进制的方式查看这个 class 文件。  javap，用来方便的窥探 class 文件内部的细节。javap 有比较多的参数选项，其中-c -v -l -p -s是最常用的。  javap的-l的作用：-l 输出行及局部变量表。  虚拟机常见的实现方式有两种：Stack based 的和 Register(寄存器)">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python之协程">
-<meta property="og:url" content="http://yoursite.com/2018/04/07/python之协程/index.html">
+<meta property="og:title" content="Java之字节码知识">
+<meta property="og:url" content="http://yoursite.com/2019/06/04/Java之字节码知识/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="Generator 其中一个特性就是不是一次性生成数据，而是生成一个可迭代的对象，在迭代时，根据我们所写的逻辑来控制其启动时机。 Generator 另一个很大作用可以说就是当做协程使用。协程就是你可以暂停执行的函数。简而言之，协程是比线程更为轻量的一种模型，我们可以自行控制启动与停止的时机。知乎上说的，最易懂的解释：你行你就上，不行旁边等着让别人上，啥时候行了你再上。在 Python 中其实没">
+<meta property="og:description" content="第一次买了一本掘金小册，花了19.9元，记录下收获。   用xxd 命令以 16 进制的方式查看这个 class 文件。  javap，用来方便的窥探 class 文件内部的细节。javap 有比较多的参数选项，其中-c -v -l -p -s是最常用的。  javap的-l的作用：-l 输出行及局部变量表。  虚拟机常见的实现方式有两种：Stack based 的和 Register(寄存器)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-08T13:02:38.762Z">
+<meta property="og:updated_time" content="2019-06-04T06:01:26.809Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python之协程">
-<meta name="twitter:description" content="Generator 其中一个特性就是不是一次性生成数据，而是生成一个可迭代的对象，在迭代时，根据我们所写的逻辑来控制其启动时机。 Generator 另一个很大作用可以说就是当做协程使用。协程就是你可以暂停执行的函数。简而言之，协程是比线程更为轻量的一种模型，我们可以自行控制启动与停止的时机。知乎上说的，最易懂的解释：你行你就上，不行旁边等着让别人上，啥时候行了你再上。在 Python 中其实没">
+<meta name="twitter:title" content="Java之字节码知识">
+<meta name="twitter:description" content="第一次买了一本掘金小册，花了19.9元，记录下收获。   用xxd 命令以 16 进制的方式查看这个 class 文件。  javap，用来方便的窥探 class 文件内部的细节。javap 有比较多的参数选项，其中-c -v -l -p -s是最常用的。  javap的-l的作用：-l 输出行及局部变量表。  虚拟机常见的实现方式有两种：Stack based 的和 Register(寄存器)">
 
 
 
@@ -132,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/07/python之协程/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/06/04/Java之字节码知识/"/>
 
 
 
 
 
-  <title>python之协程 | 诗与远方</title>
+  <title>Java之字节码知识 | 诗与远方</title>
   
 
 
@@ -319,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/07/python之协程/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/04/Java之字节码知识/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songjiantao">
@@ -336,7 +336,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python之协程</h1>
+          <h1 class="post-title" itemprop="name headline">Java之字节码知识</h1>
         
 
         <div class="post-meta">
@@ -348,8 +348,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-07T10:36:22+08:00">
-                2018-04-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-04T14:00:27+08:00">
+                2019-06-04
               </time>
             
 
@@ -364,8 +364,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-08T21:02:38+08:00">
-                2018-04-08
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-04T14:01:26+08:00">
+                2019-06-04
               </time>
             
           </span>
@@ -383,8 +383,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -400,7 +400,7 @@
 
           
           
-             <span id="/2018/04/07/python之协程/" class="leancloud_visitors" data-flag-title="python之协程">
+             <span id="/2019/06/04/Java之字节码知识/" class="leancloud_visitors" data-flag-title="Java之字节码知识">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -432,22 +432,131 @@
       
 
       
-        <ul>
-<li>Generator 其中一个特性就是不是一次性生成数据，而是生成一个可迭代的对象，在迭代时，根据我们所写的逻辑来控制其启动时机。</li>
-<li>Generator 另一个很大作用可以说就是当做协程使用。协程就是你可以暂停执行的函数。简而言之，协程是比线程更为轻量的一种模型，我们可以自行控制启动与停止的时机。知乎上说的，最易懂的解释：<em>你行你就上，不行旁边等着让别人上，啥时候行了你再上。</em>在 Python 中其实没有专门针对协程的这个概念，社区一般而言直接将 Generator 作为一种特殊的协程看待，想想，我们可以用 next 或 <strong>next</strong>() 方法或者是 send() 方法唤醒我们的 Generator ，在运行完我们所规定的代码后， Generator 返回并将其所有状态冻结。这是不是很让我们 Excited 呢！！</li>
-<li>总而言之，协程比线程更节省资源，效率更高，并且更安全。如果使用线程做过重要的编程，你就知道写出程序有多么困难，因为调度程序任何时候都能中断线程。必须记住保留锁，去保护程序中的重要部分，防止多步操作在执行的过程中中断，防止数据处于无效状态。而协程默认会做好全方位保护，以防止中断。我们必须显式产出才能让程序的余下部分运行。对协程来说，无需保留锁，在多个线程之间同步操作，协程自身就会同步，因为在任意时刻只有一个协程运行。想交出控制权时，可以使用 yield 或 yield from 把控制权交还调度程序。这就是能够安全地取消协程的原因：按照定义，协程只能在暂停的 yield处取消，因此可以处理 CancelledError 异常，执行清理操作。</li>
-<li><p>这是一个异步编程的例子，将代码与事件循环及其相关的函数一一对应起来。这个例子里包含的几个协程，代表着火箭发射的倒计时，并且看起来是同时开始的。这是通过并发实现的异步编程；3个不同的协程将分别独立运行，并且都在同一个线程内完成。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> heapq</span><br><span class="line"><span class="keyword">import</span> types</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Task</span>:</span></span><br><span class="line">    <span class="string">"""Represent how long a coroutine should before starting again.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Comparison operators are implemented for use by heapq. Two-item</span></span><br><span class="line"><span class="string">    tuples unfortunately don't work because when the datetime.datetime</span></span><br><span class="line"><span class="string">    instances are equal, comparison falls to the coroutine and they don't</span></span><br><span class="line"><span class="string">    implement comparison methods, triggering an exception.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Think of this as being like asyncio.Task/curio.Task.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, wait_until, coro)</span>:</span></span><br><span class="line">        self.coro = coro</span><br><span class="line">        self.waiting_until = wait_until</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__eq__</span><span class="params">(self, other)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.waiting_until == other.waiting_until</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__lt__</span><span class="params">(self, other)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.waiting_until &lt; other.waiting_until</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SleepingLoop</span>:</span></span><br><span class="line">    <span class="string">"""An event loop focused on delaying execution of coroutines.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Think of this as being like asyncio.BaseEventLoop/curio.Kernel.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, *coros)</span>:</span></span><br><span class="line">        self._new = coros</span><br><span class="line">        self._waiting = []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run_until_complete</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># Start all the coroutines.</span></span><br><span class="line">        <span class="keyword">for</span> coro <span class="keyword">in</span> self._new:</span><br><span class="line">            wait_for = coro.send(<span class="keyword">None</span>)</span><br><span class="line">            heapq.heappush(self._waiting, Task(wait_for, coro))</span><br><span class="line">        <span class="comment"># Keep running until there is no more work to do.</span></span><br><span class="line">        <span class="keyword">while</span> self._waiting:</span><br><span class="line">            now = datetime.datetime.now()</span><br><span class="line">            <span class="comment"># Get the coroutine with the soonest resumption time.</span></span><br><span class="line">            task = heapq.heappop(self._waiting)</span><br><span class="line">            <span class="keyword">if</span> now &lt; task.waiting_until:</span><br><span class="line">                <span class="comment"># We're ahead of schedule; wait until it's time to resume.</span></span><br><span class="line">                delta = task.waiting_until - now</span><br><span class="line">                time.sleep(delta.total_seconds())</span><br><span class="line">                now = datetime.datetime.now()</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                <span class="comment"># It's time to resume the coroutine.</span></span><br><span class="line">                wait_until = task.coro.send(now)</span><br><span class="line">                heapq.heappush(self._waiting, Task(wait_until, task.coro))</span><br><span class="line">            <span class="keyword">except</span> StopIteration:</span><br><span class="line">                <span class="comment"># The coroutine is done.</span></span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@types.coroutine</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sleep</span><span class="params">(seconds)</span>:</span></span><br><span class="line">    <span class="string">"""Pause a coroutine for the specified number of seconds.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Think of this as being like asyncio.sleep()/curio.sleep().</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    now = datetime.datetime.now()</span><br><span class="line">    wait_until = now + datetime.timedelta(seconds=seconds)</span><br><span class="line">    <span class="comment"># Make all coroutines on the call stack pause; the need to use `yield`</span></span><br><span class="line">    <span class="comment"># necessitates this be generator-based and not an async-based coroutine.</span></span><br><span class="line">    actual = <span class="keyword">yield</span> wait_until</span><br><span class="line">    <span class="comment"># Resume the execution stack, sending back how long we actually waited.</span></span><br><span class="line">    <span class="keyword">return</span> actual - now</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">countdown</span><span class="params">(label, length, *, delay=<span class="number">0</span>)</span>:</span></span><br><span class="line">    <span class="string">"""Countdown a launch for `length` seconds, waiting `delay` seconds.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    This is what a user would typically write.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    print(label, <span class="string">'waiting'</span>, delay, <span class="string">'seconds before starting countdown'</span>)</span><br><span class="line">    delta = <span class="keyword">await</span> sleep(delay)</span><br><span class="line">    print(label, <span class="string">'starting after waiting'</span>, delta)</span><br><span class="line">    <span class="keyword">while</span> length:</span><br><span class="line">        print(label, <span class="string">'T-minus'</span>, length)</span><br><span class="line">        waited = <span class="keyword">await</span> sleep(<span class="number">1</span>)</span><br><span class="line">        length -= <span class="number">1</span></span><br><span class="line">    print(label, <span class="string">'lift-off!'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""Start the event loop, counting down 3 separate launches.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    This is what a user would typically write.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    loop = SleepingLoop(countdown(<span class="string">'A'</span>, <span class="number">5</span>), countdown(<span class="string">'B'</span>, <span class="number">3</span>, delay=<span class="number">2</span>),</span><br><span class="line">                        countdown(<span class="string">'C'</span>, <span class="number">4</span>, delay=<span class="number">1</span>))</span><br><span class="line">    start = datetime.datetime.now()</span><br><span class="line">    loop.run_until_complete()</span><br><span class="line">    print(<span class="string">'Total elapsed time is'</span>, datetime.datetime.now() - start)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br><span class="line"><span class="comment"># A waiting 0 seconds before starting countdown</span></span><br><span class="line"><span class="comment">#B waiting 2 seconds before starting countdown</span></span><br><span class="line"><span class="comment">#C waiting 1 seconds before starting countdown</span></span><br><span class="line"><span class="comment">#A starting after waiting 0:00:00.001000</span></span><br><span class="line"><span class="comment">#A T-minus 5</span></span><br><span class="line"><span class="comment">#C starting after waiting 0:00:01.000058</span></span><br><span class="line"><span class="comment">#C T-minus 4</span></span><br><span class="line"><span class="comment">#A T-minus 4</span></span><br><span class="line"><span class="comment">#B starting after waiting 0:00:02.000115</span></span><br><span class="line"><span class="comment">#B T-minus 3</span></span><br><span class="line"><span class="comment">#C T-minus 3</span></span><br><span class="line"><span class="comment">#A T-minus 3</span></span><br><span class="line"><span class="comment">#B T-minus 2</span></span><br><span class="line"><span class="comment">#C T-minus 2</span></span><br><span class="line"><span class="comment">#A T-minus 2</span></span><br><span class="line"><span class="comment">#B T-minus 1</span></span><br><span class="line"><span class="comment">#C T-minus 1</span></span><br><span class="line"><span class="comment">#A T-minus 1</span></span><br><span class="line"><span class="comment">#B lift-off!</span></span><br><span class="line"><span class="comment">#C lift-off!</span></span><br><span class="line"><span class="comment">#A lift-off!</span></span><br><span class="line"><span class="comment">#Total elapsed time is 0:00:05.001286</span></span><br></pre></td></tr></table></figure>
+        <p>第一次买了一本掘金小册<jvm 字节码从入门到精通="">，花了19.9元，记录下收获。</jvm></p>
+<hr>
+<ul>
+<li><p>用xxd 命令以 16 进制的方式查看这个 class 文件。</p>
 </li>
-<li><p>但是基于async的协程和基于生成器的协程会在对应的暂停表达式上面有所不同？主要原因是出于最优化Python性能的考虑，确保你不会将刚好有同样API的不同对象混为一谈。由于生成器默认实现协程的API，因此很有可能在你希望用协程的时候错用了一个生成器。而由于并不是所有的生成器都可以用在基于协程的控制流中，你需要避免错误地使用生成器。但是由于 Python 并不是静态编译的，它最好也只能在用基于生成器定义的协程时提供运行时检查。这意味着当用types.coroutine时，Python 的编译器将无法判断这个生成器是用作协程还是仅仅是普通的生成器（记住，仅仅因为types.coroutine这一语法的字面意思，并不意味着在此之前没有人做过types = spam的操作），因此编译器只能基于当前的情况生成有着不同限制的操作码。关于基于生成器的协程和async定义的协程之间的差异，我想说明的关键点是只有基于生成器的协程可以真正的暂停执行并强制性返回给事件循环。你可能不了解这些重要的细节，因为通常你调用的像是asyncio.sleep() function 这种事件循环相关的函数，由于事件循环实现他们自己的API，而这些函数会处理这些小的细节。对于我们绝大多数人来说，我们只会跟事件循环打交道，而不需要处理这些细节，因此可以只用async定义的协程。但是如果你和我一样好奇为什么不能在async定义的协程中使用asyncio.sleep()，那么这里的解释应该可以让你顿悟。</p>
+<li><p>javap，用来方便的窥探 class 文件内部的细节。javap 有比较多的参数选项，其中-c -v -l -p -s是最常用的。</p>
 </li>
-<li>Generator迭代的就是通过内建的next（）或<strong>next</strong>()方法调用内建的send（）方法。</li>
-<li><p>与其它特性一起，PEP 342 为生成器引入了 send() 方法。这让我们不仅可以暂停生成器，而且能够传递值到生成器暂停的地方。还是以我们的 range() 为例，你可以让序列向前或向后跳过几个值。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">jumping_range</span><span class="params">(up_to)</span>:</span></span><br><span class="line">    <span class="string">"""Generator for the sequence of integers from 0 to up_to, exclusive.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Sending a value into the generator will shift the sequence by that amount.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> index &lt; up_to:</span><br><span class="line">        jump = <span class="keyword">yield</span> index</span><br><span class="line">        <span class="keyword">if</span> jump <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            jump = <span class="number">1</span></span><br><span class="line">        index += jump</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    iterator = jumping_range(<span class="number">5</span>)</span><br><span class="line">    print(next(iterator))  <span class="comment"># 0</span></span><br><span class="line">    print(iterator.send(<span class="number">2</span>))  <span class="comment"># 2</span></span><br><span class="line">    print(next(iterator))  <span class="comment"># 3</span></span><br><span class="line">    print(iterator.send(<span class="number">-1</span>))  <span class="comment"># 2</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> iterator:</span><br><span class="line">        print(x)  <span class="comment"># 3, 4</span></span><br></pre></td></tr></table></figure>
+<li><p>javap的-l的作用：-l 输出行及局部变量表。</p>
 </li>
-<li><p>openstack中就是用了协程模型，利用Python库Eventlet可以产生很多协程，这些协程之间只有在调用到了某些特殊的Eventlet库函数的时候（比如睡眠sleep、IO调用等）才会发生切换。协程的实现主要是在协程休息时把当前的寄存器保存起来，然后重新工作时将其恢复，可以简单的理解为，在单个线程内部有多个栈去保存切换时的线程上下文，因此，协程可以理解为一个线程内的伪并发方式。但是由于Eventlet本身的一些局限性，目前openstack考虑用AsynclIO来代替他。</p>
+<li><p>虚拟机常见的实现方式有两种：Stack based 的和 Register(寄存器) based。比如基于 Stack 的虚拟机有Hotspot JVM、.net CLR，这种基于 Stack 实现虚拟机是一种广泛的实现方法。而基于 Register 的虚拟机有 Lua 语言虚拟机 LuaVM 和 Google 开发的安卓虚拟机 DalvikVM。</p>
+</li>
+<li><p>整个 JVM 指令执行的过程就是局部变量表与操作数栈之间不断 load、store 的过程</p>
+</li>
+<li><p>一个对象创建的套路是这样的：new、dup、invokespecial，下次遇到同样的指令要形成条件反射。</p>
+</li>
+<li><p>HSDB 全称是：Hotspot Debugger，是内置的 JVM 工具，可以用来深入分析 JVM 运行时的内部状态。HSDB 位于 JDK 安装目录下的 lib/sa-jdi.jar 中， 启动 HSDB</p>
+</li>
+<li><p>随着 JDK7 的发布，字节码指令集新增了一个重量级指令 invokedynamic。这个指令为为多语言在 JVM 上百花齐放提供了坚实的技术支撑。</p>
+</li>
+<li><p>鸭子类型（Duck Typing）：当看到一只鸟走起来像鸭子、游泳起来像鸭子、叫起来也像鸭子，那么这只鸟就可以被称为鸭子</p>
 </li>
 </ul>
+<p>在鸭子类型中，关注点在于对象的行为，能做什么；而不是关注对象所属的类型，不关注对象的继承关系</p>
+<ul>
+<li>MethodHandle 又被称为方法句柄或方法指针， 是java.lang.invoke 包中的 一个类，它的出现使得 Java 可以像其它语言一样把函数当做参数进行传递。MethodHandle 类似于反射中的 Method 类，但它比 Method 类要更加灵活和轻量级。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"hello, "</span> + s);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        Foo foo = <span class="keyword">new</span> Foo();</span><br><span class="line"></span><br><span class="line">        MethodType methodType = MethodType.methodType(<span class="keyword">void</span>.class, String.class);</span><br><span class="line">        MethodHandle methodHandle = MethodHandles.lookup().findVirtual(Foo.class, <span class="string">"print"</span>, methodType);</span><br><span class="line">        methodHandle.invokeExact(foo, <span class="string">"world"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">运行输出</span><br><span class="line">hello, world</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Groovy 采用 invokedynamic 指令有哪些好处?</li>
+</ul>
+<p>标准化。使用 Bootstrap Method、CallSite、MethodHandle 机制使得动态调用的方式得到统一<br>保持了字节码层的统一和向后兼容。把动态方法的分派逻辑下放到语言实现层，未来版本可以很方便的进行优化、修改<br>高性能。接近原生 Java 调用的性能，也可以享受到 JIT 优化等</p>
+<ul>
+<li>关于为什么用 invokedynamic 来实现 Lambda，Oracle 的开发者专门写了一篇文章 Translation of Lambda Expressions，介绍了 Java 8 Lambda 设计时的考虑以及实现方法。 文中提到 Lambda 表达式可以通过内部类、method handle、dynamic proxies 等方式实现，但是这些方法各有优劣。实现 Lambda 表达式需要达成两个目标：</li>
+</ul>
+<p>为未来的优化提供最大的灵活性<br>保持类文件字节码格式的稳定<br>使用 invokedynamic 可以很好的兼顾这两个目标。<br><a href="http://cr.openjdk.java.net/~briangoetz/lambda/lambda-translation.html" target="_blank" rel="noopener">http://cr.openjdk.java.net/~briangoetz/lambda/lambda-translation.html</a></p>
+<ul>
+<li><p>lambda 表达式与普通的匿名内部类的实现方式不一样，在编译阶段只是新增了一个 invokedynamic 指令，并没有在编译期间生成匿名内部类，lambda 表达式的内容会被编译成一个静态方法。在运行时 LambdaMetafactory.metafactory 这个工厂方法来动态生成一个内部类 class，该内部类会调用前面生成的静态方法。 lambda 表达式最终还是会生成一个内部类，只不过不是在编译期间而是在运行时，未来的 JDK 会怎么实现 Lambda 表达式可能还会有变化。</p>
+</li>
+<li><p>JDK7 引入的 String 的 switch 实现流程分为下面几步：</p>
+</li>
+</ul>
+<p>计算字符串 hashCode<br>使用 lookupswitch 对整型 hashCode 进行分支<br>对相同 hashCode 值的字符串进行最后的字符串匹配<br>执行 case 块代码</p>
+<ul>
+<li><p>finally为什么一定会被执行？<br>因为底层实现它复制了三份。。。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        tryItOut1();</span><br><span class="line">        handleFinally();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (MyException1 e) &#123;</span><br><span class="line">        handleException(e);</span><br><span class="line">        handleFinally();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">        handleFinally();</span><br><span class="line">        <span class="keyword">throw</span> e;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>finally中有return。如果 finally 中有 return，因为它先于其它的执行，会覆盖其它的返回（包括异常）</p>
+</li>
+<li><p>第一，try-with-resource 语法并不是简单的在 finally 里中加入了closable.close()方法，因为 finally 中的 close 方法如果抛出了异常会淹没真正的异常；<br>第二，引入了 suppressed 异常的概念，能抛出真正的异常，且会调用 addSuppressed 附带上 suppressed 的异常。</p>
+</li>
+</ul>
+<ul>
+<li><p>因为编译器必须保证，无论同步代码块中的代码以何种方式结束（正常 return 或者异常退出），代码中每次调用 monitorenter 必须执行对应的 monitorexit 指令。为了保证这一点，编译器会自动生成一个异常处理器，这个异常处理器的目的就是为了同步代码块抛出异常时能执行 monitorexit。这也是字节码中，只有一个 monitorenter 却有两个 monitorexit 的原因</p>
+</li>
+<li><p>方法级的 synchronized实现原理<br>方法级的同步与上述有所不同，它是由常量池中方法的 ACC_SYNCHRONIZED 标志来隐式实现的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">synchronized</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMe</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">对应字节码</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">testMe</span><span class="params">()</span></span>;</span><br><span class="line">descriptor: ()V</span><br><span class="line">flags: ACC_PUBLIC, ACC_SYNCHRONIZED</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>JVM 不会使用特殊的字节码来调用同步方法，当 JVM 解析方法的符号引用时，它会判断方法是不是同步的（检查方法 ACC_SYNCHRONIZED 是否被设置）。如果是，执行线程会先尝试获取锁。如果是实例方法，JVM 会尝试获取实例对象的锁，如果是类方法，JVM 会尝试获取类锁。在同步方法完成以后，不管是正常返回还是异常返回，都会释放锁</p>
+<ul>
+<li><p>泛型真的被完全擦除了吗<br>LocalVariableTypeTable 和 Signature 是针对泛型引入的新的属性，用来解决泛型的参数类型识别问题，Signature 最为重要，它的作用是存储一个方法在字节码层面的特征签名，这个属性保存的不是原生类型，而是包括了参数化类型的信息。我们依然可以通过反射的方式拿到参数的类型。所谓的擦除，只是把方法 code 属性的字节码进行擦除。</p>
+</li>
+<li><p>因为很多情况下，反射只会调用一次，因此 JVM 想了一招，设置了 15 这个 sun.reflect.inflationThreshold 阈值，反射方法调用超过 15 次时（从 0 开始），采用 ASM 生成新的类，保证后面的调用比 native 要快。如果小于 15 次的情况下，还不如生成直接 native 来的简单直接，还不造成额外类的生成、校验、加载。这种方式被称为 「inflation 机制」。inflation 这个单词也比较有意思，它的字面意思是「膨胀；通货膨胀」。</p>
+</li>
+<li><p>基于 javaagent 来实现的，比如热部署 JRebel、性能调试工具 XRebel、听云、newrelic 等。它能实现的基本功能包括</p>
+</li>
+</ul>
+<p>可以在加载 class 文件之前做拦截，对字节码做修改，可以实现 AOP、调试跟踪、日志记录、性能分析<br>可以在运行期对已加载类的字节码做变更，可以实现热部署等功能。</p>
+<ul>
+<li><p>javaagent 有两个重要的入口类：Premain-Class 和 Agent-Class，分别对应入口函数 premain 和 agentmain，其中 agentmain 可以采用远程 attach API 的方式远程挂载另一个 JVM 进程。</p>
+</li>
+<li><p>ASM 库是设计模式中访问者模式的典型应用，三大核心类 ClassReader(读取字节码、分析)、ClassVisitor（修改各个节点的字节码）、ClassWriter （ClassWriter 的 toByteArray 方法则把最终修改的字节码以 byte 数组的形式返回）</p>
+</li>
+<li><p>字节码反编译查看工具 jdgui，luyten<br>字节码浏览工具 jclasslib<br>ASM<br>vim、hex editor</p>
+</li>
+<li><p>vim 十六进制查看文件<br>vim -b ./com/jclarity/censum/CensumStartupChecks.class 使用 16 进制模式打开:%!xxd</p>
+</li>
+</ul>
+<p>回到普通模式:%!xxd -r保存退出</p>
+<ul>
+<li>如果你去做一个商业版本的软件，有哪些手段可以防止别人用类似的手段破解呢？”</li>
+</ul>
+<ol>
+<li>使用自定义的 classloader，原来的 class 文件经过加密处理，直接解压拿到的的 class 文件没法直接查看，在 classloader 里面进行解密然后加载</li>
+<li>把核心的逻辑写到 jni 层</li>
+</ol>
+<ul>
+<li><p>页面加载时间、首屏时间、页面渲染时间 我们在 chrome console 里输入 window.performance.timing 就可以拿到详细的各阶段时间</p>
+</li>
+<li><p>怎么样做嵌码？<br>Java 服务端：使用我们之前介绍过的 javaagent 字节码 instrument 技术进行字节码改写<br>Node.js 阿里有开源 pandora.js 可以参考借鉴<br>安卓：用 gradle 插件在编译期进行 hook<br>iOS：Hook（Method Swizzling）</p>
+</li>
+<li><p>因为 APM 会产生调用次数放大，一次调用可能产生几十次上百次的的链路调用 trace。因此数据一定要合并上报，减少网络的开销。 这个场景就是 合并上报，指定时间还没达到批量的阈值，有多少条报多少条，针对此场景我写了一个非常简单的工具类，用 BlockingQueue 实现了带超时的批量取</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SIZE = <span class="number">5000</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> BATCH_FETCH_ITEM_COUNT = <span class="number">50</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_WAIT_TIMEOUT = <span class="number">30</span>;</span><br><span class="line"><span class="keyword">private</span> BlockingQueue&lt;String&gt; queue = <span class="keyword">new</span> LinkedBlockingQueue&lt;&gt;(SIZE);</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(<span class="keyword">final</span> String logItem)</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 如果队列已满，需要超时等待一段时间，使用此方法</span></span><br><span class="line">queue.offer(logItem, <span class="number">10</span>, TimeUnit.MILLISECONDS)</span><br><span class="line"><span class="comment">// 如果队列已满，直接需要返回add失败，使用此方法</span></span><br><span class="line">  <span class="keyword">return</span> queue.offer(logItem);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">batchGet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    List&lt;String&gt; bulkData = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    batchGet(queue, bulkData, BATCH_FETCH_ITEM_COUNT, MAX_WAIT_TIMEOUT, TimeUnit.SECONDS);</span><br><span class="line">    <span class="keyword">return</span> bulkData;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;E&gt; <span class="function"><span class="keyword">int</span> <span class="title">batchGet</span><span class="params">(BlockingQueue&lt;E&gt; q,Collection&lt;? <span class="keyword">super</span> E&gt; buffer, <span class="keyword">int</span> numElements, <span class="keyword">long</span> timeout, TimeUnit unit)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> deadline = System.nanoTime() + unit.toNanos(timeout);</span><br><span class="line">    <span class="keyword">int</span> added = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (added &lt; numElements) &#123;</span><br><span class="line">       <span class="comment">// drainTo非常高效，我们先尝试批量取，能取多少是多少，不够的poll来凑</span></span><br><span class="line">        added += q.drainTo(buffer, numElements - added);</span><br><span class="line">        <span class="keyword">if</span> (added &lt; numElements) &#123;</span><br><span class="line">            E e = q.poll(deadline - System.nanoTime(), TimeUnit.NANOSECONDS);</span><br><span class="line">            <span class="keyword">if</span> (e == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            buffer.add(e);</span><br><span class="line">            added++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> added;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>实时告警 实时数据处理可以用时序数据库，也可以用 Redis + Lua 的方式，有告警的情况下可以达到分钟级别的微信、邮件通知，也可以在业务上做告警收敛，避免告警风暴</p>
+</li>
+<li><p>Disruptor在APM系统中可以用在日志模块，异步写日志，也可以用在agent模块，收集trace日志，在collector端根据traceID聚合日志</p>
+</li>
+<li><p>跨进程链路调用的实现<br>跨进程调用是采用在调用方注入当前 traceId 和 spanId 来实现的。以调用 Dubbo 为例，Dubbo 真正的远程调用是在 com.alibaba.dubbo.rpc.cluster.support.AbstractClusterInvoker.invoke()函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">invoke</span><span class="params">(Invocation invocation)</span> <span class="keyword">throws</span> RpcException </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> RpcResult(doInvoke(proxy, invocation.getMethodName(), invocation.getParameterTypes(), invocation.getArguments()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>需要把上述代码改写为<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">invoke</span><span class="params">(Invocation invocation)</span> <span class="keyword">throws</span> RpcException </span>&#123;</span><br><span class="line">    invocation.setAttachment(<span class="string">"X-APM-TraceId"</span>, <span class="string">"traceId-1001"</span>);</span><br><span class="line">    invocation.setAttachment(<span class="string">"X-APM-SpanId"</span>, <span class="string">"spanId-A001"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> RpcResult(doInvoke(proxy, invocation.getMethodName(), invocation.getParameterTypes(), invocation.getArguments()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>实现一个 APM 系统最核心的部分：字节码改写、ThreadLocal 实现调用栈、跨进程调用。<br><a href="https://github.com/arthur-zhang/geek01/tree/master/javaagent-demo" target="_blank" rel="noopener">https://github.com/arthur-zhang/geek01/tree/master/javaagent-demo</a></p>
+</li>
+<li><p>把 Nginx 加入到 APM 链路中来<br>OpenResty 是一个基于 Nginx 与 Lua 的高性能 Web 平台，其内部集成了大量精良的 Lua 库、第三方模块以及大多数的依赖项。用于方便地搭建能够处理超高并发、扩展性极高的动态 Web 应用、Web 服务和动态网关。 使用 OpenResty 可以比较灵活的实现添加 header，获取耗时、状态码等信息，用少量的代码就可以把 Nginx 加入到 APM 链路中来</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">- 定义Headers</span><br><span class="line"><span class="keyword">local</span> X_APM_TRACE_ID = <span class="string">"X-APM-TraceId"</span></span><br><span class="line"><span class="keyword">local</span> X_APM_SPAN_ID = <span class="string">'X-APM-SpanId'</span></span><br><span class="line"><span class="keyword">local</span> X_APM_SPAN_NAME = <span class="string">'Nginx'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 生成Nginx Span Id</span></span><br><span class="line"><span class="keyword">local</span> ngx_span_id = <span class="built_in">string</span>.<span class="built_in">gsub</span>(uuid(), <span class="string">'-'</span>, <span class="string">''</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 从Header中，获取父Span信息</span></span><br><span class="line"><span class="keyword">local</span> ngx_span_parent = <span class="literal">nil</span></span><br><span class="line"><span class="keyword">if</span> req_headers ~= <span class="literal">nil</span> <span class="keyword">then</span></span><br><span class="line">    ngx_span_parent = req_headers[X_APM_SPAN_ID]</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 向Header中，写入Nginx Span相关信息</span></span><br><span class="line"><span class="keyword">local</span> trace_id = req_headers[X_APM_TRACE_ID]</span><br><span class="line"><span class="keyword">if</span> trace_id == <span class="literal">nil</span> <span class="keyword">then</span></span><br><span class="line">    trace_id = <span class="built_in">string</span>.<span class="built_in">gsub</span>(uuid(), <span class="string">'-'</span>, <span class="string">''</span>)</span><br><span class="line">    ngx.req.set_header(X_APM_TRACE_ID, trace_id)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">ngx.req.set_header(X_APM_SPAN_ID, ngx_span_id)</span><br><span class="line">ngx.req.set_header(X_APM_SPAN_NAME, X_APM_SPAN_NAME)</span><br><span class="line">ngx.req.set_header(X_APM_SAMPLED, X_APM_SAMPLED)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>好的书籍<br>Java虚拟机规范(Java SE 8版)</p>
+</li>
+</ul>
+<p>这本书我看了很多遍，每次看都有新的收获，强烈推荐</p>
+<p>自己动手写Java虚拟机</p>
+<p>这本书主要讲的是用 Go 语言来实现 Java 虚拟机，需要你有一点点的 Go 语言基础，我对着这本书敲完了，然后用 Kotlin 重写了一遍，真正了解了 class 文件解析、字节码指令运行的详细细节，也推荐大家看一看</p>
+<p>深入理解Java虚拟机:JVM高级特性与最佳实践</p>
+<p>这本神书不用多说，很经典，笔试面试必备</p>
+<p>JRockit权威指南 深入理解JVM</p>
+<p>这本书也是了解 JVM 非常不多的书籍，里面提到了很多调优相关的东西</p>
+<ul>
+<li>ASM guide<br><a href="https://asm.ow2.io/asm4-guide.pdf" target="_blank" rel="noopener">https://asm.ow2.io/asm4-guide.pdf</a></li>
+</ul>
+<h3 id="掘金小册地址"><a href="#掘金小册地址" class="headerlink" title="掘金小册地址"></a>掘金小册地址</h3><p><a href="https://juejin.im/book/5c25811a6fb9a049ec6b23ee" target="_blank" rel="noopener">https://juejin.im/book/5c25811a6fb9a049ec6b23ee</a></p>
 
       
     </div>
@@ -502,7 +611,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/04/07/python之协程/" title="python之协程">http://yoursite.com/2018/04/07/python之协程/</a>
+    <a href="http://yoursite.com/2019/06/04/Java之字节码知识/" title="Java之字节码知识">http://yoursite.com/2019/06/04/Java之字节码知识/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -517,7 +626,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -542,8 +651,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/06/C之内存对齐/" rel="next" title="C之内存对齐">
-                <i class="fa fa-chevron-left"></i> C之内存对齐
+              <a href="/2019/06/02/读《JAVA并发编程实践》（译）笔记/" rel="next" title="读《JAVA并发编程实践》（译）笔记">
+                <i class="fa fa-chevron-left"></i> 读《JAVA并发编程实践》（译）笔记
               </a>
             
           </div>
@@ -551,10 +660,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/08/python之intern机制/" rel="prev" title="python之intern机制">
-                python之intern机制 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

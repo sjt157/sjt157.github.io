@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-06-02T03:12:24.646Z</updated>
+  <updated>2019-06-04T06:01:26.809Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java之字节码知识</title>
+    <link href="http://yoursite.com/2019/06/04/Java%E4%B9%8B%E5%AD%97%E8%8A%82%E7%A0%81%E7%9F%A5%E8%AF%86/"/>
+    <id>http://yoursite.com/2019/06/04/Java之字节码知识/</id>
+    <published>2019-06-04T06:00:27.000Z</published>
+    <updated>2019-06-04T06:01:26.809Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;第一次买了一本掘金小册&lt;jvm 字节码从入门到精通=&quot;&quot;&gt;，花了19.9元，记录下收获。&lt;/jvm&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;用xxd 命令以 16 进制的方式查看这个 class 文件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;javap，用来方便的窥探
+        
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>读《JAVA并发编程实践》（译）笔记</title>
@@ -522,32 +553,6 @@
     
     
       <category term="Mysql" scheme="http://yoursite.com/tags/Mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java之堆外内存</title>
-    <link href="http://yoursite.com/2019/03/23/Java%E4%B9%8B%E5%A0%86%E5%A4%96%E5%86%85%E5%AD%98/"/>
-    <id>http://yoursite.com/2019/03/23/Java之堆外内存/</id>
-    <published>2019-03-23T05:51:21.000Z</published>
-    <updated>2019-03-29T12:31:28.563Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;堆外内存&quot;&gt;&lt;a href=&quot;#堆外内存&quot; class=&quot;headerlink&quot; title=&quot;堆外内存&quot;&gt;&lt;/a&gt;堆外内存&lt;/h3&gt;&lt;p&gt;Netty的ByteBuffer采用DIRECT
-        
-      
-    
-    </summary>
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
     
   </entry>
   
