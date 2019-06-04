@@ -92,12 +92,15 @@ theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
-deploy:
- - type: git
-   repo: git@github.com:sjt157/sjt157.github.io.git
+#deploy:
+# - type: git
+#   repo: git@github.com:sjt157/sjt157.github.io.git
 
- - type: git
-   repo: https://git.coding.net/sjt157/sjt157.git
-
+# - type: git
+#   repo: https://git.coding.net/sjt157/sjt157.git
+depoly:
+  -type: git
+    repo: https://gh_token@github.com/sjt157/sjt157.github.io.git
+    branch: master
 passage_end_tag:
    enabled: true
