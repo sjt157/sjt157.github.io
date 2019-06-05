@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-circle.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0c5a4df4.js","daovoice")
+  daovoice('init', {
+      app_id: "0c5a4df4"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Architecture," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="诗与远方" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="什么场景下会使用分布式锁？单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。 实现一个分布式锁应该具备的特性： 高可用、高性能的获取锁与释放锁 在">
+<meta name="keywords" content="Architecture">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式锁">
+<meta property="og:url" content="http://yoursite.com/2019/03/11/分布式锁/index.html">
+<meta property="og:site_name" content="诗与远方">
+<meta property="og:description" content="什么场景下会使用分布式锁？单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。 实现一个分布式锁应该具备的特性： 高可用、高性能的获取锁与释放锁 在">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-03T12:28:29.488Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分布式锁">
+<meta name="twitter:description" content="什么场景下会使用分布式锁？单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。 实现一个分布式锁应该具备的特性： 高可用、高性能的获取锁与释放锁 在">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","offset":12,"b2t":true,"scrollpercent":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/11/分布式锁/"/>
+
+
+
+
+
+  <title>分布式锁 | 诗与远方</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">诗与远方</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个走在前端的后端人</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-top">
+          <a href="/top/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            阅读排行
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/分布式锁/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songjiantao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/15856742?s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗与远方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">分布式锁</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-11T10:56:57+08:00">
+                2019-03-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-03T20:28:29+08:00">
+                2019-06-03
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Architecture/" itemprop="url" rel="index">
+                    <span itemprop="name">Architecture</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/03/11/分布式锁/" class="leancloud_visitors" data-flag-title="分布式锁">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+	         <span> ℃ </span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="什么场景下会使用分布式锁？"><a href="#什么场景下会使用分布式锁？" class="headerlink" title="什么场景下会使用分布式锁？"></a>什么场景下会使用分布式锁？</h3><p>单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。</p>
+<h3 id="实现一个分布式锁应该具备的特性："><a href="#实现一个分布式锁应该具备的特性：" class="headerlink" title="实现一个分布式锁应该具备的特性："></a>实现一个分布式锁应该具备的特性：</h3><ul>
+<li>高可用、高性能的获取锁与释放锁</li>
+<li>在分布式系统环境下，一个方法或者变量同一时间只能被一个线程操作</li>
+<li>具备锁失效机制，网络中断或宕机无法释放锁时，锁必须被删除，防止死锁</li>
+<li>具备阻塞锁特性，即没有获取到锁，则继续等待获取锁</li>
+<li>具备非阻塞锁特性，即没有获取到锁，则直接返回获取锁失败</li>
+<li>具备可重入特性，一个线程中可以多次获取同一把锁，比如一个线程在执行一个带锁的方法，该方法中又调用了另一个需要相同锁的方法，则该线程可以直接执行调用的方法，而无需重新获得锁</li>
+</ul>
+<h3 id="关于分布式锁几种实现方式："><a href="#关于分布式锁几种实现方式：" class="headerlink" title="关于分布式锁几种实现方式："></a>关于分布式锁几种实现方式：</h3><ul>
+<li>基于数据库实现分布式锁</li>
+<li>基于 Redis 实现分布式锁</li>
+<li>基于 Zookeeper 实现分布式锁</li>
+</ul>
+<hr>
+<h3 id="Zookeeper实现分布式锁"><a href="#Zookeeper实现分布式锁" class="headerlink" title="Zookeeper实现分布式锁"></a>Zookeeper实现分布式锁</h3><p>前两种对于分布式生产环境来说并不是特别推荐，高并发下数据库锁性能太差，Redis在锁时间限制和缓存一致性存在一定问题。这里我们重点介绍一下 Zookeeper 如何实现分布式锁。</p>
+<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><p>ZooKeeper是一个分布式的，开放源码的分布式应用程序协调服务，它内部是一个分层的文件系统目录树结构，规定同一个目录下只能存在唯一文件名。</p>
+<h4 id="ZooKeeper数据模型与文件系统目录树-源自网络"><a href="#ZooKeeper数据模型与文件系统目录树-源自网络" class="headerlink" title="ZooKeeper数据模型与文件系统目录树(源自网络)"></a>ZooKeeper数据模型与文件系统目录树(源自网络)</h4><ul>
+<li>数据模型<br>PERSISTENT 持久化节点，节点创建后，不会因为会话失效而消失<br>EPHEMERAL 临时节点， 客户端session超时此类节点就会被自动删除<br>EPHEMERAL_SEQUENTIAL 临时自动编号节点<br>PERSISTENT_SEQUENTIAL 顺序自动编号持久化节点，这种节点会根据当前已存在的节点数自动加 1</li>
+<li>监视器（watcher）<br>当创建一个节点时，可以注册一个该节点的监视器，当节点状态发生改变时，watch被触发时，ZooKeeper将会向客户端发送且仅发送一条通知，因为watch只能被触发一次。<br>根据zookeeper的这些特性，我们来看看如何利用这些特性来实现分布式锁：</li>
+</ul>
+<ol>
+<li>创建一个锁目录lock</li>
+<li>线程A获取锁会在lock目录下，创建临时顺序节点</li>
+<li>获取锁目录下所有的子节点，然后获取比自己小的兄弟节点，如果不存在，则说明当前线程顺序号最小，获得锁</li>
+<li>线程B创建临时节点并获取所有兄弟节点，判断自己不是最小节点，设置监听(watcher)比自己次小的节点</li>
+<li>线程A处理完，删除自己的节点，线程B监听到变更事件，判断自己是最小的节点，获得锁</li>
+</ol>
+<h4 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h4><p>尽管ZooKeeper已经封装好复杂易出错的关键服务，将简单易用的接口和性能高效、功能稳定的系统提供给用户。但是如果让一个普通开发者去手撸一个分布式锁还是比较困难的，在秒杀案例中我们直接使用 Apache 开源的curator 开实现 Zookeeper 分布式锁。<br>这里我们使用以下版本，截止目前最新版4.0.1：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- zookeeper 分布式锁、注意zookeeper版本  这里对应的是<span class="number">3.4</span>.6--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.apache.curator&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;curator-recipes&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.10.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>首先，我们看下InterProcessLock接口中的几个方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 获取锁、阻塞等待、可重入</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">acquire</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 获取锁、阻塞等待、可重入、超时则获取失败</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">acquire</span><span class="params">(<span class="keyword">long</span> time, TimeUnit unit)</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 释放锁</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">release</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Returns true if the mutex is acquired by a thread in this JVM</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isAcquiredInThisProcess</span><span class="params">()</span></span>;</span><br><span class="line">获取锁：</span><br><span class="line"><span class="comment">//获取锁</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">acquire</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ( !internalLock(-<span class="number">1</span>, <span class="keyword">null</span>) )</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"Lost connection while trying to acquire lock: "</span> + basePath);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">具体实现：</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">internalLock</span><span class="params">(<span class="keyword">long</span> time, TimeUnit unit)</span> <span class="keyword">throws</span> Exception</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         实现同一个线程可重入性，如果当前线程已经获得锁，</span></span><br><span class="line"><span class="comment">         则增加锁数据中lockCount的数量(重入次数)，直接返回成功</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        <span class="comment">//获取当前线程</span></span><br><span class="line">        Thread currentThread = Thread.currentThread();</span><br><span class="line">        <span class="comment">//获取当前线程重入锁相关数据</span></span><br><span class="line">        LockData lockData = threadData.get(currentThread);</span><br><span class="line">        <span class="keyword">if</span> ( lockData != <span class="keyword">null</span> )</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//原子递增一个当前值，记录重入次数，后面锁释放会用到</span></span><br><span class="line">            lockData.lockCount.incrementAndGet();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//尝试连接zookeeper获取锁</span></span><br><span class="line">        String lockPath = internals.attemptLock(time, unit, getLockNodeBytes());</span><br><span class="line">        <span class="keyword">if</span> ( lockPath != <span class="keyword">null</span> )</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//创建可重入锁数据，用于记录当前线程重入次数</span></span><br><span class="line">            LockData newLockData = <span class="keyword">new</span> LockData(currentThread, lockPath);</span><br><span class="line">            threadData.put(currentThread, newLockData);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//获取锁超时或者zk通信异常返回失败</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">Zookeeper获取锁实现：</span><br><span class="line"> <span class="function">String <span class="title">attemptLock</span><span class="params">(<span class="keyword">long</span> time, TimeUnit unit, <span class="keyword">byte</span>[] lockNodeBytes)</span> <span class="keyword">throws</span> Exception</span></span><br><span class="line"><span class="function">    </span>&#123;    </span><br><span class="line">        <span class="comment">//获取当前时间戳</span></span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">long</span>      startMillis = System.currentTimeMillis();</span><br><span class="line">        <span class="comment">//如果unit不为空(非阻塞锁)，把当前传入time转为毫秒</span></span><br><span class="line">        <span class="keyword">final</span> Long      millisToWait = (unit != <span class="keyword">null</span>) ? unit.toMillis(time) : <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">//子节点标识</span></span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">byte</span>[]    localLockNodeBytes = (revocable.get() != <span class="keyword">null</span>) ? <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>] : lockNodeBytes;</span><br><span class="line">        <span class="comment">//尝试次数</span></span><br><span class="line">        <span class="keyword">int</span>             retryCount = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        String          ourPath = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">boolean</span>         hasTheLock = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">boolean</span>         isDone = <span class="keyword">false</span>;</span><br><span class="line">        <span class="comment">//自旋锁，循环获取锁</span></span><br><span class="line">        <span class="keyword">while</span> ( !isDone )</span><br><span class="line">        &#123;</span><br><span class="line">            isDone = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//在锁节点下创建临时且有序的子节点，例如:_c_008c1b07-d577-4e5f-8699-8f0f98a013b4-lock-000000001</span></span><br><span class="line">                ourPath = driver.createsTheLock(client, path, localLockNodeBytes);</span><br><span class="line">                <span class="comment">//如果当前子节点序号最小，获得锁则直接返回，否则阻塞等待前一个子节点删除通知(release释放锁)</span></span><br><span class="line">                hasTheLock = internalLockLoop(startMillis, millisToWait, ourPath);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">catch</span> ( KeeperException.NoNodeException e )</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//异常处理，如果找不到节点，这可能发生在session过期等时，因此，如果重试允许，只需重试一次即可</span></span><br><span class="line">                <span class="keyword">if</span> ( client.getZookeeperClient().getRetryPolicy().allowRetry(retryCount++, System.currentTimeMillis() - startMillis, RetryLoop.getDefaultRetrySleeper()) )</span><br><span class="line">                &#123;</span><br><span class="line">                    isDone = <span class="keyword">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">throw</span> e;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果获取锁则返回当前锁子节点路径</span></span><br><span class="line">        <span class="keyword">if</span> ( hasTheLock )</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> ourPath;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">判断是否为最小节点：</span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">internalLockLoop</span><span class="params">(<span class="keyword">long</span> startMillis, Long millisToWait, String ourPath)</span> <span class="keyword">throws</span> Exception</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span>     haveTheLock = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">boolean</span>     doDelete = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> ( revocable.get() != <span class="keyword">null</span> )</span><br><span class="line">            &#123;</span><br><span class="line">                client.getData().usingWatcher(revocableWatcher).forPath(ourPath);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//自旋获取锁</span></span><br><span class="line">            <span class="keyword">while</span> ( (client.getState() == CuratorFrameworkState.STARTED) &amp;&amp; !haveTheLock )</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//获取所有子节点集合</span></span><br><span class="line">                List&lt;String&gt;        children = getSortedChildren();</span><br><span class="line">                <span class="comment">//判断当前子节点是否为最小子节点</span></span><br><span class="line">                String              sequenceNodeName = ourPath.substring(basePath.length() + <span class="number">1</span>); <span class="comment">// +1 to include the slash</span></span><br><span class="line"></span><br><span class="line">                PredicateResults    predicateResults = driver.getsTheLock(client, children, sequenceNodeName, maxLeases);</span><br><span class="line">                <span class="comment">//如果是最小节点则获取锁</span></span><br><span class="line">                <span class="keyword">if</span> ( predicateResults.getsTheLock() )</span><br><span class="line">                &#123;</span><br><span class="line">                    haveTheLock = <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">//获取前一个节点，用于监听</span></span><br><span class="line">                    String  previousSequencePath = basePath + <span class="string">"/"</span> + predicateResults.getPathToWatch();</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">synchronized</span>(<span class="keyword">this</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">try</span> </span><br><span class="line">                        &#123;</span><br><span class="line">                            <span class="comment">//这里使用getData()接口而不是checkExists()是因为，如果前一个子节点已经被删除了那么会抛出异常而且不会设置事件监听器，而checkExists虽然也可以获取到节点是否存在的信息但是同时设置了监听器，这个监听器其实永远不会触发，对于Zookeeper来说属于资源泄露</span></span><br><span class="line">                            client.getData().usingWatcher(watcher).forPath(previousSequencePath);</span><br><span class="line">                            <span class="keyword">if</span> ( millisToWait != <span class="keyword">null</span> )</span><br><span class="line">                            &#123;</span><br><span class="line">                                millisToWait -= (System.currentTimeMillis() - startMillis);</span><br><span class="line">                                startMillis = System.currentTimeMillis();</span><br><span class="line">                                <span class="comment">//如果设置了获取锁等待时间</span></span><br><span class="line">                                <span class="keyword">if</span> ( millisToWait &lt;= <span class="number">0</span> )</span><br><span class="line">                                &#123;</span><br><span class="line">                                    doDelete = <span class="keyword">true</span>;    <span class="comment">// 超时则删除子节点</span></span><br><span class="line">                                    <span class="keyword">break</span>;</span><br><span class="line">                                &#125;</span><br><span class="line">                                <span class="comment">//等待超时时间</span></span><br><span class="line">                                wait(millisToWait);</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="keyword">else</span></span><br><span class="line">                            &#123;</span><br><span class="line">                                wait();<span class="comment">//一直等待</span></span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">catch</span> ( KeeperException.NoNodeException e ) </span><br><span class="line">                        &#123;</span><br><span class="line">                            <span class="comment">// it has been deleted (i.e. lock released). Try to acquire again</span></span><br><span class="line">                            <span class="comment">//如果前一个子节点已经被删除则deException，只需要自旋获取一次即可</span></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> ( Exception e )</span><br><span class="line">        &#123;</span><br><span class="line">            ThreadUtils.checkInterrupted(e);</span><br><span class="line">            doDelete = <span class="keyword">true</span>;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">finally</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> ( doDelete )</span><br><span class="line">            &#123;</span><br><span class="line">                deleteOurPath(ourPath);<span class="comment">//获取锁超时则删除节点</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> haveTheLock;</span><br><span class="line">    &#125;</span><br><span class="line">释放锁：</span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">release</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line"></span><br><span class="line">        Thread currentThread = Thread.currentThread();</span><br><span class="line">        LockData lockData = threadData.get(currentThread);</span><br><span class="line">        <span class="comment">//没有获取锁，你释放个球球，如果为空抛出异常</span></span><br><span class="line">        <span class="keyword">if</span> ( lockData == <span class="keyword">null</span> )</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalMonitorStateException(<span class="string">"You do not own the lock: "</span> + basePath);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//获取重入数量</span></span><br><span class="line">        <span class="keyword">int</span> newLockCount = lockData.lockCount.decrementAndGet();</span><br><span class="line">        <span class="comment">//如果重入锁次数大于0，直接返回</span></span><br><span class="line">        <span class="keyword">if</span> ( newLockCount &gt; <span class="number">0</span> )</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果重入锁次数小于0，抛出异常</span></span><br><span class="line">        <span class="keyword">if</span> ( newLockCount &lt; <span class="number">0</span> )</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalMonitorStateException(<span class="string">"Lock count has gone negative for lock: "</span> + basePath);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//释放锁</span></span><br><span class="line">            internals.releaseLock(lockData.lockPath);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">finally</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//移除当前线程锁数据</span></span><br><span class="line">            threadData.remove(currentThread);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试案例<br>为了更好的理解其原理和代码分析中获取锁的过程，这里我们实现一个简单的Demo：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 基于curator的zookeeper分布式锁</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CuratorUtil</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String address = <span class="string">"192.168.1.180:2181"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1、重试策略：初试时间为1s 重试3次</span></span><br><span class="line">        RetryPolicy retryPolicy = <span class="keyword">new</span> ExponentialBackoffRetry(<span class="number">1000</span>, <span class="number">3</span>); </span><br><span class="line">        <span class="comment">//2、通过工厂创建连接</span></span><br><span class="line">        CuratorFramework client = CuratorFrameworkFactory.newClient(address, retryPolicy);</span><br><span class="line">        <span class="comment">//3、开启连接</span></span><br><span class="line">        client.start();</span><br><span class="line">        <span class="comment">//4 分布式锁</span></span><br><span class="line">        <span class="keyword">final</span> InterProcessMutex mutex = <span class="keyword">new</span> InterProcessMutex(client, <span class="string">"/curator/lock"</span>); </span><br><span class="line">        <span class="comment">//读写锁</span></span><br><span class="line">        <span class="comment">//InterProcessReadWriteLock readWriteLock = new InterProcessReadWriteLock(client, "/readwriter");</span></span><br><span class="line"></span><br><span class="line">        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            fixedThreadPool.submit(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        <span class="comment">//尝试获取锁，最多等待5秒</span></span><br><span class="line">                        flag = mutex.acquire(<span class="number">5</span>, TimeUnit.SECONDS);</span><br><span class="line">                        Thread currentThread = Thread.currentThread();</span><br><span class="line">                        <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">                            System.out.println(<span class="string">"线程"</span>+currentThread.getId()+<span class="string">"获取锁成功"</span>);</span><br><span class="line">                        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                            System.out.println(<span class="string">"线程"</span>+currentThread.getId()+<span class="string">"获取锁失败"</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="comment">//模拟业务逻辑，延时4秒</span></span><br><span class="line">                        Thread.sleep(<span class="number">4000</span>);</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125; <span class="keyword">finally</span>&#123;</span><br><span class="line">                        <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">                            <span class="keyword">try</span> &#123;</span><br><span class="line">                                mutex.release();</span><br><span class="line">                            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                                e.printStackTrace();</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里我们开启5个线程，每个线程获取锁的最大等待时间为5秒，为了模拟具体业务场景，方法中设置4秒等待时间。开始执行main方法，通过ZooInspector监控/curator/lock下的节点如下图：</p>
+<p>对，没错，设置4秒的业务处理时长就是为了观察生成了几个顺序节点。果然如案例中所述，每个线程都会生成一个节点并且还是有序的。<br>观察控制台，我们会发现只有两个线程获取锁成功，另外三个线程超时获取锁失败会自动删除节点。线程执行完毕我们刷新一下/curator/lock节点，发现刚才创建的五个子节点已经不存在了。</p>
+<hr>
+<h3 id="基于数据库的分布式锁"><a href="#基于数据库的分布式锁" class="headerlink" title="基于数据库的分布式锁"></a>基于数据库的分布式锁</h3><h4 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h4><p>数据库的乐观锁(通过版本号)或者悲观锁(通过for update)<br>还可以通过mysql的unique key来实现分布式锁，在mysql中插入一条记录，表明获取锁。删除一条记录，表明释放锁。 且在mysql表中设置一个unique key字段， 当有一台机器获得锁后， 其他机器无法获取。<br> 这个有几个问题：</p>
+<pre><code>1.  如果一台机器获得锁，在释放锁之前进程挂了， 那么其他机器无法获取到锁。 可以引入锁有效时间的概念，超时后，删除记录，释放锁。
+
+2.  万一获取锁的操作失败了，就直接做错误处理， 也不太好。 可以引入循环重试的方式来解决，控制重试次数。
+</code></pre><p>参考<a href="https://blog.csdn.net/stpeace/article/details/84679324" target="_blank" rel="noopener">https://blog.csdn.net/stpeace/article/details/84679324</a></p>
+<h4 id="基于数据库分布式锁注意的地方"><a href="#基于数据库分布式锁注意的地方" class="headerlink" title="基于数据库分布式锁注意的地方"></a>基于数据库分布式锁注意的地方</h4><ul>
+<li>基于数据库表的方式需要集群中多个节点的服务器时钟同步。</li>
+<li>基于mysql数据库时需要在JDBC连接地址中增加时区配置，serverTimezone=GMT%2b8。<br>关于脑裂问题：</li>
+<li>由于网络、进程假死、中间件可能导致的脑裂问题在一定程度上不可避免，所以我们需要做一种权衡，即脑裂发生时是否可以避免问题进一步扩大。基于JDBC的分布式锁住要避免多个节点同时对事务表进行扫描，两者都是进行数据库操作，因为它们都基于数据库所以能够在一定程度上避免脑裂导致的集群处理问题，但是基于zookeeper,redis的方式可能会导致真实的脑裂发生</li>
+</ul>
+<hr>
+<h3 id="基于-Redis-的分布式锁（可以单机也可以集群）"><a href="#基于-Redis-的分布式锁（可以单机也可以集群）" class="headerlink" title="基于 Redis 的分布式锁（可以单机也可以集群）"></a>基于 Redis 的分布式锁（可以单机也可以集群）</h3><p>首先说明一下setnx()命令，setnx的含义就是SET if Not Exists，其主要有两个参数 setnx(key, value)。该方法是原子的，如果key不存在，则设置当前key成功，返回1；如果当前key已经存在，则设置当前key失败，返回0。value是System.currentTimeMillis() (获取锁的时间)+锁持有的时间。但是要注意的是setnx命令不能设置key的超时时间，只能通过expire()来对key设置。</p>
+<h4 id="具体的使用步骤如下"><a href="#具体的使用步骤如下" class="headerlink" title="具体的使用步骤如下:"></a>具体的使用步骤如下:</h4><ol>
+<li>setnx(lockkey, 1) 如果返回0，则说明占位失败；如果返回1，则说明占位成功</li>
+<li>expire()命令对lockkey设置超时时间，为的是避免死锁问题。</li>
+<li>执行完业务代码后，可以通过delete命令删除key。<br>为了保证在某个Redis节点不可用的时候算法能够继续运行，这个获取锁的操作还有一个超时时间(timeOut)，它要远小于锁的有效时间（几十毫秒量级）<h4 id="上边的解决方案可能存在的问题"><a href="#上边的解决方案可能存在的问题" class="headerlink" title="上边的解决方案可能存在的问题"></a>上边的解决方案可能存在的问题</h4>这个方案其实是可以解决日常工作中的需求的，但从技术方案的探讨上来说，可能还有一些可以完善的地方。比如，如果在第一步setnx执行成功后，在expire()命令执行成功前，发生了宕机的现象，那么就依然会出现死锁的问题，所以如果要对其进行完善的话，可以使用redis的setnx()、get()和getset()方法来实现分布式锁。</li>
+</ol>
+<p>getSet(key,value)的命令会返回key对应的value，然后再把key原来的值更新为value。也就是说getSet()返回的是已过期的时间戳。如果这个已过期的时间戳等于currentValue，说明获取锁成功。</p>
+<p>假设客户端A一开始持有锁，保存在redis中的value(时间戳)等于T1。 这时候客户端A的锁已经过期，那么C，D客户端就可以开始争抢锁了。currentValue是T1，C客户端的value是T2，D客户端的value是T3。首先C客户端进入到String oldValue = jedis.getSet(realKey, value);这行代码，获得的oldValue是T1，同时也会把realKey对应的value更新为T2。再执行后续的代码，oldValue等于currentValue，那么客户端C获取锁成功。接着D客户端也执行到了String oldValue = jedis.getSet(realKey, value);这行代码，获取的oldValue是T2，同时也会把realKey对应的value更新为T3。由于oldValue不等于currentValue，那么客户端D获取锁失败。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">lock</span><span class="params">(KeyPrefix prefix, String key, String value)</span> </span>&#123;</span><br><span class="line">    Jedis jedis = <span class="keyword">null</span>;</span><br><span class="line">    Long lockWaitTimeOut = <span class="number">200L</span>;</span><br><span class="line">    Long deadTimeLine = System.currentTimeMillis() + lockWaitTimeOut;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        jedis = jedisPool.getResource();</span><br><span class="line">        String realKey = prefix.getPrefix() + key;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">            <span class="keyword">if</span> (jedis.setnx(realKey, value) == <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            String currentValue = jedis.get(realKey);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// if lock is expired</span></span><br><span class="line">            <span class="keyword">if</span> (!StringUtils.isEmpty(currentValue) &amp;&amp;</span><br><span class="line">                    Long.valueOf(currentValue) &lt; System.currentTimeMillis()) &#123;</span><br><span class="line">                <span class="comment">// gets last lock time</span></span><br><span class="line">                String oldValue = jedis.getSet(realKey, value);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (!StringUtils.isEmpty(oldValue) &amp;&amp; oldValue.equals(currentValue)) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            lockWaitTimeOut = deadTimeLine - System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (lockWaitTimeOut &lt;= <span class="number">0L</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        returnToPool(jedis);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="单机Redis分布式锁"><a href="#单机Redis分布式锁" class="headerlink" title="单机Redis分布式锁"></a>单机Redis分布式锁</h4><p>不同的客户端通过生成随机字符串对制定的Key进行set if not exists + ttl 操作来进行抢占,通过key的TTL时间来决定持有锁的时间. 然后通过LUA脚本执行事务操作进行Compare and delete进行释放锁.其中的TTL和本机时钟有关.</p>
+<ul>
+<li>释放锁示例<br>lua脚本内容如下<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> redis.call(<span class="string">"get"</span>,KEYS[<span class="number">1</span>]) == ARGV[<span class="number">1</span>] <span class="keyword">then</span></span><br><span class="line">    <span class="keyword">return</span> redis.call(<span class="string">"del"</span>,KEYS[<span class="number">1</span>])</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这段Lua脚本在执行的时候要把的lockValue作为ARGV[1]的值传进去，把lockKey作为KEYS[1]的值传进去。现在来看看解锁的java代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unlock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 使用lua脚本进行原子删除操作</span></span><br><span class="line">    String checkAndDelScript = <span class="string">"if redis.call('get', KEYS[1]) == ARGV[1] then "</span> +</span><br><span class="line">                                <span class="string">"return redis.call('del', KEYS[1]) "</span> +</span><br><span class="line">                                <span class="string">"else "</span> +</span><br><span class="line">                                <span class="string">"return 0 "</span> +</span><br><span class="line">                                <span class="string">"end"</span>;</span><br><span class="line">    jedis.eval(checkAndDelScript, <span class="number">1</span>, lockKey, lockValue);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>。</p>
+<h4 id="集群Redis分布式锁"><a href="#集群Redis分布式锁" class="headerlink" title="集群Redis分布式锁"></a>集群Redis分布式锁</h4><p>Redis 的作者提供了RedLock 的算法来实现一个分布式锁。</p>
+<ul>
+<li>加锁<br>RedLock算法加锁步骤如下:</li>
+</ul>
+<ol>
+<li>获取当前Unix时间，以毫秒为单位。</li>
+<li>依次尝试从N个实例，使用相同的key和随机值获取锁。在步骤2，当向Redis设置锁时,客户端应该设置一个网络连接和响应超时时间，这个超时时间应该小于锁的失效时间。例如你的锁自动失效时间为10秒，则超时时间应该在5-50毫秒之间。这样可以避免服务器端Redis已经挂掉的情况下，客户端还在死死地等待响应结果。如果服务器端没有在规定时间内响应，客户端应该尽快尝试另外一个Redis实例。</li>
+<li>客户端使用当前时间减去开始获取锁时间（步骤1记录的时间）就得到获取锁使用的时间。当且仅当从大多数（这里是3个节点）的Redis节点都取到锁，并且使用的时间小于锁失效时间时，锁才算获取成功。</li>
+<li>如果取到了锁，key的真正有效时间等于有效时间减去获取锁所使用的时间（步骤3计算的结果）。</li>
+<li>如果因为某些原因，获取锁失败（没有在至少N/2+1个Redis实例取到锁或者取锁时间已经超过了有效时间），客户端应该在所有的Redis实例上进行解锁（即便某些Redis实例根本就没有加锁成功）。</li>
+</ol>
+<ul>
+<li>解锁<br>向所有的Redis实例发送释放锁命令即可，不用关心之前有没有从Redis实例成功获取到锁.</li>
+</ul>
+<h4 id="实际秒杀场景中的应用"><a href="#实际秒杀场景中的应用" class="headerlink" title="实际秒杀场景中的应用"></a>实际秒杀场景中的应用</h4><p>实际上抢购，好像不用分布式锁，？？？？而是直接将库存放入到redis，是否结束标记放入到内存中，通过内存标记和redis中的decr()预减库存，然后将秒杀消息入队到消息队列中，最后消费消息并落地到DB中</p>
+<h4 id="分布式锁的重入该如何实现？"><a href="#分布式锁的重入该如何实现？" class="headerlink" title="分布式锁的重入该如何实现？"></a>分布式锁的重入该如何实现？</h4><p>待补充</p>
+<h4 id="如何确保过期时间大于业务执行时间"><a href="#如何确保过期时间大于业务执行时间" class="headerlink" title="如何确保过期时间大于业务执行时间"></a>如何确保过期时间大于业务执行时间</h4><p>可以加一个定时线程增加过期时间</p>
+<h4 id="codis"><a href="#codis" class="headerlink" title="codis"></a>codis</h4><p>待补充</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://juejin.im/post/5b737b9b518825613d3894f4" target="_blank" rel="noopener">https://juejin.im/post/5b737b9b518825613d3894f4</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+    <div>
+        
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+     
+    </div>
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="songjiantao 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    songjiantao
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/03/11/分布式锁/" title="分布式锁">http://yoursite.com/2019/03/11/分布式锁/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Architecture/" rel="tag"># Architecture</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/11/你知道CoreDump吗？/" rel="next" title="你知道CoreDump吗？">
+                <i class="fa fa-chevron-left"></i> 你知道CoreDump吗？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/11/用户态与内核态/" rel="prev" title="用户态与内核态">
+                用户态与内核态 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+   
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+ <div id="gitalk-container"></div>
+
+  
+
+ 
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/15856742?s=400"
+                alt="songjiantao" />
+            
+              <p class="site-author-name" itemprop="name">songjiantao</p>
+              <p class="site-description motion-element" itemprop="description">生活不应当只有眼前的苟且，还有诗和远方，与其用泪水忏悔昨天，不如用汗水拼搏明天．</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">97</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sjt157" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1872963677@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/song-jian-tao-82" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+    <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=558458785&auto=1&height=66"></iframe>
+    </div>
+ 
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018-3-8 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songjiantao</span>
+
+  
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+   <div class="bg_content">
+    <canvas id="canvas"></canvas>
+   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+   <script src="/js/src/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'f9bf0f6707f8577aae5d',
+          clientSecret: '903443676eac3a17f247cc1267503ed79f8f3b04',
+          repo: 'sjt157.github.io',
+          owner: 'sjt157',
+          admin: ['sjt157'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("XbebmEYzcC5xK6pt32pG6Wu9-gzGzoHsz", "iwAHCTEI8zqrflOEjkSucSnU");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 10113,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascripr" src="/js/src/zhihu.js"></script>
