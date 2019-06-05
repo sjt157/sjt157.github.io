@@ -99,7 +99,7 @@ theme: next
 # - type: git
 #   repo: https://git.coding.net/sjt157/sjt157.git
 depoly:
-  -type: git
+  - type: git
     repo: https://gh_token@github.com/sjt157/sjt157.github.io.git
     branch: master
 passage_end_tag:
