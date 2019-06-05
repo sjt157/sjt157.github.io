@@ -30,7 +30,7 @@ script:
 after_script:
   - git config user.name "sjt157"
   - git config user.email "1872963677@qq.com"
-  - sed -i "s/gh_token/${GH_TOKEN}/g" ./_config.yml
-  - hexo depoly
+  - sed -i "s/gh_token/${GH_TOKEN}/g" _config.yml
+  - hexo -d
 
 
