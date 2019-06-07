@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-06-06T01:36:37.683Z</updated>
+  <updated>2019-06-07T08:03:12.373Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Kafka的各种参数</title>
+    <link href="http://yoursite.com/2019/06/07/Kafka%E7%9A%84%E5%90%84%E7%A7%8D%E5%8F%82%E6%95%B0/"/>
+    <id>http://yoursite.com/2019/06/07/Kafka的各种参数/</id>
+    <published>2019-06-07T08:02:29.000Z</published>
+    <updated>2019-06-07T08:03:12.373Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;buffer-memory参数&quot;&gt;&lt;a href=&quot;#buffer-memory参数&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Kakfa" scheme="http://yoursite.com/categories/Kakfa/"/>
+    
+    
+      <category term="Kafka" scheme="http://yoursite.com/tags/Kafka/"/>
+    
+  </entry>
   
   <entry>
     <title>开源项目汇总</title>
@@ -526,33 +552,6 @@
     
     
       <category term="TCP/IP" scheme="http://yoursite.com/tags/TCP-IP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker容器可视化监控中心搭建</title>
-    <link href="http://yoursite.com/2019/03/23/Docker%E5%AE%B9%E5%99%A8%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%E4%B8%AD%E5%BF%83%E6%90%AD%E5%BB%BA/"/>
-    <id>http://yoursite.com/2019/03/23/Docker容器可视化监控中心搭建/</id>
-    <published>2019-03-23T09:22:47.000Z</published>
-    <updated>2019-03-23T09:23:21.132Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;我的服务器上跑了大概15个容器，比如kafka，zookeeper，ES等，我想监控他们怎么办？&lt;/p&gt;
-&lt;h3 id=&quot;准备镜像&quot;&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="Docker" scheme="http://yoursite.com/categories/Docker/"/>
-    
-    
-      <category term="Docker" scheme="http://yoursite.com/tags/Docker/"/>
     
   </entry>
   
