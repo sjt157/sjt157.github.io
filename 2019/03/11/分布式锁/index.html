@@ -98,18 +98,18 @@
 
 
 
-<meta name="description" content="什么场景下会使用分布式锁？单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。 实现一个分布式锁应该具备的特性： 高可用、高性能的获取锁与释放锁 在">
+<meta name="description" content="什么场景下会使用分布式锁？单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。 分布式锁的缺点比如你用zookeeper实现了分布式锁，他有一个缺点">
 <meta name="keywords" content="Architecture">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式锁">
 <meta property="og:url" content="http://yoursite.com/2019/03/11/分布式锁/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="什么场景下会使用分布式锁？单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。 实现一个分布式锁应该具备的特性： 高可用、高性能的获取锁与释放锁 在">
+<meta property="og:description" content="什么场景下会使用分布式锁？单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。 分布式锁的缺点比如你用zookeeper实现了分布式锁，他有一个缺点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-03T12:28:29.488Z">
+<meta property="og:updated_time" content="2019-06-07T07:55:35.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式锁">
-<meta name="twitter:description" content="什么场景下会使用分布式锁？单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。 实现一个分布式锁应该具备的特性： 高可用、高性能的获取锁与释放锁 在">
+<meta name="twitter:description" content="什么场景下会使用分布式锁？单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。 分布式锁的缺点比如你用zookeeper实现了分布式锁，他有一个缺点">
 
 
 
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-03T20:28:29+08:00">
-                2019-06-03
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-07T15:55:35+08:00">
+                2019-06-07
               </time>
             
           </span>
@@ -440,6 +440,7 @@
 
       
         <h3 id="什么场景下会使用分布式锁？"><a href="#什么场景下会使用分布式锁？" class="headerlink" title="什么场景下会使用分布式锁？"></a>什么场景下会使用分布式锁？</h3><p>单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。</p>
+<h3 id="分布式锁的缺点"><a href="#分布式锁的缺点" class="headerlink" title="分布式锁的缺点"></a>分布式锁的缺点</h3><p>比如你用zookeeper实现了分布式锁，他有一个缺点就是并发量上不去，因为他是串行的嘛，如果说可以优化的话(优化就会带来复杂性)，可以借鉴ConcurrentHashMap的分段锁的思想，比如1000个库存，分成20个段，每段50个库存。其实最好的是通过<strong>redis原子操作加异步队列</strong></p>
 <h3 id="实现一个分布式锁应该具备的特性："><a href="#实现一个分布式锁应该具备的特性：" class="headerlink" title="实现一个分布式锁应该具备的特性："></a>实现一个分布式锁应该具备的特性：</h3><ul>
 <li>高可用、高性能的获取锁与释放锁</li>
 <li>在分布式系统环境下，一个方法或者变量同一时间只能被一个线程操作</li>
