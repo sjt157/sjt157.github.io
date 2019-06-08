@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-06-08T09:22:22.586Z</updated>
+  <updated>2019-06-08T12:25:04.721Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一个不认识的进程</title>
+    <link href="http://yoursite.com/2019/06/08/%E4%B8%80%E4%B8%AA%E4%B8%8D%E8%AE%A4%E8%AF%86%E7%9A%84%E8%BF%9B%E7%A8%8B/"/>
+    <id>http://yoursite.com/2019/06/08/一个不认识的进程/</id>
+    <published>2019-06-08T12:24:34.000Z</published>
+    <updated>2019-06-08T12:25:04.721Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;今天登陆服务器，看到了一个不认识的进程，&lt;br&gt;&lt;code&gt;root      8581     1  0 Feb14 ?        00:33:01 /usr/bin/python2 -Es /usr/sbin/tuned -l
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>你知道Disruptor吗？</title>
@@ -526,32 +552,6 @@
     
     
       <category term="OS" scheme="http://yoursite.com/tags/OS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>一个诡异的shell脚本问题</title>
-    <link href="http://yoursite.com/2019/03/29/%E4%B8%80%E4%B8%AA%E8%AF%A1%E5%BC%82%E7%9A%84shell%E8%84%9A%E6%9C%AC%E9%97%AE%E9%A2%98/"/>
-    <id>http://yoursite.com/2019/03/29/一个诡异的shell脚本问题/</id>
-    <published>2019-03-29T12:52:04.000Z</published>
-    <updated>2019-03-29T12:55:23.086Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h3&gt;&lt;p&gt;在论坛上看见有人问了一个问题，&lt;a href=&quot;https://javaweb.io/post/394/reply/1246&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Shell" scheme="http://yoursite.com/categories/Shell/"/>
-    
-    
-      <category term="Shell" scheme="http://yoursite.com/tags/Shell/"/>
     
   </entry>
   
