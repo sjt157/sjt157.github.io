@@ -106,10 +106,12 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="基于 0与1的信号处理为我们带来了缤纷多彩的计算机世界，随着基础材料和信 号处理技术的发展，未来计算机能够处理的基础信号将不仅仅是二进制信息。比如， 三进制（ 高电平、低电平、断电），甚至十进制信息，届时计算机世界又会迎来一次 全新的变革。  在要求绝对精确表示的业务场景下，比如金融行业的货币表示，推荐使用整型存 储其最小单位的值，展示时可以转换成该货币的常用单位，比如人民币使用分存储， 美元使">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-17T03:28:56.319Z">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/Others/ThreadLocal.png">
+<meta property="og:updated_time" content="2019-06-11T06:59:48.949Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="读《码出高效》笔记">
 <meta name="twitter:description" content="基于 0与1的信号处理为我们带来了缤纷多彩的计算机世界，随着基础材料和信 号处理技术的发展，未来计算机能够处理的基础信号将不仅仅是二进制信息。比如， 三进制（ 高电平、低电平、断电），甚至十进制信息，届时计算机世界又会迎来一次 全新的变革。  在要求绝对精确表示的业务场景下，比如金融行业的货币表示，推荐使用整型存 储其最小单位的值，展示时可以转换成该货币的常用单位，比如人民币使用分存储， 美元使">
+<meta name="twitter:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/Others/ThreadLocal.png">
 
 
 
@@ -371,8 +373,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-17T11:28:56+08:00">
-                2019-01-17
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-11T14:59:48+08:00">
+                2019-06-11
               </time>
             
           </span>
@@ -451,6 +453,24 @@
 <li><p>除了开发人员造成的漏洞，近年来出现了一种 Self-XSS 的攻击方式。 Sel -XSS 是利用部分非开发人员不懂技术，黑客通过红包、奖品或者优惠券等形式 诱导用户 复制攻击者提供的恶意代码 并非占贴到浏览器的 Console 中运行 从而导致 xss 。由 Self-XSS 属于社会工程学攻击，技术上目前尚无有效防范机制 因此只能通过在 Console 中展示提醒文案来阻止用户执行未知代码。</p>
 </li>
 <li><p>包装类的存在解决了基本数据类型无法做到的事情比如 泛型类型 参数、序列化、类型转换、高频区间数据缓存。尤其是最后－项，我们都知道 Integer 会缓存－ 128到 127 之间的值，对于 Integer var=？在－ 128 127 之间的赋值， Integer 象由 ntegerCache.cache 产生，会复用已有对象，这个区间内的 Integer 值可以直接使 用＝＝进行判断，但是这个区间之外的所有数据都会在堆上产生，并不会复用已有对象， 这是一个大问题。因此，推荐所有包装类对象之间值的比较 全部使用 equals （）方法。<br>该例很好地说明了 Long只是缓存了 -128 到127 之间的值，而 1000L 没有被缓存； 在将 Integer 最大缓存值改为 7777 后， 1001被成功缓存。合理掌握包装类的缓存策略， 防止遇到问题是一个方面，使自己的程序性能最大化，更是程序员的情怀所在。在选择使用包装类还是基本数据类型时，推荐使用如下方式：<br>（1）    所有的POJO类属性必须使用包装属性类型<br>（2）    RPC方法的返回值和参数必须使用包装数据类型<br>（3）    所有的局部变量推荐使用基本数据类型</p>
+</li>
+<li><p>静态内部类好处<br>（1）作用域不会扩散到包外。<br>(2）可以通过”外部类 内部类”的方式直接访问。<br>(3）内部类可以访问外部类申的所有静态属性和方法。</p>
+</li>
+<li><p>serialVersionUID<br>如果是兼容升级，请不要修改 serialVersionUID 字段 避免反序列化失败。<br>如果是不兼容升级，需要修改 serialVersionUID 值，避免反序列化混乱。</p>
+</li>
+<li><p>方法签名包括方法名称和参数列表，是 JVM标识方法的唯一索引。 不包括返回值，更加不包括访问权限控制符、异常类型等。</p>
+</li>
+<li><p>对于 HashMap 的分析仅限于死链和对象丢失分析，是希望在使用 JDK8 之前的版本时，规避这样的风险，或直接使ConcurrentHashMap。</p>
+</li>
+<li><p>WeakReference这种特性也用在了ThreadLocal上，JDK的设计原意是在ThreadLocal对象消失后，线程对象再持有这个ThreeadLocal对象是没有任何意义的，应该进行回收，从而避免内存泄漏。这种设计的出发点很好，但在实际业务场景中却并非如此，弱引用的设计方式反而增加了对ThreadLocal和Thread体系的理解难度。</p>
+</li>
+<li><p>ThreadLocalRandom可以使得每个线程有自己的随机数生成器。我们要避免Random实例被多线程使用，虽然共享该实例是线程安全的，但会因为竞争同一个seed而使得性能下降。</p>
+</li>
+<li><p>如果说一个ThreadLocal是非静态的，属于某个线程实例类，那就失去了线程间共享的本质属性。那么ThreadLocal到底有什么用呢？复杂的线程方法可能会调用很多方法来实现某个功能，这时候用什么来传递线程内变量呢？就是ThreadLocal，他通常用于同一个线程内，跨类、跨方法传递数据。如果没有ThreadLocal，那么相互之间的信息传递，势必要靠返回值和参数，这样无形之中，会耦合。</p>
+</li>
+<li><p>淘宝很多场景下就是通过ThreadLocal来透传全局上下文的，比如用ThreadLocal来存储监控系统的traceId，某次请求下所有的traceId都是一致的，以获得可以统一解析的日志文件。但在实际开发过程中，发现子线程里的TraceId为null，跟主线程的traceId不一致，所以就需要InheritableThreadLocal来解决父子进程之间共享线程变量的问题，使整个连接过程中的traceId一致。</p>
+</li>
+<li><p>ThreadLocal图<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/Others/ThreadLocal.png" alt="image"><br>1个Thread有且仅有一个ThreadLocalMap对象<br>1个Entry对象的key所引用指向一个ThreadLocal对象<br>1个ThreadLocalMap对象存储多个Entry对象<br>1个ThreadLocal对象可以被多个线程所共享<br>ThreadLocal对象不持有value，value由线程的Entry对象持有</p>
 </li>
 </ol>
 
