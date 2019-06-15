@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-06-14T07:49:34.933Z</updated>
+  <updated>2019-06-15T11:52:41.481Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>谁来守护我们的安全?</title>
+    <link href="http://yoursite.com/2019/06/15/%E8%B0%81%E6%9D%A5%E5%AE%88%E6%8A%A4%E6%88%91%E4%BB%AC%E7%9A%84%E5%AE%89%E5%85%A8/"/>
+    <id>http://yoursite.com/2019/06/15/谁来守护我们的安全/</id>
+    <published>2019-06-15T11:50:41.000Z</published>
+    <updated>2019-06-15T11:52:41.481Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;今天参加了一个技术沙龙，百度安全方向的，题目叫《智能云时代 谁来守护我们的安全》。其中有收获的以下这些：&lt;/p&gt;
+&lt;h3 id=&quot;一个防护云安全的产品&quot;&gt;&lt;a href=&quot;#一个防护云安全的产品&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="TechnicalSalon" scheme="http://yoursite.com/categories/TechnicalSalon/"/>
+    
+    
+      <category term="TechnicalSalon" scheme="http://yoursite.com/tags/TechnicalSalon/"/>
+    
+  </entry>
   
   <entry>
     <title>读Spring-Cloud-Gateway源码收获</title>
@@ -525,32 +552,6 @@
     
     
       <category term="zabbix" scheme="http://yoursite.com/tags/zabbix/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Epoll惊群问题</title>
-    <link href="http://yoursite.com/2019/05/25/Epoll%E6%83%8A%E7%BE%A4%E9%97%AE%E9%A2%98/"/>
-    <id>http://yoursite.com/2019/05/25/Epoll惊群问题/</id>
-    <published>2019-05-25T10:19:48.000Z</published>
-    <updated>2019-05-25T10:20:43.955Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;strace命令&quot;&gt;&lt;a href=&quot;#strace命令&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
     
   </entry>
   
