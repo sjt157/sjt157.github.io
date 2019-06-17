@@ -85,7 +85,7 @@
 
 
 
-  <meta name="keywords" content="Spring," />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -98,18 +98,18 @@
 
 
 
-<meta name="description" content="今天读到了一篇写Spring源码的文章，非常长但也非常好，记录一下。以便后期查看。https://www.javadoop.com/post/spring-ioc">
-<meta name="keywords" content="Spring">
+<meta name="description" content="今天突然想起了一道面试题，简析不可变性 在编程中的优势？ 优势 并发安全 函数式编程中大量利用了不可变数据结构 性能（不好说，好像略低于原始结构），但是可以利用缓存  不会被黑客攻击，比如String 省内存，比如String Intern机制 可以避免NULL引用  如何写一个不可变类 将类声明为final，所以它不能被继承 将所有的成员声明为私有的，这样就不允许直接访问这些成员 对变量不要提供">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring-IOC-容器源码解析">
-<meta property="og:url" content="http://yoursite.com/2019/05/27/Spring-IOC-容器源码解析/index.html">
+<meta property="og:title" content="编程中的不可变性">
+<meta property="og:url" content="http://yoursite.com/2019/06/17/编程中的不可变性/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="今天读到了一篇写Spring源码的文章，非常长但也非常好，记录一下。以便后期查看。https://www.javadoop.com/post/spring-ioc">
+<meta property="og:description" content="今天突然想起了一道面试题，简析不可变性 在编程中的优势？ 优势 并发安全 函数式编程中大量利用了不可变数据结构 性能（不好说，好像略低于原始结构），但是可以利用缓存  不会被黑客攻击，比如String 省内存，比如String Intern机制 可以避免NULL引用  如何写一个不可变类 将类声明为final，所以它不能被继承 将所有的成员声明为私有的，这样就不允许直接访问这些成员 对变量不要提供">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-27T07:43:36.491Z">
+<meta property="og:updated_time" content="2019-06-17T08:34:03.304Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring-IOC-容器源码解析">
-<meta name="twitter:description" content="今天读到了一篇写Spring源码的文章，非常长但也非常好，记录一下。以便后期查看。https://www.javadoop.com/post/spring-ioc">
+<meta name="twitter:title" content="编程中的不可变性">
+<meta name="twitter:description" content="今天突然想起了一道面试题，简析不可变性 在编程中的优势？ 优势 并发安全 函数式编程中大量利用了不可变数据结构 性能（不好说，好像略低于原始结构），但是可以利用缓存  不会被黑客攻击，比如String 省内存，比如String Intern机制 可以避免NULL引用  如何写一个不可变类 将类声明为final，所以它不能被继承 将所有的成员声明为私有的，这样就不允许直接访问这些成员 对变量不要提供">
 
 
 
@@ -139,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/27/Spring-IOC-容器源码解析/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/06/17/编程中的不可变性/"/>
 
 
 
 
 
-  <title>Spring-IOC-容器源码解析 | 诗与远方</title>
+  <title>编程中的不可变性 | 诗与远方</title>
   
 
 
@@ -326,7 +326,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/27/Spring-IOC-容器源码解析/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/17/编程中的不可变性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songjiantao">
@@ -343,7 +343,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Spring-IOC-容器源码解析</h1>
+          <h1 class="post-title" itemprop="name headline">编程中的不可变性</h1>
         
 
         <div class="post-meta">
@@ -355,8 +355,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-27T15:42:24+08:00">
-                2019-05-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-17T16:33:27+08:00">
+                2019-06-17
               </time>
             
 
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-27T15:43:36+08:00">
-                2019-05-27
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-17T16:34:03+08:00">
+                2019-06-17
               </time>
             
           </span>
@@ -390,8 +390,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -407,7 +407,7 @@
 
           
           
-             <span id="/2019/05/27/Spring-IOC-容器源码解析/" class="leancloud_visitors" data-flag-title="Spring-IOC-容器源码解析">
+             <span id="/2019/06/17/编程中的不可变性/" class="leancloud_visitors" data-flag-title="编程中的不可变性">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -439,7 +439,28 @@
       
 
       
-        <p>今天读到了一篇写Spring源码的文章，非常长但也非常好，记录一下。以便后期查看。<br><a href="https://www.javadoop.com/post/spring-ioc" target="_blank" rel="noopener">https://www.javadoop.com/post/spring-ioc</a></p>
+        <p>今天突然想起了一道面试题，简析<strong>不可变性</strong> 在编程中的优势？</p>
+<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><ul>
+<li>并发安全</li>
+<li>函数式编程中大量利用了不可变数据结构</li>
+<li>性能（不好说，好像略低于原始结构），但是可以利用缓存 </li>
+<li>不会被黑客攻击，比如String</li>
+<li>省内存，比如String Intern机制</li>
+<li>可以避免NULL引用</li>
+</ul>
+<h3 id="如何写一个不可变类"><a href="#如何写一个不可变类" class="headerlink" title="如何写一个不可变类"></a>如何写一个不可变类</h3><ol>
+<li>将类声明为final，所以它不能被继承</li>
+<li>将所有的成员声明为私有的，这样就不允许直接访问这些成员</li>
+<li>对变量不要提供setter方法</li>
+<li>将所有可变的成员声明为final，这样只能对它们赋值一次</li>
+<li>通过构造器初始化所有成员，进行深拷贝(deep copy)</li>
+<li>在getter方法中，不要直接返回对象本身，而是克隆对象，并返回对象的拷贝</li>
+</ol>
+<h3 id="一个Demo"><a href="#一个Demo" class="headerlink" title="一个Demo"></a>一个Demo</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cb;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* <span class="doctag">@author</span> 宋建涛 E-mail:1872963677@qq.com</span></span><br><span class="line"><span class="comment">* <span class="doctag">@version</span> 创建时间：2019年6月17日 下午2:27:51</span></span><br><span class="line"><span class="comment">* 类说明</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalClassExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> id;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String name;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> HashMap testMap;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 可变对象的访问方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> HashMap <span class="title">getTestMap</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//return testMap;</span></span><br><span class="line">        <span class="keyword">return</span> (HashMap) testMap.clone();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 实现深拷贝(deep copy)的构造器</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> i</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> n</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> hm</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"> </span><br><span class="line">   <span class="comment">/* public FinalClassExample(int i, String n, HashMap hm)&#123;</span></span><br><span class="line"><span class="comment">        System.out.println("Performing Deep Copy for Object initialization");</span></span><br><span class="line"><span class="comment">        this.id=i;</span></span><br><span class="line"><span class="comment">        this.name=n;</span></span><br><span class="line"><span class="comment">        HashMap tempMap=new HashMap();</span></span><br><span class="line"><span class="comment">        String key;</span></span><br><span class="line"><span class="comment">        Iterator it = hm.keySet().iterator();</span></span><br><span class="line"><span class="comment">        while(it.hasNext())&#123;</span></span><br><span class="line"><span class="comment">            key=(String) it.next();</span></span><br><span class="line"><span class="comment">            tempMap.put(key, hm.get(key));</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        this.testMap=tempMap;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment"> </span></span><br><span class="line"><span class="comment">    /**</span></span><br><span class="line"><span class="comment">     * 实现浅拷贝(shallow copy)的构造器</span></span><br><span class="line"><span class="comment">     * @param i</span></span><br><span class="line"><span class="comment">     * @param n</span></span><br><span class="line"><span class="comment">     * @param hm</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FinalClassExample</span><span class="params">(<span class="keyword">int</span> i, String n, HashMap hm)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Performing Shallow Copy for Object initialization"</span>);</span><br><span class="line">        <span class="keyword">this</span>.id=i;</span><br><span class="line">        <span class="keyword">this</span>.name=n;</span><br><span class="line">        <span class="keyword">this</span>.testMap=hm;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"> </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试浅拷贝的结果</span></span><br><span class="line"><span class="comment">     * 为了创建不可变类，要使用深拷贝</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> args</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        HashMap h1 = <span class="keyword">new</span> HashMap();</span><br><span class="line">        h1.put(<span class="string">"1"</span>, <span class="string">"first"</span>);</span><br><span class="line">        h1.put(<span class="string">"2"</span>, <span class="string">"second"</span>);</span><br><span class="line"> </span><br><span class="line">        String s = <span class="string">"original"</span>;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">10</span>;</span><br><span class="line"> </span><br><span class="line">        FinalClassExample ce = <span class="keyword">new</span> FinalClassExample(i,s,h1);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">//Lets see whether its copy by field or reference</span></span><br><span class="line">        System.out.println(s==ce.getName());</span><br><span class="line">        System.out.println(h1 == ce.getTestMap());</span><br><span class="line">        <span class="comment">//print the ce values</span></span><br><span class="line">        System.out.println(<span class="string">"ce id:"</span>+ce.getId());</span><br><span class="line">        System.out.println(<span class="string">"ce name:"</span>+ce.getName());</span><br><span class="line">        System.out.println(<span class="string">"ce testMap:"</span>+ce.getTestMap());</span><br><span class="line">        <span class="comment">//change the local variable values</span></span><br><span class="line">        i=<span class="number">20</span>;</span><br><span class="line">        s=<span class="string">"modified"</span>;</span><br><span class="line">        h1.put(<span class="string">"3"</span>, <span class="string">"third"</span>);</span><br><span class="line">        <span class="comment">//print the values again</span></span><br><span class="line">        System.out.println(<span class="string">"ce id after local variable change:"</span>+ce.getId());</span><br><span class="line">        System.out.println(<span class="string">"ce name after local variable change:"</span>+ce.getName());</span><br><span class="line">        System.out.println(<span class="string">"ce testMap after local variable change:"</span>+ce.getTestMap());</span><br><span class="line"> </span><br><span class="line">        HashMap hmTest = ce.getTestMap();</span><br><span class="line">        hmTest.put(<span class="string">"4"</span>, <span class="string">"new"</span>);</span><br><span class="line"> </span><br><span class="line">        System.out.println(<span class="string">"ce testMap after changing variable from accessor methods:"</span>+ce.getTestMap());</span><br><span class="line"> </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### package cb;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">* <span class="doctag">@author</span> 宋建涛 E-mail:1872963677@qq.com</span></span><br><span class="line"><span class="comment">* <span class="doctag">@version</span> 创建时间：2019年6月17日 下午2:27:51</span></span><br><span class="line"><span class="comment">* 类说明</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalClassExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> id;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String name;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> HashMap testMap;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 可变对象的访问方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> HashMap <span class="title">getTestMap</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//return testMap;</span></span><br><span class="line">        <span class="keyword">return</span> (HashMap) testMap.clone();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 实现深拷贝(deep copy)的构造器</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> i</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> n</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> hm</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"> </span><br><span class="line">   <span class="comment">/* public FinalClassExample(int i, String n, HashMap hm)&#123;</span></span><br><span class="line"><span class="comment">        System.out.println("Performing Deep Copy for Object initialization");</span></span><br><span class="line"><span class="comment">        this.id=i;</span></span><br><span class="line"><span class="comment">        this.name=n;</span></span><br><span class="line"><span class="comment">        HashMap tempMap=new HashMap();</span></span><br><span class="line"><span class="comment">        String key;</span></span><br><span class="line"><span class="comment">        Iterator it = hm.keySet().iterator();</span></span><br><span class="line"><span class="comment">        while(it.hasNext())&#123;</span></span><br><span class="line"><span class="comment">            key=(String) it.next();</span></span><br><span class="line"><span class="comment">            tempMap.put(key, hm.get(key));</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        this.testMap=tempMap;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment"> </span></span><br><span class="line"><span class="comment">    /**</span></span><br><span class="line"><span class="comment">     * 实现浅拷贝(shallow copy)的构造器</span></span><br><span class="line"><span class="comment">     * @param i</span></span><br><span class="line"><span class="comment">     * @param n</span></span><br><span class="line"><span class="comment">     * @param hm</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FinalClassExample</span><span class="params">(<span class="keyword">int</span> i, String n, HashMap hm)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Performing Shallow Copy for Object initialization"</span>);</span><br><span class="line">        <span class="keyword">this</span>.id=i;</span><br><span class="line">        <span class="keyword">this</span>.name=n;</span><br><span class="line">        <span class="keyword">this</span>.testMap=hm;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"> </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试浅拷贝的结果</span></span><br><span class="line"><span class="comment">     * 为了创建不可变类，要使用深拷贝</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> args</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        HashMap h1 = <span class="keyword">new</span> HashMap();</span><br><span class="line">        h1.put(<span class="string">"1"</span>, <span class="string">"first"</span>);</span><br><span class="line">        h1.put(<span class="string">"2"</span>, <span class="string">"second"</span>);</span><br><span class="line"> </span><br><span class="line">        String s = <span class="string">"original"</span>;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">10</span>;</span><br><span class="line"> </span><br><span class="line">        FinalClassExample ce = <span class="keyword">new</span> FinalClassExample(i,s,h1);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">//Lets see whether its copy by field or reference</span></span><br><span class="line">        System.out.println(s==ce.getName());</span><br><span class="line">        System.out.println(h1 == ce.getTestMap());</span><br><span class="line">        <span class="comment">//print the ce values</span></span><br><span class="line">        System.out.println(<span class="string">"ce id:"</span>+ce.getId());</span><br><span class="line">        System.out.println(<span class="string">"ce name:"</span>+ce.getName());</span><br><span class="line">        System.out.println(<span class="string">"ce testMap:"</span>+ce.getTestMap());</span><br><span class="line">        <span class="comment">//change the local variable values</span></span><br><span class="line">        i=<span class="number">20</span>;</span><br><span class="line">        s=<span class="string">"modified"</span>;</span><br><span class="line">        h1.put(<span class="string">"3"</span>, <span class="string">"third"</span>);</span><br><span class="line">        <span class="comment">//print the values again</span></span><br><span class="line">        System.out.println(<span class="string">"ce id after local variable change:"</span>+ce.getId());</span><br><span class="line">        System.out.println(<span class="string">"ce name after local variable change:"</span>+ce.getName());</span><br><span class="line">        System.out.println(<span class="string">"ce testMap after local variable change:"</span>+ce.getTestMap());</span><br><span class="line"> </span><br><span class="line">        HashMap hmTest = ce.getTestMap();</span><br><span class="line">        hmTest.put(<span class="string">"4"</span>, <span class="string">"new"</span>);</span><br><span class="line"> </span><br><span class="line">        System.out.println(<span class="string">"ce testMap after changing variable from accessor methods:"</span>+ce.getTestMap());</span><br><span class="line"> </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="也可以使用建造者模式创建不可变类"><a href="#也可以使用建造者模式创建不可变类" class="headerlink" title="也可以使用建造者模式创建不可变类"></a>也可以使用建造者模式创建不可变类</h3><p>当成员变量非常多时，适合用这种方法<br><a href="http://www.importnew.com/7860.html" target="_blank" rel="noopener">http://www.importnew.com/7860.html</a></p>
+<h3 id="String源码解析"><a href="#String源码解析" class="headerlink" title="String源码解析"></a>String源码解析</h3><p><a href="https://juejin.im/post/59fffddc5188253d6816f9c1" target="_blank" rel="noopener">https://juejin.im/post/59fffddc5188253d6816f9c1</a></p>
+<h3 id="为什么StringBuffer和StringBuilder就可变？"><a href="#为什么StringBuffer和StringBuilder就可变？" class="headerlink" title="为什么StringBuffer和StringBuilder就可变？"></a>为什么StringBuffer和StringBuilder就可变？</h3><p>因为成员变量value数组没有被final修饰，所以可以修改他的引用变量的值，即可以引用到新的数组对象。所以StringBuilder对象是可变的</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://www.importnew.com/7535.html" target="_blank" rel="noopener">http://www.importnew.com/7535.html</a><br><a href="http://www.importnew.com/14027.html" target="_blank" rel="noopener">http://www.importnew.com/14027.html</a></p>
 
       
     </div>
@@ -499,7 +520,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2019/05/27/Spring-IOC-容器源码解析/" title="Spring-IOC-容器源码解析">http://yoursite.com/2019/05/27/Spring-IOC-容器源码解析/</a>
+    <a href="http://yoursite.com/2019/06/17/编程中的不可变性/" title="编程中的不可变性">http://yoursite.com/2019/06/17/编程中的不可变性/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -514,7 +535,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Spring/" rel="tag"># Spring</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -539,8 +560,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/26/参加dubbo开发者日/" rel="next" title="参加dubbo开发者日">
-                <i class="fa fa-chevron-left"></i> 参加dubbo开发者日
+              <a href="/2019/06/15/谁来守护我们的安全/" rel="next" title="谁来守护我们的安全?">
+                <i class="fa fa-chevron-left"></i> 谁来守护我们的安全?
               </a>
             
           </div>
@@ -548,10 +569,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/27/网络编程中的大小端字节序/" rel="prev" title="网络编程中的大小端字节序">
-                网络编程中的大小端字节序 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
