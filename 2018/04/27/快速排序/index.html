@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="快速排序的基本思想快速排序（Quicksort）是对冒泡排序的一种改进。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。  快速排序的三个步骤1.选择基准：在待排序列中，按照某种方式挑出一个元素，作为 “基准”（pivot）；2.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-27T07:09:54.638Z">
+<meta property="og:updated_time" content="2019-06-22T07:31:39.590Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速排序">
 <meta name="twitter:description" content="快速排序的基本思想快速排序（Quicksort）是对冒泡排序的一种改进。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。  快速排序的三个步骤1.选择基准：在待排序列中，按照某种方式挑出一个元素，作为 “基准”（pivot）；2.">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-27T15:09:54+08:00">
-                2018-04-27
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-22T15:31:39+08:00">
+                2019-06-22
               </time>
             
           </span>
@@ -456,6 +456,12 @@
 <li>插入排序代码：</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(<span class="keyword">int</span> <span class="built_in">array</span>[], <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line"><span class="keyword">int</span> j;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n;++i)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> key = <span class="built_in">array</span>[i];</span><br><span class="line">	<span class="keyword">for</span> (j = i; j&gt;<span class="number">0</span> &amp;&amp; <span class="built_in">array</span>[j - <span class="number">1</span>] &gt; key;j--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">array</span>[j] = <span class="built_in">array</span>[j - <span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">array</span>[j] = key;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="当待排序序列的长度分割到一定大小后，使用插入排序"><a href="#当待排序序列的长度分割到一定大小后，使用插入排序" class="headerlink" title="当待排序序列的长度分割到一定大小后，使用插入排序"></a>当待排序序列的长度分割到一定大小后，使用插入排序</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (high - low + <span class="number">1</span> &lt; <span class="number">10</span>)</span><br><span class="line">&#123;</span><br><span class="line">	InsertSort(arr,low,high);</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;<span class="comment">//else时，正常执行快排</span></span><br></pre></td></tr></table></figure>
+<h3 id="对递归使用尾递归"><a href="#对递归使用尾递归" class="headerlink" title="对递归使用尾递归"></a>对递归使用尾递归</h3><p>如果待排序的序列划分极端不平衡，递归的深度将趋近于n，而栈的大小是很有限的，每次递归调用都会耗费一定的栈空间，函数的参数越多，每次递归耗费的空间也越多。优化后，可以缩减堆栈深度，由原来的O(n)缩减为O(logn)，将会提高性能。</p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/04/tail-call.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2015/04/tail-call.html</a></p>
+<h4 id="关于一个尾递归形象的比喻"><a href="#关于一个尾递归形象的比喻" class="headerlink" title="关于一个尾递归形象的比喻"></a>关于一个尾递归形象的比喻</h4><p>function story() {    从前有座山，山上有座庙，庙里有个老和尚，一天老和尚对小和尚讲故事：story() // 尾递归，进入下一个函数不再需要上一个函数的环境了，得出结果以后直接返回。}<br>function story() {    从前有座山，山上有座庙，庙里有个老和尚，一天老和尚对小和尚讲故事：story()，小和尚听了，找了块豆腐撞死了 // 非尾递归，下一个函数结束以后此函数还有后续，所以必须保存本身的环境以供处理返回值。}<br><a href="https://www.zhihu.com/question/20761771" target="_blank" rel="noopener">https://www.zhihu.com/question/20761771</a></p>
+<h3 id="快排的非递归实现和与递归性能比较"><a href="#快排的非递归实现和与递归性能比较" class="headerlink" title="快排的非递归实现和与递归性能比较"></a>快排的非递归实现和与递归性能比较</h3><p><a href="https://unordered.org/timelines/59da41085a001000" target="_blank" rel="noopener">https://unordered.org/timelines/59da41085a001000</a></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/insistgogo/article/details/7785038" target="_blank" rel="noopener">https://blog.csdn.net/insistgogo/article/details/7785038</a> 对快排进行优化</p>
 
       
     </div>
