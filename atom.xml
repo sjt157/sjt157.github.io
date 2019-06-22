@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-06-18T11:57:20.181Z</updated>
+  <updated>2019-06-22T01:50:51.550Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>为什么我们要转向gRPC</title>
+    <link href="http://yoursite.com/2019/06/22/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E8%A6%81%E8%BD%AC%E5%90%91gRPC/"/>
+    <id>http://yoursite.com/2019/06/22/为什么我们要转向gRPC/</id>
+    <published>2019-06-22T01:49:35.000Z</published>
+    <updated>2019-06-22T01:50:51.550Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;原文：&lt;a href=&quot;https://eng.fromatob.com/post/2019/05/why-were-switching-to-grpc/&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Grpc" scheme="http://yoursite.com/categories/Grpc/"/>
+    
+    
+      <category term="Grpc" scheme="http://yoursite.com/tags/Grpc/"/>
+    
+  </entry>
   
   <entry>
     <title>编程中的不可变性</title>
@@ -526,33 +552,6 @@
     
     
       <category term="Dubbo" scheme="http://yoursite.com/tags/Dubbo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>一直卡死的实验</title>
-    <link href="http://yoursite.com/2019/05/25/%E4%B8%80%E7%9B%B4%E5%8D%A1%E6%AD%BB%E7%9A%84%E5%AE%9E%E9%AA%8C/"/>
-    <id>http://yoursite.com/2019/05/25/一直卡死的实验/</id>
-    <published>2019-05-25T13:05:59.000Z</published>
-    <updated>2019-06-21T01:17:54.388Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;今天我做了个实验报错了,是把数据从一方传到远程的kafka里。发送方启动server.jar,kafka的接收方也启动server.jar。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;java -jar server-v1.0.jar -d
-        
-      
-    
-    </summary>
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
     
   </entry>
   
