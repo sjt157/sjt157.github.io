@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="什么场景下会使用分布式锁？单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。 分布式锁的缺点比如你用zookeeper实现了分布式锁，他有一个缺点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-07T07:55:35.837Z">
+<meta property="og:updated_time" content="2019-06-23T14:17:53.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式锁">
 <meta name="twitter:description" content="什么场景下会使用分布式锁？单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。 分布式锁的缺点比如你用zookeeper实现了分布式锁，他有一个缺点">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-07T15:55:35+08:00">
-                2019-06-07
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-23T22:17:53+08:00">
+                2019-06-23
               </time>
             
           </span>
@@ -499,7 +499,9 @@
 </li>
 </ul>
 <p>这段Lua脚本在执行的时候要把的lockValue作为ARGV[1]的值传进去，把lockKey作为KEYS[1]的值传进去。现在来看看解锁的java代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unlock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 使用lua脚本进行原子删除操作</span></span><br><span class="line">    String checkAndDelScript = <span class="string">"if redis.call('get', KEYS[1]) == ARGV[1] then "</span> +</span><br><span class="line">                                <span class="string">"return redis.call('del', KEYS[1]) "</span> +</span><br><span class="line">                                <span class="string">"else "</span> +</span><br><span class="line">                                <span class="string">"return 0 "</span> +</span><br><span class="line">                                <span class="string">"end"</span>;</span><br><span class="line">    jedis.eval(checkAndDelScript, <span class="number">1</span>, lockKey, lockValue);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>。</p>
+<h4 id="分布式锁丢失的问题"><a href="#分布式锁丢失的问题" class="headerlink" title="分布式锁丢失的问题"></a>分布式锁丢失的问题</h4><blockquote>
+<p>官方其实并不推荐这种方式，因为它在集群模式下会产生锁丢失的问题 —— 在主从发生切换的时候。官方推荐的分布式锁叫 RedLock，作者认为这个算法较为安全，推荐我们使用。不过掌阅这边一直还使用上面最简单的分布式锁，为什么我们不去使用 RedLock 呢，因为它的运维成本会高一些，需要 3 台以上独立的 Redis 实例，用起来要繁琐一些。另外呢 Redis 集群发生主从切换的概率也并不高，即使发生了主从切换出现锁丢失的概率也很低，因为主从切换往往都有一个过程，这个过程的时间通常会超过锁的过期时间，也就不会发生锁的异常丢失。还有呢就是分布式锁遇到锁冲突的机会也不多，这正如一个公司里明星程序员也比较有限一样，总是遇到锁排队那说明结构上需要优化。<br><a href="https://juejin.im/post/5d0f3c2be51d45595319e355" target="_blank" rel="noopener">https://juejin.im/post/5d0f3c2be51d45595319e355</a></p>
+</blockquote>
 <h4 id="集群Redis分布式锁"><a href="#集群Redis分布式锁" class="headerlink" title="集群Redis分布式锁"></a>集群Redis分布式锁</h4><p>Redis 的作者提供了RedLock 的算法来实现一个分布式锁。</p>
 <ul>
 <li>加锁<br>RedLock算法加锁步骤如下:</li>
