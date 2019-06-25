@@ -98,19 +98,19 @@
 
 
 
-<meta name="description" content="基于AQSAQS内部维护了一个sync queue来管理锁，线程会首先尝试获取锁，如果获取失败，就将线程封装成Node放入到这个队列中，当前节点head的后继节点会尝试不断获取锁，如果失败会阻塞自己，直到自己被唤醒。而当持有锁的线程释放锁时，会唤醒队列中的后继线程。 如果一个线程调用了Condition.await()方法，那么该线程将会释放锁、构造成节点加入等待队列并进入等待状态。事实上，节点的">
+<meta name="description" content="一篇很好的文章，介绍AQS的https://juejin.im/post/5c11d6376fb9a049e82b6253 基于AQSAQS内部维护了一个sync queue来管理锁，线程会首先尝试获取锁，如果获取失败，就将线程封装成Node放入到这个队列中，当前节点head的后继节点会尝试不断获取锁，如果失败会阻塞自己，直到自己被唤醒。而当持有锁的线程释放锁时，会唤醒队列中的后继线程。 如果一个">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java之ReentrantLock">
 <meta property="og:url" content="http://yoursite.com/2019/06/10/Java之ReentrantLock/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="基于AQSAQS内部维护了一个sync queue来管理锁，线程会首先尝试获取锁，如果获取失败，就将线程封装成Node放入到这个队列中，当前节点head的后继节点会尝试不断获取锁，如果失败会阻塞自己，直到自己被唤醒。而当持有锁的线程释放锁时，会唤醒队列中的后继线程。 如果一个线程调用了Condition.await()方法，那么该线程将会释放锁、构造成节点加入等待队列并进入等待状态。事实上，节点的">
+<meta property="og:description" content="一篇很好的文章，介绍AQS的https://juejin.im/post/5c11d6376fb9a049e82b6253 基于AQSAQS内部维护了一个sync queue来管理锁，线程会首先尝试获取锁，如果获取失败，就将线程封装成Node放入到这个队列中，当前节点head的后继节点会尝试不断获取锁，如果失败会阻塞自己，直到自己被唤醒。而当持有锁的线程释放锁时，会唤醒队列中的后继线程。 如果一个">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/Others/1.jpg">
-<meta property="og:updated_time" content="2019-06-10T08:48:06.871Z">
+<meta property="og:updated_time" content="2019-06-24T06:47:01.043Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java之ReentrantLock">
-<meta name="twitter:description" content="基于AQSAQS内部维护了一个sync queue来管理锁，线程会首先尝试获取锁，如果获取失败，就将线程封装成Node放入到这个队列中，当前节点head的后继节点会尝试不断获取锁，如果失败会阻塞自己，直到自己被唤醒。而当持有锁的线程释放锁时，会唤醒队列中的后继线程。 如果一个线程调用了Condition.await()方法，那么该线程将会释放锁、构造成节点加入等待队列并进入等待状态。事实上，节点的">
+<meta name="twitter:description" content="一篇很好的文章，介绍AQS的https://juejin.im/post/5c11d6376fb9a049e82b6253 基于AQSAQS内部维护了一个sync queue来管理锁，线程会首先尝试获取锁，如果获取失败，就将线程封装成Node放入到这个队列中，当前节点head的后继节点会尝试不断获取锁，如果失败会阻塞自己，直到自己被唤醒。而当持有锁的线程释放锁时，会唤醒队列中的后继线程。 如果一个">
 <meta name="twitter:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/Others/1.jpg">
 
 
@@ -373,8 +373,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-10T16:48:06+08:00">
-                2019-06-10
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-24T14:47:01+08:00">
+                2019-06-24
               </time>
             
           </span>
@@ -441,7 +441,8 @@
       
 
       
-        <h3 id="基于AQS"><a href="#基于AQS" class="headerlink" title="基于AQS"></a>基于AQS</h3><p>AQS内部维护了一个sync queue来管理锁，线程会首先尝试获取锁，如果获取失败，就将线程封装成Node放入到这个队列中，当前节点head的后继节点会尝试不断获取锁，如果失败会阻塞自己，直到自己被唤醒。而当持有锁的线程释放锁时，会唤醒队列中的后继线程。</p>
+        <h3 id="一篇很好的文章，介绍AQS的"><a href="#一篇很好的文章，介绍AQS的" class="headerlink" title="一篇很好的文章，介绍AQS的"></a>一篇很好的文章，介绍AQS的</h3><p><a href="https://juejin.im/post/5c11d6376fb9a049e82b6253" target="_blank" rel="noopener">https://juejin.im/post/5c11d6376fb9a049e82b6253</a></p>
+<h3 id="基于AQS"><a href="#基于AQS" class="headerlink" title="基于AQS"></a>基于AQS</h3><p>AQS内部维护了一个sync queue来管理锁，线程会首先尝试获取锁，如果获取失败，就将线程封装成Node放入到这个队列中，当前节点head的后继节点会尝试不断获取锁，如果失败会阻塞自己，直到自己被唤醒。而当持有锁的线程释放锁时，会唤醒队列中的后继线程。</p>
 <p>如果一个线程调用了Condition.await()方法，那么该线程将会释放锁、构造成节点加入等待队列并进入等待状态。事实上，节点的定义复用了同步器中节点的定义，也就是说，同步队列和等待队列中节点类型都是同步器的静态内部类AbstractQueuedSynchronizer.Node。</p>
 <p>在Object的监视器模型上，一个对象拥有一个同步队列和等待队列，而并发包中的<br>Lock（更确切地说是同步器）拥有一个同步队列和多个等待队列。</p>
 <p>CountDownLatch、Semphore、CyclicBarrier、ReentrantLock都是基于AQS的。</p>
@@ -655,7 +656,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">109</span>
+                  <span class="site-state-item-count">110</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

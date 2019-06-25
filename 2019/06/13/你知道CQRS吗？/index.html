@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="CQRS架构简介https://www.cnblogs.com/shijingxiang/articles/5465495.htmlhttps://blog.csdn.net/rocketluoqq/article/details/81434871 Event Sourcing vs Command Sourcingcommand是让系统做事情的；event是系统发生的变化；redo/AOF/WA">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-12T21:23:15.171Z">
+<meta property="og:updated_time" content="2019-06-24T14:12:26.510Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="你知道CQRS吗？">
 <meta name="twitter:description" content="CQRS架构简介https://www.cnblogs.com/shijingxiang/articles/5465495.htmlhttps://blog.csdn.net/rocketluoqq/article/details/81434871 Event Sourcing vs Command Sourcingcommand是让系统做事情的；event是系统发生的变化；redo/AOF/WA">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-13T05:23:15+08:00">
-                2019-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-24T22:12:26+08:00">
+                2019-06-24
               </time>
             
           </span>
@@ -444,7 +444,9 @@
 <h3 id="ENode"><a href="#ENode" class="headerlink" title="ENode"></a><a href="https://github.com/tangxuehua/enode" target="_blank" rel="noopener">ENode</a></h3><p>a framework aims to help us developing ddd, cqrs, eda, and event sourcing style applications.</p>
 <h3 id="如何解决多线程并发写的时候的CPU占用高的问题？"><a href="#如何解决多线程并发写的时候的CPU占用高的问题？" class="headerlink" title="如何解决多线程并发写的时候的CPU占用高的问题？"></a>如何解决多线程并发写的时候的CPU占用高的问题？</h3><p>可以使用双缓冲队列的技术，比如多个线程写，用锁可能效率不好，准备两个队列，一个只用来接收，另一个串行执行。<br>这两个队列如何交换数据？ 交换两个队列的引用<br>什么场景下能用双缓冲？只要是多个消息生产者并发产生消息，然后单个消费者单线程消费消息的场景，都可以使用</p>
 <h3 id="DDD-CQRS-一位大牛的博客"><a href="#DDD-CQRS-一位大牛的博客" class="headerlink" title="DDD/CQRS(一位大牛的博客)"></a>DDD/CQRS(一位大牛的博客)</h3><p><a href="https://www.cnblogs.com/netfocus/category/496012.html" target="_blank" rel="noopener">https://www.cnblogs.com/netfocus/category/496012.html</a></p>
+<h3 id="领域驱动设计在互联网业务开发中的实践"><a href="#领域驱动设计在互联网业务开发中的实践" class="headerlink" title="领域驱动设计在互联网业务开发中的实践"></a>领域驱动设计在互联网业务开发中的实践</h3><p><a href="https://tech.meituan.com/2017/12/22/ddd-in-practice.html" target="_blank" rel="noopener">https://tech.meituan.com/2017/12/22/ddd-in-practice.html</a><br><a href="https://zhuanlan.zhihu.com/p/42565478" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/42565478</a></p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://thinkbeforecoding.com/post/2013/07/28/Event-Sourcing-vs-Command-Sourcing" target="_blank" rel="noopener">https://thinkbeforecoding.com/post/2013/07/28/Event-Sourcing-vs-Command-Sourcing</a><br>感觉这篇文章的思想和Kafka的思想好像啊<br><a href="https://www.cnblogs.com/netfocus/p/5656243.html" target="_blank" rel="noopener">https://www.cnblogs.com/netfocus/p/5656243.html</a></p>
+<p>q<br>q<br>q<br>q</p>
 
       
     </div>
@@ -634,7 +636,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">109</span>
+                  <span class="site-state-item-count">110</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
