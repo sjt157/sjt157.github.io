@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-06-26T05:12:16.207Z</updated>
+  <updated>2019-06-27T14:28:03.295Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>组合VS继承</title>
+    <link href="http://yoursite.com/2019/06/27/%E7%BB%84%E5%90%88VS%E7%BB%A7%E6%89%BFVS%E6%8E%A5%E5%8F%A3/"/>
+    <id>http://yoursite.com/2019/06/27/组合VS继承VS接口/</id>
+    <published>2019-06-27T13:13:22.000Z</published>
+    <updated>2019-06-27T14:28:03.295Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;为什么组合好于继承？&quot;&gt;&lt;a href=&quot;#为什么组合好于继承？&quot; class=&quot;headerlink&quot; title=&quot;为什么组合好于继承？&quot;&gt;&lt;/a&gt;为什么组合好于继承？&lt;/h3&gt;&lt;p&gt;Wiki中Com­po­si­tion over
+        
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Enumeration接口和Iterator接口的区别有哪些？</title>
@@ -284,7 +310,7 @@
     <link href="http://yoursite.com/2019/06/08/%E4%BD%A0%E7%9F%A5%E9%81%93Disruptor%E5%90%97%EF%BC%9F/"/>
     <id>http://yoursite.com/2019/06/08/你知道Disruptor吗？/</id>
     <published>2019-06-08T09:21:51.000Z</published>
-    <updated>2019-06-08T09:22:22.586Z</updated>
+    <updated>2019-06-27T12:58:53.961Z</updated>
     
     <summary type="html">
     
@@ -527,32 +553,6 @@
     
     
       <category term="SpringBoot" scheme="http://yoursite.com/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>我向github提的第一个issue</title>
-    <link href="http://yoursite.com/2019/05/31/%E6%88%91%E5%90%91github%E6%8F%90%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AAissue/"/>
-    <id>http://yoursite.com/2019/05/31/我向github提的第一个issue/</id>
-    <published>2019-05-31T12:57:39.000Z</published>
-    <updated>2019-05-31T12:58:07.787Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;缘起&quot;&gt;&lt;a href=&quot;#缘起&quot; class=&quot;headerlink&quot; title=&quot;缘起&quot;&gt;&lt;/a&gt;缘起&lt;/h3&gt;&lt;p&gt;平常经常看到github上有人提issue，今天我也提了一个。是一个kafka镜像起来之后存在僵尸进程的问题。&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="Docker" scheme="http://yoursite.com/categories/Docker/"/>
-    
-    
-      <category term="Docker" scheme="http://yoursite.com/tags/Docker/"/>
     
   </entry>
   
