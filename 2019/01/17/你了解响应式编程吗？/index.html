@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="响应式编程？其实说白了，和传统的编程方式没什么区别，都是一些函数调用，只不过是增加了很多适配模式等。响应式编程的英文名，Reactive Programming，那就是针对响应的呗。那啥叫响应呢？你烧水呢，水烧开了，水壶会叫，这就是一下响应了。不要想的太复杂，这些东西都是基于现实世界的需要而来的。响应式它是依赖于事件的，响应式的代码它的运行不是按代码的顺序，而是跟多个按时间发生的事件有关。可能你会">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-27T06:38:24.694Z">
+<meta property="og:updated_time" content="2019-06-27T03:47:23.681Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="你了解响应式编程吗？">
 <meta name="twitter:description" content="响应式编程？其实说白了，和传统的编程方式没什么区别，都是一些函数调用，只不过是增加了很多适配模式等。响应式编程的英文名，Reactive Programming，那就是针对响应的呗。那啥叫响应呢？你烧水呢，水烧开了，水壶会叫，这就是一下响应了。不要想的太复杂，这些东西都是基于现实世界的需要而来的。响应式它是依赖于事件的，响应式的代码它的运行不是按代码的顺序，而是跟多个按时间发生的事件有关。可能你会">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-27T14:38:24+08:00">
-                2019-05-27
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-27T11:47:23+08:00">
+                2019-06-27
               </time>
             
           </span>
@@ -452,6 +452,14 @@
 <h3 id="响应式编程与函数式编程的区别？"><a href="#响应式编程与函数式编程的区别？" class="headerlink" title="响应式编程与函数式编程的区别？"></a>响应式编程与函数式编程的区别？</h3><p>它和函数式编程的区别，这个简单的说一下，函数式编程就是二个字，“不变”。啥都不变，一经创建永远不变。如果要变，再创建个新的。在它里面函数就是数据的通道。参数确定时，结果是可以预测的。</p>
 <p>##更进一步</p>
 <h3 id="怎么理解响应式的背压？"><a href="#怎么理解响应式的背压？" class="headerlink" title="怎么理解响应式的背压？"></a>怎么理解响应式的背压？</h3><p>可以理解为承上启下。比如洪水，大坝的作用就是背压。背压应该写在靠近生产者的地方，或者说是连接元素生产者和消费者的一个地方，即生产者和消费者的连线者。背压应该具有承载元素的能力，也就是其必须是一个容器的，而且元素的存储与下发应该具有先后的，可以使用队列来实现。<br>打一个比喻：去电影院看电影，我们作为消费者消费电影，电影厂商提供生产电影，电影院负责下发电影，电影院作为生产者与消费者之间的连线者，我们不需要关心电影院会放映多少电影，我们只需要观看就行了。</p>
+<blockquote>
+<p>背压可以平衡请求或响应率，这点与异步机制区别所在，也就是说，当响应堵塞时，会同时堵塞请求，因此reactive响应式=异步+同步(背压)。</p>
+</blockquote>
+<blockquote>
+<p>背压是一种通过传输（通知）接收者可以消费多少元素来调节生产的机制（消费决定生产）; 在这里，我们有一个棘手的问题。TCP具有字节抽象而不是逻辑元素抽象。我们通常所说的背压控制是控制向网络发送/接收的逻辑元件的数量。即使TCP有自己的流控制，这个流控制仍然是字节而不是逻辑元素。<br><a href="https://www.jdon.com/50267" target="_blank" rel="noopener">https://www.jdon.com/50267</a></p>
+</blockquote>
+<h4 id="使用RSocket协议的公平背压"><a href="#使用RSocket协议的公平背压" class="headerlink" title="使用RSocket协议的公平背压"></a>使用RSocket协议的公平背压</h4><p>为了通过网络边界实现逻辑元素背压，我们需要一个适当的协议。幸运的是，有一种称为RScoket协议。RSocket是一种应用程序级协议，允许通过网络边界传输实际需求。该协议有一个RSocket-Java实现，允许设置RSocket服务器。在服务器到服务器通信的情况下，相同的RSocket-Java库也提供客户端实现。</p>
+<p>对于浏览器 - 服务器通信，有一个RSocket-JS实现，能通过WebSocket连接浏览器和服务器之间的流通信。<br><a href="https://stackoverflow.com/questions/52244808/backpressure-mechanism-in-spring-web-flux/52245213?stw=2#52245213" target="_blank" rel="noopener">https://stackoverflow.com/questions/52244808/backpressure-mechanism-in-spring-web-flux/52245213?stw=2#52245213</a></p>
 <h3 id="怎么理解阻塞和异步？"><a href="#怎么理解阻塞和异步？" class="headerlink" title="怎么理解阻塞和异步？"></a>怎么理解阻塞和异步？</h3><p>咖啡很烫，不能喝，只能等到冷却，这个冷却就作为了阻塞，因为其占据了一条线程，但我们可以看电视，也就是说你阻塞你的 ，但是我仍然可以看电视。看电视是主线程。于是异步就出现了，涉及到异步，就涉及到线程的状态。<br>既然阻塞要占据一条线程来工作，那么必然会有线程状态的管理。</p>
 <p>非阻塞更多体现在等待层面，现实中我们等一个人，往往都是由时间限制的，难道我们要用一生的时间去街口等待一个人而荒废一生？总有跳出阻塞的路子。在nio里就是timeout。</p>
 <p>我们讲的非阻塞都是相对的，具体某个任务该阻塞还是得阻塞。</p>

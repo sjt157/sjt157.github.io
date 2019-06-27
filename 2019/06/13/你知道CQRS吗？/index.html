@@ -98,18 +98,18 @@
 
 
 
-<meta name="description" content="CQRS架构简介https://www.cnblogs.com/shijingxiang/articles/5465495.htmlhttps://blog.csdn.net/rocketluoqq/article/details/81434871简单来说，平常写的MVC分层叫横向封层,横向封层不可避免的需要数据传输对象来解耦各层之间的关系，那我们是否不使用横向封层，而使用纵向切分呢？这就是CQR">
+<meta name="description" content="CQRS架构简介https://www.cnblogs.com/shijingxiang/articles/5465495.htmlhttps://blog.csdn.net/rocketluoqq/article/details/81434871https://www.jdon.com/52278我的简单的理解就是读写分离。。一个是查询（读），一个是命令（写）。 Event Sourcing v">
 <meta name="keywords" content="Architecture">
 <meta property="og:type" content="article">
 <meta property="og:title" content="你知道CQRS吗？">
 <meta property="og:url" content="http://yoursite.com/2019/06/13/你知道CQRS吗？/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="CQRS架构简介https://www.cnblogs.com/shijingxiang/articles/5465495.htmlhttps://blog.csdn.net/rocketluoqq/article/details/81434871简单来说，平常写的MVC分层叫横向封层,横向封层不可避免的需要数据传输对象来解耦各层之间的关系，那我们是否不使用横向封层，而使用纵向切分呢？这就是CQR">
+<meta property="og:description" content="CQRS架构简介https://www.cnblogs.com/shijingxiang/articles/5465495.htmlhttps://blog.csdn.net/rocketluoqq/article/details/81434871https://www.jdon.com/52278我的简单的理解就是读写分离。。一个是查询（读），一个是命令（写）。 Event Sourcing v">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-25T02:36:10.959Z">
+<meta property="og:updated_time" content="2019-06-27T06:56:23.163Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="你知道CQRS吗？">
-<meta name="twitter:description" content="CQRS架构简介https://www.cnblogs.com/shijingxiang/articles/5465495.htmlhttps://blog.csdn.net/rocketluoqq/article/details/81434871简单来说，平常写的MVC分层叫横向封层,横向封层不可避免的需要数据传输对象来解耦各层之间的关系，那我们是否不使用横向封层，而使用纵向切分呢？这就是CQR">
+<meta name="twitter:description" content="CQRS架构简介https://www.cnblogs.com/shijingxiang/articles/5465495.htmlhttps://blog.csdn.net/rocketluoqq/article/details/81434871https://www.jdon.com/52278我的简单的理解就是读写分离。。一个是查询（读），一个是命令（写）。 Event Sourcing v">
 
 
 
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T10:36:10+08:00">
-                2019-06-25
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-27T14:56:23+08:00">
+                2019-06-27
               </time>
             
           </span>
@@ -439,23 +439,15 @@
       
 
       
-        <h3 id="CQRS架构简介"><a href="#CQRS架构简介" class="headerlink" title="CQRS架构简介"></a>CQRS架构简介</h3><p><a href="https://www.cnblogs.com/shijingxiang/articles/5465495.html" target="_blank" rel="noopener">https://www.cnblogs.com/shijingxiang/articles/5465495.html</a><br><a href="https://blog.csdn.net/rocketluoqq/article/details/81434871" target="_blank" rel="noopener">https://blog.csdn.net/rocketluoqq/article/details/81434871</a><br>简单来说，平常写的MVC分层叫横向封层,横向封层不可避免的需要数据传输对象来解耦各层之间的关系，那我们是否不使用横向封层，而使用纵向切分呢？这就是CQRS架构模式！<br>CQRS通过对系统进行纵向切分：将「数据读」和「数据写」分离开，使得数据读写独立进化，来解决数据显示复杂性问题。</p>
-<p>我们以订单保存和展示流程来详细的看一下CQRS的优势！</p>
-<p>对于普通分层架构来说，在保存订单时需要一个DTO用于存储相关信息，然后转成多个对应的Model来进行持久化；而查询订单的时候，你需要查询出多个Model，然后组装成另一个DTO来存储查询的信息，因为展示的时候可能要展示更多的信息，比如买家和卖家相关信息。</p>
-<p>同时由于数据都存储在数据库中，且表结构与Model是对应的，你能做的优化就是数据库相关的优化手段。</p>
-<p>而在CQRS中，数据库被分成了读库和写库。那存在读库中的数据结构就可以完全按照展示逻辑来优化，比如：我可以有一张订单展示表，表中包含了买家信息和卖家信息。在展示时，直接查询这张表就可以了，不需要和用户表进行关联查询，提高了数据读性能。</p>
-<p>而对于数据持久化来说，就不需要考虑数据展示了，只要提高持久化性能就可以了。例如不使用数据库，而使用顺序写入的文件方式。同时也不一定要存储数据本身，转而存储事件，就可以实现事件重演，这就是事件溯源。<br><a href="https://www.toutiao.com/a6705742167073096199/?tt_from=weixin&amp;utm_campaign=client_share&amp;wxshare_count=1&amp;timestamp=1561313221&amp;app=news_article&amp;utm_source=weixin&amp;utm_medium=toutiao_android&amp;req_id=201906240207010100160191555284FBB&amp;group_id=6705742167073096199" target="_blank" rel="noopener">https://www.toutiao.com/a6705742167073096199/?tt_from=weixin&amp;utm_campaign=client_share&amp;wxshare_count=1&amp;timestamp=1561313221&amp;app=news_article&amp;utm_source=weixin&amp;utm_medium=toutiao_android&amp;req_id=201906240207010100160191555284FBB&amp;group_id=6705742167073096199</a></p>
+        <h3 id="CQRS架构简介"><a href="#CQRS架构简介" class="headerlink" title="CQRS架构简介"></a>CQRS架构简介</h3><p><a href="https://www.cnblogs.com/shijingxiang/articles/5465495.html" target="_blank" rel="noopener">https://www.cnblogs.com/shijingxiang/articles/5465495.html</a><br><a href="https://blog.csdn.net/rocketluoqq/article/details/81434871" target="_blank" rel="noopener">https://blog.csdn.net/rocketluoqq/article/details/81434871</a><br><a href="https://www.jdon.com/52278" target="_blank" rel="noopener">https://www.jdon.com/52278</a><br>我的简单的理解就是读写分离。。一个是查询（读），一个是命令（写）。</p>
 <h3 id="Event-Sourcing-vs-Command-Sourcing"><a href="#Event-Sourcing-vs-Command-Sourcing" class="headerlink" title="Event Sourcing vs Command Sourcing"></a>Event Sourcing vs Command Sourcing</h3><p>command是让系统做事情的；<br>event是系统发生的变化；<br>redo/AOF/WAL日志是Command Sourcing，而我们这里说的是Event Sourcing</p>
+<h4 id="世界上最流行的事件溯源应用是Git"><a href="#世界上最流行的事件溯源应用是Git" class="headerlink" title="世界上最流行的事件溯源应用是Git"></a>世界上最流行的事件溯源应用是Git</h4><p>Git是完全同步的，并且具有作为事件溯源的所有优点，例如在时间上进行时间查询或及时来回地在不同的时间点中挑选代码以及其他用例。</p>
+<h4 id="使用Kafka实现事件溯源，也就是Event-Sourcing"><a href="#使用Kafka实现事件溯源，也就是Event-Sourcing" class="headerlink" title="使用Kafka实现事件溯源，也就是Event Sourcing"></a>使用Kafka实现事件溯源，也就是Event Sourcing</h4><p><a href="https://www.jdon.com/50566" target="_blank" rel="noopener">https://www.jdon.com/50566</a></p>
 <h3 id="ENode"><a href="#ENode" class="headerlink" title="ENode"></a><a href="https://github.com/tangxuehua/enode" target="_blank" rel="noopener">ENode</a></h3><p>a framework aims to help us developing ddd, cqrs, eda, and event sourcing style applications.</p>
-<h3 id="汤老师语录"><a href="#汤老师语录" class="headerlink" title="汤老师语录"></a>汤老师语录</h3><h4 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h4><p>聚合关系：成员对象是整体的一部分，但是成员对象可以脱离整体对象独立存在。<br>如汽车（Car）与引擎（Engine）、轮胎（Wheel）、车灯（Light）之间的关系为聚合关系，引擎、轮胎、车灯可以脱离车而存在，比如把一个引擎换到另一个汽车上也可以。<br>组合关系：也表示的是一种整体和部分的关系，但是在组合关系中整体对象可以控制成员对象的生命周期，一旦整体对象不存在，成员对象也不存在，整体对象和成员对象之间具有同生共死的关系。<br>所以，聚合和组合的差别就一点：整体和部分的生命周期是否一致，即整体消亡后，成员对象是否可以脱离整体对象而单独存在。</p>
-<h4 id="DDD聚合关系："><a href="#DDD聚合关系：" class="headerlink" title="DDD聚合关系："></a>DDD聚合关系：</h4><p>也是一种整体和部分的关系，部分脱离整体会变得毫无意义，强调同生共死的一致的生命周期。所以，从定义来看DDD中的聚合应该和UML中的组合关系是一致的。</p>
-<p>按照上面的定义，我们在来分析一下公司和部门的关系。</p>
-<p>UML的角度：<br>1、一个公司由多个部门组成，所以满足整体和部分的关系；<br>2、一个部门不能脱离公司和加入到其他公司；</p>
-<p>所以，在UML中应该属于组合关系，没有问题。</p>
-<p>DDD的角度：<br>虽然基于UML的角度，公司和部门属于组合关系，那在DDD中是否应该把部门聚合在公司下面呢？我的看法是，虽然从生命周期上，确实部门不能脱离公司。<br>但是DDD的聚合设计要考虑的因素会更加丰满，比如：<br>1）DDD强调需求和bounded context，也就是会基于需求和上下文进行建模，我们建模前必须要先确定当前的需求和上下文是什么；<br>2）整体在当前上下文是否强关心部分的存在；<br>3）整体和部分之间是否存在某些不变性规则；<br>4）性能问题，如果整体聚合的部分数量过大，那也不会考虑聚合，即小聚合原则；<br>5）一致性问题，我们在设计系统时，即便把本该是聚合在一起的对象分开设计为多个聚合，也可以从技术上去解决一致性，比如通过领域服务来完成多个聚合的协同创建、删除、修改，并能通过数据库事务来保证严格的强一致性；<br>6）DDD领域建模会对领域概念进行抽象，所以再领域模型中，也许就没有公司了，而是只有部门，把公司也看成是一个顶层的部门就行，所以自然就不会有公司这个聚合根了；</p>
-<h4 id="如何解决多线程并发写的时候的CPU占用高的问题？"><a href="#如何解决多线程并发写的时候的CPU占用高的问题？" class="headerlink" title="如何解决多线程并发写的时候的CPU占用高的问题？"></a>如何解决多线程并发写的时候的CPU占用高的问题？</h4><p>可以使用双缓冲队列的技术，比如多个线程写，用锁可能效率不好，准备两个队列，一个只用来接收，另一个串行执行。<br>这两个队列如何交换数据？ 交换两个队列的引用<br>什么场景下能用双缓冲？只要是多个消息生产者并发产生消息，然后单个消费者单线程消费消息的场景，都可以使用</p>
+<h3 id="如何解决多线程并发写的时候的CPU占用高的问题？"><a href="#如何解决多线程并发写的时候的CPU占用高的问题？" class="headerlink" title="如何解决多线程并发写的时候的CPU占用高的问题？"></a>如何解决多线程并发写的时候的CPU占用高的问题？</h3><p>可以使用双缓冲队列的技术，比如多个线程写，用锁可能效率不好，准备两个队列，一个只用来接收，另一个串行执行。<br>这两个队列如何交换数据？ 交换两个队列的引用<br>什么场景下能用双缓冲？只要是多个消息生产者并发产生消息，然后单个消费者单线程消费消息的场景，都可以使用</p>
 <h3 id="DDD-CQRS-一位大牛的博客"><a href="#DDD-CQRS-一位大牛的博客" class="headerlink" title="DDD/CQRS(一位大牛的博客)"></a>DDD/CQRS(一位大牛的博客)</h3><p><a href="https://www.cnblogs.com/netfocus/category/496012.html" target="_blank" rel="noopener">https://www.cnblogs.com/netfocus/category/496012.html</a></p>
-<h3 id="领域驱动设计在互联网业务开发中的实践"><a href="#领域驱动设计在互联网业务开发中的实践" class="headerlink" title="领域驱动设计在互联网业务开发中的实践"></a>领域驱动设计在互联网业务开发中的实践</h3><p><a href="https://tech.meituan.com/2017/12/22/ddd-in-practice.html" target="_blank" rel="noopener">https://tech.meituan.com/2017/12/22/ddd-in-practice.html</a><br><a href="https://zhuanlan.zhihu.com/p/42565478" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/42565478</a><br><a href="http://ddd-china.com/look-back-2017.html" target="_blank" rel="noopener">http://ddd-china.com/look-back-2017.html</a> DDD中国<br><a href="https://sunnycoding.cn/" target="_blank" rel="noopener">https://sunnycoding.cn/</a> 博客<br><a href="https://www.jdon.com/ddd.html" target="_blank" rel="noopener">https://www.jdon.com/ddd.html</a></p>
+<h3 id="领域驱动设计在互联网业务开发中的实践"><a href="#领域驱动设计在互联网业务开发中的实践" class="headerlink" title="领域驱动设计在互联网业务开发中的实践"></a>领域驱动设计在互联网业务开发中的实践</h3><p><a href="https://tech.meituan.com/2017/12/22/ddd-in-practice.html" target="_blank" rel="noopener">https://tech.meituan.com/2017/12/22/ddd-in-practice.html</a><br><a href="https://zhuanlan.zhihu.com/p/42565478" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/42565478</a><br><a href="http://ddd-china.com/look-back-2017.html" target="_blank" rel="noopener">http://ddd-china.com/look-back-2017.html</a> DDD中国<br><a href="https://sunnycoding.cn/" target="_blank" rel="noopener">https://sunnycoding.cn/</a> 博客<br><a href="https://www.jdon.com/ddd.html" target="_blank" rel="noopener">https://www.jdon.com/ddd.html</a><br><a href="https://www.jdon.com/51997" target="_blank" rel="noopener">https://www.jdon.com/51997</a></p>
+<h3 id="一个基于DDD的library系统"><a href="#一个基于DDD的library系统" class="headerlink" title="一个基于DDD的library系统"></a>一个基于DDD的library系统</h3><p><a href="https://github.com/ddd-by-examples/library" target="_blank" rel="noopener">https://github.com/ddd-by-examples/library</a></p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://thinkbeforecoding.com/post/2013/07/28/Event-Sourcing-vs-Command-Sourcing" target="_blank" rel="noopener">https://thinkbeforecoding.com/post/2013/07/28/Event-Sourcing-vs-Command-Sourcing</a><br>感觉这篇文章的思想和Kafka的思想好像啊<br><a href="https://www.cnblogs.com/netfocus/p/5656243.html" target="_blank" rel="noopener">https://www.cnblogs.com/netfocus/p/5656243.html</a></p>
 
       

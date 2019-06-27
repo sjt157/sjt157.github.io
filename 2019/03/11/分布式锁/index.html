@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="什么场景下会使用分布式锁？单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。 分布式锁的缺点比如你用zookeeper实现了分布式锁，他有一个缺点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-23T14:17:53.904Z">
+<meta property="og:updated_time" content="2019-06-26T14:12:10.459Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式锁">
 <meta name="twitter:description" content="什么场景下会使用分布式锁？单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。 分布式锁的缺点比如你用zookeeper实现了分布式锁，他有一个缺点">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-23T22:17:53+08:00">
-                2019-06-23
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-26T22:12:10+08:00">
+                2019-06-26
               </time>
             
           </span>
@@ -484,8 +484,8 @@
 <li>基于mysql数据库时需要在JDBC连接地址中增加时区配置，serverTimezone=GMT%2b8。<br>关于脑裂问题：</li>
 <li>由于网络、进程假死、中间件可能导致的脑裂问题在一定程度上不可避免，所以我们需要做一种权衡，即脑裂发生时是否可以避免问题进一步扩大。基于JDBC的分布式锁住要避免多个节点同时对事务表进行扫描，两者都是进行数据库操作，因为它们都基于数据库所以能够在一定程度上避免脑裂导致的集群处理问题，但是基于zookeeper,redis的方式可能会导致真实的脑裂发生</li>
 </ul>
-<hr>
-<h3 id="基于-Redis-的分布式锁（可以单机也可以集群）"><a href="#基于-Redis-的分布式锁（可以单机也可以集群）" class="headerlink" title="基于 Redis 的分布式锁（可以单机也可以集群）"></a>基于 Redis 的分布式锁（可以单机也可以集群）</h3><p>首先说明一下setnx()命令，setnx的含义就是SET if Not Exists，其主要有两个参数 setnx(key, value)。该方法是原子的，如果key不存在，则设置当前key成功，返回1；如果当前key已经存在，则设置当前key失败，返回0。value是System.currentTimeMillis() (获取锁的时间)+锁持有的时间。但是要注意的是setnx命令不能设置key的超时时间，只能通过expire()来对key设置。</p>
+<h4 id="使用MYSQL的GET-LOCK函数"><a href="#使用MYSQL的GET-LOCK函数" class="headerlink" title="使用MYSQL的GET_LOCK函数"></a>使用MYSQL的GET_LOCK函数</h4><p>能够锁定用户定义的字符串。当然你不应该使用它来锁定行（MySQL已经做得很好）但可能锁定外部资源。</p>
+<h2 id="https-www-xaprb-com-blog-2006-07-26-how-to-coordinate-distributed-work-with-mysqls-get-lock"><a href="#https-www-xaprb-com-blog-2006-07-26-how-to-coordinate-distributed-work-with-mysqls-get-lock" class="headerlink" title="https://www.xaprb.com/blog/2006/07/26/how-to-coordinate-distributed-work-with-mysqls-get_lock/"></a><a href="https://www.xaprb.com/blog/2006/07/26/how-to-coordinate-distributed-work-with-mysqls-get_lock/" target="_blank" rel="noopener">https://www.xaprb.com/blog/2006/07/26/how-to-coordinate-distributed-work-with-mysqls-get_lock/</a></h2><h3 id="基于-Redis-的分布式锁（可以单机也可以集群）"><a href="#基于-Redis-的分布式锁（可以单机也可以集群）" class="headerlink" title="基于 Redis 的分布式锁（可以单机也可以集群）"></a>基于 Redis 的分布式锁（可以单机也可以集群）</h3><p>首先说明一下setnx()命令，setnx的含义就是SET if Not Exists，其主要有两个参数 setnx(key, value)。该方法是原子的，如果key不存在，则设置当前key成功，返回1；如果当前key已经存在，则设置当前key失败，返回0。value是System.currentTimeMillis() (获取锁的时间)+锁持有的时间。但是要注意的是setnx命令不能设置key的超时时间，只能通过expire()来对key设置。</p>
 <h4 id="具体的使用步骤如下"><a href="#具体的使用步骤如下" class="headerlink" title="具体的使用步骤如下:"></a>具体的使用步骤如下:</h4><ol>
 <li>setnx(lockkey, 1) 如果返回0，则说明占位失败；如果返回1，则说明占位成功</li>
 <li>expire()命令对lockkey设置超时时间，为的是避免死锁问题。</li>
