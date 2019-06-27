@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="什么场景下会使用分布式锁？单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。 分布式锁的缺点比如你用zookeeper实现了分布式锁，他有一个缺点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-26T14:12:10.459Z">
+<meta property="og:updated_time" content="2019-06-27T08:32:38.617Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式锁">
 <meta name="twitter:description" content="什么场景下会使用分布式锁？单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。 分布式锁的缺点比如你用zookeeper实现了分布式锁，他有一个缺点">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-26T22:12:10+08:00">
-                2019-06-26
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-27T16:32:38+08:00">
+                2019-06-27
               </time>
             
           </span>
@@ -516,6 +516,12 @@
 <ul>
 <li>解锁<br>向所有的Redis实例发送释放锁命令即可，不用关心之前有没有从Redis实例成功获取到锁.</li>
 </ul>
+<h4 id="RedLock的设计是糟糕的！！！！"><a href="#RedLock的设计是糟糕的！！！！" class="headerlink" title="RedLock的设计是糟糕的！！！！"></a>RedLock的设计是糟糕的！！！！</h4><p><a href="https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html" target="_blank" rel="noopener">https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html</a><br>这篇文章主要阐述了RedLock的缺点，作者说RedLock不适合用作分布式锁.从效率上说,RedLock不好,从安全性上讲,也得不到保证.比如有两个进程竞争锁,第一个进程首先抢到了锁,但是它因各种原因不工作了,过了租期,那么这个时候,另外一个进程就可以抢到锁,这个时候第一个进程又好了,他想向Storage中写入记录.我们可以通过版本号来防止这种情况产生.比如可以使用 ZooKeeper 作为锁服务，您可以使用 zxid 或 znode 版本号。但是在RedLock中并没有这种机制,</p>
+<blockquote>
+<p>However, Redlock is not like this. Its safety depends on a lot of timing assumptions: it assumes that all Redis nodes hold keys for approximately the right length of time before expiring; that the network delay is small compared to the expiry duration; and that process pauses are much shorter than the expiry duration.</p>
+</blockquote>
+<p>结论就是,如果不需要保证正确性,使用 Redis 的简单的单节点锁定算法(条件 set-If-not-exists 用于获得锁，原子 delete-If-value-matches 用于释放锁).</p>
+<p>如果需要锁以保证正确性，请不要使用 Redlock。 相反，请使用一个适当的共识系统，比如 ZooKeeper</p>
 <h4 id="实际秒杀场景中的应用"><a href="#实际秒杀场景中的应用" class="headerlink" title="实际秒杀场景中的应用"></a>实际秒杀场景中的应用</h4><p>实际上抢购，好像不用分布式锁，？？？？而是直接将库存放入到redis，是否结束标记放入到内存中，通过内存标记和redis中的decr()预减库存，然后将秒杀消息入队到消息队列中，最后消费消息并落地到DB中</p>
 <h4 id="分布式锁的重入该如何实现？"><a href="#分布式锁的重入该如何实现？" class="headerlink" title="分布式锁的重入该如何实现？"></a>分布式锁的重入该如何实现？</h4><p>待补充</p>
 <h4 id="如何确保过期时间大于业务执行时间"><a href="#如何确保过期时间大于业务执行时间" class="headerlink" title="如何确保过期时间大于业务执行时间"></a>如何确保过期时间大于业务执行时间</h4><p>可以加一个定时线程增加过期时间</p>
