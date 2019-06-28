@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="官方githubhttps://github.com/LMAX-Exchange/disruptor 几个重要概念 RingBuffer：环形的缓冲区，消息事件信息的载体。曾经 RingBuffer 是 Disruptor 中的最主要的对象，但从3.0版本开始，其职责被简化为仅仅负责对通过 Disruptor 进行交换的数据（事件）进行存储和更新。在一些更高级的应用场景中，Ring Buffer">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-27T12:58:53.961Z">
+<meta property="og:updated_time" content="2019-06-28T00:50:15.679Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="你知道Disruptor吗？">
 <meta name="twitter:description" content="官方githubhttps://github.com/LMAX-Exchange/disruptor 几个重要概念 RingBuffer：环形的缓冲区，消息事件信息的载体。曾经 RingBuffer 是 Disruptor 中的最主要的对象，但从3.0版本开始，其职责被简化为仅仅负责对通过 Disruptor 进行交换的数据（事件）进行存储和更新。在一些更高级的应用场景中，Ring Buffer">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-27T20:58:53+08:00">
-                2019-06-27
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-28T08:50:15+08:00">
+                2019-06-28
               </time>
             
           </span>
@@ -458,14 +458,22 @@
 <li>包括Apache Storm、Camel、Log4j2等等知名的框架都在内部集成了Disruptor用来替代jdk的队列，以此来获得高性能。</li>
 </ul>
 <h3 id="疑问"><a href="#疑问" class="headerlink" title="疑问?"></a>疑问?</h3><ul>
-<li>Disruptor可以动态增加消费者吗?<br>diruptor最优模型是生产者与消费者的关系是1:1，你可以让这一个消费者专门做分发dispatch，这样变成1:1:N，最后的N就是你需要的动态多个消费者，请注意，一旦让这个消费者做分发，效率性能就会降低。</li>
+<li><p>Disruptor可以动态增加消费者吗?<br>diruptor最优模型是生产者与消费者的关系是1:1，你可以让这一个消费者专门做分发dispatch，这样变成1:1:N，最后的N就是你需要的动态多个消费者，请注意，一旦让这个消费者做分发，效率性能就会降低。</p>
+</li>
+<li><p>Disruptor单写原则的疑惑<br>单写原则适用于单机情况，并且只能启动一个服务实例，这种情况下的确可以做到单线程写入操作。</p>
+</li>
 </ul>
+<p>但是如果是集群的环境下，或者是单机启动多个服务实例，如何保证单写原则呢？</p>
+<p>进一步考虑如果是集群环境下，领域模型的自身一致性规则（写入操作改变状态），是否也会冲突呢？</p>
 <h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><p>待分析。。。。</p>
 <h4 id="三大特点"><a href="#三大特点" class="headerlink" title="三大特点"></a>三大特点</h4><ul>
 <li>CAS：利用CAS进行队列中的一些下标设置，减少了锁的冲突</li>
 <li>消除伪共享：在Disruptor中采用了Padding的方式</li>
-<li>RingBuffer：采用了环形数组进行保存数据</li>
+<li>RingBuffer：采用了环形数组进行保存数据,Disruptor的特点是将多线程生产者通过Ringbuffer变成单线程消费者，通过单线程消费者对共享资源进行写操作</li>
 </ul>
+<blockquote>
+<p>多个线程如果同时写同一个资源，必有争夺，就需要用锁或乐观锁等堵塞方法，而非堵塞的单线程写比多线程写要快，能获得高吞吐量和低延迟，特别是多核情况，一个线程一个CPU核，大大增加其他CPU核并行运行其他线程的概率。LMAX架构使用Disruptor每秒处理600万订单。<br><a href="https://www.jdon.com/performance/singlewriter.html" target="_blank" rel="noopener">https://www.jdon.com/performance/singlewriter.html</a></p>
+</blockquote>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://www.kailing.pub/article/index/arcid/208.html" target="_blank" rel="noopener">http://www.kailing.pub/article/index/arcid/208.html</a></p>
 
       
