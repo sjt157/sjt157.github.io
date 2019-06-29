@@ -258,7 +258,7 @@
     <link href="http://yoursite.com/2019/06/10/Java%E4%B9%8BReentrantLock/"/>
     <id>http://yoursite.com/2019/06/10/Java之ReentrantLock/</id>
     <published>2019-06-10T08:47:33.000Z</published>
-    <updated>2019-06-24T06:47:01.043Z</updated>
+    <updated>2019-06-29T12:08:19.089Z</updated>
     
     <summary type="html">
     
@@ -266,7 +266,7 @@
       
         
         
-          &lt;h3 id=&quot;一篇很好的文章，介绍AQS的&quot;&gt;&lt;a href=&quot;#一篇很好的文章，介绍AQS的&quot; class=&quot;headerlink&quot; title=&quot;一篇很好的文章，介绍AQS的&quot;&gt;&lt;/a&gt;一篇很好的文章，介绍AQS的&lt;/h3&gt;&lt;p&gt;&lt;a
+          &lt;h3 id=&quot;首先理解一下wait和notify&quot;&gt;&lt;a href=&quot;#首先理解一下wait和notify&quot; class=&quot;headerlink&quot; title=&quot;首先理解一下wait和notify&quot;&gt;&lt;/a&gt;首先理解一下wait和notify&lt;/h3&gt;&lt;figure
         
       
     
