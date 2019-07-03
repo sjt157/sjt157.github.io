@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="读Spring-Cloud-Gateway源码收获 当初始化类的成员变量时，如果操作比较复杂，可以这样写。通过一个private函数来返回你想要的东西 123456789101112/**	 * List of filter definitions that are applied to every route.	 */	private List&amp;lt;FilterDefinition&amp;gt; d">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-14T07:49:34.933Z">
+<meta property="og:updated_time" content="2019-07-03T14:12:09.830Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="读Spring-Cloud-Gateway源码收获">
 <meta name="twitter:description" content="读Spring-Cloud-Gateway源码收获 当初始化类的成员变量时，如果操作比较复杂，可以这样写。通过一个private函数来返回你想要的东西 123456789101112/**	 * List of filter definitions that are applied to every route.	 */	private List&amp;lt;FilterDefinition&amp;gt; d">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-14T15:49:34+08:00">
-                2019-06-14
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-03T22:12:09+08:00">
+                2019-07-03
               </time>
             
           </span>
@@ -477,11 +477,14 @@
 </li>
 </ol>
 <ul>
-<li><p>漏桶算法<br>有一个漏水的桶，肯定是以一定不变的速度漏水吧，当水桶满了，水就溢出去了，可以看出漏桶算法能强行限制数据的传输速率。</p>
+<li><p>漏桶算法<br>有一个漏水的桶，肯定是以一定不变的速度漏水吧，当水桶满了，水就溢出去了，可以看出漏桶算法能强行限制数据的传输速率。这里的“桶”是用来buffer请求的。</p>
 </li>
-<li><p>令牌桶算法<br>对于很多应用场景来说，除了要求能够限制数据的平均传输速率外，还要求允许某种程度的突发传输。这时候漏桶算法可能就不合适了，令牌桶算法更为适合。这个是以一定的速度往桶里放令牌，那我取令牌的速度快一点就可以应对这种突发传输的情况。</p>
+<li><p>令牌桶算法<br>对于很多应用场景来说，除了要求能够限制数据的平均传输速率外，还要求允许某种程度的突发传输。这时候漏桶算法可能就不合适了，令牌桶算法更为适合。这个是以一定的速度往桶里放令牌，那我取令牌的速度快一点就可以应对这种突发传输的情况。而令牌桶里的“桶”来计量可用资源数量（令牌）的。虽然我们并不会创建令牌实体，但是仍然可以假想，这个桶内每隔X时间就会新增一定数量的令牌，如果没有请求申请令牌，那么这个令牌桶是会溢出的。</p>
 </li>
 </ul>
+<blockquote>
+<p>令牌桶成了buffer，如果请求密度低，或者处于冷却状态，那么令牌桶就会溢满，此后如果流量突发，则过去积累的结余资源则可以直接被“借用”。<br><a href="https://juejin.im/post/5d1c978d51882555433429e6" target="_blank" rel="noopener">https://juejin.im/post/5d1c978d51882555433429e6</a></p>
+</blockquote>
 <ol>
 <li><p>基于令牌桶算法的限流的特点：让流量平稳，而不是瞬间流量。1000 QPS 相对平均的分摊在这一秒内，而不是第 1 ms 999 请求，后面 999 ms 0 请求。</p>
 </li>
