@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="源起都知道现在Service Mesh（服务网格）比较火，其实还有Database Mesh: 数据库网格，Message Mesh：消息机制，Cache Mesh：缓存这些网格，其中Database Mesh中是https://shardingsphere.apache.org/ 什么是SPI？Service Provider Interface (SPI)是一种为了被第三方实现或扩展的API。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-30T13:10:50.783Z">
+<meta property="og:updated_time" content="2019-07-10T05:46:47.443Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="你知道SPI吗？">
 <meta name="twitter:description" content="源起都知道现在Service Mesh（服务网格）比较火，其实还有Database Mesh: 数据库网格，Message Mesh：消息机制，Cache Mesh：缓存这些网格，其中Database Mesh中是https://shardingsphere.apache.org/ 什么是SPI？Service Provider Interface (SPI)是一种为了被第三方实现或扩展的API。">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-30T21:10:50+08:00">
-                2019-06-30
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-10T13:46:47+08:00">
+                2019-07-10
               </time>
             
           </span>
@@ -458,6 +458,7 @@
 <p>SPI 的接口是 Java 核心库的一部分，是由 BootstrapClassLoader 加载的；SPI 实现的 Java 类一般是由 AppClassLoader 来加载的。BootstrapClassLoader 是无法找到 SPI 的实现类的，因为它只加载 Java 的核心库。它也不能代理给 AppClassLoader，因为它是最顶层的类加载器。也就是说，双亲委派模型并不能解决这个问题。</p>
 <p>线程上下文类加载器( ContextClassLoader)正好解决了这个问题。如果不做任何的设置，Java 应用的线程的上下文类加载器默认就是 AppClassLoader。在核心类库使用 SPI 接口时，传递的类加载器使用线程上下文类加载器，就可以成功的加载到 SPI 实现的类。</p>
 <p>线程上下文类加载器在很多 SPI 的实现中都会用到。但在 JDBC 中，你可能会看到一种更直接的实现方式，比如，JDBC 驱动管理 java.sql.DriverManager 中的 loadInitialDrivers()方法中，你可以直接看到 JDK 是如何加载驱动的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (String aDriver : driversList) &#123;  </span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        println(<span class="string">"DriverManager.Initialize: loading "</span> + aDriver);</span><br><span class="line">        <span class="comment">// 直接使用 AppClassLoader</span></span><br><span class="line">        Class.forName(aDriver, <span class="keyword">true</span>,</span><br><span class="line">                ClassLoader.getSystemClassLoader());</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">        println(<span class="string">"DriverManager.Initialize: load failed: "</span> + ex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>一篇介绍线程上下文类加载器的博客：<a href="https://blog.csdn.net/yangcheng33/article/details/52631940" target="_blank" rel="noopener">https://blog.csdn.net/yangcheng33/article/details/52631940</a></p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://shardingsphere.apache.org/document/current/cn/features/orchestration/supported-registry-repo/" target="_blank" rel="noopener">https://shardingsphere.apache.org/document/current/cn/features/orchestration/supported-registry-repo/</a><br><a href="https://skyao.io/talk/201905-servicemesh-development-trend/" target="_blank" rel="noopener">https://skyao.io/talk/201905-servicemesh-development-trend/</a></p>
 
       
