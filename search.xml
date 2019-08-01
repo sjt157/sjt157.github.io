@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Nginx的一个谜题]]></title>
+    <url>%2F2019%2F08%2F01%2FNginx%E7%9A%84%E4%B8%80%E4%B8%AA%E8%B0%9C%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[有一个题：打印 http 请求的请求 url、方法、querystring、POST 请求中的 json body，如果 json body 的大小大于 100 字节，返回 413 状态码 我是这么写的123456789101112ngx.req.read_body()local args = ngx.req.get_body_data()ngx.say(args)ngx.say(string.len(args))if (string.len(args) &gt; 100) then ngx.log(ngx.ERR, "lslslslslsl") ngx.exit(413)end 进行post请求，curl -X POST --data &#39;{&quot;id&quot;:1,&quot;name&quot;:&quot;sjtsjt&quot;}&#39; &quot;http://192.168.15.179:8081/test1&quot; 结果发现无论是不是大于100个字节都返回200，查看一下nginx error日志，发现attempt to set status 413 via ngx.exit after sending out the response status 200,大意是已经发出了200，我还要尝试修改状态为413，记录错误。 关于这个错误的案例https://github.com/openresty/lua-resty-redis/issues/15 那么怎么修改呢？ 方法1：调整顺序1234567891011121314ngx.req.read_body()local args = ngx.req.get_body_data()if (string.len(args) &gt; 100) then ngx.log(ngx.ERR, "lslslslslsl") ngx.exit(413)endngx.say(args)ngx.say(string.len(args))]]></content>
+      <categories>
+        <category>Nginx</category>
+      </categories>
+      <tags>
+        <tag>Nginx</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[设计模式你了解多少？]]></title>
     <url>%2F2019%2F07%2F02%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%BD%A0%E4%BA%86%E8%A7%A3%E5%A4%9A%E5%B0%91%EF%BC%9F%2F</url>
     <content type="text"><![CDATA[外国的一个网站https://www.java-design-patterns.com/patterns/ githubhttps://github.com/iluwatar/java-design-patterns 国内的网站https://www.runoob.com/design-pattern/abstract-factory-pattern.html]]></content>
@@ -113,7 +124,7 @@
   <entry>
     <title><![CDATA[你知道CQRS吗？]]></title>
     <url>%2F2019%2F06%2F13%2F%E4%BD%A0%E7%9F%A5%E9%81%93CQRS%E5%90%97%EF%BC%9F%2F</url>
-    <content type="text"><![CDATA[CQRS架构简介https://www.cnblogs.com/shijingxiang/articles/5465495.htmlhttps://blog.csdn.net/rocketluoqq/article/details/81434871https://www.jdon.com/52278我的简单的理解就是读写分离。。一个是查询（读），一个是命令（写）。 Event Sourcing vs Command Sourcingcommand是让系统做事情的；event是系统发生的变化；redo/AOF/WAL日志是Command Sourcing，而我们这里说的是Event Sourcing 世界上最流行的事件溯源应用是GitGit是完全同步的，并且具有作为事件溯源的所有优点，例如在时间上进行时间查询或及时来回地在不同的时间点中挑选代码以及其他用例。 使用Kafka实现事件溯源，也就是Event Sourcinghttps://www.jdon.com/50566 ENodea framework aims to help us developing ddd, cqrs, eda, and event sourcing style applications. 如何解决多线程并发写的时候的CPU占用高的问题？可以使用双缓冲队列的技术，比如多个线程写，用锁可能效率不好，准备两个队列，一个只用来接收，另一个串行执行。这两个队列如何交换数据？ 交换两个队列的引用什么场景下能用双缓冲？只要是多个消息生产者并发产生消息，然后单个消费者单线程消费消息的场景，都可以使用 DDD/CQRS(一位大牛的博客)https://www.cnblogs.com/netfocus/category/496012.html 领域驱动设计在互联网业务开发中的实践其实，我们一直在使用领域驱动设计，只是没领悟到而已。 DDD建模，UML设计与MDA模型驱动，Spring Boot实现每个聚合上下文，Spring-Data-JDBC实现聚合持久化，Spring Cloud组成分布式微服务环境，Spring JPA实现实体，Lombok实现值对象，Kafka实现聚合之间的领域事件通讯，通过EventSourcing实现分布式微服务事务，引入BPMN实现长时间流程事务。 https://tech.meituan.com/2017/12/22/ddd-in-practice.htmlhttps://zhuanlan.zhihu.com/p/42565478http://ddd-china.com/look-back-2017.html DDD中国https://sunnycoding.cn/ 博客https://www.jdon.com/ddd.htmlhttps://www.jdon.com/51997https://gitee.com/cheetahing2017/ccshis 智选云 一个基于DDD的library系统https://github.com/ddd-by-examples/library 参考https://thinkbeforecoding.com/post/2013/07/28/Event-Sourcing-vs-Command-Sourcing感觉这篇文章的思想和Kafka的思想好像啊https://www.cnblogs.com/netfocus/p/5656243.html]]></content>
+    <content type="text"><![CDATA[CQRS架构简介https://www.cnblogs.com/shijingxiang/articles/5465495.htmlhttps://blog.csdn.net/rocketluoqq/article/details/81434871https://www.jdon.com/52278我的简单的理解就是读写分离。。一个是查询（读），一个是命令（写）。 Event Sourcing vs Command Sourcingcommand是让系统做事情的；event是系统发生的变化；redo/AOF/WAL日志是Command Sourcing，而我们这里说的是Event Sourcing 世界上最流行的事件溯源应用是GitGit是完全同步的，并且具有作为事件溯源的所有优点，例如在时间上进行时间查询或及时来回地在不同的时间点中挑选代码以及其他用例。 使用Kafka实现事件溯源，也就是Event Sourcinghttps://www.jdon.com/50566 ENodea framework aims to help us developing ddd, cqrs, eda, and event sourcing style applications. 如何解决多线程并发写的时候的CPU占用高的问题？可以使用双缓冲队列的技术，比如多个线程写，用锁可能效率不好，准备两个队列，一个只用来接收，另一个串行执行。这两个队列如何交换数据？ 交换两个队列的引用什么场景下能用双缓冲？只要是多个消息生产者并发产生消息，然后单个消费者单线程消费消息的场景，都可以使用 DDD/CQRS(一位大牛的博客)https://www.cnblogs.com/netfocus/category/496012.html 领域驱动设计在互联网业务开发中的实践其实，我们一直在使用领域驱动设计，只是没领悟到而已。 DDD建模，UML设计与MDA模型驱动，Spring Boot实现每个聚合上下文，Spring-Data-JDBC实现聚合持久化，Spring Cloud组成分布式微服务环境，Spring JPA实现实体，Lombok实现值对象，Kafka实现聚合之间的领域事件通讯，通过EventSourcing实现分布式微服务事务，引入BPMN实现长时间流程事务。 https://tech.meituan.com/2017/12/22/ddd-in-practice.htmlhttps://zhuanlan.zhihu.com/p/42565478http://ddd-china.com/look-back-2017.html DDD中国https://sunnycoding.cn/ 博客https://www.jdon.com/ddd.htmlhttps://www.jdon.com/51997https://gitee.com/cheetahing2017/ccshis 智选云https://insights.thoughtworks.cn/backend-development-ddd/ 后端开发实践系列——领域驱动设计(DDD)编码实践 一个基于DDD的library系统https://github.com/ddd-by-examples/library 参考https://thinkbeforecoding.com/post/2013/07/28/Event-Sourcing-vs-Command-Sourcing感觉这篇文章的思想和Kafka的思想好像啊https://www.cnblogs.com/netfocus/p/5656243.html]]></content>
       <categories>
         <category>Architecture</category>
       </categories>

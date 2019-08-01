@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-07-02T01:16:22.408Z</updated>
+  <updated>2019-08-01T04:53:51.519Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Nginx的一个谜题</title>
+    <link href="http://yoursite.com/2019/08/01/Nginx%E7%9A%84%E4%B8%80%E4%B8%AA%E8%B0%9C%E9%A2%98/"/>
+    <id>http://yoursite.com/2019/08/01/Nginx的一个谜题/</id>
+    <published>2019-08-01T04:53:06.000Z</published>
+    <updated>2019-08-01T04:53:51.519Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;有一个题：打印 http 请求的请求 url、方法、querystring、POST 请求中的 json body，如果 json body 的大小大于 100 字节，返回 413 状态码&lt;/p&gt;
+&lt;p&gt;我是这么写的&lt;br&gt;&lt;figure class=&quot;highlight
+        
+      
+    
+    </summary>
+    
+      <category term="Nginx" scheme="http://yoursite.com/categories/Nginx/"/>
+    
+    
+      <category term="Nginx" scheme="http://yoursite.com/tags/Nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>设计模式你了解多少？</title>
@@ -284,7 +311,7 @@
     <link href="http://yoursite.com/2019/06/13/%E4%BD%A0%E7%9F%A5%E9%81%93CQRS%E5%90%97%EF%BC%9F/"/>
     <id>http://yoursite.com/2019/06/13/你知道CQRS吗？/</id>
     <published>2019-06-12T21:22:02.000Z</published>
-    <updated>2019-07-03T07:55:11.048Z</updated>
+    <updated>2019-07-31T15:22:50.220Z</updated>
     
     <summary type="html">
     
@@ -511,37 +538,6 @@
 &lt;li&gt;&lt;p&gt;耗时的计算或操作，执行这些操作期间不要占用锁，比如IO&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;不
-        
-      
-    
-    </summary>
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>读《实战Java高并发程序设计》笔记</title>
-    <link href="http://yoursite.com/2019/06/02/%E8%AF%BB%E3%80%8A%E5%AE%9E%E6%88%98Java%E9%AB%98%E5%B9%B6%E5%8F%91%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2019/06/02/读《实战Java高并发程序设计》笔记/</id>
-    <published>2019-06-02T01:51:30.000Z</published>
-    <updated>2019-06-02T01:52:22.430Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;ul&gt;
-&lt;li&gt;一句说解释活锁&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;两个线程都主动释放资源给对方，就会导致这个资源在两个线程间来回跳动，谁也拿不到资源执行，就类似于两个人互相谦让。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;并发级别&lt;br&gt;阻塞（synchroized、lock）、无饥饿（公平锁
         
       
     
