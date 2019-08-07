@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="快速排序的基本思想快速排序（Quicksort）是对冒泡排序的一种改进。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。  快速排序的三个步骤1.选择基准：在待排序列中，按照某种方式挑出一个元素，作为 “基准”（pivot）；2.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-22T07:31:39.590Z">
+<meta property="og:updated_time" content="2019-08-02T15:44:34.620Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速排序">
 <meta name="twitter:description" content="快速排序的基本思想快速排序（Quicksort）是对冒泡排序的一种改进。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。  快速排序的三个步骤1.选择基准：在待排序列中，按照某种方式挑出一个元素，作为 “基准”（pivot）；2.">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-22T15:31:39+08:00">
-                2019-06-22
+              <time title="更新于" itemprop="dateModified" datetime="2019-08-02T23:44:34+08:00">
+                2019-08-02
               </time>
             
           </span>
@@ -461,6 +461,9 @@
 <p><a href="http://www.ruanyifeng.com/blog/2015/04/tail-call.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2015/04/tail-call.html</a></p>
 <h4 id="关于一个尾递归形象的比喻"><a href="#关于一个尾递归形象的比喻" class="headerlink" title="关于一个尾递归形象的比喻"></a>关于一个尾递归形象的比喻</h4><p>function story() {    从前有座山，山上有座庙，庙里有个老和尚，一天老和尚对小和尚讲故事：story() // 尾递归，进入下一个函数不再需要上一个函数的环境了，得出结果以后直接返回。}<br>function story() {    从前有座山，山上有座庙，庙里有个老和尚，一天老和尚对小和尚讲故事：story()，小和尚听了，找了块豆腐撞死了 // 非尾递归，下一个函数结束以后此函数还有后续，所以必须保存本身的环境以供处理返回值。}<br><a href="https://www.zhihu.com/question/20761771" target="_blank" rel="noopener">https://www.zhihu.com/question/20761771</a></p>
 <h3 id="快排的非递归实现和与递归性能比较"><a href="#快排的非递归实现和与递归性能比较" class="headerlink" title="快排的非递归实现和与递归性能比较"></a>快排的非递归实现和与递归性能比较</h3><p><a href="https://unordered.org/timelines/59da41085a001000" target="_blank" rel="noopener">https://unordered.org/timelines/59da41085a001000</a></p>
+<h3 id="三路快排"><a href="#三路快排" class="headerlink" title="三路快排"></a>三路快排</h3><p>当数组中有大量重复的数据时，还是有可能退化成O(n^2)级别的。于是我们介绍了<strong>双路快排的Partition</strong>思路。通过这个思路，我们可以进一步优化，提出<strong>三路快排</strong>的思想。三路快排要做的事情，其实就是将数组分成三部分：小于v，等于v和大于v，之后递归的对小于v和大于v部分进行排序就好了。</p>
+<p><a href="https://www.imooc.com/article/16141" target="_blank" rel="noopener">https://www.imooc.com/article/16141</a></p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><p><a href="https://blog.csdn.net/u010829149/article/details/73291880" target="_blank" rel="noopener">https://blog.csdn.net/u010829149/article/details/73291880</a></p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/insistgogo/article/details/7785038" target="_blank" rel="noopener">https://blog.csdn.net/insistgogo/article/details/7785038</a> 对快排进行优化</p>
 
       

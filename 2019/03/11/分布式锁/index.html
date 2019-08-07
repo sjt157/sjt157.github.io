@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="什么场景下会使用分布式锁？单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。 分布式锁的缺点比如你用zookeeper实现了分布式锁，他有一个缺点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-27T08:32:38.617Z">
+<meta property="og:updated_time" content="2019-08-05T08:33:58.027Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式锁">
 <meta name="twitter:description" content="什么场景下会使用分布式锁？单机应用架构中，秒杀案例使用ReentrantLcok或者synchronized来达到秒杀商品互斥的目的。然而在分布式系统中，会存在多台机器并行去实现同一个功能。也就是说，在多进程中，如果还使用以上JDK提供的进程锁，来并发访问数据库资源就可能会出现商品超卖的情况。因此，需要我们来实现自己的分布式锁。 分布式锁的缺点比如你用zookeeper实现了分布式锁，他有一个缺点">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-27T16:32:38+08:00">
-                2019-06-27
+              <time title="更新于" itemprop="dateModified" datetime="2019-08-05T16:33:58+08:00">
+                2019-08-05
               </time>
             
           </span>
@@ -526,7 +526,7 @@
 <h4 id="分布式锁的重入该如何实现？"><a href="#分布式锁的重入该如何实现？" class="headerlink" title="分布式锁的重入该如何实现？"></a>分布式锁的重入该如何实现？</h4><p>待补充</p>
 <h4 id="如何确保过期时间大于业务执行时间"><a href="#如何确保过期时间大于业务执行时间" class="headerlink" title="如何确保过期时间大于业务执行时间"></a>如何确保过期时间大于业务执行时间</h4><p>可以加一个定时线程增加过期时间</p>
 <h4 id="codis"><a href="#codis" class="headerlink" title="codis"></a>codis</h4><p>待补充</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://juejin.im/post/5b737b9b518825613d3894f4" target="_blank" rel="noopener">https://juejin.im/post/5b737b9b518825613d3894f4</a></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://juejin.im/post/5b737b9b518825613d3894f4" target="_blank" rel="noopener">https://juejin.im/post/5b737b9b518825613d3894f4</a><br><a href="https://blog.csdn.net/u010963948/article/details/79006572" target="_blank" rel="noopener">https://blog.csdn.net/u010963948/article/details/79006572</a>  非常好的一篇文章，值得多看</p>
 
       
     </div>
