@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-01T04:53:51.519Z</updated>
+  <updated>2019-08-15T08:03:19.226Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java之单例模式</title>
+    <link href="http://yoursite.com/2019/08/15/Java%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2019/08/15/Java之单例模式/</id>
+    <published>2019-08-15T08:02:40.000Z</published>
+    <updated>2019-08-15T08:03:19.226Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;一道面试题&lt;br&gt;&lt;a href=&quot;https://www.nowcoder.com/discuss/224118?type=0&amp;amp;order=0&amp;amp;pos=7&amp;amp;page=0&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Nginx的一个谜题</title>
@@ -179,7 +205,7 @@
     <link href="http://yoursite.com/2019/06/24/Java%E4%B9%8BHashMap/"/>
     <id>http://yoursite.com/2019/06/24/Java之HashMap/</id>
     <published>2019-06-24T03:41:32.000Z</published>
-    <updated>2019-07-24T00:42:40.805Z</updated>
+    <updated>2019-08-14T01:34:29.066Z</updated>
     
     <summary type="html">
     
@@ -507,37 +533,6 @@
 &lt;li&gt;&lt;p&gt;用xxd 命令以 16 进制的方式查看这个 class 文件。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;javap，用来方便的窥探
-        
-      
-    
-    </summary>
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>读《JAVA并发编程实践》（译）笔记</title>
-    <link href="http://yoursite.com/2019/06/02/%E8%AF%BB%E3%80%8AJAVA%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E3%80%8B%EF%BC%88%E8%AF%91%EF%BC%89%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2019/06/02/读《JAVA并发编程实践》（译）笔记/</id>
-    <published>2019-06-02T03:11:58.000Z</published>
-    <updated>2019-06-02T03:12:24.646Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;多数Servlet都可以实现为无状态的，降低了线程安全的负担，只有当servlet要为不同的请求记录一些信息时，才需要线程安全。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;耗时的计算或操作，执行这些操作期间不要占用锁，比如IO&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;不
         
       
     
