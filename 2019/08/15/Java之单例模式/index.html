@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="一道面试题https://www.nowcoder.com/discuss/224118?type=0&amp;amp;order=0&amp;amp;pos=7&amp;amp;page=0 不使用synchronized和lock，如何实现一个线程安全的单例？https://www.hollischuang.com/archives/1866 静态内部类 static nested class我比较倾向于使用静态内部">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-15T08:03:19.226Z">
+<meta property="og:updated_time" content="2019-08-21T15:37:54.199Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java之单例模式">
 <meta name="twitter:description" content="一道面试题https://www.nowcoder.com/discuss/224118?type=0&amp;amp;order=0&amp;amp;pos=7&amp;amp;page=0 不使用synchronized和lock，如何实现一个线程安全的单例？https://www.hollischuang.com/archives/1866 静态内部类 static nested class我比较倾向于使用静态内部">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-08-15T16:03:19+08:00">
-                2019-08-15
+              <time title="更新于" itemprop="dateModified" datetime="2019-08-21T23:37:54+08:00">
+                2019-08-21
               </time>
             
           </span>
@@ -442,10 +442,15 @@
         <p>一道面试题<br><a href="https://www.nowcoder.com/discuss/224118?type=0&amp;order=0&amp;pos=7&amp;page=0" target="_blank" rel="noopener">https://www.nowcoder.com/discuss/224118?type=0&amp;order=0&amp;pos=7&amp;page=0</a></p>
 <h3 id="不使用synchronized和lock，如何实现一个线程安全的单例？"><a href="#不使用synchronized和lock，如何实现一个线程安全的单例？" class="headerlink" title="不使用synchronized和lock，如何实现一个线程安全的单例？"></a>不使用synchronized和lock，如何实现一个线程安全的单例？</h3><p><a href="https://www.hollischuang.com/archives/1866" target="_blank" rel="noopener">https://www.hollischuang.com/archives/1866</a></p>
 <h3 id="静态内部类-static-nested-class"><a href="#静态内部类-static-nested-class" class="headerlink" title="静态内部类 static nested class"></a>静态内部类 static nested class</h3><p>我比较倾向于使用静态内部类的方法，这种方法也是《Effective Java》上所推荐的。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span> <span class="params">()</span></span>&#123;&#125;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> SingletonHolder.INSTANCE; </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="Synchornized能防止指令重排序吗？"><a href="#Synchornized能防止指令重排序吗？" class="headerlink" title="Synchornized能防止指令重排序吗？"></a>Synchornized能防止指令重排序吗？</h3><p>sync 只保证原子性  ，还有可见性。</p>
+<h3 id="实现单例模式所有的方法"><a href="#实现单例模式所有的方法" class="headerlink" title="实现单例模式所有的方法"></a>实现单例模式所有的方法</h3><p><a href="https://blog.csdn.net/zeqiao/article/details/80812774" target="_blank" rel="noopener">https://blog.csdn.net/zeqiao/article/details/80812774</a></p>
+<h3 id="Synchornized能防止指令重排序吗？"><a href="#Synchornized能防止指令重排序吗？" class="headerlink" title="Synchornized能防止指令重排序吗？"></a>Synchornized能防止指令重排序吗？</h3><blockquote>
+<p>synchronized是无法禁止指令重排和处理器优化的。那么他是如何保证的有序性呢？<br>这就要再把有序性的概念扩展一下了。Java程序中天然的有序性可以总结为一句话：如果在本线程内观察，所有操作都是天然有序的。如果在一个线程中观察另一个线程，所有操作都是无序的。<br>以上这句话也是《深入理解Java虚拟机》中的原句，但是怎么理解呢？周志明并没有详细的解释。这里我简单扩展一下，这其实和as-if-serial语义有关。<br>as-if-serial语义的意思指：不管怎么重排序，单线程程序的执行结果都不能被改变。编译器和处理器无论如何优化，都必须遵守as-if-serial语义。<br>这里不对as-if-serial语义详细展开了，简单说就是，as-if-serial语义保证了单线程中，不管指令怎么重排，最终的执行结果是不能被改变的。<br>那么，我们回到刚刚那个双重校验锁的例子，站在单线程的角度，也就是只看Thread1的话，因为编译器会遵守as-if-serial语义，所以这种优化不会有任何问题，对于这个线程的执行结果也不会有任何影响。<br>但是，Thread1内部的指令重排却对Thread2产生了影响。<br>那么，我们可以说，synchronized保证的有序性是多个线程之间的有序性，即被加锁的内容要按照顺序被多个线程执行。但是其内部的同步代码还是会发生重排序，只不过由于编译器和处理器都遵循as-if-serial语义，所以我们可以认为这些重排序在单线程内部可忽略。<br><a href="https://juejin.im/post/5d5c9fbce51d4561cd246641?utm_source=gold_browser_extension" target="_blank" rel="noopener">https://juejin.im/post/5d5c9fbce51d4561cd246641?utm_source=gold_browser_extension</a></p>
+</blockquote>
+<p>sync 只保证原子性  ，还有可见性。</p>
 <p>new对象的时候会出现指令重排序。new一个对象不是原子操作。<br>不用volatile关键字修饰会有问题的，一旦重排序了，赋值操作先执行，但构造器还没来得及调用。这个时候线程2走到了第一个判断是否为null的if语句那里，发现不为null，就直接return了。这时候return的对象是有问题的，因为线程1还没来得及调构造方法初始化这个对象。<strong>就是说sync不能保证new的顺序性。</strong></p>
 <p>你这样写的话 synchronized 并不能保证在它之前的非空判断的“顺序”问题，根据 JSR-133 定义的 JMM，synchronized 的加锁和解锁之间能够有确定的顺序，但是多个线程下 synchronized 之前的非空判断之间并不能保证顺序。所以需要用 volatile 来保证非空判断之间的 happens-before 关系。  </p>
 <p>有兴趣的话建议你完整地看一下 JSR-133 相关的文章。</p>
+<h3 id="voaltile的作用"><a href="#voaltile的作用" class="headerlink" title="voaltile的作用"></a>voaltile的作用</h3><p>我的理解是有两个，一个是可见性，一个是防止重排序。</p>
 <h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>编程一生 <a href="https://www.cnblogs.com/xiexj/p/6845029.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiexj/p/6845029.html</a><br><a href="http://blog.crazybob.org/2007/01/lazy-loading-singletons.html" target="_blank" rel="noopener">http://blog.crazybob.org/2007/01/lazy-loading-singletons.html</a><br><a href="https://www.jianshu.com/p/16d2762a1d70" target="_blank" rel="noopener">https://www.jianshu.com/p/16d2762a1d70</a></p>
 
       

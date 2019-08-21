@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="什么是ThreadLocalThreadLocal是线程执行时的上下文,用于存放线程局部变量。ThreadLocal 类为每一个线程都维护了自己独有的变量拷贝。每个线程都拥有自己独立的变量，其作用在于数据独立。  ThreadLocal 采用 hash 表的方式来为每个线程提供一个变量的副本 ThreadLocal是本地变量，无法跨jvm传递 ThreadLocalMap 是存放局部变量的容器 T">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-23T15:39:16.083Z">
+<meta property="og:updated_time" content="2019-08-21T15:04:06.410Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java之ThreadLocal">
 <meta name="twitter:description" content="什么是ThreadLocalThreadLocal是线程执行时的上下文,用于存放线程局部变量。ThreadLocal 类为每一个线程都维护了自己独有的变量拷贝。每个线程都拥有自己独立的变量，其作用在于数据独立。  ThreadLocal 采用 hash 表的方式来为每个线程提供一个变量的副本 ThreadLocal是本地变量，无法跨jvm传递 ThreadLocalMap 是存放局部变量的容器 T">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-07-23T23:39:16+08:00">
-                2019-07-23
+              <time title="更新于" itemprop="dateModified" datetime="2019-08-21T23:04:06+08:00">
+                2019-08-21
               </time>
             
           </span>
@@ -507,7 +507,7 @@
 <p>如果使用了线程池(如Executor)，那么即使即使父线程已经结束，子线程依然存在并被池化。这样，线程池中的线程在下一次请求被执行的时候，ThreadLocal对象的get()方法返回的将不是当前线程中设定的变量，因为池中的“子线程”根本不是当前线程创建的，当前线程设定的ThreadLocal变量也就无法传递给线程池中的线程。<br>因此，必须将外部线程中的ThreadLocal变量显式地传递给线程池中的线程。<br><a href="https://blog.csdn.net/comliu/article/details/3186778?utm_source=blogxgwz2" target="_blank" rel="noopener">https://blog.csdn.net/comliu/article/details/3186778?utm_source=blogxgwz2</a></p>
 <h3 id="Netty的FastThreadLocal"><a href="#Netty的FastThreadLocal" class="headerlink" title="Netty的FastThreadLocal"></a>Netty的FastThreadLocal</h3><p><a href="https://juejin.im/post/5d1b5531f265da1bc23f91a3" target="_blank" rel="noopener">https://juejin.im/post/5d1b5531f265da1bc23f91a3</a>匠心零度的文章，写的非常详细了。</p>
 <h3 id="并发包中ThreadLocalRandom类"><a href="#并发包中ThreadLocalRandom类" class="headerlink" title="并发包中ThreadLocalRandom类"></a>并发包中ThreadLocalRandom类</h3><p>Random在多线程下存在竞争种子原子变量更新操作失败后自旋等待的缺点，从而引出ThreadLocalRandom类，ThreadLocalRandom使用ThreadLocal的原理，让每个线程内持有一个本地的种子变量，该种子变量只有在使用随机数时候才会被初始化，多线程下计算新种子时候是根据自己线程内维护的种子变量进行更新，从而避免了竞争。<br><a href="https://blog.csdn.net/wangyunpeng0319/article/details/78903541" target="_blank" rel="noopener">https://blog.csdn.net/wangyunpeng0319/article/details/78903541</a></p>
-<h3 id="ThreadLocal透传（阿里开源实现）"><a href="#ThreadLocal透传（阿里开源实现）" class="headerlink" title="ThreadLocal透传（阿里开源实现）"></a>ThreadLocal透传（阿里开源实现）</h3><p><a href="https://github.com/alibaba/transmittable-thread-local" target="_blank" rel="noopener">https://github.com/alibaba/transmittable-thread-local</a></p>
+<h3 id="ThreadLocal透传（阿里开源实现）"><a href="#ThreadLocal透传（阿里开源实现）" class="headerlink" title="ThreadLocal透传（阿里开源实现）"></a>ThreadLocal透传（阿里开源实现）</h3><p><a href="https://github.com/alibaba/transmittable-thread-local" target="_blank" rel="noopener">https://github.com/alibaba/transmittable-thread-local</a><br><a href="https://github.com/xjjdog/example-pass-through/blob/master/README.md" target="_blank" rel="noopener">https://github.com/xjjdog/example-pass-through/blob/master/README.md</a>(解决线程池、sl4j MDC、Hystrix透传问题)</p>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ol>
 <li><p>ThreadLocal是线程执行时的上下文,用于存放线程局部变量。它不能解决并发情况下数据共享的问题</p>
 </li>
