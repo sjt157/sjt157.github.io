@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="为什么组合好于继承？Wiki中Com­po­si­tion over Inher­i­tance定义是领域建模： 使用组合而不是继承是一种设计原则，能够带来设计的更高灵活性，带给业务领域的类代码更长时间的稳定性。  “拆分”和“复用”是系统设计中2个永恒的主题，在这两者之间如何达到一种平衡是艺术。从技术角度讲，继承和组合没有好与坏之说。不知道大家是否注意到，“组合比继承好”是一种实战观点，都是经验">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-27T14:28:03.295Z">
+<meta property="og:updated_time" content="2019-08-22T13:02:40.910Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="组合VS继承">
 <meta name="twitter:description" content="为什么组合好于继承？Wiki中Com­po­si­tion over Inher­i­tance定义是领域建模： 使用组合而不是继承是一种设计原则，能够带来设计的更高灵活性，带给业务领域的类代码更长时间的稳定性。  “拆分”和“复用”是系统设计中2个永恒的主题，在这两者之间如何达到一种平衡是艺术。从技术角度讲，继承和组合没有好与坏之说。不知道大家是否注意到，“组合比继承好”是一种实战观点，都是经验">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-27T22:28:03+08:00">
-                2019-06-27
+              <time title="更新于" itemprop="dateModified" datetime="2019-08-22T21:02:40+08:00">
+                2019-08-22
               </time>
             
           </span>
@@ -454,6 +454,46 @@
 <p>很多人思维如果局限在Windows这种继承思维中，会觉得Unix好像不人性化，对程序员不够尊重，这其实是身在庐山中不识庐山真面貌。</p>
 <h3 id="This-is-why-you-need-Composition-over-Inheritance"><a href="#This-is-why-you-need-Composition-over-Inheritance" class="headerlink" title="This is why you need Composition over Inheritance"></a>This is why you need Composition over Inheritance</h3><p><a href="https://theburningmonk.com/2015/03/this-is-why-you-need-composition-over-inheritance/" target="_blank" rel="noopener">https://theburningmonk.com/2015/03/this-is-why-you-need-composition-over-inheritance/</a></p>
 <h3 id="在实践中如何使用组合"><a href="#在实践中如何使用组合" class="headerlink" title="在实践中如何使用组合"></a>在实践中如何使用组合</h3><p><a href="https://fsharpforfunandprofit.com/posts/recipe-part2/" target="_blank" rel="noopener">https://fsharpforfunandprofit.com/posts/recipe-part2/</a></p>
+<h3 id="组合与继承的区别和联系（引用https-github-com-hollischuang-toBeTopJavaer-blob-master-basics-java-basic-inheritance-composition-md）"><a href="#组合与继承的区别和联系（引用https-github-com-hollischuang-toBeTopJavaer-blob-master-basics-java-basic-inheritance-composition-md）" class="headerlink" title="组合与继承的区别和联系（引用https://github.com/hollischuang/toBeTopJavaer/blob/master/basics/java-basic/inheritance-composition.md）"></a>组合与继承的区别和联系（引用<a href="https://github.com/hollischuang/toBeTopJavaer/blob/master/basics/java-basic/inheritance-composition.md" target="_blank" rel="noopener">https://github.com/hollischuang/toBeTopJavaer/blob/master/basics/java-basic/inheritance-composition.md</a>）</h3><blockquote>
+<p>在继承结构中，父类的内部细节对于子类是可见的。所以我们通常也可以说通过继承的代码复用是一种白盒式代码复用。（如果基类的实现发生改变，那么派生类的实现也将随之改变。这样就导致了子类行为的不可预知性；）</p>
+</blockquote>
+<p>组合是通过对现有的对象进行拼装（组合）产生新的、更复杂的功能。因为在对象之间，各自的内部细节是不可见的，所以我们也说这种方式的代码复用是黑盒式代码复用。（因为组合中一般都定义一个类型，所以在编译期根本不知道具体会调用哪个实现类的方法）</p>
+<p>继承，在写代码的时候就要指名具体继承哪个类，所以，在编译期就确定了关系。（从基类继承来的实现是无法在运行期动态改变的，因此降低了应用的灵活性。）</p>
+<p>组合，在写代码的时候可以采用面向接口编程。所以，类的组合关系一般在运行期确定。</p>
+<h3 id="优缺点对比"><a href="#优缺点对比" class="headerlink" title="优缺点对比"></a>优缺点对比</h3><table>
+<thead>
+<tr>
+<th>组 合 关 系</th>
+<th>继 承 关 系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>优点：不破坏封装，整体类与局部类之间松耦合，彼此相对独立</td>
+<td>缺点：破坏封装，子类与父类之间紧密耦合，子类依赖于父类的实现，子类缺乏独立性</td>
+</tr>
+<tr>
+<td>优点：具有较好的可扩展性</td>
+<td>缺点：支持扩展，但是往往以增加系统结构的复杂度为代价</td>
+</tr>
+<tr>
+<td>优点：支持动态组合。在运行时，整体对象可以选择不同类型的局部对象</td>
+<td>缺点：不支持动态继承。在运行时，子类无法选择不同的父类</td>
+</tr>
+<tr>
+<td>优点：整体类可以对局部类进行包装，封装局部类的接口，提供新的接口</td>
+<td>缺点：子类不能改变父类的接口</td>
+</tr>
+<tr>
+<td>缺点：整体类不能自动获得和局部类同样的接口</td>
+<td>优点：子类能自动继承父类的接口</td>
+</tr>
+<tr>
+<td>缺点：创建整体类的对象时，需要创建所有局部类的对象</td>
+<td>优点：创建子类的对象时，无须创建父类的对象</td>
+</tr>
+</tbody>
+</table>
 <h3 id="Go语言是彻底的面向组合的并发语言"><a href="#Go语言是彻底的面向组合的并发语言" class="headerlink" title="Go语言是彻底的面向组合的并发语言"></a>Go语言是彻底的面向组合的并发语言</h3><blockquote>
 <p>If C++ and Java are about type hierarchies and the taxonomy of types, Go is about composition.<br>如果说C++和Java是关于类型的层次和分类，那么Go是关于组合。</p>
 </blockquote>
