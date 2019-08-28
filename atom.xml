@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-21T15:37:54.199Z</updated>
+  <updated>2019-08-27T01:47:29.222Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>读Spring5高级编程笔记</title>
+    <link href="http://yoursite.com/2019/08/27/%E8%AF%BBSpring5%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2019/08/27/读Spring5高级编程笔记/</id>
+    <published>2019-08-27T01:46:37.000Z</published>
+    <updated>2019-08-27T01:47:29.222Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;这是读&lt;strong&gt;Spring5高级编程&lt;/strong&gt;的笔记&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;依赖注入和依赖查找？&lt;br&gt;使用依赖查找时，组件必须获取对依赖项的引用，而使用 依赖注入时，依赖项将通过 IoC
+        
+      
+    
+    </summary>
+    
+      <category term="Spring" scheme="http://yoursite.com/categories/Spring/"/>
+    
+    
+      <category term="Spring" scheme="http://yoursite.com/tags/Spring/"/>
+    
+  </entry>
   
   <entry>
     <title>Java之单例模式</title>
@@ -511,37 +539,6 @@
     
     
       <category term="Architecture" scheme="http://yoursite.com/tags/Architecture/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java之字节码知识</title>
-    <link href="http://yoursite.com/2019/06/04/Java%E4%B9%8B%E5%AD%97%E8%8A%82%E7%A0%81%E7%9F%A5%E8%AF%86/"/>
-    <id>http://yoursite.com/2019/06/04/Java之字节码知识/</id>
-    <published>2019-06-04T06:00:27.000Z</published>
-    <updated>2019-06-04T06:01:26.809Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;第一次买了一本掘金小册&lt;jvm 字节码从入门到精通=&quot;&quot;&gt;，花了19.9元，记录下收获。&lt;/jvm&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;用xxd 命令以 16 进制的方式查看这个 class 文件。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;javap，用来方便的窥探
-        
-      
-    
-    </summary>
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
     
   </entry>
   

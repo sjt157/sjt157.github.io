@@ -85,7 +85,7 @@
 
 
 
-  <meta name="keywords" content="Python," />
+  <meta name="keywords" content="Spring," />
 
 
 
@@ -98,18 +98,18 @@
 
 
 
-<meta name="description" content="python之intern机制(字符串驻留机制) 在主流面向对象的编程语言中intern 机制对于处理字符串已经成为一种标配，通过 intern 机制可以提高字符串的处理效率，当然，解释器内部很对 intern 机制的使用策略是有考究的，有些场景会自动使用 intern ，有些地方需要通过手动方式才能启动。python中如果创建的对象一样，那么就会自动启动intern机制，所有对象会指向同一个地址">
-<meta name="keywords" content="Python">
+<meta name="description" content="这是读Spring5高级编程的笔记  依赖注入和依赖查找？使用依赖查找时，组件必须获取对依赖项的引用，而使用 依赖注入时，依赖项将通过 IoC 容器注入组件。依赖查找有两种：依赖拉取（ApplicationContext ctx = new ClassPathXmlApplicationContext（”app-context.xml”））和上下文依赖查找。依赖注入也有两种：构造函数和setter">
+<meta name="keywords" content="Spring">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python之intern机制">
-<meta property="og:url" content="http://yoursite.com/2018/04/08/python之intern机制/index.html">
+<meta property="og:title" content="读Spring5高级编程笔记">
+<meta property="og:url" content="http://yoursite.com/2019/08/27/读Spring5高级编程笔记/index.html">
 <meta property="og:site_name" content="诗与远方">
-<meta property="og:description" content="python之intern机制(字符串驻留机制) 在主流面向对象的编程语言中intern 机制对于处理字符串已经成为一种标配，通过 intern 机制可以提高字符串的处理效率，当然，解释器内部很对 intern 机制的使用策略是有考究的，有些场景会自动使用 intern ，有些地方需要通过手动方式才能启动。python中如果创建的对象一样，那么就会自动启动intern机制，所有对象会指向同一个地址">
+<meta property="og:description" content="这是读Spring5高级编程的笔记  依赖注入和依赖查找？使用依赖查找时，组件必须获取对依赖项的引用，而使用 依赖注入时，依赖项将通过 IoC 容器注入组件。依赖查找有两种：依赖拉取（ApplicationContext ctx = new ClassPathXmlApplicationContext（”app-context.xml”））和上下文依赖查找。依赖注入也有两种：构造函数和setter">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-08T10:22:16.339Z">
+<meta property="og:updated_time" content="2019-08-27T01:47:29.222Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python之intern机制">
-<meta name="twitter:description" content="python之intern机制(字符串驻留机制) 在主流面向对象的编程语言中intern 机制对于处理字符串已经成为一种标配，通过 intern 机制可以提高字符串的处理效率，当然，解释器内部很对 intern 机制的使用策略是有考究的，有些场景会自动使用 intern ，有些地方需要通过手动方式才能启动。python中如果创建的对象一样，那么就会自动启动intern机制，所有对象会指向同一个地址">
+<meta name="twitter:title" content="读Spring5高级编程笔记">
+<meta name="twitter:description" content="这是读Spring5高级编程的笔记  依赖注入和依赖查找？使用依赖查找时，组件必须获取对依赖项的引用，而使用 依赖注入时，依赖项将通过 IoC 容器注入组件。依赖查找有两种：依赖拉取（ApplicationContext ctx = new ClassPathXmlApplicationContext（”app-context.xml”））和上下文依赖查找。依赖注入也有两种：构造函数和setter">
 
 
 
@@ -139,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/08/python之intern机制/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/08/27/读Spring5高级编程笔记/"/>
 
 
 
 
 
-  <title>python之intern机制 | 诗与远方</title>
+  <title>读Spring5高级编程笔记 | 诗与远方</title>
   
 
 
@@ -326,7 +326,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/08/python之intern机制/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/读Spring5高级编程笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="无法长大">
@@ -343,7 +343,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python之intern机制</h1>
+          <h1 class="post-title" itemprop="name headline">读Spring5高级编程笔记</h1>
         
 
         <div class="post-meta">
@@ -355,8 +355,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-08T18:21:26+08:00">
-                2018-04-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-27T09:46:37+08:00">
+                2019-08-27
               </time>
             
 
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-08T18:22:16+08:00">
-                2018-04-08
+              <time title="更新于" itemprop="dateModified" datetime="2019-08-27T09:47:29+08:00">
+                2019-08-27
               </time>
             
           </span>
@@ -390,8 +390,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/Spring/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring</span>
                   </a>
                 </span>
 
@@ -407,7 +407,7 @@
 
           
           
-             <span id="/2018/04/08/python之intern机制/" class="leancloud_visitors" data-flag-title="python之intern机制">
+             <span id="/2019/08/27/读Spring5高级编程笔记/" class="leancloud_visitors" data-flag-title="读Spring5高级编程笔记">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -439,19 +439,24 @@
       
 
       
-        <h2 id="python之intern机制-字符串驻留机制"><a href="#python之intern机制-字符串驻留机制" class="headerlink" title="python之intern机制(字符串驻留机制)"></a>python之intern机制(字符串驻留机制)</h2><ul>
-<li>在主流面向对象的编程语言中intern 机制对于处理字符串已经成为一种标配，通过 intern 机制可以提高字符串的处理效率，当然，解释器内部很对 intern 机制的使用策略是有考究的，有些场景会自动使用 intern ，有些地方需要通过手动方式才能启动。python中如果创建的对象一样，那么就会自动启动intern机制，所有对象会指向同一个地址。先看个栗子：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">"helloworld"</span></span><br><span class="line">b = <span class="string">"helloworld"</span></span><br><span class="line">c = <span class="string">"helloworld"</span></span><br><span class="line">print(id(a))</span><br><span class="line">print(id(b))</span><br><span class="line">print(id(c))  <span class="comment"># 三个对象的内存地址一样</span></span><br></pre></td></tr></table></figure>
+        <p>这是读<strong>Spring5高级编程</strong>的笔记</p>
+<ol>
+<li><p>依赖注入和依赖查找？<br>使用依赖查找时，组件必须获取对依赖项的引用，而使用 依赖注入时，依赖项将通过 IoC 容器注入组件。依赖查找有两种：依赖拉取（ApplicationContext ctx = new ClassPathXmlApplicationContext（”app-context.xml”））和上下文依赖查找。依赖注入也有两种：构造函数和setter依赖注入。<br>在Spring中，除了初始的 bean 查找，组件及其依赖项始终使用注入式 IoC 连接在一起。</p>
 </li>
-</ul>
-<p>其实这就是python的intern机制，这样可以节省内存。看一下源码<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> PyObject *interned;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PyString_InternInPlace</span><span class="params">(PyObject **p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">register</span> PyStringObject *s = (PyStringObject *)(*p);</span><br><span class="line">    PyObject *t;</span><br><span class="line">    <span class="keyword">if</span> (s == <span class="literal">NULL</span> || !PyString_Check(s))</span><br><span class="line">        Py_FatalError(<span class="string">"PyString_InternInPlace: strings only please!"</span>);</span><br><span class="line">    <span class="comment">/* If it's a string subclass, we don't really know what putting</span></span><br><span class="line"><span class="comment">       it in the interned dict might do. */</span></span><br><span class="line">    <span class="keyword">if</span> (!PyString_CheckExact(s))</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (PyString_CHECK_INTERNED(s))</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (interned == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        interned = PyDict_New();</span><br><span class="line">        <span class="keyword">if</span> (interned == <span class="literal">NULL</span>) &#123;</span><br><span class="line">            PyErr_Clear(); <span class="comment">/* Don't leave an exception */</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    t = PyDict_GetItem(interned, (PyObject *)s);</span><br><span class="line">    <span class="keyword">if</span> (t) &#123;</span><br><span class="line">        Py_INCREF(t);</span><br><span class="line">        Py_DECREF(*p);</span><br><span class="line">        *p = t;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (PyDict_SetItem(interned, (PyObject *)s, (PyObject *)s) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        PyErr_Clear();</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/* The two references in interned are not counted by refcnt.</span></span><br><span class="line"><span class="comment">       The string deallocator will take care of this */</span></span><br><span class="line">    Py_REFCNT(s) -= <span class="number">2</span>;</span><br><span class="line">    PyString_CHECK_INTERNED(s) = SSTATE_INTERNED_MORTAL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>可以看到interned的定义是一个PyObject,但从下面的代码可以看出，在interned=nul的时候，interned = PyDict_New();所以它实际上是一个PyDictObject，我们可以暂时理解为c++里面的map对象。对一个PyStringObject对象进行intern机制处理的时候，会通过PyDict_GetItem去从Interned对象中查找有没有一样的已经创建的对象，有的话就直接拿来用，没有的话就说明这种对象是第一次创建，用PyDict_SetItem函数把相应的信息存到interned里面，下次再创建一样的就能从中找到了。</li>
-<li>Python解释器会缓冲256个字符串, 第257个字符串多次赋值不同的变量名, id()查看的结果就不同了。</li>
-<li>intern机制的优点是。须要值同样的字符串的时候（比方标识符）。直接从池里拿来用。避免频繁的创建和销毁。提升效率，节约内存。缺点是，拼接字符串、对字符串改动之类的影响性能。</li>
-</ul>
-<p>由于是不可变的。所以对字符串改动不是inplace操作。要新建对象。</p>
-<p>这也是为什么拼接多字符串的时候不建议用+而用join()。join()是先计算出全部字符串的长度，然后一一拷贝，仅仅new一次对象。</p>
-<p>须要小心的坑。并非全部的字符串都会採用intern机制。仅仅包括下划线、数字、字母的字符串才会被intern。</p>
+<li><p>除了构造函数注入和 setter注入， Spring 提供的另一个不常用的 DI 功能是方法注入 。Spring 方法注入功能有 两种形式： <strong>查找方法注入</strong>和<strong>方法替换</strong>。查找方法注入提供了另一种机 制，通过该机制， bean 可以获得它的一个依赖项；而方法替换允许随意替换 bean 上任何方法的实现， 而无须更改原始源代码。为了提供这两项功能， Spring 使用了 CGLIB 的动态字节码增强功能。</p>
+</li>
+<li><p>尽量避免使用自动装配。</p>
+</li>
+<li><p>管理 bean 生命周期：选择使用哪种机制来接收生命周期通知取决于应用程序的需求。如果关心可移植性，或者只需要定义一个或两个需要回调的特定类型的 bean，那么请使用基于方法的机制。如果使用注解类型的配置井确定正在使用 支持 JSR-250 的loC 容器，那么请使用基于注解机制。如果不太在意可移植性，或者正在定义需要生命周期通知的 相同类型的多个bean ，那么使用基于接口的机制是确保 bean 始终能够收到所期望通知的最佳方式。如果打算在多个不同的 Spring 项目中使用 bean， 你肯定希望这个 bean 功能尽可能独立，所以应该使用基于接口的机制。</p>
+</li>
+<li><p>由于 Spring 提倡使用运行时异常’而不是检查型异常， 因此需要一种机制将检查型 SQL 异常转换为运行时 Spring JDBC异常。</p>
+</li>
+<li><p>JPA是大多数主要开源社区以及商业供JBoss等都支持的JEE标准。因此， JPA 作为数据访问标准是一种非常有吸引力的选择，如果需要绝对控制查询，可以使用 JPA 的本地查询支持，而不是直接使用JDBC。</p>
+</li>
+<li><p>Groovy支持动态类型化，通过def声明。还支持闭包，闭包允许将一段代码打包一个对象，并在应用程序呢自由传递，可实现智能和动态行为。其中，each()方法的参数就是一个闭包。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> names = [<span class="string">'john'</span>,<span class="string">'sjt'</span>]</span><br><span class="line">names.each &#123;println <span class="string">'Hello : '</span> + it&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 
       
     </div>
@@ -511,7 +516,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/04/08/python之intern机制/" title="python之intern机制">http://yoursite.com/2018/04/08/python之intern机制/</a>
+    <a href="http://yoursite.com/2019/08/27/读Spring5高级编程笔记/" title="读Spring5高级编程笔记">http://yoursite.com/2019/08/27/读Spring5高级编程笔记/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -526,7 +531,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
           
         </div>
       
@@ -551,8 +556,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/07/python之协程/" rel="next" title="python之协程">
-                <i class="fa fa-chevron-left"></i> python之协程
+              <a href="/2019/08/15/Java之单例模式/" rel="next" title="Java之单例模式">
+                <i class="fa fa-chevron-left"></i> Java之单例模式
               </a>
             
           </div>
@@ -560,10 +565,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/08/openstack中的RPC请求分析/" rel="prev" title="openstack中的RPC请求分析">
-                openstack中的RPC请求分析 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
