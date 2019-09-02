@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-27T01:47:29.222Z</updated>
+  <updated>2019-09-02T15:45:00.876Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Redis知识</title>
+    <link href="http://yoursite.com/2019/09/02/Redis%E7%9F%A5%E8%AF%86/"/>
+    <id>http://yoursite.com/2019/09/02/Redis知识/</id>
+    <published>2019-09-02T15:44:30.000Z</published>
+    <updated>2019-09-02T15:45:00.876Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;以下笔记摘自：&lt;a href=&quot;https://www.w3cschool.cn/redis_all_about/&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Redis" scheme="http://yoursite.com/categories/Redis/"/>
+    
+    
+      <category term="Redis" scheme="http://yoursite.com/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>读美团博客的收获</title>
+    <link href="http://yoursite.com/2019/09/02/%E8%AF%BB%E7%BE%8E%E5%9B%A2%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%94%B6%E8%8E%B7/"/>
+    <id>http://yoursite.com/2019/09/02/读美团博客的收获/</id>
+    <published>2019-09-02T02:20:25.000Z</published>
+    <updated>2019-09-02T02:21:10.240Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;以下文章是在阅读美团技术文章时，觉得写得比较好的，分类处理以便后续查阅。&lt;/p&gt;
+&lt;h2 id=&quot;Java&quot;&gt;&lt;a href=&quot;#Java&quot; class=&quot;headerlink&quot; title=&quot;Java&quot;&gt;&lt;/a&gt;Java&lt;/h2&gt;&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>读Spring5高级编程笔记</title>
@@ -469,7 +522,7 @@
     <link href="http://yoursite.com/2019/06/08/%E4%BD%A0%E7%9F%A5%E9%81%93Gossip%E5%8D%8F%E8%AE%AE%E5%90%97%EF%BC%9F/"/>
     <id>http://yoursite.com/2019/06/08/你知道Gossip协议吗？/</id>
     <published>2019-06-08T07:06:52.000Z</published>
-    <updated>2019-06-08T07:14:12.256Z</updated>
+    <updated>2019-09-02T03:58:58.935Z</updated>
     
     <summary type="html">
     
@@ -478,58 +531,6 @@
         
         
           &lt;h3 id=&quot;Gossip&quot;&gt;&lt;a href=&quot;#Gossip&quot; class=&quot;headerlink&quot; title=&quot;Gossip&quot;&gt;&lt;/a&gt;Gossip&lt;/h3&gt;&lt;p&gt;该协议的应用的地方：对于单机实例，我们使用 Redis
-        
-      
-    
-    </summary>
-    
-      <category term="Architecture" scheme="http://yoursite.com/categories/Architecture/"/>
-    
-    
-      <category term="Architecture" scheme="http://yoursite.com/tags/Architecture/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kafka的各种参数</title>
-    <link href="http://yoursite.com/2019/06/07/Kafka%E7%9A%84%E5%90%84%E7%A7%8D%E5%8F%82%E6%95%B0/"/>
-    <id>http://yoursite.com/2019/06/07/Kafka的各种参数/</id>
-    <published>2019-06-07T08:02:29.000Z</published>
-    <updated>2019-06-07T08:03:12.373Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;buffer-memory参数&quot;&gt;&lt;a href=&quot;#buffer-memory参数&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Kakfa" scheme="http://yoursite.com/categories/Kakfa/"/>
-    
-    
-      <category term="Kafka" scheme="http://yoursite.com/tags/Kafka/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>开源项目汇总</title>
-    <link href="http://yoursite.com/2019/06/06/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%B1%87%E6%80%BB/"/>
-    <id>http://yoursite.com/2019/06/06/开源项目汇总/</id>
-    <published>2019-06-06T01:35:33.000Z</published>
-    <updated>2019-07-02T01:34:31.952Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;k-v数据库&quot;&gt;&lt;a href=&quot;#k-v数据库&quot; class=&quot;headerlink&quot; title=&quot;k-v数据库&quot;&gt;&lt;/a&gt;k-v数据库&lt;/h3&gt;&lt;h5 id=&quot;RocksDB&quot;&gt;&lt;a href=&quot;#RocksDB&quot; class=&quot;headerlink&quot;
         
       
     

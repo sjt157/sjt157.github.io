@@ -110,7 +110,7 @@
 <meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/Gossip/2.png">
 <meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/Gossip/3.png">
 <meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/Gossip/4.png">
-<meta property="og:updated_time" content="2019-06-08T07:14:12.256Z">
+<meta property="og:updated_time" content="2019-09-02T03:58:58.935Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="你知道Gossip协议吗？">
 <meta name="twitter:description" content="Gossip该协议的应用的地方：对于单机实例，我们使用 Redis 自带的哨兵（Sentinel）集群对实例进行状态监控与 Failover。Sentinel 是 Redis 自带的高可用组件，将 Redis 注册到由多个 Sentinel 组成的 Sentinel 集群后，Sentinel 会对 Redis 实例进行健康检查，当 Redis 发生故障后，Sentinel 会通过 Gossip 协">
@@ -376,8 +376,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-08T15:14:12+08:00">
-                2019-06-08
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-02T11:58:58+08:00">
+                2019-09-02
               </time>
             
           </span>
@@ -464,6 +464,7 @@
 <p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/Gossip/4.png" alt="image"></p>
 <p>可以看到，协议的核心内容就是节点通过将信息随机发送到b个节点来完成本次信息的传播，其涉及到周期性、配对、交互模式。Gossip的交互模式分为两种：Anti-entropy和Rumor mongering。<br>Anti-entropy：每个节点周期性地随机选择其他节点，然后通过相互交换自己的所有数据来消除两者之间的差异。<br>Rumor mongering：当一个节点有来新信息后，该节点变成活跃状态，并周期性地联系其他节点向其发送新信息。<br>每个节点维护一个自己的信息表 &lt;key, (value, version)&gt; ，即属性的值以及版本号；和一个记录其他节点的信息表 &lt;node, &lt;key, (value, version)&gt;&gt; 。每个节点和系统中的某个节点相互配对成为peer。而节点的信息交换方式主要有3种。<br>Push：拥有状态新信息的节点随机选择联系节点并想起发送自己得到信息。<br>Pull：发起信息交换的节点随机选择联系节点并从对方获取信息。<br>Push-Pull混合模式：发起信息交换的节点向选择的节点发送信息。<br>上述Gossip为什么能够完成状态的同步呢？我们对其做一个简单的分析。<br>Analysis：收敛性证明<br>我们以上一节的Push模式Gossip协议进行分析。<br>在n+1个节点的系统中，每个节点每次随机向其他b个节点进行信息通信，即传播速率：β=bnβ=bn。未获得更新信息的数量为x（初始为n），获得更新信息的节点数为y（初始为1）。<br>在连续时间过程中，x的变化速率dxdt=−βxydxdt=−βxy，即传播速率 <em> 乘以 </em> 两种类型节点之间可能传播的次数。可以推导出火的更新信息的节点数y=n+11+ne−β(n+1)ty=n+11+ne−β(n+1)t<br>而总时间为 t=clog(n)t=clog⁡(n)，即log(n)轮传播乘以一个常数时间。被感染的数量 y≈(n+1)−1ncb−2y≈(n+1)−1ncb−2。<br>那么当c和b都是独立于n的很小的数值时。Gossip协议能够保证：<br>低延迟：在clog(n)内完成一次信息的更新。虽然不是常数级别的，但是气对数级别增长率在程序世界里是实践上可取的。<br>可靠性：n+1−1ncb−2n+1−1ncb−2会收到新信息。<br>轻量级：每个节点不会发送超过cblog(n)条信息。<br>这样我们不仅证明了Gossip的可靠性，并可以保证其在分布式系统应用的高可用性。注意的是，即使有的节点因宕机而重启或者有新节点加入，但经过一段时间后，这些节点的状态也会与其他节点达成一致。也就是说，Gossip天然具有分布式容错的优点。<br>Application：应用<br>除了改善SWIM协议中的多播方式，Gossip还在很多地方有应用：<br>数据库复制：基于Gossip实现分布数据管理的一般思路是：灾一个节点实现数据更新，通过Gossip算法将更新传播导其他节点。<br>聚合计算：在无中心的系统中，没有中心节点存储全局信息。通过Gossip应用导分布环境下的聚合计算中来保证系统的发送消息的容错。<br>总之，Gossip简单、高效，同时具有很好的可扩展性和鲁棒性，非常适合大规模、动态、资源受限的网络环境。</p>
 <h3 id="Gossip应用场景"><a href="#Gossip应用场景" class="headerlink" title="Gossip应用场景"></a>Gossip应用场景</h3><p>接受最终一致性的领域：失败检测、路由同步、Pub\Sub、动态负载均衡</p>
+<h3 id="微服务的灾难-最终一致"><a href="#微服务的灾难-最终一致" class="headerlink" title="微服务的灾难:最终一致"></a>微服务的灾难:最终一致</h3><p><a href="http://xargin.com/disaster-of-microservice-evconst/" target="_blank" rel="noopener">http://xargin.com/disaster-of-microservice-evconst/</a><br>这个作者的观念是:事实上的这些人嘴里的最终一致，往往都是最终不一致。大多数公司的架构师嘴里的最终一致，依靠的都是人肉而非技术。</p>
 
       
     </div>
@@ -653,7 +654,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">117</span>
+                  <span class="site-state-item-count">119</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -664,7 +665,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -675,7 +676,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="select VS epoll相比于select，epoll最大的好处在于它不会随着监听fd数目的增长而降低效率。因为在内核中的select实现中，它是采用轮询来处理的，轮询的fd数目越多，自然耗时越多。并且，在linux/posix_types.h头文件有这样的声明：#define __FD_SETSIZE 1024表示select最多同时监听1024个fd，当然，可以通过修改头文件再重编译内核">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-07T03:18:21.787Z">
+<meta property="og:updated_time" content="2019-08-29T12:41:02.245Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Epoll模型">
 <meta name="twitter:description" content="select VS epoll相比于select，epoll最大的好处在于它不会随着监听fd数目的增长而降低效率。因为在内核中的select实现中，它是采用轮询来处理的，轮询的fd数目越多，自然耗时越多。并且，在linux/posix_types.h头文件有这样的声明：#define __FD_SETSIZE 1024表示select最多同时监听1024个fd，当然，可以通过修改头文件再重编译内核">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-08-07T11:18:21+08:00">
-                2019-08-07
+              <time title="更新于" itemprop="dateModified" datetime="2019-08-29T20:41:02+08:00">
+                2019-08-29
               </time>
             
           </span>
@@ -503,6 +503,10 @@
 <p>“惊群”问题是多个子进程同时监听同一个端口引起的，因此解决的方法是同一时刻只让一个子进程监听服务器端口，这样新连接事件只会唤醒唯一正在监听端口的子进程。</p>
 <p>因此“惊群”问题通过非阻塞的accept锁来实现进程互斥accept()，其原理是：在worker进程主循环中非阻塞trylock获取accept锁，如果trylock成功，则此进程把监听端口对应的fd通过epoll_ctl()加入到本进程自由的epoll事件集；如果trylock失败，则把监听fd从本进程对应的epoll事件集中清除。</p>
 <h3 id="Epoll不能提高并发"><a href="#Epoll不能提高并发" class="headerlink" title="Epoll不能提高并发"></a>Epoll不能提高并发</h3><p> 确实有很多地方说select/poll/epoll并发， 这是多么扯淡啊， 它们不过是多路复用， 而已。 很多网上程序给出的epoll代码实现的服务器， 其实是没有并发能力的， 也仅仅是迭代服务器。 select/poll/epoll的作用是IO复用， 要实现并发， 还是需要交个其他线程/进程去处理。 业界很多成熟的服务组件， 就是这么玩的, 如nginx.</p>
+<h3 id="多路复用形象的栗子-知乎-I-O多路复用技术（multiplexing）是什么？-柴小喵的回答-知乎"><a href="#多路复用形象的栗子-知乎-I-O多路复用技术（multiplexing）是什么？-柴小喵的回答-知乎" class="headerlink" title="多路复用形象的栗子(知乎:I/O多路复用技术（multiplexing）是什么？ - 柴小喵的回答 - 知乎"></a>多路复用形象的栗子(知乎:I/O多路复用技术（multiplexing）是什么？ - 柴小喵的回答 - 知乎</h3><p><a href="https://www.zhihu.com/question/28594409/answer/52835876" target="_blank" rel="noopener">https://www.zhihu.com/question/28594409/answer/52835876</a>)</p>
+<blockquote>
+<p>下面举一个例子，模拟一个tcp服务器处理30个客户socket。假设你是一个老师，让30个学生解答一道题目，然后检查学生做的是否正确，你有下面几个选择：1. 第一种选择：按顺序逐个检查，先检查A，然后是B，之后是C、D。。。这中间如果有一个学生卡主，全班都会被耽误。这种模式就好比，你用循环挨个处理socket，根本不具有并发能力。2. 第二种选择：你创建30个分身，每个分身检查一个学生的答案是否正确。 这种类似于为每一个用户创建一个进程或者线程处理连接。3. 第三种选择，你站在讲台上等，谁解答完谁举手。这时C、D举手，表示他们解答问题完毕，你下去依次检查C、D的答案，然后继续回到讲台上等。此时E、A又举手，然后去处理E和A。。。 这种就是IO复用模型，Linux下的select、poll和epoll就是干这个的。将用户socket对应的fd注册进epoll，然后epoll帮你监听哪些socket上有消息到达，这样就避免了大量的无用操作。此时的socket应该采用非阻塞模式。这样，整个过程只在调用select、poll、epoll这些调用的时候才会阻塞，收发客户消息是不会阻塞的，整个进程或者线程就被充分利用起来，这就是事件驱动，所谓的reactor模式。</p>
+</blockquote>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/stpeace/article/details/80951371" target="_blank" rel="noopener">https://blog.csdn.net/stpeace/article/details/80951371</a><br><a href="https://my.oschina.net/editorial-story/blog/3052308" target="_blank" rel="noopener">https://my.oschina.net/editorial-story/blog/3052308</a> 介绍Epoll很好的一篇文章，通俗易懂！</p>
 
       
@@ -693,7 +697,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">117</span>
+                  <span class="site-state-item-count">119</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -704,7 +708,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -715,7 +719,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
