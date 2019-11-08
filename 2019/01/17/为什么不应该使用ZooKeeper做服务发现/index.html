@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="本文作者通过ZooKeeper与Eureka作为 Service发现服务（注：WebServices 体系中的UDDI就是个发现服务）的优劣对比，分享了Knewton在云计算平台部署服务的经验。本文虽然略显偏激，但是看得出Knewton在云平台方面是非常有经验的，这篇文章从实践角度出发分别从云平台特点、CAP原理以及运维三个方面对比了ZooKeeper与Eureka两个系统作为发布服务的优劣，并提">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-17T03:22:39.871Z">
+<meta property="og:updated_time" content="2019-09-13T02:15:57.614Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为什么不应该使用ZooKeeper做服务发现">
 <meta name="twitter:description" content="本文作者通过ZooKeeper与Eureka作为 Service发现服务（注：WebServices 体系中的UDDI就是个发现服务）的优劣对比，分享了Knewton在云计算平台部署服务的经验。本文虽然略显偏激，但是看得出Knewton在云平台方面是非常有经验的，这篇文章从实践角度出发分别从云平台特点、CAP原理以及运维三个方面对比了ZooKeeper与Eureka两个系统作为发布服务的优劣，并提">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-17T11:22:39+08:00">
-                2019-01-17
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-13T10:15:57+08:00">
+                2019-09-13
               </time>
             
           </span>
@@ -451,6 +451,7 @@
 <p>更深层次的原因是，ZooKeeper是按照CP原则构建的，也就是说它能保证每个节点的数据保持一致，而为ZooKeeper加上缓存的做法的目的是为了让ZooKeeper变得更加可靠（available）；但是，ZooKeeper设计的本意是保持节点的数据一致，也就是CP。所以，这样一来，你可能既得不到一个数据一致的（CP）也得不到一个高可用的（AP）的Service发现服务了；因为，这相当于你在一个已有的CP系统上强制栓了一个AP的系统，这在本质上就行不通的！一个Service发现服务应该从一开始就被设计成高可用的才行！</p>
 <p>如果抛开CAP原理不管，正确的设置与维护ZooKeeper服务就非常的困难；错误会经常发生，导致很多工程被建立只是为了减轻维护ZooKeeper的难度。这些错误不仅存在与客户端而且还存在于ZooKeeper服务器本身。Knewton平台很多故障就是由于ZooKeeper使用不当而导致的。那些看似简单的操作，如：正确的重建观察者（reestablishing watcher）、客户端Session与异常的处理与在ZK窗口中管理内存都是非常容易导致ZooKeeper出错的。同时，我们确实也遇到过 ZooKeeper的一些经典bug：ZooKeeper-1159 与ZooKeeper-1576； 我们甚至在生产环境中遇到过ZooKeeper选举Leader节点失败的情况。这些问题之所以会出现，在于ZooKeeper需要管理与保障所管辖服务 群的Session与网络连接资源（注：这些资源的管理在分布式系统环境下是极其困难的）；但是它不负责管理服务的发现，所以使用ZooKeeper当 Service发现服务得不偿失。</p>
 <h3 id="做出正确的选择：Eureka的成功"><a href="#做出正确的选择：Eureka的成功" class="headerlink" title="做出正确的选择：Eureka的成功"></a>做出正确的选择：Eureka的成功</h3><p>我们把Service发现服务从ZooKeeper切换到了Eureka平台，它是一个开源的服务发现解决方案，由Netflix公司开发。（注：Eureka由两个组件组成：Eureka服务器和Eureka客户端。Eureka服务器用作 服务注册服务器。Eureka客户端是一个java客户端，用来简化与服务器的交互、作为轮询负载均衡器，并提供服务的故障切换支持。）Eureka一开 始就被设计成高可用与可伸缩的Service发现服务，这两个特点也是Netflix公司开发所有平台的两个特色。（他们都在讨论Eureka）。自从切换工作开始到现在，我们实现了在生产环境中所有依赖于Eureka的产品没有下线维护的记录。我们也被告知过，在云平台做服务迁移注定要遇到失败；但是我们从这个例子中得到的经验是，一个优秀的Service发现服务在其中发挥了至关重要的作用！</p>
+<h3 id="关于CAP的博客"><a href="#关于CAP的博客" class="headerlink" title="关于CAP的博客"></a>关于CAP的博客</h3><p><a href="https://juejin.im/post/5d19f11351882579d824ad26" target="_blank" rel="noopener">https://juejin.im/post/5d19f11351882579d824ad26</a> 请不要继续将数据库称为 CP 或 AP</p>
 
       
     </div>
@@ -470,35 +471,6 @@
      
     </div>
 
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>您的支持就是我更新的动力！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/weixin.jpg" alt="无法长大 微信支付"/>
-        <p>微信支付</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="无法长大 支付宝"/>
-        <p>支付宝</p>
-      </div>
-    
-
-    
-
-  </div>
-</div>
-
-      </div>
     
 
     
@@ -640,7 +612,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-count">122</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

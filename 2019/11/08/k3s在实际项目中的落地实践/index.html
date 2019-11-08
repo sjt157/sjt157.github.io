@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-circle.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0c5a4df4.js","daovoice")
+  daovoice('init', {
+      app_id: "0c5a4df4"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Docker," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="诗与远方" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="k3s在实际项目中的落地实践，包括k3s特点、架构、自动化部署和配置等方面的内容。 背景随着国家政策的导向，互联网基础设施的普及，工业、能源行业的智能化改造已经进行的如火如荼，传统行业的特点是信息化、智能化水平严重落后于其他行业，在进行信息化、智能化改造的过程中，首先第一步，就是要获取底层系统的全方位的数据。为此，需要部署大量的边缘设备来采集数据、分析数据，通过这些数据进行建模，大量的边缘设备一般">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="k3s在实际项目中的落地实践">
+<meta property="og:url" content="http://yoursite.com/2019/11/08/k3s在实际项目中的落地实践/index.html">
+<meta property="og:site_name" content="诗与远方">
+<meta property="og:description" content="k3s在实际项目中的落地实践，包括k3s特点、架构、自动化部署和配置等方面的内容。 背景随着国家政策的导向，互联网基础设施的普及，工业、能源行业的智能化改造已经进行的如火如荼，传统行业的特点是信息化、智能化水平严重落后于其他行业，在进行信息化、智能化改造的过程中，首先第一步，就是要获取底层系统的全方位的数据。为此，需要部署大量的边缘设备来采集数据、分析数据，通过这些数据进行建模，大量的边缘设备一般">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/1.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/2.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/3.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/4.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/5.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/6.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/7.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/8.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/9.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/10.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/11.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/12.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/13.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/14.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/15.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/16.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/17.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/18.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/19.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/20.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/21.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/22.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/23.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/24.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/25.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/26.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/27.png">
+<meta property="og:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/28.png">
+<meta property="og:updated_time" content="2019-11-08T03:50:43.207Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="k3s在实际项目中的落地实践">
+<meta name="twitter:description" content="k3s在实际项目中的落地实践，包括k3s特点、架构、自动化部署和配置等方面的内容。 背景随着国家政策的导向，互联网基础设施的普及，工业、能源行业的智能化改造已经进行的如火如荼，传统行业的特点是信息化、智能化水平严重落后于其他行业，在进行信息化、智能化改造的过程中，首先第一步，就是要获取底层系统的全方位的数据。为此，需要部署大量的边缘设备来采集数据、分析数据，通过这些数据进行建模，大量的边缘设备一般">
+<meta name="twitter:image" content="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","offset":12,"b2t":true,"scrollpercent":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/08/k3s在实际项目中的落地实践/"/>
+
+
+
+
+
+  <title>k3s在实际项目中的落地实践 | 诗与远方</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">诗与远方</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个走在前端的后端人</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-top">
+          <a href="/top/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            阅读排行
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/k3s在实际项目中的落地实践/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="无法长大">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/15856742?s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诗与远方">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">k3s在实际项目中的落地实践</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-08T11:39:59+08:00">
+                2019-11-08
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-08T11:50:43+08:00">
+                2019-11-08
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/11/08/k3s在实际项目中的落地实践/" class="leancloud_visitors" data-flag-title="k3s在实际项目中的落地实践">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+	         <span> ℃ </span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>k3s在实际项目中的落地实践，包括k3s特点、架构、自动化部署和配置等方面的内容。</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>随着国家政策的导向，互联网基础设施的普及，工业、能源行业的智能化改造已经进行的如火如荼，传统行业的特点是信息化、智能化水平严重落后于其他行业，在进行信息化、智能化改造的过程中，首先第一步，就是要获取底层系统的全方位的数据。<br>为此，需要部署大量的边缘设备来采集数据、分析数据，通过这些数据进行建模，大量的边缘设备一般离散的分布在不同机房、厂区、甚至是不同的地理区域，这对运维人员来讲是令人恐惧的事情，维护这些设备，管理其上运行的应用变得极其困难。<br>我们公司是国内第一批投身于工业互联网改革浪潮中一员，因此上面提到的问题，也是我们面临的问题。</p>
+<p>公司从一开始就采用了微服务化的开发模式，除了平台框架核心应用之外，所有应用都是可插拔的微服务。<br>与业务平台不同的是，边缘设备具有下面的特点：<br>数量大，动辄有数十台、数百台设备；<br>单点故障影响小，一个设备只负责一小块区域的数据采集、分析与计算，因此单台设备的故障导致的局部数据的缺失，数据分析层面也进行了数据清洗，因此，单点故障对全局业务影响不大。</p>
+<h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>对于运维角色来讲：</p>
+<ul>
+<li>管理这些边缘设备，保持边缘设备上运行的服务的高可用性；</li>
+<li>快速的上线、升级</li>
+<li>配置的快速更改与应用</li>
+</ul>
+<h3 id="逻辑拓扑图"><a href="#逻辑拓扑图" class="headerlink" title="逻辑拓扑图"></a>逻辑拓扑图</h3><p>下面的图形简单描述了项目基础设施层的拓扑：<br><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/1.png" alt="image"></p>
+<p>其中，每一个边缘侧设备上运行的业务会和中枢业务系统通讯，边缘侧所有设备在单独的一个网络平面中。</p>
+<h3 id="运维方案选型"><a href="#运维方案选型" class="headerlink" title="运维方案选型"></a>运维方案选型</h3><p>在决定运维方式时，考虑过下面的几种方式：</p>
+<h4 id="Ansible："><a href="#Ansible：" class="headerlink" title="Ansible："></a>Ansible：</h4><p> 我们在边缘侧设备上运行的应用大部分都是纯Java应用，再加上一部分Python应用，因此部署和启动非常简单，外加上supervisord应用实现了应用的基本高可用方案。在公司还没有进行容器化转型之前，我们采用传统的部署形式部署微服务，就是配置好宿主机的系统环境，直接将应用部署在宿主机系统上，在这种情况下，我们只需要解决的问题是大批量设备部署和维护的问题，因为不管是部署还是更新升级、配置，所有边缘侧使用Ansible可以较好的满足这一条件。</p>
+<p>但是这种方法也有缺点，需要维护一套甚至多套ansible playbook，边缘侧设备所在的网络条件比较差，异常状况也比较差，经常掉电重启或者断网，使用ansible 容易造成各个节点的配置不同步。</p>
+<h4 id="kubeedge"><a href="#kubeedge" class="headerlink" title="kubeedge"></a>kubeedge</h4><p>kubeedge是由华为基于kubernetes开发并开源，专门用于边缘容器编排的运维方案，其基本架构如下：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/2.png" alt="image"></p>
+<p>从上面的架构图中可以看到，kubeedge实现了一个边缘侧完整的框架，对我们公司来讲，我们自行实现了例如“DeviceTwin”、“EventBus”、“ServiceBus”以及基于MQTT收发消息。因此：</p>
+<ol>
+<li>一部分组件与kubeedge重叠了；</li>
+<li>部署不方便，kubeedge要求在各个节点上以kubeadmin部署kubernetes集群（0.6版本，现在已经更新至1.1版本，不知道现在是否有更简便快捷的形式），对网络环境不好的边缘侧设备有较大难度；</li>
+<li>kubeedge组件与kubernetes组件基本一致，对于边缘设备寸土寸金的资源来说，不太友好。<br>通过实践，第2点和第3点原因直接打消了我采用kubeedge的念头。</li>
+</ol>
+<h4 id="k3s"><a href="#k3s" class="headerlink" title="k3s"></a>k3s</h4><p><strong>什么是k3s?</strong></p>
+<p>k3s is 5 less then k8s,直接翻译过来就是k3s比k8s少了5个字符，引申一下就是k3s就是k8s的简化版。可以看做k8s的一个衍生版，特点就是轻量。</p>
+<p><strong>k3s的特点有哪些？</strong></p>
+<p>apiserver、controller manager、scheduler、kubelet、flannel等组件这到一个进程中（通过指定是server或者agent选项来控制节点上需要启动哪些组件，server相当于k8s的master节点，agent相当于worker节点），占用的内存更少了，整个k3s server进程需要的内存在500MB以下。</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/3.png" alt="image"></p>
+<p>从上面看出k3s server进程当前占用的内存是210MB。</p>
+<p>● 去除了k8s中的一些实验特性、非必须的组件，例如云厂商的驱动、存储插件，k3s在默认状态下只会启动除自身进程之外的两个应用：</p>
+<pre><code>○  coredns：提供集群内部的DNS解析服务。
+○  traefik：ingress controller的角色。
+</code></pre><p>●  k3s server默认使用本地（已集成）的sqllite作为后端数据存储，通讯效率更高一些。</p>
+<p>●  k3s默认使用containerd（server节点，不可更改）作为容器运行时，不在需要中间层的docker engine，占用资源更少。</p>
+<p>●  部署简单：对环境依赖少，可离线也可在线部署（不过国内的网络环境不推荐在线部署。），离线部署时，只需要下载一个大约40MB的二进制文件和一个200MB不到的离线镜像包，启动k3s节点几乎是秒级的。</p>
+<p>●  上手无代价：<br>    ○  使用k3s与kubernetes习惯完全一致，对于使用kubernetes的人来讲使用k3s没有任何代价；<br>    ○  支持部署helm tiller服务端（尽管tiller端会在helm 3.x版本中被干掉），直接使用原有charts部署应用无障碍；</p>
+<p>●  扩缩容方便：增删节点极其方便，几乎是分钟以内就可以完成；</p>
+<p>●  兼容arm架构设备，对于部分有此种类型的设备的集群友好；</p>
+<p>下面是k3s的架构图：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/4.png" alt="image"></p>
+<p>k3s集群的所有数据存储在server（master）节点本地的SQLite数据库中，当然也支持存储在诸如MySQL、etcd中，都是支持按照需求在部署节点时选择配置的。server节点与agent节点之间采用tunnel隧道通信，增强了安全性，同时也提升了效率。agent与server节点即使断开网络连接，也不影响相互各自的业务。</p>
+<p>因此通过上面的对比和实践验证，我们决定采用k3s来管理边缘设备集群。</p>
+<h3 id="运维架构简介"><a href="#运维架构简介" class="headerlink" title="运维架构简介"></a>运维架构简介</h3><p>下面是一张完整的运维架构图：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/5.png" alt="image"></p>
+<h4 id="部署k3s集群"><a href="#部署k3s集群" class="headerlink" title="部署k3s集群"></a>部署k3s集群</h4><p>由于集群节点一般存在多个，一台台手工安装部署会占用大量的时间，吃力不讨好，因此，我写成了ansible playbook来完成k3s集群的多节点快速自动化部署，如有需要，可以联系<a href="mailto:yj.zeng@aliyun.com" target="_blank" rel="noopener">yj.zeng@aliyun.com</a>。</p>
+<h4 id="各个组件版本信息："><a href="#各个组件版本信息：" class="headerlink" title="各个组件版本信息："></a>各个组件版本信息：</h4><p>●  k3s: v0.9.1<br>●  docker: 18.09.9<br>●  helm: v2.14.3<br>●  OS：CentOS Linux release 7.6.1810 (Core)<br>●  Ansible: 2.8.3（在多节点下，用来快速批量部署集群节点）</p>
+<p>注：本次实践在Centos 7上完成，由于部署k3s节点需要root用户权限，因此本实践中所有操作均直接使用root用户登录后进行。</p>
+<h4 id="获取k3s以及离线镜像包"><a href="#获取k3s以及离线镜像包" class="headerlink" title="获取k3s以及离线镜像包"></a>获取k3s以及离线镜像包</h4><p>k3s GitHub主页：<a href="https://github.com/rancher/k3s/releases" target="_blank" rel="noopener">https://github.com/rancher/k3s/releases</a></p>
+<p>由于国内访问GitHub的速度很慢，在线安装耗时很长，因此推荐采用离线部署方式部署。</p>
+<p>以v0.8.1版本为例，下载下面的两个文件：<br>●  k3s<br>●  k3s-airgap-images-amd64.tar</p>
+<h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><p>假定下载到的文件已经上传到服务器节点的~/packages目录下面。<br>将k3s二进制文件放置到/usr/local/bin目录下，并赋予可执行权限：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/6.png" alt="image"></p>
+<p>将离线镜像包放置到指定的位置：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/7.png" alt="image"></p>
+<p>需要在k3s集群所有节点上都放置上面的离线文件。</p>
+<p>在部署k3s集群之前，需要对所有节点做如下的基础配置。</p>
+<p>如果没有专门的域名服务器提供主机名解析服务，那么在每一台节点的/etc/hosts文件中。写入本节点的IP与主机名映射。</p>
+<p>给所有节点安装并配置相同的NTP服务器，保证服务器时间的正确性。</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/8.png" alt="image"></p>
+<p>为了方便我们直接关闭防火墙服务：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/9.png" alt="image"></p>
+<p>至此，准备工作完成。</p>
+<h4 id="部署k3s-server节点"><a href="#部署k3s-server节点" class="headerlink" title="部署k3s server节点"></a>部署k3s server节点</h4><p>提醒：</p>
+<p>●  截止目前，k3s server节点并不支持HA。</p>
+<p>●  k3s server节点安装时，可以选在同时在本地安装一个k3s agent节点用以承载工作负载，如果选择不在server节点上安装agent节点，则除了k3s集成的kuberntes组件（如kubelet、api server）之外，其余的插件、应用均不会被调度到server节点上。</p>
+<p>●  k3s支持使用多种容器运行时环境，server默认以containerd作为运行时，不支持更改。agent节点可以使用contained也可以使用docker，推荐使用docker，因为docker人机更友好，可以方便的管理镜像和容器以及查错。所以如果选择agent节点以docker作为容器运行时，那么必须要提前安装并配置好docker服务。</p>
+<p>现在，我们可以启动k3s server节点：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/10.png" alt="image"></p>
+<p>参数说明：</p>
+<p>●  –docker: k3s server组件以containerd作为容器运行时。可以顺便在k3s server节点上启动一个agent节点，agent节点可以使用docker作为容器运行时，这样k3s server节点也可以当做工作节点用。当然也可以不在server节点上启动agent节点（添加参数–disable-agent即可）。<br>●  –bind-address：k3s监听的IP地址，非必选，默认是localhost。<br>●  –cluster-cidr：与kubernetes一样，也就是pod所在网络平面，非必选，默认是10.42.0.0/16.<br>●  –service-cidr：与kubernetes一样，服务所在的网络平面，非必选，默认是10.43.0.0/16<br>●  –kube-apiserver-arg：额外的api server配置参数，具体可以参考kuberntes官方网站了解支持的配置选项，非必选。<br>●  –write-kubeconfig：安装时顺便写一个kubeconfig文件，方便使用kubectl工具直接访问。如果不加此参数，则默认的配置文件路径为/etc/rancher/k3s/k3s.yaml，默认只有root用户能读。<br>●  –write-kubeconfig-mode：与–write-kubeconfig一起使用，指定kubeconfig文件的权限。<br>●  –node-label：顺便给节点打上一个asrole=worker的label，非必选。<br>k3s支持众多的安装参数和选型，详细请参考官方文档：<a href="https://rancher.com/docs/k3s/latest/en/installation/" target="_blank" rel="noopener">https://rancher.com/docs/k3s/latest/en/installation/</a></p>
+<p>完成之后，检查集群状态：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/11.png" alt="image"></p>
+<p>可见节点已经呈就绪状态。检查pod的状态：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/12.png" alt="image"></p>
+<p>可以看到，系统命名空间下所有的应用都已经启动了，server节点已经就绪，接下来可以部署k3s agent工作节点了。</p>
+<p>在上面的命令中，我们均是以k3s kubectl开头的命令，是否可以直接使用kubectl客户端呢？当然可以，只需要下载一个对应版本的kubectl二进制文件放到系统的path中，赋予可执行权限即可，使用起来与使用kubernetes集群一模一样！</p>
+<p>由于上面的命令是在前台执行的，一旦断开SSH链接或者终止shell进程，k3s server就停止运行了，因此我们给他配置一个systemd服务，用以像管理系统服务一样管理k3s server节点。</p>
+<p>创建文件/usr/lib/systemd/system/k3s-server.service,内容为：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/13.png" alt="image"></p>
+<p>然后设置服务开机自启：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/14.png" alt="image"></p>
+<p>CTRL+C结束在前台执行的命令，我们看到服务文件中引用了一个环境变量文件/etc/systemd/system/k3s.service.env，这个文件并不存在需要先创建一个然后才能启动服务：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/15.png" alt="image"></p>
+<p>查看服务状态：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/16.png" alt="image"></p>
+<p>提醒：如果出现错误，可以通过journalctl -u k3s-server查看日志。</p>
+<p>部署k3s agent节点</p>
+<p>在server节点部署完成之后，在server节点的/var/lib/rancher/k3s/server/目录下面生成一个node-token文件，该文件存储了k3s agent节点加入集群时所需的token。</p>
+<p>在server节点上，获取token：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/17.png" alt="image"></p>
+<p>在作为k3s agent节点的系统中，以root用户执行下面的命令启动k3s agent节点，但是，因为我们采用了docker作为agent节点的容器运行时，所以我们先将离线镜像导入到docker中：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/18.png" alt="image"></p>
+<p>然后执行下面的命令安装k3s-agent节点</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/19.png" alt="image"></p>
+<p>参数说明：</p>
+<p>–docker：k3s agent以docker作为容器运行时。<br>–server：k3s server节点监听的url，必选参数。<br>–token：k3s server安装时生成的token，必选参数。<br>–node-ip：k3s agent节点的IP地址，非必选参数。<br>–node-label：同样给k3s agent节点打上一个asrole=worker的标签，非必选参数。</p>
+<p>稍等一会儿，在server节点上查看agent节点是否已经加入到了集群中：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/20.png" alt="image"></p>
+<p>可以看到节点已经成功加入到了集群中。</p>
+<p>同样给agent节点配置成systemd可以管理的系统服务，创建/usr/lib/systemd/system/k3s-agent.service，内容如下：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/21.png" alt="image"></p>
+<p>我们终止前台执行的命令，执行下面的命令通过systemd重新启动服务：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/22.png" alt="image"></p>
+<p>可以看到k3s agent节点已经成功启动了。</p>
+<p>如果还需要加入新的agent节点到集群中，可以按照上述方式配置启动新节点，完成后，新节点自动加入到集群中。</p>
+<h4 id="部署应用"><a href="#部署应用" class="headerlink" title="部署应用"></a>部署应用</h4><p>通过helm部署应用</p>
+<p>一般情况下，我们会通过helm chart安装应用和升级应用，在k3s集群中，同样可以采用helm来安装部署应用。</p>
+<p>下载helm的客户端二进制文件后，放置到/usr/local/bin目录下并赋予可执行权限。执行下面的命令初始化helm客户端：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/23.png" alt="image"></p>
+<p>查看helm信息：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/24.png" alt="image"></p>
+<p>可见helm的服务端已经在集群中创建成功了，下面就可以使用helm chart安装应用了。在此我们进行演示：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/25.png" alt="image"></p>
+<p>查看pod的情况：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/26.png" alt="image"></p>
+<p>可见应用已经创建成功。</p>
+<p>使用Rancher管理k3s集群</p>
+<p>在Rancher上添加一个集群，然后按照步骤将该集群导入到Rancher平台中，可以使用Rancher管理和维护集群：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/27.png" alt="image"></p>
+<h4 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h4><ol>
+<li>在边缘计算中，往往涉及到访问硬件资源，如何从容器内部访问硬件资源？</li>
+</ol>
+<p>Linux系统中，所有的硬件资源都体现为/dev/目录下面的一个设备，因此只要能够访问/dev/目录下面的设备文件即可，有的同学会说，那是不是将/dev/目录挂载到容器里面就可以了呢？经过我的实践证明不行，因为挂载到容器里面，即便容器里面是以root用户运行，然是仍旧有可能无法访问一些特殊资源文件，也就是说容器中的“root”用户与宿主机的root用户在访问权限上还是有差别。只需要将容器的运行模式设置为“privileged”即可，如下：</p>
+<p><img src="https://github.com/sjt157/MarkDownPhotos/raw/master/K3S/28.png" alt="image"></p>
+<ol>
+<li>如何备份集群数据？</li>
+</ol>
+<p>k3s集群数据全部存储在/var/lib/rancher下面，在/etc/rancher、/etc/kubernetes下面会存储一些配置文件和证书，因此我们可以周期性备份这几个目录的数据即可。也可以给k3s server节点挂载一个高可靠性的存储设备。</p>
+<ol>
+<li>节点宕机怎么恢复？</li>
+</ol>
+<p>对于agent节点，边缘节点只负责一个小区域的业务，单个节点宕机对整个集群业务影响很有限，只需要重新启动将节点加入集群中即可恢复业务运行。 对于server节点，如果有数据备份，可以用数据备份进行恢复（将备份数据放置到对应的目录重新按照原有参数启动server节点服务即可），如果没有备份，那么重新安装一个server节点，更改agent节点的启动参数中的token，重新将agent注册到新的server节点，但是因为集群数据丢失，可能需要重新安装应用，因此尽可能对server节点的数据进行周期性备份并妥善存储保管。</p>
+<ol>
+<li>k3s是否可以外部存储系统？</li>
+</ol>
+<p>当然是可以的，如果涉及到应用必须要访问持久化存储，那么也可以像kubernetes一样给其接入外部存储系统，但是不推荐这么做，因为边缘设备一般比较分散，网络环境也不稳定，外接存储系统会导致性能打折扣，因此建议：</p>
+<p>对于必须将数据存储在外部存储上的应用，可以通过nodeSelector限制其到某几个特定的比较可靠稳定的节点上，然后接入外部存储系统；<br>对于daemonset类型的应用，非关键核心数据可以通过hostPath存储在宿主机系统上</p>
+<h3 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h3><p>Q1：一台阿里云杭州服务器，一台阿里云美国服务器，都有公网IP，如何方便，快捷的（并且不购买网络带宽费用）的搭建一个2台服务器的K3S集群？<br>A：你这个问题的话主要就是你的这个路由的问题，pod网络和service网络的一个拉平的问题，涉及到这个路由的跳转需要你自己去去配置的。</p>
+<p>Q2：边缘节点的K3S集群可以很方便的被中心节点的K8S集群来管理吗？如何 管理？数据如何同步？中心节点需要存放边缘节点的数据吗？边缘节点挂了之后中心节点能拉起或管理吗？现在我们也计划做这放面的工作。我们有多个分公司，想在分公司部署集群，但没有维护人员，还有一个问题就是，现在集群 联邦不成熟，也不能很好纳管多个集群做资源调度？<br>A：这个k3s集群和k8s集群，它是一个平级的关系。他属于多个集群如果要管理多个集群我们可以采用向rancher这样的集群管理平台去管理它，我们现在就是这么做的在阿里云上有一个rancher的平台，然后管着我们在阿里云平台的业务集群和我们的多个边缘集群。<br>然后你的第二个问题就是中心节点会存储我整个集群的所有的数据，因此我们应该周期性的对这个中心节点的这个数据进行一个备份，而且在未来的版本当中，k3s会支持HA，它是，它是通过实现后端存储，如postgresql、MySQL的一个高可用性保证我们的集群的可靠性的，这个现在已经是实验的特性了，估计在未来很快就会发布了。工作节点挂了的话分两种情况吧一种是你这个节点直接就不能工作了，还有一种情况点跟我的指甲想不通啊，那么前一种情况的话肯定是我的业务也不能正常工作了，后一种情况的话，其实我的业务还是在正常运行的，只不过是不能通过我的主节点去调度了，但是一旦它恢复这个通信的话，所有的都会自动恢复，因为这个边缘的这个设备的他有个特点就是网络不稳定，还有，还有就是经常会掉件这种情况，我们这个集群已经在跑了有两三个月了，表现一直是很好的。</p>
+<p>Q3：k3s 去哪获取资料？<br>A：k3s相关的文档我们可以在rancher的官方网站上获取的。也可以到它的github主页上面去获取相关的材料。<br>k3s的官网是：<a href="https://k3s.io，GitHub的主页是：https://github.com/rancher/k3s，最新开始运营的官方微信公众号ID是：Dockerlab" target="_blank" rel="noopener">https://k3s.io，GitHub的主页是：https://github.com/rancher/k3s，最新开始运营的官方微信公众号ID是：Dockerlab</a></p>
+<p>Q4：K3s的list-watch请求没有走tunel-proxy吗？<br>A：k3s的主节点和agent节点之间通信都是走的tunnel通道的。</p>
+<p>Q5：边缘网络不稳定的场景，list-watch请求会有问题吗？K3s有针对边缘网络不稳定场景做优化不？<br>A：这个场景其实就是kubelet跟我的主节点失联，一旦这个通信恢复的话，主节点他会直接把状态重新传到这个工作节点上去。</p>
+<p>Q6：k3s在使用上和k8s相比有什么限制和优势？目前我理解来看主要就是占用较少资源。<br>A：对，因为边缘设备的话都是很小的，一般都是公用的，工业用的工控机，工控机一般都是一个低压的CPU啊，然后还有一个就是内存比较小。实际上来讲的话我目前没有发现跟k8s有太大的区别，基本上在我k8s上部署的应用全部可以部署在我的边缘端。</p>
+<p>Q7：k3s集群直接更改设备IP是否可用，如果不支持更改IP，对于更改IP的需求有什么应对方案？<br>A：这里分两种情况，在集群部署完成后，如果要更改server节点的IP，那么我们需要重新去将所有的agent节点重新加入到集群中，如果更改agent的节点IP，那么可能导致agent节点对应存储在server节点中的身份凭证失效，也就是需要移除失效的节点，将修改后的节点重新加入，当然这种情况是在同一个子网内的情况，如果跨网段的话，那就会更复杂一些了。</p>
+<p>Q8：Rancher管理k3s集群，k3s的master要暴露公网IP吗？主讲人的多个边缘<br>A：server节点不需要暴露公网IP，只需要能从server节点内部访问rancher即可。通过import的形式将k3s集群导入到Rancher中即可管理起来，也可以管理应用和配置。</p>
+<p>Q9：k3s server 也支持docker吧<br>A：是的，agent节点提供了–docker参数，可以指定它的容器运行时为docker</p>
+<p>Q10：rancher 可以自己部署，管理自己的 k3s?<br>A：是的，我们的rancher是部署在阿里云端，同时管理了我们的中枢业务k8s集群和多个客户的k3s边缘集群。</p>
+<p>Q11：运行单个Docker容器来安装Rancher？可以满足管理吗？<br>A：可以，但是这样可靠性会不好，推荐还是多实例通过负载均衡的形式来部署。</p>
+<p>Q12： k3s 支持master高可用吗？<br>A：暂时还不支持，但是已经发布了实验特性的版本，通过对k3s集群数据存储的高可用来实现的，我们可以部署高可用的postgresql作为k3s集群的管理节点的数据存储。这个特性应该不久就会GA了。</p>
+<p>Q13：边缘资源充足，是否可以直接用k8s?<br>A：如果边缘设备资源充足的情况下，也可以使用k8s来维护，但是需要考虑的是边缘设备网络的复杂性和不稳定性。</p>
+<p>Q14：k3s 启动个helm的时候，由于众所周知的原因，经常下载不到镜像，怎么解决呢？<br>A：官方提供了离线镜像包，大约200MB不到，这个镜像包包含了我们启动server和agent节点所需的所有镜像，能够保证集群自身功能正常。helm 我们可以使用国内的charts源来代替，例如azure的源。</p>
+<p>Q15：containerd可以配置morror么？<br>A：可以配置，但是比较麻烦，docker提供了比较好的人际接口，所以推荐使用docker。</p>
+<p>Q16：备份k3s的集群数据为什么是备份那几个目录而不是备份sqlite的db文件？k3s的server支持类似rke对etcd定期自动备份配置吗？<br>A：因为还涉及到一些认证文件，譬如agent节点在server端存储有一个身份标记，agent节点的恢复是会判断这些身份的。一旦丢失，重新注册相当于是一个新的节点了。</p>
+<p>Q17：请教老师，不管是基于containerd还是docker，它们都是共享内核的，那么如何做到安全隔离呢？<br>A：在底层的资源隔离上，还是依赖于系统的各种命名空间，这块建议可以详细研究一下pod的安全策略。</p>
+<p>Q18：离线镜像文件是否只要放在images目录即可，文件名并不重要，都可以被识别出来？<br>A：是的，使用containerd作为runtime时，不需要手动导入，启动时会自动从这里获取镜像，如果使用docker作为运行时，需要手动load镜像，因为国内直接访问不了gcr.io下面的镜像。</p>
+<p>Q19：centos在边缘设备小内存设备上能装吗？也是有内存限制的吧，最小支持多少？<br>A：k3s server官方给的需求是512MB就能满足，但是实际的观察中，一般情况下用到200多MB，剩下的就看你部署的应用的资源需求了。另外我们需要保证应用不能把系统资源全部抢占了。</p>
+<p>Q20：k8与k3在api上使用上有啥具体差别比如是否支持crd?另外k8的网络组网方案有flannel和calico，k3是怎么组网的?<br>A：K3s默认使用的是flannel网络。k3s也支持手动指定其他的CNI，都是比较灵活的配置。</p>
+<p>Q21：iot client设备没有固定公网ip下如何进行部署？需要自行组网吗？<br>A：这里是一个大家都会遇到的问题，一般来说，IOT设备都是客户内网的，不可能给你在防火墙上打洞，我们现在是自己开发了一套系统，只用来偶尔维护边缘设备的后台，类似ssh反向代理就可以实现。</p>
+<p>Q22：边缘设备是怎么被监控的，有的什么方案呢？是否也有监控的实时界面？？<br>A：我们可以考虑采取prometheus pushgateway的形式来在边缘内网部署监控代理，然后再介入到统一的监控平台。</p>
+<p>Q23：内网环境(可通过代理上网)，需要为containerd配制代理吗？还是containerd可以识别主机的代理配制？如果需要配制的话应该如何配制？<br>A：如果是全局代理的话，应该是支持的。</p>
+<p>Q24：Kubeedge提供的设备管理能力，K3s是否有相应的计划？<br>A：已经有了相应的计划，明年会在k3s的辅助产品中体现。不过，我们会更专注核心引擎k3s的迭代。</p>
+<p>Q25：我尝试给containerd配了代理，单独安装的containerd可以拉镜像，但是k3s内嵌的containerd确一直没法拉镜像。这个需要怎么解决<br>A：不确定你在k3s的containerd中如何配置的，k3s的containerd中的配置文件会被重置，你需要以模版方式配置<a href="https://rancher.com/docs/k3s/latest/en/configuration/#containerd-and-docker。详细问题可以提issue到k3s来讨论。" target="_blank" rel="noopener">https://rancher.com/docs/k3s/latest/en/configuration/#containerd-and-docker。详细问题可以提issue到k3s来讨论。</a></p>
+<h3 id="原文在公众号：容器说"><a href="#原文在公众号：容器说" class="headerlink" title="原文在公众号：容器说"></a>原文在公众号：容器说</h3>
+      
+    </div>
+    
+    
+    
+
+    
+    <div>
+        
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+     
+    </div>
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    无法长大
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/11/08/k3s在实际项目中的落地实践/" title="k3s在实际项目中的落地实践">http://yoursite.com/2019/11/08/k3s在实际项目中的落地实践/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/12/Java之ConcurrentHashMap/" rel="next" title="Java之ConcurrentHashMap">
+                <i class="fa fa-chevron-left"></i> Java之ConcurrentHashMap
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+   
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+ <div id="gitalk-container"></div>
+
+  
+
+ 
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/15856742?s=400"
+                alt="无法长大" />
+            
+              <p class="site-author-name" itemprop="name">无法长大</p>
+              <p class="site-description motion-element" itemprop="description">生活不应当只有眼前的苟且，还有诗和远方，与其用泪水忏悔昨天，不如用汗水拼搏明天．</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">122</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sjt157" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1872963677@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/song-jian-tao-82" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+    <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=558458785&auto=1&height=66"></iframe>
+    </div>
+ 
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018-3-8 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">无法长大</span>
+
+  
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+   <div class="bg_content">
+    <canvas id="canvas"></canvas>
+   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+   <script src="/js/src/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'f9bf0f6707f8577aae5d',
+          clientSecret: '903443676eac3a17f247cc1267503ed79f8f3b04',
+          repo: 'sjt157.github.io',
+          owner: 'sjt157',
+          admin: ['sjt157'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("XbebmEYzcC5xK6pt32pG6Wu9-gzGzoHsz", "iwAHCTEI8zqrflOEjkSucSnU");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 10113,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascripr" src="/js/src/zhihu.js"></script>

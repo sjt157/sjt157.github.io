@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="一条数据库更新语句，比如update t set m=m-10 from id=1，在并发情况下会出现异常吗？https://juejin.im/post/5cdec02ce51d45109618dc36 超卖问题如何解决？https://zhaoyixing.coding.me/2018/01/10/mysql-update-safe-md/ 分布式锁优化https://juejin.im/po">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-11T06:22:33.548Z">
+<meta property="og:updated_time" content="2019-09-16T08:20:58.767Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="秒杀问题总结">
 <meta name="twitter:description" content="一条数据库更新语句，比如update t set m=m-10 from id=1，在并发情况下会出现异常吗？https://juejin.im/post/5cdec02ce51d45109618dc36 超卖问题如何解决？https://zhaoyixing.coding.me/2018/01/10/mysql-update-safe-md/ 分布式锁优化https://juejin.im/po">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-11T14:22:33+08:00">
-                2019-09-11
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-16T16:20:58+08:00">
+                2019-09-16
               </time>
             
           </span>
@@ -496,12 +496,13 @@
 <li><p>事务的问题<a href="https://www.hicode.club/articles/2018/06/30/1550590729846.html" target="_blank" rel="noopener">https://www.hicode.club/articles/2018/06/30/1550590729846.html</a></p>
 </li>
 </ol>
-<h4 id="分布式事务的解决方案"><a href="#分布式事务的解决方案" class="headerlink" title="分布式事务的解决方案"></a>分布式事务的解决方案</h4><p><a href="http://objcoding.com/2019/07/11/seata/" target="_blank" rel="noopener">http://objcoding.com/2019/07/11/seata/</a></p>
+<h4 id="分布式事务的解决方案"><a href="#分布式事务的解决方案" class="headerlink" title="分布式事务的解决方案"></a>分布式事务的解决方案</h4><p><a href="http://objcoding.com/2019/07/11/seata/" target="_blank" rel="noopener">http://objcoding.com/2019/07/11/seata/</a><br><a href="https://juejin.im/post/5d7ed892e51d453c2577b831" target="_blank" rel="noopener">https://juejin.im/post/5d7ed892e51d453c2577b831</a> Spring Cloud同步场景分布式事务怎样做？试试Seata</p>
+<h4 id="在秒杀场景中，是否有必要保持缓存与数据库的强一致性？-没必要"><a href="#在秒杀场景中，是否有必要保持缓存与数据库的强一致性？-没必要" class="headerlink" title="在秒杀场景中，是否有必要保持缓存与数据库的强一致性？(没必要)"></a>在秒杀场景中，是否有必要保持缓存与数据库的强一致性？(没必要)</h4><p>对于秒杀场景，最重要的就是限流和异步处理，因为数据库往往是最脆弱的地方。主要设计是这样的，除去接口本身的限流以外，本地内存和redis都可以对商品库存进行预处理，也就是是否是重复秒杀以及商品库存是否为零。当然这两者存的数据很可能不是最新的，但这个问题不大，因为如果他们存的数据已经显示商品库存为零，则秒杀已经失败，都不用打到数据库层。如果过了本地跟redis这一关，之后就是异步处理，就是将操作数据库作为消息写入mq，由消费端进行消费。消费端执行具体的数据库事务，只有执行成功才意味着秒杀成功，否则都是失败。无论结果如何，都将最终数据写入redis即可。可以看到这里是不需要做到数据库跟缓存的强一致性的。当然写mq这里还有点讲究，就是要保证同一个用户请求只会被同一个消费端处理，这个以Kafka为例只要指定相同的消息key即可做到，且消费端需要做消息去重，以请求ID作为去重依据。</p>
 <h4 id="秒杀后未支付取消占位，如何对剩余库存做及时的控制更新？"><a href="#秒杀后未支付取消占位，如何对剩余库存做及时的控制更新？" class="headerlink" title="秒杀后未支付取消占位，如何对剩余库存做及时的控制更新？"></a>秒杀后未支付取消占位，如何对剩余库存做及时的控制更新？</h4><p>数据库订单中有一个未支付状态。如果超过时间，例如10分钟，库存会重新会恢复（回仓）。如果是队列已达到商品数量的话，秒杀的提示是，10分钟之后再试试看，说不定又有商品哟！</p>
 <h4 id="一个开源的秒杀引擎"><a href="#一个开源的秒杀引擎" class="headerlink" title="一个开源的秒杀引擎"></a>一个开源的秒杀引擎</h4><p><a href="https://github.com/xjjdog/seckill-engine" target="_blank" rel="noopener">https://github.com/xjjdog/seckill-engine</a></p>
-<h4 id="一个秒杀商城"><a href="#一个秒杀商城" class="headerlink" title="一个秒杀商城"></a>一个秒杀商城</h4><p><a href="https://gitee.com/steadyjack/SpringBoot-SecondKill" target="_blank" rel="noopener">https://gitee.com/steadyjack/SpringBoot-SecondKill</a></p>
+<h4 id="一个秒杀商城"><a href="#一个秒杀商城" class="headerlink" title="一个秒杀商城"></a>一个秒杀商城</h4><p><a href="https://gitee.com/steadyjack/SpringBoot-SecondKill" target="_blank" rel="noopener">https://gitee.com/steadyjack/SpringBoot-SecondKill</a><br><a href="https://github.com/qiurunze123/miaosha" target="_blank" rel="noopener">https://github.com/qiurunze123/miaosha</a>  一个秒杀项目</p>
 <h4 id="ServiceComb基于DDD的秒杀"><a href="#ServiceComb基于DDD的秒杀" class="headerlink" title="ServiceComb基于DDD的秒杀"></a>ServiceComb基于DDD的秒杀</h4><p><a href="http://servicecomb.apache.org/cn/docs/performance-test-on-seckill-with-jmeter/" target="_blank" rel="noopener">http://servicecomb.apache.org/cn/docs/performance-test-on-seckill-with-jmeter/</a><br><a href="http://servicecomb.apache.org/cn/docs/seckill-development-journey-part-I/" target="_blank" rel="noopener">http://servicecomb.apache.org/cn/docs/seckill-development-journey-part-I/</a></p>
-<h4 id="很好的博客"><a href="#很好的博客" class="headerlink" title="很好的博客"></a>很好的博客</h4><p><a href="https://juejin.im/entry/56e0e158816dfa0051da43b8" target="_blank" rel="noopener">https://juejin.im/entry/56e0e158816dfa0051da43b8</a><br><a href="https://www.infoq.cn/article/solution-to-the-architecture-of-spike-system" target="_blank" rel="noopener">https://www.infoq.cn/article/solution-to-the-architecture-of-spike-system</a><br><a href="https://imfox.io/2016/11/04/seckill/" target="_blank" rel="noopener">https://imfox.io/2016/11/04/seckill/</a><br><a href="http://cmsblogs.com/?p=3344" target="_blank" rel="noopener">http://cmsblogs.com/?p=3344</a></p>
+<h4 id="很好的博客"><a href="#很好的博客" class="headerlink" title="很好的博客"></a>很好的博客</h4><p><a href="https://juejin.im/entry/56e0e158816dfa0051da43b8" target="_blank" rel="noopener">https://juejin.im/entry/56e0e158816dfa0051da43b8</a><br><a href="https://www.infoq.cn/article/solution-to-the-architecture-of-spike-system" target="_blank" rel="noopener">https://www.infoq.cn/article/solution-to-the-architecture-of-spike-system</a><br><a href="https://imfox.io/2016/11/04/seckill/" target="_blank" rel="noopener">https://imfox.io/2016/11/04/seckill/</a><br><a href="http://cmsblogs.com/?p=3344" target="_blank" rel="noopener">http://cmsblogs.com/?p=3344</a><br><a href="https://juejin.im/post/5d7c7a14f265da03f47c4f93#heading-0" target="_blank" rel="noopener">https://juejin.im/post/5d7c7a14f265da03f47c4f93#heading-0</a></p>
 
       
     </div>
@@ -521,35 +522,6 @@
      
     </div>
 
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>您的支持就是我更新的动力！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/weixin.jpg" alt="无法长大 微信支付"/>
-        <p>微信支付</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="无法长大 支付宝"/>
-        <p>支付宝</p>
-      </div>
-    
-
-    
-
-  </div>
-</div>
-
-      </div>
     
 
     
@@ -691,7 +663,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-count">122</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

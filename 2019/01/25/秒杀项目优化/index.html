@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="逻辑 如何解决超卖问题（1）在sql加上判断防止数据边为负数（2）数据库加唯一索引防止用户重复购买（3）redis预减库存减少数据库访问　内存标记减少redis访问　请求先入队列缓冲，异步下单，增强用户体验  为什么threadlocal存储user对象，原理？   并发编程中重要的问题就是数据共享，当你在一个线程中改变任意属性时，所有的线程都会因此受到影响，同时会看到第一个线程修改后的值。有时我">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-25T09:18:26.612Z">
+<meta property="og:updated_time" content="2019-09-16T06:59:13.588Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="秒杀项目优化">
 <meta name="twitter:description" content="逻辑 如何解决超卖问题（1）在sql加上判断防止数据边为负数（2）数据库加唯一索引防止用户重复购买（3）redis预减库存减少数据库访问　内存标记减少redis访问　请求先入队列缓冲，异步下单，增强用户体验  为什么threadlocal存储user对象，原理？   并发编程中重要的问题就是数据共享，当你在一个线程中改变任意属性时，所有的线程都会因此受到影响，同时会看到第一个线程修改后的值。有时我">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-25T17:18:26+08:00">
-                2019-01-25
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-16T14:59:13+08:00">
+                2019-09-16
               </time>
             
           </span>
@@ -473,7 +473,7 @@
 <h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p> RPC事务补偿<br>当集中式进行服务化RPC演进成分布式的时候，事务则成为了进行分布式的一个痛点，本项目的做法为：<br>1.进行流程初始化，当分别调用不用服务化接口的时候，成功则进行流程，失败则返回并进行状态更新<br>将订单状态变为回滚<br>2.使用定时任务不断的进行处理rollback的订单进行回滚</p>
 <h3 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h3><p>maven隔离就是在开发中，把各个环境的隔离开来，一般分为<br> 本地（local）<br> 开发(dev)<br> 测试(test)<br> 线上(prod)<br> 在环境部署中为了防止人工修改的弊端！<br>    <code>spring.profiles.active=@activatedProperties@</code></p>
 <h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">项目进行dubbo+ZK改造</span><br><span class="line"> ├── miaosha-admin  登录模块</span><br><span class="line"> │   ├── pom.xml</span><br><span class="line"> │   └── miaosha-admin-api</span><br><span class="line"> │   └── miaosha-admin-service</span><br><span class="line"> │   └── miaosha-admin-web</span><br><span class="line"> │   └── miaosha-common</span><br><span class="line"> │   </span><br><span class="line"> │   </span><br><span class="line"> </span><br><span class="line"> ├── miaosha-order   订单秒杀模块</span><br><span class="line">      │   ├── pom.xml</span><br><span class="line">      │   └── miaosha-order-api</span><br><span class="line">      │   └── miaosha-order-service</span><br><span class="line">      │   └── miaosha-order-web</span><br><span class="line">      │   └── miaosha-order-common</span><br><span class="line">      │   </span><br><span class="line">      │   </span><br><span class="line"> </span><br><span class="line"> ├── miaosha-message   消息模块</span><br><span class="line">      │   ├── pom.xml</span><br><span class="line">      │   └── miaosha-message-api</span><br><span class="line">      │   └── miaosha-message-service</span><br><span class="line">      │   └── miaosha-message-web</span><br><span class="line">      │   └── miaosha-message-common</span><br><span class="line">      │</span><br></pre></td></tr></table></figure>
-
+<h3 id="更进一步优化的地方"><a href="#更进一步优化的地方" class="headerlink" title="更进一步优化的地方"></a>更进一步优化的地方</h3>
       
     </div>
     
@@ -492,35 +492,6 @@
      
     </div>
 
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>您的支持就是我更新的动力！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/weixin.jpg" alt="无法长大 微信支付"/>
-        <p>微信支付</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="无法长大 支付宝"/>
-        <p>支付宝</p>
-      </div>
-    
-
-    
-
-  </div>
-</div>
-
-      </div>
     
 
     
@@ -662,7 +633,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-count">122</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

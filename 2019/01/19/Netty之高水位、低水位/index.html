@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="诗与远方">
 <meta property="og:description" content="我们一听高低水位，肯定首先想到的肯定就是“大爸”（三峡大坝），我们都知道，三峡的水位曾经到达过172.85米，最高限制水位175米，其实这就是三峡的高水位，如果再进水，那么恐怕啥都不好用了。同理，Netty中有缓冲区，就相当于大坝起存储缓冲作用。当缓冲区达到一定大小时则不能写入，避免被撑爆。Netty中提供 了writeBufferLowWaterMark和writeBufferHighWater">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-19T06:55:58.840Z">
+<meta property="og:updated_time" content="2019-09-26T04:01:35.628Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Netty之高水位、低水位">
 <meta name="twitter:description" content="我们一听高低水位，肯定首先想到的肯定就是“大爸”（三峡大坝），我们都知道，三峡的水位曾经到达过172.85米，最高限制水位175米，其实这就是三峡的高水位，如果再进水，那么恐怕啥都不好用了。同理，Netty中有缓冲区，就相当于大坝起存储缓冲作用。当缓冲区达到一定大小时则不能写入，避免被撑爆。Netty中提供 了writeBufferLowWaterMark和writeBufferHighWater">
@@ -371,8 +371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-19T14:55:58+08:00">
-                2019-01-19
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-26T12:01:35+08:00">
+                2019-09-26
               </time>
             
           </span>
@@ -447,7 +447,7 @@
 <p>bytesBeforeUnwritable方法先判断highWatermark与totalPendingSize的差值，totalPendingSize大于等于highWatermark，则返回0；如果小于highWatermark，且isWritable为true，则返回差值，否则返回0<br>incrementPendingOutboundBytes方法判断如果newWriteBufferSize &gt; channel.config().getWriteBufferHighWaterMark()，则调用setUnwritable(invokeLater)<br>setUnwritable会更新unwritable，如果是从0变为非0，还会触发fireChannelWritabilityChanged进行通知</p>
 <p>综上，lowWatermark及highWatermark分别在decrementPendingOutboundBytes及incrementPendingOutboundBytes方法里头用到(目前应该是这两个方法起作用)，当小于lowWatermark或者大于highWatermark的时候，分别触发setWritable及setUnwritable，更改ChannelOutboundBuffer的unwritable字段，进而影响isWritable方法；在isWritable为true的时候会立马执行写请求，当返回false的时候，写请求会被放入队列等待isWritable为true时才能执行这些堆积的写请求。</p>
 <h3 id="实践出真知"><a href="#实践出真知" class="headerlink" title="实践出真知"></a>实践出真知</h3><p>在Netty的物联网网关中，就可以通过new WriteBufferWaterMark(32 <em> 1024 </em> 1024, 64 <em> 1024 </em> 1024)来设置水位线，防止服务器处理能力极其低下但连接正常时，造成channel中缓存大量数据影响网关性能。具体设置多大我们可以根据我们的应用需要支持多少连接数和系统资源进行合理规划。高水位线和低水位线是字节数，默认高水位是64K，低水位是<br>32K。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.jianshu.com/p/a1166c34ae46" target="_blank" rel="noopener">https://www.jianshu.com/p/a1166c34ae46</a><br><a href="https://gitee.com/willbeahero/IOTGate" target="_blank" rel="noopener">https://gitee.com/willbeahero/IOTGate</a><br><a href="https://www.jianshu.com/p/890525ff73cb" target="_blank" rel="noopener">https://www.jianshu.com/p/890525ff73cb</a></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.jianshu.com/p/a1166c34ae46" target="_blank" rel="noopener">https://www.jianshu.com/p/a1166c34ae46</a><br><a href="https://gitee.com/willbeahero/IOTGate" target="_blank" rel="noopener">https://gitee.com/willbeahero/IOTGate</a><br><a href="https://www.jianshu.com/p/890525ff73cb" target="_blank" rel="noopener">https://www.jianshu.com/p/890525ff73cb</a><br><a href="https://gitee.com/ibyte/icloud-tcp-gateway" target="_blank" rel="noopener">https://gitee.com/ibyte/icloud-tcp-gateway</a> 一个基于Netty的网关项目</p>
 
       
     </div>
@@ -467,35 +467,6 @@
      
     </div>
 
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>您的支持就是我更新的动力！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/weixin.jpg" alt="无法长大 微信支付"/>
-        <p>微信支付</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="无法长大 支付宝"/>
-        <p>支付宝</p>
-      </div>
-    
-
-    
-
-  </div>
-</div>
-
-      </div>
     
 
     
@@ -637,7 +608,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-count">122</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

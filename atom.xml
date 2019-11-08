@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-09-12T12:24:44.119Z</updated>
+  <updated>2019-11-08T03:50:43.207Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>k3s在实际项目中的落地实践</title>
+    <link href="http://yoursite.com/2019/11/08/k3s%E5%9C%A8%E5%AE%9E%E9%99%85%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E8%90%BD%E5%9C%B0%E5%AE%9E%E8%B7%B5/"/>
+    <id>http://yoursite.com/2019/11/08/k3s在实际项目中的落地实践/</id>
+    <published>2019-11-08T03:39:59.000Z</published>
+    <updated>2019-11-08T03:50:43.207Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;k3s在实际项目中的落地实践，包括k3s特点、架构、自动化部署和配置等方面的内容。&lt;/p&gt;
+&lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Docker" scheme="http://yoursite.com/categories/Docker/"/>
+    
+    
+      <category term="Docker" scheme="http://yoursite.com/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>Java之ConcurrentHashMap</title>
@@ -47,7 +74,7 @@
     <link href="http://yoursite.com/2019/09/11/%E7%A7%92%E6%9D%80%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/"/>
     <id>http://yoursite.com/2019/09/11/秒杀问题总结/</id>
     <published>2019-09-11T06:21:32.000Z</published>
-    <updated>2019-09-11T06:22:33.548Z</updated>
+    <updated>2019-09-16T08:20:58.767Z</updated>
     
     <summary type="html">
     
@@ -514,32 +541,6 @@
     
     
       <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>一个不认识的进程</title>
-    <link href="http://yoursite.com/2019/06/08/%E4%B8%80%E4%B8%AA%E4%B8%8D%E8%AE%A4%E8%AF%86%E7%9A%84%E8%BF%9B%E7%A8%8B/"/>
-    <id>http://yoursite.com/2019/06/08/一个不认识的进程/</id>
-    <published>2019-06-08T12:24:34.000Z</published>
-    <updated>2019-06-08T12:25:04.721Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;今天登陆服务器，看到了一个不认识的进程，&lt;br&gt;&lt;code&gt;root      8581     1  0 Feb14 ?        00:33:01 /usr/bin/python2 -Es /usr/sbin/tuned -l
-        
-      
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
     
   </entry>
   
