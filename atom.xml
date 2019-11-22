@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-11-08T03:50:43.207Z</updated>
+  <updated>2019-11-22T06:32:01.538Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>你知道RSocket吗？</title>
+    <link href="http://yoursite.com/2019/11/22/%E4%BD%A0%E7%9F%A5%E9%81%93RSocket%E5%90%97%EF%BC%9F/"/>
+    <id>http://yoursite.com/2019/11/22/你知道RSocket吗？/</id>
+    <published>2019-11-22T06:31:01.000Z</published>
+    <updated>2019-11-22T06:32:01.538Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;SideCar的作用&quot;&gt;&lt;a href=&quot;#SideCar的作用&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Reactive" scheme="http://yoursite.com/categories/Reactive/"/>
+    
+    
+      <category term="Reactivce" scheme="http://yoursite.com/tags/Reactivce/"/>
+    
+  </entry>
   
   <entry>
     <title>k3s在实际项目中的落地实践</title>
@@ -515,32 +541,6 @@
     
     
       <category term="Architecture" scheme="http://yoursite.com/tags/Architecture/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java之ReentrantLock</title>
-    <link href="http://yoursite.com/2019/06/10/Java%E4%B9%8BReentrantLock/"/>
-    <id>http://yoursite.com/2019/06/10/Java之ReentrantLock/</id>
-    <published>2019-06-10T08:47:33.000Z</published>
-    <updated>2019-06-30T11:59:05.037Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;非常好的一篇文章-并发编程网&quot;&gt;&lt;a href=&quot;#非常好的一篇文章-并发编程网&quot; class=&quot;headerlink&quot; title=&quot;非常好的一篇文章:(并发编程网)&quot;&gt;&lt;/a&gt;非常好的一篇文章:(并发编程网)&lt;/h3&gt;&lt;p&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
     
   </entry>
   
