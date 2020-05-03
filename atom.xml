@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-11-22T06:32:01.538Z</updated>
+  <updated>2020-05-03T05:17:43.264Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>初识OpenResty</title>
+    <link href="http://yoursite.com/2020/05/03/%E5%88%9D%E8%AF%86OpenResty/"/>
+    <id>http://yoursite.com/2020/05/03/初识OpenResty/</id>
+    <published>2020-05-03T05:04:32.000Z</published>
+    <updated>2020-05-03T05:17:43.264Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ul&gt;
+&lt;li&gt;openresty -s quit -p &lt;code&gt;pwd&lt;/code&gt; -c conf/nginx.conf 关闭&lt;/li&gt;
+&lt;li&gt;openresty  -p &lt;code&gt;pwd&lt;/code&gt; -c conf/nginx.conf
+        
+      
+    
+    </summary>
+    
+      <category term="GateWay" scheme="http://yoursite.com/categories/GateWay/"/>
+    
+    
+      <category term="GateWay" scheme="http://yoursite.com/tags/GateWay/"/>
+    
+  </entry>
   
   <entry>
     <title>你知道RSocket吗？</title>
@@ -515,32 +543,6 @@
     
     
       <category term="SpringCloud" scheme="http://yoursite.com/tags/SpringCloud/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>你知道CQRS吗？</title>
-    <link href="http://yoursite.com/2019/06/13/%E4%BD%A0%E7%9F%A5%E9%81%93CQRS%E5%90%97%EF%BC%9F/"/>
-    <id>http://yoursite.com/2019/06/13/你知道CQRS吗？/</id>
-    <published>2019-06-12T21:22:02.000Z</published>
-    <updated>2019-07-31T15:22:50.220Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;CQRS架构简介&quot;&gt;&lt;a href=&quot;#CQRS架构简介&quot; class=&quot;headerlink&quot; title=&quot;CQRS架构简介&quot;&gt;&lt;/a&gt;CQRS架构简介&lt;/h3&gt;&lt;p&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="Architecture" scheme="http://yoursite.com/categories/Architecture/"/>
-    
-    
-      <category term="Architecture" scheme="http://yoursite.com/tags/Architecture/"/>
     
   </entry>
   
