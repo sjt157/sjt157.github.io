@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-03T05:17:43.264Z</updated>
+  <updated>2020-05-05T09:32:17.617Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>你根本就不懂Nginx</title>
+    <link href="http://yoursite.com/2020/05/05/%E4%BD%A0%E6%A0%B9%E6%9C%AC%E5%B0%B1%E4%B8%8D%E6%87%82Nginx/"/>
+    <id>http://yoursite.com/2020/05/05/你根本就不懂Nginx/</id>
+    <published>2020-05-05T09:30:12.000Z</published>
+    <updated>2020-05-05T09:32:17.617Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;这两天学习了陶辉老师的《Nginx核心知识100讲》，受益匪浅，特此记录知识点。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用 GoAccess 实现可视化并实时监控Nginx的 access
+        
+      
+    
+    </summary>
+    
+      <category term="GateWay" scheme="http://yoursite.com/categories/GateWay/"/>
+    
+    
+      <category term="GateWay" scheme="http://yoursite.com/tags/GateWay/"/>
+    
+  </entry>
   
   <entry>
     <title>初识OpenResty</title>
@@ -517,32 +545,6 @@
     
     
       <category term="TechnicalSalon" scheme="http://yoursite.com/tags/TechnicalSalon/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>读Spring-Cloud-Gateway源码收获</title>
-    <link href="http://yoursite.com/2019/06/14/%E8%AF%BBSpring-Cloud-Gateway%E6%BA%90%E7%A0%81%E6%94%B6%E8%8E%B7/"/>
-    <id>http://yoursite.com/2019/06/14/读Spring-Cloud-Gateway源码收获/</id>
-    <published>2019-06-14T07:48:42.000Z</published>
-    <updated>2019-07-03T14:12:09.830Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;读Spring-Cloud-Gateway源码收获&quot;&gt;&lt;a href=&quot;#读Spring-Cloud-Gateway源码收获&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="SpringCloud" scheme="http://yoursite.com/categories/SpringCloud/"/>
-    
-    
-      <category term="SpringCloud" scheme="http://yoursite.com/tags/SpringCloud/"/>
     
   </entry>
   
